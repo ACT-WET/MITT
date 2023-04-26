@@ -1,0 +1,1502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A99ACADBDAC29F15DBF767B /* Pods_iPadControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAE4F3BAAD085CDE6B570C5 /* Pods_iPadControls.framework */; };
+		9B006223212C7E160066CC9B /* check12or24Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B006222212C7E160066CC9B /* check12or24Hour.swift */; };
+		9B147509225E649A00D9E577 /* OzonePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B147508225E649A00D9E577 /* OzonePopupViewController.swift */; };
+		9B147C9D20DC68C0003DDFE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B147C9B20DC68C0003DDFE8 /* LaunchScreen.storyboard */; };
+		9B3D3B6F20DC615B00E34BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D3B6E20DC615B00E34BE4 /* AppDelegate.swift */; };
+		9B3EB64120C70D8C0071D3AA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3EB64020C70D8C0071D3AA /* CFNetwork.framework */; };
+		9B4E107B218265B700604006 /* WaterQualitySpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1073218265B700604006 /* WaterQualitySpecs.swift */; };
+		9B4E107C218265B700604006 /* TDSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1074218265B700604006 /* TDSViewController.swift */; };
+		9B4E107D218265B700604006 /* WaterQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1075218265B700604006 /* WaterQualityViewController.swift */; };
+		9B4E107E218265B700604006 /* WaterQualitySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1076218265B700604006 /* WaterQualitySettingsViewController.swift */; };
+		9B4E107F218265B700604006 /* PHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1077218265B700604006 /* PHViewController.swift */; };
+		9B4E1080218265B700604006 /* ORPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1078218265B700604006 /* ORPViewController.swift */; };
+		9B4E1081218265B700604006 /* BromineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E1079218265B700604006 /* BromineViewController.swift */; };
+		9B4E1082218265B700604006 /* WQMultiple.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4E107A218265B700604006 /* WQMultiple.storyboard */; };
+		9B5F3F0220DC5A8D00D3CFDF /* versionNum.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0020DC5A8D00D3CFDF /* versionNum.txt */; };
+		9B5F3F0320DC5A8D00D3CFDF /* EX20.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0120DC5A8D00D3CFDF /* EX20.rtf */; };
+		9B5F3F0B20DC5AA000D3CFDF /* iPadControls.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0620DC5AA000D3CFDF /* iPadControls.xcdatamodeld */; };
+		9B5F3F0C20DC5AA000D3CFDF /* languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0820DC5AA000D3CFDF /* languages.json */; };
+		9B5F3F0D20DC5AA000D3CFDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0920DC5AA000D3CFDF /* Assets.xcassets */; };
+		9B5F3F1A20DC5AB400D3CFDF /* Pump+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0E20DC5AB300D3CFDF /* Pump+CoreDataProperties.swift */; };
+		9B5F3F1B20DC5AB400D3CFDF /* PumpDetail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F0F20DC5AB300D3CFDF /* PumpDetail+CoreDataProperties.swift */; };
+		9B5F3F1C20DC5AB400D3CFDF /* Show+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1020DC5AB300D3CFDF /* Show+CoreDataProperties.swift */; };
+		9B5F3F1D20DC5AB400D3CFDF /* Wind+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1120DC5AB300D3CFDF /* Wind+CoreDataClass.swift */; };
+		9B5F3F1E20DC5AB400D3CFDF /* Wind+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1220DC5AB300D3CFDF /* Wind+CoreDataProperties.swift */; };
+		9B5F3F1F20DC5AB400D3CFDF /* PumpDetail+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1320DC5AB400D3CFDF /* PumpDetail+CoreDataClass.swift */; };
+		9B5F3F2020DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1420DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift */; };
+		9B5F3F2120DC5AB400D3CFDF /* Network+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1520DC5AB400D3CFDF /* Network+CoreDataClass.swift */; };
+		9B5F3F2220DC5AB400D3CFDF /* Pump+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1620DC5AB400D3CFDF /* Pump+CoreDataClass.swift */; };
+		9B5F3F2320DC5AB400D3CFDF /* Show+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1720DC5AB400D3CFDF /* Show+CoreDataClass.swift */; };
+		9B5F3F2420DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1820DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift */; };
+		9B5F3F2520DC5AB400D3CFDF /* Network+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F1920DC5AB400D3CFDF /* Network+CoreDataProperties.swift */; };
+		9B5F3F6F20DC5AD900D3CFDF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F2720DC5AD900D3CFDF /* LICENSE */; };
+		9B5F3F7020DC5AD900D3CFDF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F2820DC5AD900D3CFDF /* README.md */; };
+		9B5F3F7120DC5AD900D3CFDF /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F2A20DC5AD900D3CFDF /* UIAlertView+AFNetworking.m */; };
+		9B5F3F7220DC5AD900D3CFDF /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F2B20DC5AD900D3CFDF /* UIProgressView+AFNetworking.m */; };
+		9B5F3F7320DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F2D20DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.m */; };
+		9B5F3F7420DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F2F20DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.m */; };
+		9B5F3F7520DC5AD900D3CFDF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F3420DC5AD900D3CFDF /* UIImageView+AFNetworking.m */; };
+		9B5F3F7620DC5AD900D3CFDF /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F3720DC5AD900D3CFDF /* UIButton+AFNetworking.m */; };
+		9B5F3F7720DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F3820DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.m */; };
+		9B5F3F7820DC5AD900D3CFDF /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F3920DC5AD900D3CFDF /* UIWebView+AFNetworking.m */; };
+		9B5F3F7920DC5AD900D3CFDF /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4320DC5AD900D3CFDF /* AFURLResponseSerialization.m */; };
+		9B5F3F7A20DC5AD900D3CFDF /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4420DC5AD900D3CFDF /* AFHTTPSessionManager.m */; };
+		9B5F3F7B20DC5AD900D3CFDF /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4520DC5AD900D3CFDF /* AFURLConnectionOperation.m */; };
+		9B5F3F7C20DC5AD900D3CFDF /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4720DC5AD900D3CFDF /* AFURLSessionManager.m */; };
+		9B5F3F7D20DC5AD900D3CFDF /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4820DC5AD900D3CFDF /* AFHTTPRequestOperationManager.m */; };
+		9B5F3F7E20DC5AD900D3CFDF /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4920DC5AD900D3CFDF /* AFURLRequestSerialization.m */; };
+		9B5F3F7F20DC5AD900D3CFDF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4A20DC5AD900D3CFDF /* AFHTTPRequestOperation.m */; };
+		9B5F3F8020DC5AD900D3CFDF /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4C20DC5AD900D3CFDF /* AFNetworkReachabilityManager.m */; };
+		9B5F3F8120DC5AD900D3CFDF /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F4D20DC5AD900D3CFDF /* AFSecurityPolicy.m */; };
+		9B5F3F8220DC5AD900D3CFDF /* modbus-data.c in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5220DC5AD900D3CFDF /* modbus-data.c */; };
+		9B5F3F8320DC5AD900D3CFDF /* AUTHORS in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5320DC5AD900D3CFDF /* AUTHORS */; };
+		9B5F3F8420DC5AD900D3CFDF /* modbus.c in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5520DC5AD900D3CFDF /* modbus.c */; };
+		9B5F3F8520DC5AD900D3CFDF /* modbus-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5620DC5AD900D3CFDF /* modbus-tcp.c */; };
+		9B5F3F8620DC5AD900D3CFDF /* COPYING.LESSER in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5920DC5AD900D3CFDF /* COPYING.LESSER */; };
+		9B5F3F8720DC5AD900D3CFDF /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5A20DC5AD900D3CFDF /* COPYING */; };
+		9B5F3F8820DC5AD900D3CFDF /* NEWS in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5B20DC5AD900D3CFDF /* NEWS */; };
+		9B5F3F8920DC5AD900D3CFDF /* modbus-rtu.c in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5C20DC5AD900D3CFDF /* modbus-rtu.c */; };
+		9B5F3F8A20DC5AD900D3CFDF /* README.rst in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3F5E20DC5AD900D3CFDF /* README.rst */; };
+		9B5F3F8B20DC5AD900D3CFDF /* ObjectiveLibModbus.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F6120DC5AD900D3CFDF /* ObjectiveLibModbus.m */; };
+		9B5F3F8D20DC5AD900D3CFDF /* SwiftRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F6720DC5AD900D3CFDF /* SwiftRecord.swift */; };
+		9B5F3F8E20DC5AD900D3CFDF /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F6B20DC5AD900D3CFDF /* RDVCalendarDayCell.m */; };
+		9B5F3F8F20DC5AD900D3CFDF /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F6C20DC5AD900D3CFDF /* RDVCalendarView.m */; };
+		9B5F3F9020DC5AD900D3CFDF /* RDVCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F6D20DC5AD900D3CFDF /* RDVCalendarViewController.m */; };
+		9B5F3FA520DC5AF400D3CFDF /* HomeGeneralSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9220DC5AF400D3CFDF /* HomeGeneralSpecs.swift */; };
+		9B5F3FA620DC5AF400D3CFDF /* CentralSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9320DC5AF400D3CFDF /* CentralSystem.swift */; };
+		9B5F3FA720DC5AF400D3CFDF /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9420DC5AF400D3CFDF /* LocalStorage.swift */; };
+		9B5F3FA820DC5AF400D3CFDF /* Utilits.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9720DC5AF400D3CFDF /* Utilits.m */; };
+		9B5F3FA920DC5AF400D3CFDF /* ACTDayValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9820DC5AF400D3CFDF /* ACTDayValues.m */; };
+		9B5F3FAA20DC5AF400D3CFDF /* ACTUISafeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9920DC5AF400D3CFDF /* ACTUISafeNavigationController.m */; };
+		9B5F3FAB20DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9A20DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.m */; };
+		9B5F3FAC20DC5AF400D3CFDF /* HTTPComm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3F9F20DC5AF400D3CFDF /* HTTPComm.swift */; };
+		9B5F3FAD20DC5AF400D3CFDF /* ShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FA020DC5AF400D3CFDF /* ShowManager.swift */; };
+		9B5F3FAE20DC5AF400D3CFDF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FA120DC5AF400D3CFDF /* Logger.swift */; };
+		9B5F3FAF20DC5AF400D3CFDF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FA220DC5AF400D3CFDF /* Extensions.swift */; };
+		9B5F3FB020DC5AF400D3CFDF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FA320DC5AF400D3CFDF /* Helper.swift */; };
+		9B5F3FB120DC5AF400D3CFDF /* ShowSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FA420DC5AF400D3CFDF /* ShowSettings.swift */; };
+		9B5F401920DC5B1200D3CFDF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FB420DC5B1200D3CFDF /* HomeViewController.swift */; };
+		9B5F401A20DC5B1200D3CFDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FB520DC5B1200D3CFDF /* Main.storyboard */; };
+		9B5F401B20DC5B1200D3CFDF /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FB720DC5B1200D3CFDF /* settings.storyboard */; };
+		9B5F401C20DC5B1200D3CFDF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FB820DC5B1200D3CFDF /* SettingsViewController.swift */; };
+		9B5F403A20DC5B1200D3CFDF /* OperationManual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FE520DC5B1200D3CFDF /* OperationManual.swift */; };
+		9B5F403B20DC5B1200D3CFDF /* alarm_pump.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FE820DC5B1200D3CFDF /* alarm_pump.png */; };
+		9B5F403C20DC5B1200D3CFDF /* showStopperRATmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FE920DC5B1200D3CFDF /* showStopperRATmode.png */; };
+		9B5F403D20DC5B1200D3CFDF /* alarm_wind.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FEA20DC5B1200D3CFDF /* alarm_wind.png */; };
+		9B5F403E20DC5B1200D3CFDF /* showStopperTemp.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FEB20DC5B1200D3CFDF /* showStopperTemp.png */; };
+		9B5F403F20DC5B1200D3CFDF /* showStopperWaterLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FEC20DC5B1200D3CFDF /* showStopperWaterLevel.png */; };
+		9B5F404020DC5B1200D3CFDF /* air_pressure_fault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FED20DC5B1200D3CFDF /* air_pressure_fault.png */; };
+		9B5F404120DC5B1200D3CFDF /* intrusionsystem_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FEE20DC5B1200D3CFDF /* intrusionsystem_button.png */; };
+		9B5F404220DC5B1200D3CFDF /* alarm_fog.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FEF20DC5B1200D3CFDF /* alarm_fog.png */; };
+		9B5F404420DC5B1200D3CFDF /* ShowStopperChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FF120DC5B1200D3CFDF /* ShowStopperChecker.swift */; };
+		9B5F404920DC5B1200D3CFDF /* waterLevel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5F3FF820DC5B1200D3CFDF /* waterLevel.storyboard */; };
+		9B5F404A20DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FF920DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift */; };
+		9B5F404B20DC5B1200D3CFDF /* WaterLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5F3FFA20DC5B1200D3CFDF /* WaterLevelViewController.swift */; };
+		9B725D7D214775BD008886A2 /* pumps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B725D78214775BC008886A2 /* pumps.storyboard */; };
+		9B725D7E214775BD008886A2 /* PumpsSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725D79214775BD008886A2 /* PumpsSpecs.swift */; };
+		9B725D7F214775BD008886A2 /* PumpSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725D7A214775BD008886A2 /* PumpSettingsViewController.swift */; };
+		9B725D80214775BD008886A2 /* PumpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725D7B214775BD008886A2 /* PumpsViewController.swift */; };
+		9B725D81214775BD008886A2 /* AutoPumpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725D7C214775BD008886A2 /* AutoPumpDetailViewController.swift */; };
+		9B725DA121477601008886A2 /* WeekSchedulerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725D9E21477601008886A2 /* WeekSchedulerPopoverView.swift */; };
+		9B725DA221477601008886A2 /* WeekSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725D9F21477601008886A2 /* WeekSchedulerViewController.swift */; };
+		9B725DA321477601008886A2 /* WeekendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B725DA021477601008886A2 /* WeekendViewController.swift */; };
+		9B8DB340214832B6001CF70D /* WaterLevelSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DB33F214832B6001CF70D /* WaterLevelSpecs.swift */; };
+		9B8DB3422148337B001CF70D /* ShowStopperSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DB3412148337B001CF70D /* ShowStopperSpecs.swift */; };
+		9BB3349521482B350004FFBC /* WeekSchedulerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3349421482B350004FFBC /* WeekSchedulerSpecs.swift */; };
+		9BBB8EF02135C359001F9F01 /* ShowHideSettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB8EEF2135C359001F9F01 /* ShowHideSettingsLabel.swift */; };
+		9BC042B72267C265001E2F49 /* fog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC042B32267C265001E2F49 /* fog.storyboard */; };
+		9BC042B82267C265001E2F49 /* FogSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC042B42267C265001E2F49 /* FogSpecs.swift */; };
+		9BC042B92267C265001E2F49 /* FogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC042B52267C265001E2F49 /* FogViewController.swift */; };
+		9BF5679D20DC69DE001AFD30 /* iPadControls-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5679C20DC69DE001AFD30 /* iPadControls-Info.plist */; };
+		BB153A3E29F9C5AE009F1C62 /* LakeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB153A3D29F9C5AE009F1C62 /* LakeHomeViewController.swift */; };
+		BB2E14652786144E00693B66 /* lights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2E14612786144E00693B66 /* lights.storyboard */; };
+		BB2E14662786144E00693B66 /* LightsSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E14622786144E00693B66 /* LightsSelectViewController.swift */; };
+		BB2E14672786144E00693B66 /* LightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E14632786144E00693B66 /* LightsViewController.swift */; };
+		BB2E14682786144E00693B66 /* LightsSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E14642786144E00693B66 /* LightsSpecs.swift */; };
+		BB34707E27441F8500588FF5 /* HomeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB34707D27441F8500588FF5 /* HomeSelectViewController.swift */; };
+		BB37240F29D23293002BE775 /* ShowScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37240E29D23293002BE775 /* ShowScheduleListViewController.swift */; };
+		BB37241129D232B6002BE775 /* AlightShowScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37241029D232B6002BE775 /* AlightShowScheduleListViewController.swift */; };
+		BB59252323E35A6400F49039 /* EStop.png in Resources */ = {isa = PBXBuildFile; fileRef = BB59252223E35A6400F49039 /* EStop.png */; };
+		BB5F80DA222721F500E4A602 /* BRSetpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F80D9222721F500E4A602 /* BRSetpointViewController.swift */; };
+		BB629DE226E012500005D4CB /* ACTInstantPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629DDD26E0124F0005D4CB /* ACTInstantPlayViewController.m */; };
+		BB629DE326E012500005D4CB /* showList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB629DDE26E0124F0005D4CB /* showList.storyboard */; };
+		BB629DE526E012500005D4CB /* ACTPlaylistSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629DE126E0124F0005D4CB /* ACTPlaylistSettingsViewController.m */; };
+		BB629DFD26E0126F0005D4CB /* scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB629DF426E0126E0005D4CB /* scheduler.storyboard */; };
+		BB629DFE26E0126F0005D4CB /* ACTScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629DF526E0126E0005D4CB /* ACTScheduleViewController.m */; };
+		BB629DFF26E0126F0005D4CB /* ACTAddShowPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629DF626E0126E0005D4CB /* ACTAddShowPlaylistViewController.m */; };
+		BB629E0026E0126F0005D4CB /* ACTCalendarScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629DF826E0126E0005D4CB /* ACTCalendarScheduleViewController.m */; };
+		BB629E0126E0126F0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629DFC26E0126E0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m */; };
+		BB629E0B26E013670005D4CB /* playlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB629E0426E013660005D4CB /* playlist.storyboard */; };
+		BB629E0C26E013670005D4CB /* ACTDesignateTestShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629E0626E013660005D4CB /* ACTDesignateTestShowViewController.m */; };
+		BB629E0D26E013670005D4CB /* ACTSelectShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629E0726E013660005D4CB /* ACTSelectShowViewController.m */; };
+		BB629E0E26E013670005D4CB /* ACTPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB629E0826E013660005D4CB /* ACTPlaylistViewController.m */; };
+		BB6568E624215FDB00229999 /* SysLogTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6568E524215FDB00229999 /* SysLogTextViewController.swift */; };
+		BB69783B29556FF200EDC57E /* LakePumpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783A29556FF200EDC57E /* LakePumpsViewController.swift */; };
+		BB69783D295573E200EDC57E /* LakePumpsSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783C295573E200EDC57E /* LakePumpsSchedulerViewController.swift */; };
+		BB69783F29559CC200EDC57E /* AlightWaterLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783E29559CC200EDC57E /* AlightWaterLevelViewController.swift */; };
+		BB6978412955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978402955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift */; };
+		BB69784529562EFE00EDC57E /* LakeFiltrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69784429562EFE00EDC57E /* LakeFiltrationViewController.swift */; };
+		BB6978472956D0AB00EDC57E /* LakeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978462956D0AB00EDC57E /* LakeSettingsViewController.swift */; };
+		BB6978492956D83500EDC57E /* LakeSystemStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978482956D83500EDC57E /* LakeSystemStatusViewController.swift */; };
+		BB69784B2956E45000EDC57E /* LakeFiltrationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69784A2956E45000EDC57E /* LakeFiltrationSettingsViewController.swift */; };
+		BB69784F295E371B00EDC57E /* FillerShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69784D295E371A00EDC57E /* FillerShowsViewController.swift */; };
+		BB697850295E371B00EDC57E /* fillerShows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB69784E295E371A00EDC57E /* fillerShows.storyboard */; };
+		BB6978652967D69D00EDC57E /* AlShow+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978632967D69D00EDC57E /* AlShow+CoreDataClass.swift */; };
+		BB6978662967D69D00EDC57E /* AlShow+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978642967D69D00EDC57E /* AlShow+CoreDataProperties.swift */; };
+		BB6978692967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6978682967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m */; };
+		BB69786C2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m */; };
+		BB697871296C9A9400EDC57E /* AlightShowStopperChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB697870296C9A9400EDC57E /* AlightShowStopperChecker.swift */; };
+		BB697874296C9F0800EDC57E /* ACTPlaylistAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697873296C9F0800EDC57E /* ACTPlaylistAlightViewController.m */; };
+		BB697877296CA89100EDC57E /* ACTSelectShowAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697876296CA89100EDC57E /* ACTSelectShowAlightViewController.m */; };
+		BB69787A296CC53C00EDC57E /* ACTSchedulerAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697879296CC53C00EDC57E /* ACTSchedulerAlightViewController.m */; };
+		BB69787D296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69787C296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m */; };
+		BB697880296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m */; };
+		BB697883296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697882296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m */; };
+		BB697885296DEDFE00EDC57E /* FillerShowsLakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB697884296DEDFE00EDC57E /* FillerShowsLakeViewController.swift */; };
+		BBC148E62874DC5C000F249D /* LakeWindSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC148E52874DC5C000F249D /* LakeWindSelectViewController.swift */; };
+		BBC148E82874E39C000F249D /* LakeWindAnemometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC148E72874E39C000F249D /* LakeWindAnemometerViewController.swift */; };
+		BBC148EA2874E97B000F249D /* LakeWindSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC148E92874E97B000F249D /* LakeWindSettingsViewController.swift */; };
+		BBF0F958240D911700886076 /* filtration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBF0F952240D911700886076 /* filtration.storyboard */; };
+		BBF0F959240D911700886076 /* FiltrationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F953240D911700886076 /* FiltrationSettingsViewController.swift */; };
+		BBF0F95A240D911700886076 /* FiltrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F954240D911700886076 /* FiltrationViewController.swift */; };
+		BBF0F95B240D911700886076 /* FiltrationSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F955240D911700886076 /* FiltrationSpecs.swift */; };
+		BBF0F96A240D9A2900886076 /* wind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBF0F969240D9A2900886076 /* wind.storyboard */; };
+		BBF0F96F240D9A3800886076 /* WindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F96B240D9A3800886076 /* WindViewController.swift */; };
+		BBF0F970240D9A3800886076 /* WindAnemometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F96C240D9A3800886076 /* WindAnemometerViewController.swift */; };
+		BBF0F972240D9A3800886076 /* WindSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F96E240D9A3800886076 /* WindSpecs.swift */; };
+		BBF0F974240D9B5600886076 /* FiltrationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF0F973240D9B5600886076 /* FiltrationSelectViewController.swift */; };
+		BBF721FA26E7F63F0090FFCC /* windSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF721F926E7F63F0090FFCC /* windSettingsViewController.swift */; };
+		BBF9B8D723F4B4F800DF67A1 /* SystemStatusSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9B8D323F4B4F800DF67A1 /* SystemStatusSpecs.swift */; };
+		BBF9B8D823F4B4F800DF67A1 /* SystemStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9B8D423F4B4F800DF67A1 /* SystemStatusViewController.swift */; };
+		BBF9B8D923F4B4F800DF67A1 /* systemstatus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBF9B8D523F4B4F800DF67A1 /* systemstatus.storyboard */; };
+		BBF9B8DA23F4B4F800DF67A1 /* SystemFaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9B8D623F4B4F800DF67A1 /* SystemFaultViewController.swift */; };
+		BBF9B8DF23F4B6F900DF67A1 /* logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBF9B8DC23F4B6F900DF67A1 /* logs.storyboard */; };
+		BBF9B8E023F4B6F900DF67A1 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9B8DD23F4B6F900DF67A1 /* LogsViewController.swift */; };
+		BBF9B8E123F4B6F900DF67A1 /* StatusLogSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9B8DE23F4B6F900DF67A1 /* StatusLogSpecs.swift */; };
+		DB46ABAA23B1AFE8003A4388 /* PumpSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB46ABA923B1AFE8003A4388 /* PumpSchedulerViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		88243C0A1DEF5965004D39D8 /* iPadControls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPadControls.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B006222212C7E160066CC9B /* check12or24Hour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = check12or24Hour.swift; sourceTree = "<group>"; };
+		9B147508225E649A00D9E577 /* OzonePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OzonePopupViewController.swift; sourceTree = "<group>"; };
+		9B147C9C20DC68C0003DDFE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9B3D3B6D20DC5EFD00E34BE4 /* iPadControls-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iPadControls-Bridging-Header.h"; path = "Resources/iPadControls-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B3D3B6E20DC615B00E34BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9B3EB64020C70D8C0071D3AA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9B4E1073218265B700604006 /* WaterQualitySpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterQualitySpecs.swift; sourceTree = "<group>"; };
+		9B4E1074218265B700604006 /* TDSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSViewController.swift; sourceTree = "<group>"; };
+		9B4E1075218265B700604006 /* WaterQualityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterQualityViewController.swift; sourceTree = "<group>"; };
+		9B4E1076218265B700604006 /* WaterQualitySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterQualitySettingsViewController.swift; sourceTree = "<group>"; };
+		9B4E1077218265B700604006 /* PHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHViewController.swift; sourceTree = "<group>"; };
+		9B4E1078218265B700604006 /* ORPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ORPViewController.swift; sourceTree = "<group>"; };
+		9B4E1079218265B700604006 /* BromineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BromineViewController.swift; sourceTree = "<group>"; };
+		9B4E107A218265B700604006 /* WQMultiple.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WQMultiple.storyboard; sourceTree = "<group>"; };
+		9B5F3F0020DC5A8D00D3CFDF /* versionNum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = versionNum.txt; path = Specs/versionNum.txt; sourceTree = "<group>"; };
+		9B5F3F0120DC5A8D00D3CFDF /* EX20.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = EX20.rtf; path = Specs/EX20.rtf; sourceTree = "<group>"; };
+		9B5F3F0720DC5AA000D3CFDF /* iPadControls.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iPadControls.xcdatamodel; sourceTree = "<group>"; };
+		9B5F3F0820DC5AA000D3CFDF /* languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = languages.json; path = Resources/languages.json; sourceTree = "<group>"; };
+		9B5F3F0920DC5AA000D3CFDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		9B5F3F0E20DC5AB300D3CFDF /* Pump+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pump+CoreDataProperties.swift"; path = "Core Data Model/Pump+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B5F3F0F20DC5AB300D3CFDF /* PumpDetail+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PumpDetail+CoreDataProperties.swift"; path = "Core Data Model/PumpDetail+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B5F3F1020DC5AB300D3CFDF /* Show+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Show+CoreDataProperties.swift"; path = "Core Data Model/Show+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B5F3F1120DC5AB300D3CFDF /* Wind+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Wind+CoreDataClass.swift"; path = "Core Data Model/Wind+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B5F3F1220DC5AB300D3CFDF /* Wind+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Wind+CoreDataProperties.swift"; path = "Core Data Model/Wind+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B5F3F1320DC5AB400D3CFDF /* PumpDetail+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PumpDetail+CoreDataClass.swift"; path = "Core Data Model/PumpDetail+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B5F3F1420DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "IntrusionError+CoreDataClass.swift"; path = "Core Data Model/IntrusionError+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B5F3F1520DC5AB400D3CFDF /* Network+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Network+CoreDataClass.swift"; path = "Core Data Model/Network+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B5F3F1620DC5AB400D3CFDF /* Pump+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pump+CoreDataClass.swift"; path = "Core Data Model/Pump+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B5F3F1720DC5AB400D3CFDF /* Show+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Show+CoreDataClass.swift"; path = "Core Data Model/Show+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B5F3F1820DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "IntrusionError+CoreDataProperties.swift"; path = "Core Data Model/IntrusionError+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B5F3F1920DC5AB400D3CFDF /* Network+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Network+CoreDataProperties.swift"; path = "Core Data Model/Network+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B5F3F2720DC5AD900D3CFDF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9B5F3F2820DC5AD900D3CFDF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9B5F3F2A20DC5AD900D3CFDF /* UIAlertView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F2B20DC5AD900D3CFDF /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F2C20DC5AD900D3CFDF /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F2D20DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F2E20DC5AD900D3CFDF /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F2F20DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		9B5F3F3020DC5AD900D3CFDF /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F3120DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F3220DC5AD900D3CFDF /* UIAlertView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F3320DC5AD900D3CFDF /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F3420DC5AD900D3CFDF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F3520DC5AD900D3CFDF /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F3620DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
+		9B5F3F3720DC5AD900D3CFDF /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F3820DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F3920DC5AD900D3CFDF /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		9B5F3F3A20DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		9B5F3F3C20DC5AD900D3CFDF /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		9B5F3F3D20DC5AD900D3CFDF /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		9B5F3F3E20DC5AD900D3CFDF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		9B5F3F3F20DC5AD900D3CFDF /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		9B5F3F4020DC5AD900D3CFDF /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		9B5F3F4120DC5AD900D3CFDF /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		9B5F3F4220DC5AD900D3CFDF /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		9B5F3F4320DC5AD900D3CFDF /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		9B5F3F4420DC5AD900D3CFDF /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		9B5F3F4520DC5AD900D3CFDF /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		9B5F3F4620DC5AD900D3CFDF /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		9B5F3F4720DC5AD900D3CFDF /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		9B5F3F4820DC5AD900D3CFDF /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		9B5F3F4920DC5AD900D3CFDF /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		9B5F3F4A20DC5AD900D3CFDF /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		9B5F3F4B20DC5AD900D3CFDF /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		9B5F3F4C20DC5AD900D3CFDF /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		9B5F3F4D20DC5AD900D3CFDF /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		9B5F3F4E20DC5AD900D3CFDF /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		9B5F3F5020DC5AD900D3CFDF /* modbus-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "modbus-private.h"; sourceTree = "<group>"; };
+		9B5F3F5120DC5AD900D3CFDF /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		9B5F3F5220DC5AD900D3CFDF /* modbus-data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "modbus-data.c"; sourceTree = "<group>"; };
+		9B5F3F5320DC5AD900D3CFDF /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
+		9B5F3F5420DC5AD900D3CFDF /* ObjectiveLibModbus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveLibModbus.h; sourceTree = "<group>"; };
+		9B5F3F5520DC5AD900D3CFDF /* modbus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = modbus.c; sourceTree = "<group>"; };
+		9B5F3F5620DC5AD900D3CFDF /* modbus-tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "modbus-tcp.c"; sourceTree = "<group>"; };
+		9B5F3F5720DC5AD900D3CFDF /* modbus-rtu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "modbus-rtu.h"; sourceTree = "<group>"; };
+		9B5F3F5820DC5AD900D3CFDF /* modbus-version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "modbus-version.h"; sourceTree = "<group>"; };
+		9B5F3F5920DC5AD900D3CFDF /* COPYING.LESSER */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.LESSER; sourceTree = "<group>"; };
+		9B5F3F5A20DC5AD900D3CFDF /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		9B5F3F5B20DC5AD900D3CFDF /* NEWS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		9B5F3F5C20DC5AD900D3CFDF /* modbus-rtu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "modbus-rtu.c"; sourceTree = "<group>"; };
+		9B5F3F5D20DC5AD900D3CFDF /* modbus-tcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "modbus-tcp.h"; sourceTree = "<group>"; };
+		9B5F3F5E20DC5AD900D3CFDF /* README.rst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.rst; sourceTree = "<group>"; };
+		9B5F3F5F20DC5AD900D3CFDF /* modbus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modbus.h; sourceTree = "<group>"; };
+		9B5F3F6020DC5AD900D3CFDF /* modbus-tcp-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "modbus-tcp-private.h"; sourceTree = "<group>"; };
+		9B5F3F6120DC5AD900D3CFDF /* ObjectiveLibModbus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveLibModbus.m; sourceTree = "<group>"; };
+		9B5F3F6220DC5AD900D3CFDF /* modbus-rtu-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "modbus-rtu-private.h"; sourceTree = "<group>"; };
+		9B5F3F6720DC5AD900D3CFDF /* SwiftRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRecord.swift; sourceTree = "<group>"; };
+		9B5F3F6920DC5AD900D3CFDF /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
+		9B5F3F6A20DC5AD900D3CFDF /* RDVCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarViewController.h; sourceTree = "<group>"; };
+		9B5F3F6B20DC5AD900D3CFDF /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
+		9B5F3F6C20DC5AD900D3CFDF /* RDVCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarView.m; sourceTree = "<group>"; };
+		9B5F3F6D20DC5AD900D3CFDF /* RDVCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarViewController.m; sourceTree = "<group>"; };
+		9B5F3F6E20DC5AD900D3CFDF /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
+		9B5F3F9220DC5AF400D3CFDF /* HomeGeneralSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGeneralSpecs.swift; sourceTree = "<group>"; };
+		9B5F3F9320DC5AF400D3CFDF /* CentralSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralSystem.swift; sourceTree = "<group>"; };
+		9B5F3F9420DC5AF400D3CFDF /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		9B5F3F9620DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTSchedulerTimePickerViewController.h; sourceTree = "<group>"; };
+		9B5F3F9720DC5AF400D3CFDF /* Utilits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilits.m; sourceTree = "<group>"; };
+		9B5F3F9820DC5AF400D3CFDF /* ACTDayValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTDayValues.m; sourceTree = "<group>"; };
+		9B5F3F9920DC5AF400D3CFDF /* ACTUISafeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTUISafeNavigationController.m; sourceTree = "<group>"; };
+		9B5F3F9A20DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTSchedulerTimePickerViewController.m; sourceTree = "<group>"; };
+		9B5F3F9B20DC5AF400D3CFDF /* Utilits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilits.h; sourceTree = "<group>"; };
+		9B5F3F9C20DC5AF400D3CFDF /* ACTUISafeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTUISafeNavigationController.h; sourceTree = "<group>"; };
+		9B5F3F9D20DC5AF400D3CFDF /* ACTDayValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTDayValues.h; sourceTree = "<group>"; };
+		9B5F3F9F20DC5AF400D3CFDF /* HTTPComm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPComm.swift; sourceTree = "<group>"; };
+		9B5F3FA020DC5AF400D3CFDF /* ShowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowManager.swift; sourceTree = "<group>"; };
+		9B5F3FA120DC5AF400D3CFDF /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		9B5F3FA220DC5AF400D3CFDF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9B5F3FA320DC5AF400D3CFDF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		9B5F3FA420DC5AF400D3CFDF /* ShowSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowSettings.swift; sourceTree = "<group>"; };
+		9B5F3FB420DC5B1200D3CFDF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9B5F3FB520DC5B1200D3CFDF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9B5F3FB720DC5B1200D3CFDF /* settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = settings.storyboard; sourceTree = "<group>"; };
+		9B5F3FB820DC5B1200D3CFDF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9B5F3FE520DC5B1200D3CFDF /* OperationManual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationManual.swift; sourceTree = "<group>"; };
+		9B5F3FE820DC5B1200D3CFDF /* alarm_pump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_pump.png; sourceTree = "<group>"; };
+		9B5F3FE920DC5B1200D3CFDF /* showStopperRATmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showStopperRATmode.png; sourceTree = "<group>"; };
+		9B5F3FEA20DC5B1200D3CFDF /* alarm_wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_wind.png; sourceTree = "<group>"; };
+		9B5F3FEB20DC5B1200D3CFDF /* showStopperTemp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showStopperTemp.png; sourceTree = "<group>"; };
+		9B5F3FEC20DC5B1200D3CFDF /* showStopperWaterLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showStopperWaterLevel.png; sourceTree = "<group>"; };
+		9B5F3FED20DC5B1200D3CFDF /* air_pressure_fault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = air_pressure_fault.png; sourceTree = "<group>"; };
+		9B5F3FEE20DC5B1200D3CFDF /* intrusionsystem_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intrusionsystem_button.png; sourceTree = "<group>"; };
+		9B5F3FEF20DC5B1200D3CFDF /* alarm_fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_fog.png; sourceTree = "<group>"; };
+		9B5F3FF120DC5B1200D3CFDF /* ShowStopperChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStopperChecker.swift; sourceTree = "<group>"; };
+		9B5F3FF820DC5B1200D3CFDF /* waterLevel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = waterLevel.storyboard; sourceTree = "<group>"; };
+		9B5F3FF920DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterLevelSettingsViewController.swift; sourceTree = "<group>"; };
+		9B5F3FFA20DC5B1200D3CFDF /* WaterLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterLevelViewController.swift; sourceTree = "<group>"; };
+		9B725D78214775BC008886A2 /* pumps.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pumps.storyboard; sourceTree = "<group>"; };
+		9B725D79214775BD008886A2 /* PumpsSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpsSpecs.swift; sourceTree = "<group>"; };
+		9B725D7A214775BD008886A2 /* PumpSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpSettingsViewController.swift; sourceTree = "<group>"; };
+		9B725D7B214775BD008886A2 /* PumpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpsViewController.swift; sourceTree = "<group>"; };
+		9B725D7C214775BD008886A2 /* AutoPumpDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPumpDetailViewController.swift; sourceTree = "<group>"; };
+		9B725D9E21477601008886A2 /* WeekSchedulerPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulerPopoverView.swift; sourceTree = "<group>"; };
+		9B725D9F21477601008886A2 /* WeekSchedulerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulerViewController.swift; sourceTree = "<group>"; };
+		9B725DA021477601008886A2 /* WeekendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekendViewController.swift; sourceTree = "<group>"; };
+		9B8DB33F214832B6001CF70D /* WaterLevelSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelSpecs.swift; sourceTree = "<group>"; };
+		9B8DB3412148337B001CF70D /* ShowStopperSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStopperSpecs.swift; sourceTree = "<group>"; };
+		9BB3349421482B350004FFBC /* WeekSchedulerSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSchedulerSpecs.swift; sourceTree = "<group>"; };
+		9BBB8EEF2135C359001F9F01 /* ShowHideSettingsLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHideSettingsLabel.swift; sourceTree = "<group>"; };
+		9BC042B32267C265001E2F49 /* fog.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = fog.storyboard; sourceTree = "<group>"; };
+		9BC042B42267C265001E2F49 /* FogSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FogSpecs.swift; sourceTree = "<group>"; };
+		9BC042B52267C265001E2F49 /* FogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FogViewController.swift; sourceTree = "<group>"; };
+		9BF5679C20DC69DE001AFD30 /* iPadControls-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iPadControls-Info.plist"; path = "Resources/iPadControls-Info.plist"; sourceTree = "<group>"; };
+		BB153A3D29F9C5AE009F1C62 /* LakeHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LakeHomeViewController.swift; sourceTree = "<group>"; };
+		BB2E14612786144E00693B66 /* lights.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = lights.storyboard; sourceTree = "<group>"; };
+		BB2E14622786144E00693B66 /* LightsSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightsSelectViewController.swift; sourceTree = "<group>"; };
+		BB2E14632786144E00693B66 /* LightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightsViewController.swift; sourceTree = "<group>"; };
+		BB2E14642786144E00693B66 /* LightsSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightsSpecs.swift; sourceTree = "<group>"; };
+		BB34707D27441F8500588FF5 /* HomeSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSelectViewController.swift; sourceTree = "<group>"; };
+		BB37240E29D23293002BE775 /* ShowScheduleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowScheduleListViewController.swift; sourceTree = "<group>"; };
+		BB37241029D232B6002BE775 /* AlightShowScheduleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightShowScheduleListViewController.swift; sourceTree = "<group>"; };
+		BB59252223E35A6400F49039 /* EStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EStop.png; sourceTree = "<group>"; };
+		BB5F80D9222721F500E4A602 /* BRSetpointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRSetpointViewController.swift; sourceTree = "<group>"; };
+		BB629DDD26E0124F0005D4CB /* ACTInstantPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTInstantPlayViewController.m; sourceTree = "<group>"; };
+		BB629DDE26E0124F0005D4CB /* showList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = showList.storyboard; sourceTree = "<group>"; };
+		BB629DE026E0124F0005D4CB /* ACTInstantPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTInstantPlayViewController.h; sourceTree = "<group>"; };
+		BB629DE126E0124F0005D4CB /* ACTPlaylistSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistSettingsViewController.m; sourceTree = "<group>"; };
+		BB629DF426E0126E0005D4CB /* scheduler.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = scheduler.storyboard; sourceTree = "<group>"; };
+		BB629DF526E0126E0005D4CB /* ACTScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTScheduleViewController.m; sourceTree = "<group>"; };
+		BB629DF626E0126E0005D4CB /* ACTAddShowPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTAddShowPlaylistViewController.m; sourceTree = "<group>"; };
+		BB629DF726E0126E0005D4CB /* ACTMoveDeleteShowPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTMoveDeleteShowPlaylistViewController.h; sourceTree = "<group>"; };
+		BB629DF826E0126E0005D4CB /* ACTCalendarScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTCalendarScheduleViewController.m; sourceTree = "<group>"; };
+		BB629DF926E0126E0005D4CB /* ACTAddShowPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTAddShowPlaylistViewController.h; sourceTree = "<group>"; };
+		BB629DFA26E0126E0005D4CB /* ACTScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTScheduleViewController.h; sourceTree = "<group>"; };
+		BB629DFB26E0126E0005D4CB /* ACTCalendarScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTCalendarScheduleViewController.h; sourceTree = "<group>"; };
+		BB629DFC26E0126E0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTMoveDeleteShowPlaylistViewController.m; sourceTree = "<group>"; };
+		BB629E0326E013660005D4CB /* ACTPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistViewController.h; sourceTree = "<group>"; };
+		BB629E0426E013660005D4CB /* playlist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = playlist.storyboard; sourceTree = "<group>"; };
+		BB629E0526E013660005D4CB /* ACTPlaylistSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistSettingsViewController.h; sourceTree = "<group>"; };
+		BB629E0626E013660005D4CB /* ACTDesignateTestShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTDesignateTestShowViewController.m; sourceTree = "<group>"; };
+		BB629E0726E013660005D4CB /* ACTSelectShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTSelectShowViewController.m; sourceTree = "<group>"; };
+		BB629E0826E013660005D4CB /* ACTPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistViewController.m; sourceTree = "<group>"; };
+		BB629E0926E013660005D4CB /* ACTDesignateTestShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTDesignateTestShowViewController.h; sourceTree = "<group>"; };
+		BB629E0A26E013660005D4CB /* ACTSelectShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTSelectShowViewController.h; sourceTree = "<group>"; };
+		BB6568E524215FDB00229999 /* SysLogTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysLogTextViewController.swift; sourceTree = "<group>"; };
+		BB69783A29556FF200EDC57E /* LakePumpsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakePumpsViewController.swift; sourceTree = "<group>"; };
+		BB69783C295573E200EDC57E /* LakePumpsSchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakePumpsSchedulerViewController.swift; sourceTree = "<group>"; };
+		BB69783E29559CC200EDC57E /* AlightWaterLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightWaterLevelViewController.swift; sourceTree = "<group>"; };
+		BB6978402955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightWaterLevelSettingsViewController.swift; sourceTree = "<group>"; };
+		BB69784429562EFE00EDC57E /* LakeFiltrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeFiltrationViewController.swift; sourceTree = "<group>"; };
+		BB6978462956D0AB00EDC57E /* LakeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeSettingsViewController.swift; sourceTree = "<group>"; };
+		BB6978482956D83500EDC57E /* LakeSystemStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeSystemStatusViewController.swift; sourceTree = "<group>"; };
+		BB69784A2956E45000EDC57E /* LakeFiltrationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeFiltrationSettingsViewController.swift; sourceTree = "<group>"; };
+		BB69784D295E371A00EDC57E /* FillerShowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillerShowsViewController.swift; sourceTree = "<group>"; };
+		BB69784E295E371A00EDC57E /* fillerShows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = fillerShows.storyboard; sourceTree = "<group>"; };
+		BB6978632967D69D00EDC57E /* AlShow+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AlShow+CoreDataClass.swift"; path = "Core Data Model/AlShow+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB6978642967D69D00EDC57E /* AlShow+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AlShow+CoreDataProperties.swift"; path = "Core Data Model/AlShow+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BB6978672967DB5B00EDC57E /* ACTInstantPlayAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTInstantPlayAlightViewController.h; sourceTree = "<group>"; };
+		BB6978682967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTInstantPlayAlightViewController.m; sourceTree = "<group>"; };
+		BB69786A2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistSettingsAlightViewController.h; sourceTree = "<group>"; };
+		BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistSettingsAlightViewController.m; sourceTree = "<group>"; };
+		BB697870296C9A9400EDC57E /* AlightShowStopperChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightShowStopperChecker.swift; sourceTree = "<group>"; };
+		BB697872296C9F0800EDC57E /* ACTPlaylistAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistAlightViewController.h; sourceTree = "<group>"; };
+		BB697873296C9F0800EDC57E /* ACTPlaylistAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistAlightViewController.m; sourceTree = "<group>"; };
+		BB697875296CA89100EDC57E /* ACTSelectShowAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTSelectShowAlightViewController.h; sourceTree = "<group>"; };
+		BB697876296CA89100EDC57E /* ACTSelectShowAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTSelectShowAlightViewController.m; sourceTree = "<group>"; };
+		BB697878296CC53C00EDC57E /* ACTSchedulerAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTSchedulerAlightViewController.h; sourceTree = "<group>"; };
+		BB697879296CC53C00EDC57E /* ACTSchedulerAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTSchedulerAlightViewController.m; sourceTree = "<group>"; };
+		BB69787B296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTAddShowPlaylistAlightViewController.h; sourceTree = "<group>"; };
+		BB69787C296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTAddShowPlaylistAlightViewController.m; sourceTree = "<group>"; };
+		BB69787E296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTMoveDeleteShowPlaylistAlightViewController.h; sourceTree = "<group>"; };
+		BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTMoveDeleteShowPlaylistAlightViewController.m; sourceTree = "<group>"; };
+		BB697881296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTCalendarScheduleAlightViewController.h; sourceTree = "<group>"; };
+		BB697882296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTCalendarScheduleAlightViewController.m; sourceTree = "<group>"; };
+		BB697884296DEDFE00EDC57E /* FillerShowsLakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillerShowsLakeViewController.swift; sourceTree = "<group>"; };
+		BBC148E52874DC5C000F249D /* LakeWindSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWindSelectViewController.swift; sourceTree = "<group>"; };
+		BBC148E72874E39C000F249D /* LakeWindAnemometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWindAnemometerViewController.swift; sourceTree = "<group>"; };
+		BBC148E92874E97B000F249D /* LakeWindSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWindSettingsViewController.swift; sourceTree = "<group>"; };
+		BBF0F952240D911700886076 /* filtration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = filtration.storyboard; sourceTree = "<group>"; };
+		BBF0F953240D911700886076 /* FiltrationSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrationSettingsViewController.swift; sourceTree = "<group>"; };
+		BBF0F954240D911700886076 /* FiltrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrationViewController.swift; sourceTree = "<group>"; };
+		BBF0F955240D911700886076 /* FiltrationSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrationSpecs.swift; sourceTree = "<group>"; };
+		BBF0F969240D9A2900886076 /* wind.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = wind.storyboard; sourceTree = "<group>"; };
+		BBF0F96B240D9A3800886076 /* WindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindViewController.swift; sourceTree = "<group>"; };
+		BBF0F96C240D9A3800886076 /* WindAnemometerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindAnemometerViewController.swift; sourceTree = "<group>"; };
+		BBF0F96E240D9A3800886076 /* WindSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindSpecs.swift; sourceTree = "<group>"; };
+		BBF0F973240D9B5600886076 /* FiltrationSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltrationSelectViewController.swift; sourceTree = "<group>"; };
+		BBF721F926E7F63F0090FFCC /* windSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = windSettingsViewController.swift; sourceTree = "<group>"; };
+		BBF9B8D323F4B4F800DF67A1 /* SystemStatusSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemStatusSpecs.swift; sourceTree = "<group>"; };
+		BBF9B8D423F4B4F800DF67A1 /* SystemStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemStatusViewController.swift; sourceTree = "<group>"; };
+		BBF9B8D523F4B4F800DF67A1 /* systemstatus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = systemstatus.storyboard; sourceTree = "<group>"; };
+		BBF9B8D623F4B4F800DF67A1 /* SystemFaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemFaultViewController.swift; sourceTree = "<group>"; };
+		BBF9B8DC23F4B6F900DF67A1 /* logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = logs.storyboard; sourceTree = "<group>"; };
+		BBF9B8DD23F4B6F900DF67A1 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		BBF9B8DE23F4B6F900DF67A1 /* StatusLogSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLogSpecs.swift; sourceTree = "<group>"; };
+		CB2F2F21D069A5E44025A19B /* Pods-iPadControls.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPadControls.release.xcconfig"; path = "Pods/Target Support Files/Pods-iPadControls/Pods-iPadControls.release.xcconfig"; sourceTree = "<group>"; };
+		DABF08559F25EA52E20E4FEF /* Pods-iPadControls.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPadControls.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iPadControls/Pods-iPadControls.debug.xcconfig"; sourceTree = "<group>"; };
+		DB46ABA923B1AFE8003A4388 /* PumpSchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PumpSchedulerViewController.swift; sourceTree = "<group>"; };
+		DEAE4F3BAAD085CDE6B570C5 /* Pods_iPadControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iPadControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88243C071DEF5965004D39D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B3EB64120C70D8C0071D3AA /* CFNetwork.framework in Frameworks */,
+				1A99ACADBDAC29F15DBF767B /* Pods_iPadControls.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A22925D2AF51F5DA3B5DA87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B3EB64020C70D8C0071D3AA /* CFNetwork.framework */,
+				DEAE4F3BAAD085CDE6B570C5 /* Pods_iPadControls.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88243C011DEF5965004D39D8 = {
+			isa = PBXGroup;
+			children = (
+				88243C0C1DEF5965004D39D8 /* iPadControls */,
+				9B3D3B6E20DC615B00E34BE4 /* AppDelegate.swift */,
+				88243C0B1DEF5965004D39D8 /* Products */,
+				E5A214DD754AF7C8773615A5 /* Pods */,
+				7A22925D2AF51F5DA3B5DA87 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		88243C0B1DEF5965004D39D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88243C0A1DEF5965004D39D8 /* iPadControls.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88243C0C1DEF5965004D39D8 /* iPadControls */ = {
+			isa = PBXGroup;
+			children = (
+				88F3FF151E2F0505005AC504 /* Specs */,
+				88243C221DEF59A0004D39D8 /* Resources */,
+				88243C251DEF672A004D39D8 /* Model */,
+				88243C261DEF672E004D39D8 /* Vendors */,
+				88243C241DEF6722004D39D8 /* Modules */,
+				88243C231DEF6653004D39D8 /* Controller */,
+			);
+			path = iPadControls;
+			sourceTree = "<group>";
+		};
+		88243C221DEF59A0004D39D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F0920DC5AA000D3CFDF /* Assets.xcassets */,
+				9B3D3B6D20DC5EFD00E34BE4 /* iPadControls-Bridging-Header.h */,
+				9B5F3F0620DC5AA000D3CFDF /* iPadControls.xcdatamodeld */,
+				9B5F3F0820DC5AA000D3CFDF /* languages.json */,
+				9BF5679C20DC69DE001AFD30 /* iPadControls-Info.plist */,
+				9B147C9B20DC68C0003DDFE8 /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		88243C231DEF6653004D39D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BBF9B8D223F4B4F800DF67A1 /* SystemStatus */,
+				BB2E14602786144E00693B66 /* Lights */,
+				BBF0F951240D911700886076 /* Filtration */,
+				BBF0F95E240D98FE00886076 /* Wind */,
+				9BC042B22267C265001E2F49 /* Fog */,
+				9B5F3FB220DC5B1200D3CFDF /* Home */,
+				BB629DDC26E0124F0005D4CB /* Showlist */,
+				BB629E0226E013660005D4CB /* Playlist */,
+				BB629DF326E0126E0005D4CB /* Scheduler */,
+				BBF9B8DB23F4B6F900DF67A1 /* DeviceStatus */,
+				9B3F410D2146CC22000B4701 /* Multi View Pumps */,
+				9B4E1072218265B700604006 /* Water Quality */,
+				9B006229212C7E600066CC9B /* Week Scheduler */,
+				9B5F3FE420DC5B1200D3CFDF /* Operation Manual */,
+				9B5F3FB620DC5B1200D3CFDF /* Settings */,
+				BB69784C295E371A00EDC57E /* FillerShows */,
+				9B5F3FF720DC5B1200D3CFDF /* Water Level */,
+				9B5F3FE620DC5B1200D3CFDF /* Show Stoppers */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		88243C241DEF6722004D39D8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F9E20DC5AF400D3CFDF /* Base */,
+				9B5F3F9520DC5AF400D3CFDF /* Legacy Codes */,
+				9B5F3F9120DC5AF400D3CFDF /* Project Specific */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		88243C251DEF672A004D39D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB6978632967D69D00EDC57E /* AlShow+CoreDataClass.swift */,
+				BB6978642967D69D00EDC57E /* AlShow+CoreDataProperties.swift */,
+				9B5F3F1420DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift */,
+				9B5F3F1820DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift */,
+				9B5F3F1520DC5AB400D3CFDF /* Network+CoreDataClass.swift */,
+				9B5F3F1920DC5AB400D3CFDF /* Network+CoreDataProperties.swift */,
+				9B5F3F1620DC5AB400D3CFDF /* Pump+CoreDataClass.swift */,
+				9B5F3F0E20DC5AB300D3CFDF /* Pump+CoreDataProperties.swift */,
+				9B5F3F1320DC5AB400D3CFDF /* PumpDetail+CoreDataClass.swift */,
+				9B5F3F0F20DC5AB300D3CFDF /* PumpDetail+CoreDataProperties.swift */,
+				9B5F3F1720DC5AB400D3CFDF /* Show+CoreDataClass.swift */,
+				9B5F3F1020DC5AB300D3CFDF /* Show+CoreDataProperties.swift */,
+				9B5F3F1120DC5AB300D3CFDF /* Wind+CoreDataClass.swift */,
+				9B5F3F1220DC5AB300D3CFDF /* Wind+CoreDataProperties.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		88243C261DEF672E004D39D8 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F2620DC5AD900D3CFDF /* AFNetworking */,
+				9B5F3F4F20DC5AD900D3CFDF /* Modbus */,
+				9B5F3F6820DC5AD900D3CFDF /* RDVCalendarView */,
+				9B5F3F6620DC5AD900D3CFDF /* SwiftRecord */,
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
+		88F3FF151E2F0505005AC504 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F0120DC5A8D00D3CFDF /* EX20.rtf */,
+				9B5F3F0020DC5A8D00D3CFDF /* versionNum.txt */,
+			);
+			name = Specs;
+			sourceTree = "<group>";
+		};
+		9B006229212C7E600066CC9B /* Week Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				9B725DA021477601008886A2 /* WeekendViewController.swift */,
+				9BB3349421482B350004FFBC /* WeekSchedulerSpecs.swift */,
+				9B725D9E21477601008886A2 /* WeekSchedulerPopoverView.swift */,
+				9B725D9F21477601008886A2 /* WeekSchedulerViewController.swift */,
+			);
+			name = "Week Scheduler";
+			path = "Controller/Week Scheduler";
+			sourceTree = "<group>";
+		};
+		9B3F410D2146CC22000B4701 /* Multi View Pumps */ = {
+			isa = PBXGroup;
+			children = (
+				9B725D79214775BD008886A2 /* PumpsSpecs.swift */,
+				9B725D78214775BC008886A2 /* pumps.storyboard */,
+				BB69783A29556FF200EDC57E /* LakePumpsViewController.swift */,
+				BB69783C295573E200EDC57E /* LakePumpsSchedulerViewController.swift */,
+				9B725D7A214775BD008886A2 /* PumpSettingsViewController.swift */,
+				9B725D7C214775BD008886A2 /* AutoPumpDetailViewController.swift */,
+				9B725D7B214775BD008886A2 /* PumpsViewController.swift */,
+				DB46ABA923B1AFE8003A4388 /* PumpSchedulerViewController.swift */,
+			);
+			name = "Multi View Pumps";
+			path = "Controller/Pumps/Multi View Pumps";
+			sourceTree = "<group>";
+		};
+		9B4E1072218265B700604006 /* Water Quality */ = {
+			isa = PBXGroup;
+			children = (
+				9B147508225E649A00D9E577 /* OzonePopupViewController.swift */,
+				BB5F80D9222721F500E4A602 /* BRSetpointViewController.swift */,
+				9B4E1074218265B700604006 /* TDSViewController.swift */,
+				9B4E1077218265B700604006 /* PHViewController.swift */,
+				9B4E1078218265B700604006 /* ORPViewController.swift */,
+				9B4E1079218265B700604006 /* BromineViewController.swift */,
+				9B4E1075218265B700604006 /* WaterQualityViewController.swift */,
+				9B4E107A218265B700604006 /* WQMultiple.storyboard */,
+				9B4E1073218265B700604006 /* WaterQualitySpecs.swift */,
+				9B4E1076218265B700604006 /* WaterQualitySettingsViewController.swift */,
+			);
+			name = "Water Quality";
+			path = "iPadControls/Controller/Water Quality";
+			sourceTree = SOURCE_ROOT;
+		};
+		9B5F3F2620DC5AD900D3CFDF /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F2720DC5AD900D3CFDF /* LICENSE */,
+				9B5F3F2820DC5AD900D3CFDF /* README.md */,
+				9B5F3F2920DC5AD900D3CFDF /* UIKit+AFNetworking */,
+				9B5F3F3B20DC5AD900D3CFDF /* AFNetworking */,
+			);
+			name = AFNetworking;
+			path = "Third Party Libraries/AFNetworking";
+			sourceTree = "<group>";
+		};
+		9B5F3F2920DC5AD900D3CFDF /* UIKit+AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F2A20DC5AD900D3CFDF /* UIAlertView+AFNetworking.m */,
+				9B5F3F2B20DC5AD900D3CFDF /* UIProgressView+AFNetworking.m */,
+				9B5F3F2C20DC5AD900D3CFDF /* UIButton+AFNetworking.h */,
+				9B5F3F2D20DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.m */,
+				9B5F3F2E20DC5AD900D3CFDF /* UIImageView+AFNetworking.h */,
+				9B5F3F2F20DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.m */,
+				9B5F3F3020DC5AD900D3CFDF /* UIWebView+AFNetworking.h */,
+				9B5F3F3120DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.h */,
+				9B5F3F3220DC5AD900D3CFDF /* UIAlertView+AFNetworking.h */,
+				9B5F3F3320DC5AD900D3CFDF /* UIProgressView+AFNetworking.h */,
+				9B5F3F3420DC5AD900D3CFDF /* UIImageView+AFNetworking.m */,
+				9B5F3F3520DC5AD900D3CFDF /* UIKit+AFNetworking.h */,
+				9B5F3F3620DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.h */,
+				9B5F3F3720DC5AD900D3CFDF /* UIButton+AFNetworking.m */,
+				9B5F3F3820DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.m */,
+				9B5F3F3920DC5AD900D3CFDF /* UIWebView+AFNetworking.m */,
+				9B5F3F3A20DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.h */,
+			);
+			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		9B5F3F3B20DC5AD900D3CFDF /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F3C20DC5AD900D3CFDF /* AFSecurityPolicy.h */,
+				9B5F3F3D20DC5AD900D3CFDF /* AFNetworkReachabilityManager.h */,
+				9B5F3F3E20DC5AD900D3CFDF /* AFHTTPRequestOperation.h */,
+				9B5F3F3F20DC5AD900D3CFDF /* AFHTTPRequestOperationManager.h */,
+				9B5F3F4020DC5AD900D3CFDF /* AFURLSessionManager.h */,
+				9B5F3F4120DC5AD900D3CFDF /* AFURLRequestSerialization.h */,
+				9B5F3F4220DC5AD900D3CFDF /* AFURLConnectionOperation.h */,
+				9B5F3F4320DC5AD900D3CFDF /* AFURLResponseSerialization.m */,
+				9B5F3F4420DC5AD900D3CFDF /* AFHTTPSessionManager.m */,
+				9B5F3F4520DC5AD900D3CFDF /* AFURLConnectionOperation.m */,
+				9B5F3F4620DC5AD900D3CFDF /* AFURLResponseSerialization.h */,
+				9B5F3F4720DC5AD900D3CFDF /* AFURLSessionManager.m */,
+				9B5F3F4820DC5AD900D3CFDF /* AFHTTPRequestOperationManager.m */,
+				9B5F3F4920DC5AD900D3CFDF /* AFURLRequestSerialization.m */,
+				9B5F3F4A20DC5AD900D3CFDF /* AFHTTPRequestOperation.m */,
+				9B5F3F4B20DC5AD900D3CFDF /* AFNetworking.h */,
+				9B5F3F4C20DC5AD900D3CFDF /* AFNetworkReachabilityManager.m */,
+				9B5F3F4D20DC5AD900D3CFDF /* AFSecurityPolicy.m */,
+				9B5F3F4E20DC5AD900D3CFDF /* AFHTTPSessionManager.h */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		9B5F3F4F20DC5AD900D3CFDF /* Modbus */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F5020DC5AD900D3CFDF /* modbus-private.h */,
+				9B5F3F5120DC5AD900D3CFDF /* config.h */,
+				9B5F3F5220DC5AD900D3CFDF /* modbus-data.c */,
+				9B5F3F5320DC5AD900D3CFDF /* AUTHORS */,
+				9B5F3F5420DC5AD900D3CFDF /* ObjectiveLibModbus.h */,
+				9B5F3F5520DC5AD900D3CFDF /* modbus.c */,
+				9B5F3F5620DC5AD900D3CFDF /* modbus-tcp.c */,
+				9B5F3F5720DC5AD900D3CFDF /* modbus-rtu.h */,
+				9B5F3F5820DC5AD900D3CFDF /* modbus-version.h */,
+				9B5F3F5920DC5AD900D3CFDF /* COPYING.LESSER */,
+				9B5F3F5A20DC5AD900D3CFDF /* COPYING */,
+				9B5F3F5B20DC5AD900D3CFDF /* NEWS */,
+				9B5F3F5C20DC5AD900D3CFDF /* modbus-rtu.c */,
+				9B5F3F5D20DC5AD900D3CFDF /* modbus-tcp.h */,
+				9B5F3F5E20DC5AD900D3CFDF /* README.rst */,
+				9B5F3F5F20DC5AD900D3CFDF /* modbus.h */,
+				9B5F3F6020DC5AD900D3CFDF /* modbus-tcp-private.h */,
+				9B5F3F6120DC5AD900D3CFDF /* ObjectiveLibModbus.m */,
+				9B5F3F6220DC5AD900D3CFDF /* modbus-rtu-private.h */,
+			);
+			name = Modbus;
+			path = "Third Party Libraries/Modbus";
+			sourceTree = "<group>";
+		};
+		9B5F3F6620DC5AD900D3CFDF /* SwiftRecord */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F6720DC5AD900D3CFDF /* SwiftRecord.swift */,
+			);
+			name = SwiftRecord;
+			path = "Third Party Libraries/SwiftRecord";
+			sourceTree = "<group>";
+		};
+		9B5F3F6820DC5AD900D3CFDF /* RDVCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F6920DC5AD900D3CFDF /* RDVCalendarView.h */,
+				9B5F3F6A20DC5AD900D3CFDF /* RDVCalendarViewController.h */,
+				9B5F3F6B20DC5AD900D3CFDF /* RDVCalendarDayCell.m */,
+				9B5F3F6C20DC5AD900D3CFDF /* RDVCalendarView.m */,
+				9B5F3F6D20DC5AD900D3CFDF /* RDVCalendarViewController.m */,
+				9B5F3F6E20DC5AD900D3CFDF /* RDVCalendarDayCell.h */,
+			);
+			name = RDVCalendarView;
+			path = "Third Party Libraries/RDVCalendarView";
+			sourceTree = "<group>";
+		};
+		9B5F3F9120DC5AF400D3CFDF /* Project Specific */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F9320DC5AF400D3CFDF /* CentralSystem.swift */,
+				9B5F3F9420DC5AF400D3CFDF /* LocalStorage.swift */,
+			);
+			name = "Project Specific";
+			path = "Modules/Project Specific";
+			sourceTree = "<group>";
+		};
+		9B5F3F9520DC5AF400D3CFDF /* Legacy Codes */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F9620DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.h */,
+				9B5F3F9720DC5AF400D3CFDF /* Utilits.m */,
+				9B5F3F9820DC5AF400D3CFDF /* ACTDayValues.m */,
+				9B5F3F9920DC5AF400D3CFDF /* ACTUISafeNavigationController.m */,
+				9B5F3F9A20DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.m */,
+				9B5F3F9B20DC5AF400D3CFDF /* Utilits.h */,
+				9B5F3F9C20DC5AF400D3CFDF /* ACTUISafeNavigationController.h */,
+				9B5F3F9D20DC5AF400D3CFDF /* ACTDayValues.h */,
+			);
+			name = "Legacy Codes";
+			path = "Modules/Legacy Codes";
+			sourceTree = "<group>";
+		};
+		9B5F3F9E20DC5AF400D3CFDF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F9F20DC5AF400D3CFDF /* HTTPComm.swift */,
+				9B5F3FA020DC5AF400D3CFDF /* ShowManager.swift */,
+				9BBB8EEF2135C359001F9F01 /* ShowHideSettingsLabel.swift */,
+				9B5F3FA120DC5AF400D3CFDF /* Logger.swift */,
+				9B5F3FA220DC5AF400D3CFDF /* Extensions.swift */,
+				9B006222212C7E160066CC9B /* check12or24Hour.swift */,
+				9B5F3FA320DC5AF400D3CFDF /* Helper.swift */,
+				9B5F3FA420DC5AF400D3CFDF /* ShowSettings.swift */,
+			);
+			name = Base;
+			path = Modules/Base;
+			sourceTree = "<group>";
+		};
+		9B5F3FB220DC5B1200D3CFDF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3F9220DC5AF400D3CFDF /* HomeGeneralSpecs.swift */,
+				BB34707D27441F8500588FF5 /* HomeSelectViewController.swift */,
+				9B5F3FB520DC5B1200D3CFDF /* Main.storyboard */,
+				9B5F3FB420DC5B1200D3CFDF /* HomeViewController.swift */,
+				BB153A3D29F9C5AE009F1C62 /* LakeHomeViewController.swift */,
+			);
+			name = Home;
+			path = Controller/Home;
+			sourceTree = "<group>";
+		};
+		9B5F3FB620DC5B1200D3CFDF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3FB720DC5B1200D3CFDF /* settings.storyboard */,
+				BB6978462956D0AB00EDC57E /* LakeSettingsViewController.swift */,
+				9B5F3FB820DC5B1200D3CFDF /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			path = Controller/Settings;
+			sourceTree = "<group>";
+		};
+		9B5F3FE420DC5B1200D3CFDF /* Operation Manual */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3FE520DC5B1200D3CFDF /* OperationManual.swift */,
+			);
+			name = "Operation Manual";
+			path = "Controller/Operation Manual";
+			sourceTree = "<group>";
+		};
+		9B5F3FE620DC5B1200D3CFDF /* Show Stoppers */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3FE720DC5B1200D3CFDF /* Indicators */,
+				9B5F3FF120DC5B1200D3CFDF /* ShowStopperChecker.swift */,
+				BB697870296C9A9400EDC57E /* AlightShowStopperChecker.swift */,
+				9B8DB3412148337B001CF70D /* ShowStopperSpecs.swift */,
+			);
+			name = "Show Stoppers";
+			path = "Controller/Show Stoppers";
+			sourceTree = "<group>";
+		};
+		9B5F3FE720DC5B1200D3CFDF /* Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				BB59252223E35A6400F49039 /* EStop.png */,
+				9B5F3FE820DC5B1200D3CFDF /* alarm_pump.png */,
+				9B5F3FE920DC5B1200D3CFDF /* showStopperRATmode.png */,
+				9B5F3FEA20DC5B1200D3CFDF /* alarm_wind.png */,
+				9B5F3FEB20DC5B1200D3CFDF /* showStopperTemp.png */,
+				9B5F3FEC20DC5B1200D3CFDF /* showStopperWaterLevel.png */,
+				9B5F3FED20DC5B1200D3CFDF /* air_pressure_fault.png */,
+				9B5F3FEE20DC5B1200D3CFDF /* intrusionsystem_button.png */,
+				9B5F3FEF20DC5B1200D3CFDF /* alarm_fog.png */,
+			);
+			path = Indicators;
+			sourceTree = "<group>";
+		};
+		9B5F3FF720DC5B1200D3CFDF /* Water Level */ = {
+			isa = PBXGroup;
+			children = (
+				9B5F3FF820DC5B1200D3CFDF /* waterLevel.storyboard */,
+				9B5F3FF920DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift */,
+				9B8DB33F214832B6001CF70D /* WaterLevelSpecs.swift */,
+				9B5F3FFA20DC5B1200D3CFDF /* WaterLevelViewController.swift */,
+				BB69783E29559CC200EDC57E /* AlightWaterLevelViewController.swift */,
+				BB6978402955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift */,
+			);
+			name = "Water Level";
+			path = "Controller/Water Level";
+			sourceTree = "<group>";
+		};
+		9BC042B22267C265001E2F49 /* Fog */ = {
+			isa = PBXGroup;
+			children = (
+				9BC042B32267C265001E2F49 /* fog.storyboard */,
+				9BC042B42267C265001E2F49 /* FogSpecs.swift */,
+				9BC042B52267C265001E2F49 /* FogViewController.swift */,
+			);
+			name = Fog;
+			path = iPadControls/Fog;
+			sourceTree = SOURCE_ROOT;
+		};
+		BB2E14602786144E00693B66 /* Lights */ = {
+			isa = PBXGroup;
+			children = (
+				BB2E14612786144E00693B66 /* lights.storyboard */,
+				BB2E14622786144E00693B66 /* LightsSelectViewController.swift */,
+				BB2E14632786144E00693B66 /* LightsViewController.swift */,
+				BB2E14642786144E00693B66 /* LightsSpecs.swift */,
+			);
+			name = Lights;
+			path = Controller/Lights;
+			sourceTree = "<group>";
+		};
+		BB629DDC26E0124F0005D4CB /* Showlist */ = {
+			isa = PBXGroup;
+			children = (
+				BB6978672967DB5B00EDC57E /* ACTInstantPlayAlightViewController.h */,
+				BB6978682967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m */,
+				BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m */,
+				BB629DDE26E0124F0005D4CB /* showList.storyboard */,
+				BB629DDD26E0124F0005D4CB /* ACTInstantPlayViewController.m */,
+				BB629DE026E0124F0005D4CB /* ACTInstantPlayViewController.h */,
+				BB629DE126E0124F0005D4CB /* ACTPlaylistSettingsViewController.m */,
+			);
+			path = Showlist;
+			sourceTree = "<group>";
+		};
+		BB629DF326E0126E0005D4CB /* Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				BB629DF426E0126E0005D4CB /* scheduler.storyboard */,
+				BB37240E29D23293002BE775 /* ShowScheduleListViewController.swift */,
+				BB37241029D232B6002BE775 /* AlightShowScheduleListViewController.swift */,
+				BB697879296CC53C00EDC57E /* ACTSchedulerAlightViewController.m */,
+				BB69787C296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m */,
+				BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m */,
+				BB697882296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m */,
+				BB697881296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.h */,
+				BB69787E296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.h */,
+				BB69787B296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.h */,
+				BB697878296CC53C00EDC57E /* ACTSchedulerAlightViewController.h */,
+				BB629DF526E0126E0005D4CB /* ACTScheduleViewController.m */,
+				BB629DF626E0126E0005D4CB /* ACTAddShowPlaylistViewController.m */,
+				BB629DFC26E0126E0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m */,
+				BB629DF826E0126E0005D4CB /* ACTCalendarScheduleViewController.m */,
+				BB629DF926E0126E0005D4CB /* ACTAddShowPlaylistViewController.h */,
+				BB629DFA26E0126E0005D4CB /* ACTScheduleViewController.h */,
+				BB629DFB26E0126E0005D4CB /* ACTCalendarScheduleViewController.h */,
+				BB629DF726E0126E0005D4CB /* ACTMoveDeleteShowPlaylistViewController.h */,
+			);
+			path = Scheduler;
+			sourceTree = "<group>";
+		};
+		BB629E0226E013660005D4CB /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				BB629E0326E013660005D4CB /* ACTPlaylistViewController.h */,
+				BB629E0426E013660005D4CB /* playlist.storyboard */,
+				BB697872296C9F0800EDC57E /* ACTPlaylistAlightViewController.h */,
+				BB697873296C9F0800EDC57E /* ACTPlaylistAlightViewController.m */,
+				BB629E0526E013660005D4CB /* ACTPlaylistSettingsViewController.h */,
+				BB69786A2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.h */,
+				BB629E0626E013660005D4CB /* ACTDesignateTestShowViewController.m */,
+				BB629E0726E013660005D4CB /* ACTSelectShowViewController.m */,
+				BB697875296CA89100EDC57E /* ACTSelectShowAlightViewController.h */,
+				BB697876296CA89100EDC57E /* ACTSelectShowAlightViewController.m */,
+				BB629E0826E013660005D4CB /* ACTPlaylistViewController.m */,
+				BB629E0926E013660005D4CB /* ACTDesignateTestShowViewController.h */,
+				BB629E0A26E013660005D4CB /* ACTSelectShowViewController.h */,
+			);
+			path = Playlist;
+			sourceTree = "<group>";
+		};
+		BB69784C295E371A00EDC57E /* FillerShows */ = {
+			isa = PBXGroup;
+			children = (
+				BB69784D295E371A00EDC57E /* FillerShowsViewController.swift */,
+				BB697884296DEDFE00EDC57E /* FillerShowsLakeViewController.swift */,
+				BB69784E295E371A00EDC57E /* fillerShows.storyboard */,
+			);
+			path = FillerShows;
+			sourceTree = "<group>";
+		};
+		BBF0F951240D911700886076 /* Filtration */ = {
+			isa = PBXGroup;
+			children = (
+				BBF0F952240D911700886076 /* filtration.storyboard */,
+				BB69784429562EFE00EDC57E /* LakeFiltrationViewController.swift */,
+				BB69784A2956E45000EDC57E /* LakeFiltrationSettingsViewController.swift */,
+				BBF0F953240D911700886076 /* FiltrationSettingsViewController.swift */,
+				BBF0F954240D911700886076 /* FiltrationViewController.swift */,
+				BBF0F973240D9B5600886076 /* FiltrationSelectViewController.swift */,
+				BBF0F955240D911700886076 /* FiltrationSpecs.swift */,
+			);
+			path = Filtration;
+			sourceTree = "<group>";
+		};
+		BBF0F95E240D98FE00886076 /* Wind */ = {
+			isa = PBXGroup;
+			children = (
+				BBF0F969240D9A2900886076 /* wind.storyboard */,
+				BBF0F96C240D9A3800886076 /* WindAnemometerViewController.swift */,
+				BBC148E72874E39C000F249D /* LakeWindAnemometerViewController.swift */,
+				BBC148E52874DC5C000F249D /* LakeWindSelectViewController.swift */,
+				BBC148E92874E97B000F249D /* LakeWindSettingsViewController.swift */,
+				BBF0F96E240D9A3800886076 /* WindSpecs.swift */,
+				BBF721F926E7F63F0090FFCC /* windSettingsViewController.swift */,
+				BBF0F96B240D9A3800886076 /* WindViewController.swift */,
+			);
+			path = Wind;
+			sourceTree = "<group>";
+		};
+		BBF9B8D223F4B4F800DF67A1 /* SystemStatus */ = {
+			isa = PBXGroup;
+			children = (
+				BBF9B8D323F4B4F800DF67A1 /* SystemStatusSpecs.swift */,
+				BBF9B8D423F4B4F800DF67A1 /* SystemStatusViewController.swift */,
+				BBF9B8D523F4B4F800DF67A1 /* systemstatus.storyboard */,
+				BB6978482956D83500EDC57E /* LakeSystemStatusViewController.swift */,
+				BBF9B8D623F4B4F800DF67A1 /* SystemFaultViewController.swift */,
+			);
+			path = SystemStatus;
+			sourceTree = "<group>";
+		};
+		BBF9B8DB23F4B6F900DF67A1 /* DeviceStatus */ = {
+			isa = PBXGroup;
+			children = (
+				BBF9B8DC23F4B6F900DF67A1 /* logs.storyboard */,
+				BB6568E524215FDB00229999 /* SysLogTextViewController.swift */,
+				BBF9B8DD23F4B6F900DF67A1 /* LogsViewController.swift */,
+				BBF9B8DE23F4B6F900DF67A1 /* StatusLogSpecs.swift */,
+			);
+			path = DeviceStatus;
+			sourceTree = "<group>";
+		};
+		E5A214DD754AF7C8773615A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DABF08559F25EA52E20E4FEF /* Pods-iPadControls.debug.xcconfig */,
+				CB2F2F21D069A5E44025A19B /* Pods-iPadControls.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88243C091DEF5965004D39D8 /* iPadControls */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88243C1F1DEF5965004D39D8 /* Build configuration list for PBXNativeTarget "iPadControls" */;
+			buildPhases = (
+				1C562AD02A756C67D80DBA37 /* [CP] Check Pods Manifest.lock */,
+				88243C061DEF5965004D39D8 /* Sources */,
+				88243C071DEF5965004D39D8 /* Frameworks */,
+				88243C081DEF5965004D39D8 /* Resources */,
+				DD8281455C29E77E01029533 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iPadControls;
+			productName = iPadControls;
+			productReference = 88243C0A1DEF5965004D39D8 /* iPadControls.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88243C021DEF5965004D39D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = WET;
+				TargetAttributes = {
+					88243C091DEF5965004D39D8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 754D679GZJ;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 88243C051DEF5965004D39D8 /* Build configuration list for PBXProject "iPadControls" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 88243C011DEF5965004D39D8;
+			productRefGroup = 88243C0B1DEF5965004D39D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88243C091DEF5965004D39D8 /* iPadControls */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88243C081DEF5965004D39D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBF0F96A240D9A2900886076 /* wind.storyboard in Resources */,
+				BBF9B8DF23F4B6F900DF67A1 /* logs.storyboard in Resources */,
+				9B5F3F0220DC5A8D00D3CFDF /* versionNum.txt in Resources */,
+				BBF9B8D923F4B4F800DF67A1 /* systemstatus.storyboard in Resources */,
+				BB629DFD26E0126F0005D4CB /* scheduler.storyboard in Resources */,
+				9B5F3F8620DC5AD900D3CFDF /* COPYING.LESSER in Resources */,
+				9B5F3F0320DC5A8D00D3CFDF /* EX20.rtf in Resources */,
+				9B5F401B20DC5B1200D3CFDF /* settings.storyboard in Resources */,
+				9BF5679D20DC69DE001AFD30 /* iPadControls-Info.plist in Resources */,
+				9B5F3F8720DC5AD900D3CFDF /* COPYING in Resources */,
+				BBF0F958240D911700886076 /* filtration.storyboard in Resources */,
+				BB629E0B26E013670005D4CB /* playlist.storyboard in Resources */,
+				9B5F3F8320DC5AD900D3CFDF /* AUTHORS in Resources */,
+				9B5F401A20DC5B1200D3CFDF /* Main.storyboard in Resources */,
+				9B725D7D214775BD008886A2 /* pumps.storyboard in Resources */,
+				9B5F404920DC5B1200D3CFDF /* waterLevel.storyboard in Resources */,
+				9BC042B72267C265001E2F49 /* fog.storyboard in Resources */,
+				9B5F3F7020DC5AD900D3CFDF /* README.md in Resources */,
+				9B5F3F0D20DC5AA000D3CFDF /* Assets.xcassets in Resources */,
+				BB697850295E371B00EDC57E /* fillerShows.storyboard in Resources */,
+				BB59252323E35A6400F49039 /* EStop.png in Resources */,
+				9B5F403B20DC5B1200D3CFDF /* alarm_pump.png in Resources */,
+				9B4E1082218265B700604006 /* WQMultiple.storyboard in Resources */,
+				9B147C9D20DC68C0003DDFE8 /* LaunchScreen.storyboard in Resources */,
+				BB2E14652786144E00693B66 /* lights.storyboard in Resources */,
+				9B5F3F0C20DC5AA000D3CFDF /* languages.json in Resources */,
+				9B5F403F20DC5B1200D3CFDF /* showStopperWaterLevel.png in Resources */,
+				9B5F403C20DC5B1200D3CFDF /* showStopperRATmode.png in Resources */,
+				BB629DE326E012500005D4CB /* showList.storyboard in Resources */,
+				9B5F403E20DC5B1200D3CFDF /* showStopperTemp.png in Resources */,
+				9B5F404120DC5B1200D3CFDF /* intrusionsystem_button.png in Resources */,
+				9B5F3F8820DC5AD900D3CFDF /* NEWS in Resources */,
+				9B5F404220DC5B1200D3CFDF /* alarm_fog.png in Resources */,
+				9B5F403D20DC5B1200D3CFDF /* alarm_wind.png in Resources */,
+				9B5F404020DC5B1200D3CFDF /* air_pressure_fault.png in Resources */,
+				9B5F3F8A20DC5AD900D3CFDF /* README.rst in Resources */,
+				9B5F3F6F20DC5AD900D3CFDF /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C562AD02A756C67D80DBA37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iPadControls-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD8281455C29E77E01029533 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iPadControls/Pods-iPadControls-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework",
+				"${BUILT_PRODUCTS_DIR}/PDFReader/PDFReader.framework",
+				"${BUILT_PRODUCTS_DIR}/PlainPing/PlainPing.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMSSH.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDFReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PlainPing.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iPadControls/Pods-iPadControls-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88243C061DEF5965004D39D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B5F3F2520DC5AB400D3CFDF /* Network+CoreDataProperties.swift in Sources */,
+				BB629E0E26E013670005D4CB /* ACTPlaylistViewController.m in Sources */,
+				BB6978662967D69D00EDC57E /* AlShow+CoreDataProperties.swift in Sources */,
+				BB629E0126E0126F0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m in Sources */,
+				9B5F3F2320DC5AB400D3CFDF /* Show+CoreDataClass.swift in Sources */,
+				9B5F3FB120DC5AF400D3CFDF /* ShowSettings.swift in Sources */,
+				9B8DB3422148337B001CF70D /* ShowStopperSpecs.swift in Sources */,
+				BBF0F95B240D911700886076 /* FiltrationSpecs.swift in Sources */,
+				9B5F3FAB20DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.m in Sources */,
+				9B5F3F8220DC5AD900D3CFDF /* modbus-data.c in Sources */,
+				9B725D7E214775BD008886A2 /* PumpsSpecs.swift in Sources */,
+				9B5F401C20DC5B1200D3CFDF /* SettingsViewController.swift in Sources */,
+				BB69783B29556FF200EDC57E /* LakePumpsViewController.swift in Sources */,
+				9B5F3F1E20DC5AB400D3CFDF /* Wind+CoreDataProperties.swift in Sources */,
+				BB629DE526E012500005D4CB /* ACTPlaylistSettingsViewController.m in Sources */,
+				9B5F3F1B20DC5AB400D3CFDF /* PumpDetail+CoreDataProperties.swift in Sources */,
+				9B147509225E649A00D9E577 /* OzonePopupViewController.swift in Sources */,
+				BBC148E82874E39C000F249D /* LakeWindAnemometerViewController.swift in Sources */,
+				BBF9B8DA23F4B4F800DF67A1 /* SystemFaultViewController.swift in Sources */,
+				9B5F3FAC20DC5AF400D3CFDF /* HTTPComm.swift in Sources */,
+				9B3D3B6F20DC615B00E34BE4 /* AppDelegate.swift in Sources */,
+				BBF9B8D723F4B4F800DF67A1 /* SystemStatusSpecs.swift in Sources */,
+				9B725DA121477601008886A2 /* WeekSchedulerPopoverView.swift in Sources */,
+				9B5F3FA920DC5AF400D3CFDF /* ACTDayValues.m in Sources */,
+				9B5F3F8120DC5AD900D3CFDF /* AFSecurityPolicy.m in Sources */,
+				BB697883296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m in Sources */,
+				BB629DE226E012500005D4CB /* ACTInstantPlayViewController.m in Sources */,
+				9B4E107C218265B700604006 /* TDSViewController.swift in Sources */,
+				BBF0F972240D9A3800886076 /* WindSpecs.swift in Sources */,
+				9B5F3F2120DC5AB400D3CFDF /* Network+CoreDataClass.swift in Sources */,
+				9B5F3FAA20DC5AF400D3CFDF /* ACTUISafeNavigationController.m in Sources */,
+				BB69784B2956E45000EDC57E /* LakeFiltrationSettingsViewController.swift in Sources */,
+				9B5F3F7620DC5AD900D3CFDF /* UIButton+AFNetworking.m in Sources */,
+				BB629DFF26E0126F0005D4CB /* ACTAddShowPlaylistViewController.m in Sources */,
+				9B5F3F8F20DC5AD900D3CFDF /* RDVCalendarView.m in Sources */,
+				9B5F3F7B20DC5AD900D3CFDF /* AFURLConnectionOperation.m in Sources */,
+				9B5F3F7320DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.m in Sources */,
+				BBF0F974240D9B5600886076 /* FiltrationSelectViewController.swift in Sources */,
+				BB697880296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m in Sources */,
+				BB6978692967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m in Sources */,
+				9B4E107E218265B700604006 /* WaterQualitySettingsViewController.swift in Sources */,
+				BB697877296CA89100EDC57E /* ACTSelectShowAlightViewController.m in Sources */,
+				9BC042B92267C265001E2F49 /* FogViewController.swift in Sources */,
+				BB2E14662786144E00693B66 /* LightsSelectViewController.swift in Sources */,
+				9B5F3F7120DC5AD900D3CFDF /* UIAlertView+AFNetworking.m in Sources */,
+				BB6978492956D83500EDC57E /* LakeSystemStatusViewController.swift in Sources */,
+				BBF0F95A240D911700886076 /* FiltrationViewController.swift in Sources */,
+				9B4E1080218265B700604006 /* ORPViewController.swift in Sources */,
+				9B5F3F9020DC5AD900D3CFDF /* RDVCalendarViewController.m in Sources */,
+				9B4E107F218265B700604006 /* PHViewController.swift in Sources */,
+				9B5F401920DC5B1200D3CFDF /* HomeViewController.swift in Sources */,
+				BB37241129D232B6002BE775 /* AlightShowScheduleListViewController.swift in Sources */,
+				9BB3349521482B350004FFBC /* WeekSchedulerSpecs.swift in Sources */,
+				9BC042B82267C265001E2F49 /* FogSpecs.swift in Sources */,
+				BB69784F295E371B00EDC57E /* FillerShowsViewController.swift in Sources */,
+				9B5F3F7420DC5AD900D3CFDF /* AFNetworkActivityIndicatorManager.m in Sources */,
+				9B5F403A20DC5B1200D3CFDF /* OperationManual.swift in Sources */,
+				9B5F3F8920DC5AD900D3CFDF /* modbus-rtu.c in Sources */,
+				9B5F3F8420DC5AD900D3CFDF /* modbus.c in Sources */,
+				BB69784529562EFE00EDC57E /* LakeFiltrationViewController.swift in Sources */,
+				9B725D7F214775BD008886A2 /* PumpSettingsViewController.swift in Sources */,
+				BB69783D295573E200EDC57E /* LakePumpsSchedulerViewController.swift in Sources */,
+				9B5F3F8520DC5AD900D3CFDF /* modbus-tcp.c in Sources */,
+				9B5F3F8020DC5AD900D3CFDF /* AFNetworkReachabilityManager.m in Sources */,
+				9B725DA221477601008886A2 /* WeekSchedulerViewController.swift in Sources */,
+				BB69787D296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m in Sources */,
+				9B5F3F7A20DC5AD900D3CFDF /* AFHTTPSessionManager.m in Sources */,
+				9B5F3F7720DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				9B5F404420DC5B1200D3CFDF /* ShowStopperChecker.swift in Sources */,
+				9B5F3FA720DC5AF400D3CFDF /* LocalStorage.swift in Sources */,
+				BB6978472956D0AB00EDC57E /* LakeSettingsViewController.swift in Sources */,
+				9B5F3FB020DC5AF400D3CFDF /* Helper.swift in Sources */,
+				9B5F3F7F20DC5AD900D3CFDF /* AFHTTPRequestOperation.m in Sources */,
+				9B725D81214775BD008886A2 /* AutoPumpDetailViewController.swift in Sources */,
+				9B006223212C7E160066CC9B /* check12or24Hour.swift in Sources */,
+				9B5F3F1F20DC5AB400D3CFDF /* PumpDetail+CoreDataClass.swift in Sources */,
+				9B5F3F7520DC5AD900D3CFDF /* UIImageView+AFNetworking.m in Sources */,
+				BBF0F959240D911700886076 /* FiltrationSettingsViewController.swift in Sources */,
+				BB697885296DEDFE00EDC57E /* FillerShowsLakeViewController.swift in Sources */,
+				BB629E0C26E013670005D4CB /* ACTDesignateTestShowViewController.m in Sources */,
+				9B5F3F7E20DC5AD900D3CFDF /* AFURLRequestSerialization.m in Sources */,
+				9B5F3F7920DC5AD900D3CFDF /* AFURLResponseSerialization.m in Sources */,
+				9B5F3FA620DC5AF400D3CFDF /* CentralSystem.swift in Sources */,
+				9B5F3FAF20DC5AF400D3CFDF /* Extensions.swift in Sources */,
+				9B4E107B218265B700604006 /* WaterQualitySpecs.swift in Sources */,
+				BB629DFE26E0126F0005D4CB /* ACTScheduleViewController.m in Sources */,
+				9B5F3F8B20DC5AD900D3CFDF /* ObjectiveLibModbus.m in Sources */,
+				9B5F3F2020DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift in Sources */,
+				BB69783F29559CC200EDC57E /* AlightWaterLevelViewController.swift in Sources */,
+				BBC148EA2874E97B000F249D /* LakeWindSettingsViewController.swift in Sources */,
+				BB2E14682786144E00693B66 /* LightsSpecs.swift in Sources */,
+				BB629E0D26E013670005D4CB /* ACTSelectShowViewController.m in Sources */,
+				9B5F3F2220DC5AB400D3CFDF /* Pump+CoreDataClass.swift in Sources */,
+				9B5F3F7C20DC5AD900D3CFDF /* AFURLSessionManager.m in Sources */,
+				BB6978412955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift in Sources */,
+				9B725DA321477601008886A2 /* WeekendViewController.swift in Sources */,
+				BBF721FA26E7F63F0090FFCC /* windSettingsViewController.swift in Sources */,
+				BBC148E62874DC5C000F249D /* LakeWindSelectViewController.swift in Sources */,
+				BB153A3E29F9C5AE009F1C62 /* LakeHomeViewController.swift in Sources */,
+				9B5F3F7820DC5AD900D3CFDF /* UIWebView+AFNetworking.m in Sources */,
+				BB5F80DA222721F500E4A602 /* BRSetpointViewController.swift in Sources */,
+				9B725D80214775BD008886A2 /* PumpsViewController.swift in Sources */,
+				9B5F3FA820DC5AF400D3CFDF /* Utilits.m in Sources */,
+				BB2E14672786144E00693B66 /* LightsViewController.swift in Sources */,
+				9B4E1081218265B700604006 /* BromineViewController.swift in Sources */,
+				9B5F3F7D20DC5AD900D3CFDF /* AFHTTPRequestOperationManager.m in Sources */,
+				BB697871296C9A9400EDC57E /* AlightShowStopperChecker.swift in Sources */,
+				BB34707E27441F8500588FF5 /* HomeSelectViewController.swift in Sources */,
+				9B5F404B20DC5B1200D3CFDF /* WaterLevelViewController.swift in Sources */,
+				BBF0F970240D9A3800886076 /* WindAnemometerViewController.swift in Sources */,
+				BBF9B8E023F4B6F900DF67A1 /* LogsViewController.swift in Sources */,
+				9B5F3F2420DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift in Sources */,
+				BBF9B8E123F4B6F900DF67A1 /* StatusLogSpecs.swift in Sources */,
+				9B5F3F1C20DC5AB400D3CFDF /* Show+CoreDataProperties.swift in Sources */,
+				BB69787A296CC53C00EDC57E /* ACTSchedulerAlightViewController.m in Sources */,
+				BB629E0026E0126F0005D4CB /* ACTCalendarScheduleViewController.m in Sources */,
+				BBF0F96F240D9A3800886076 /* WindViewController.swift in Sources */,
+				9B5F3F7220DC5AD900D3CFDF /* UIProgressView+AFNetworking.m in Sources */,
+				9B5F3FA520DC5AF400D3CFDF /* HomeGeneralSpecs.swift in Sources */,
+				9B5F3F8E20DC5AD900D3CFDF /* RDVCalendarDayCell.m in Sources */,
+				BB697874296C9F0800EDC57E /* ACTPlaylistAlightViewController.m in Sources */,
+				BB37240F29D23293002BE775 /* ShowScheduleListViewController.swift in Sources */,
+				9B5F404A20DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift in Sources */,
+				9B5F3F1D20DC5AB400D3CFDF /* Wind+CoreDataClass.swift in Sources */,
+				9B8DB340214832B6001CF70D /* WaterLevelSpecs.swift in Sources */,
+				9B5F3FAD20DC5AF400D3CFDF /* ShowManager.swift in Sources */,
+				BBF9B8D823F4B4F800DF67A1 /* SystemStatusViewController.swift in Sources */,
+				9B5F3F1A20DC5AB400D3CFDF /* Pump+CoreDataProperties.swift in Sources */,
+				BB6568E624215FDB00229999 /* SysLogTextViewController.swift in Sources */,
+				DB46ABAA23B1AFE8003A4388 /* PumpSchedulerViewController.swift in Sources */,
+				9B5F3F0B20DC5AA000D3CFDF /* iPadControls.xcdatamodeld in Sources */,
+				9B4E107D218265B700604006 /* WaterQualityViewController.swift in Sources */,
+				9B5F3FAE20DC5AF400D3CFDF /* Logger.swift in Sources */,
+				9BBB8EF02135C359001F9F01 /* ShowHideSettingsLabel.swift in Sources */,
+				9B5F3F8D20DC5AD900D3CFDF /* SwiftRecord.swift in Sources */,
+				BB6978652967D69D00EDC57E /* AlShow+CoreDataClass.swift in Sources */,
+				BB69786C2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9B147C9B20DC68C0003DDFE8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B147C9C20DC68C0003DDFE8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88243C1D1DEF5965004D39D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		88243C1E1DEF5965004D39D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88243C201DEF5965004D39D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DABF08559F25EA52E20E4FEF /* Pods-iPadControls.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 754D679GZJ;
+				INFOPLIST_FILE = "iPadControls/Resources/iPadControls-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = WET.iPadControls;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = IpadControlsnew2021;
+				SWIFT_OBJC_BRIDGING_HEADER = "iPadControls/Resources/iPadControls-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		88243C211DEF5965004D39D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB2F2F21D069A5E44025A19B /* Pods-iPadControls.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 754D679GZJ;
+				INFOPLIST_FILE = "iPadControls/Resources/iPadControls-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = WET.iPadControls;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = IpadControlsnew2021;
+				SWIFT_OBJC_BRIDGING_HEADER = "iPadControls/Resources/iPadControls-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88243C051DEF5965004D39D8 /* Build configuration list for PBXProject "iPadControls" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88243C1D1DEF5965004D39D8 /* Debug */,
+				88243C1E1DEF5965004D39D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88243C1F1DEF5965004D39D8 /* Build configuration list for PBXNativeTarget "iPadControls" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88243C201DEF5965004D39D8 /* Debug */,
+				88243C211DEF5965004D39D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9B5F3F0620DC5AA000D3CFDF /* iPadControls.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9B5F3F0720DC5AA000D3CFDF /* iPadControls.xcdatamodel */,
+			);
+			currentVersion = 9B5F3F0720DC5AA000D3CFDF /* iPadControls.xcdatamodel */;
+			name = iPadControls.xcdatamodeld;
+			path = Resources/iPadControls.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 88243C021DEF5965004D39D8 /* Project object */;
+}

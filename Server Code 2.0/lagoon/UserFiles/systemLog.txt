@@ -1,0 +1,93 @@
+{"data":"LOG CLEARED","date":"2021-3-9 3:41:44"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 3:43:08"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 3:43:10"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:11:44"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:11:46"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:13:04"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:13:06"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:14:28"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:14:30"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:21:26"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:21:28"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:27:48"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:27:50"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:52:10"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:52:12"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 4:56:38"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 4:56:40"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 6:01:38"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 6:01:40"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 6:16:14"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 6:16:16"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 6:38:06"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 6:38:08"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 7:05:18"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 7:05:20"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 7:16:10"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 7:16:12"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 7:24:44"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 7:24:46"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 8:27:00"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 8:27:02"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 8:28:04"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 8:28:06"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 8:48:40"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 8:48:42"}
+{"data":"LS1201 WaterLevel Above_Hi Resolved","date":"2021-3-9 9:00:06"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 9:24:30"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 9:24:32"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 10:49:14"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 10:49:16"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 10:49:18"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 10:49:20"}
+{"data":"ST1001 Wind Speed Resolved","date":"2021-3-9 10:59:54"}
+{"data":"ST1001 Wind Speed Below Low","date":"2021-3-9 10:59:58"}
+{"data":"Resolved:WF-3 Disable Lights","date":"2021-3-9 15:59:18"}
+{"data":"LS1301 WaterLevel Below_LL Resolved","date":"2021-3-9 15:59:18"}
+{"data":"WF-3 Lights On","date":"2021-3-9 15:59:18"}
+{"data":"Resolved:WF-6 Disable Lights","date":"2021-3-9 15:59:26"}
+{"data":"LS1601 WaterLevel Below_LL Resolved","date":"2021-3-9 15:59:26"}
+{"data":"WF-6 Lights On","date":"2021-3-9 15:59:26"}
+{"data":"LT1001 WaterLevel Above_Hi Resolved","date":"2021-3-9 15:59:42"}
+{"data":"LT1001 WaterLevel Below_L","date":"2021-3-9 16:00:42"}
+{"data":"LT1001 WaterMakeup On","date":"2021-3-9 16:00:42"}
+{"data":"LT1001 WaterLevel Below_L Resolved","date":"2021-3-9 16:01:26"}
+{"data":"LT1001 WaterLevel Below_L","date":"2021-3-9 16:06:56"}
+{"data":"Resolved : pH1 Below_Low","date":"2021-3-9 16:07:34"}
+{"data":"LT1001 WaterLevel Below_L Resolved","date":"2021-3-9 16:07:38"}
+{"data":"pH1 Below_Low","date":"2021-3-9 16:09:30"}
+{"data":"LT1001 WaterLevel Above_Hi","date":"2021-3-9 16:11:58"}
+{"data":"LT1001 WaterMakeup Off","date":"2021-3-9 16:11:58"}
+{"data":"Resolved : pH1 Below_Low","date":"2021-3-9 16:12:08"}
+{"data":"pH1 Below_Low","date":"2021-3-9 16:12:12"}
+{"data":"Resolved : pH1 Below_Low","date":"2021-3-9 16:12:30"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 22:23:24"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 22:23:26"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 22:26:06"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 22:26:08"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-9 22:26:26"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-9 22:26:28"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 0:28:48"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 0:28:50"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 0:32:40"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 0:32:42"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 1:06:58"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 1:07:00"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 1:49:44"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 1:49:46"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 1:51:40"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 1:51:42"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 1:52:16"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 1:52:18"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 2:22:48"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 2:22:50"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 2:23:24"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 2:23:26"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 2:33:52"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 2:33:54"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 2:40:54"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 2:40:56"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 2:41:28"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 2:41:30"}
+{"data":"ST1001 Direction Channel Fault","date":"2021-3-10 2:41:52"}
+{"data":"ST1001 Direction Channel Fault Resolved","date":"2021-3-10 2:41:54"}

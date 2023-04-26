@@ -1,0 +1,15 @@
+[Unit]
+Description=Wet Node Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/env --max-http-header-size=30000 node /home/act/dmar/Main.js
+
+[Install]
+WantedBy=multi-user.target
+

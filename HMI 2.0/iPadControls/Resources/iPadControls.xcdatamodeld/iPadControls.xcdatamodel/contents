@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LakeShow" representedClassName=".AlShow" syncable="YES">
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Network" representedClassName=".Network" syncable="YES">
+        <attribute name="mittlagplcIpAddress" optional="YES" attributeType="String"/>
+        <attribute name="mittlaplcIpAddress" optional="YES" attributeType="String"/>
+        <attribute name="server2IpAddress" optional="YES" attributeType="String"/>
+        <attribute name="serverIpAddress" optional="YES" attributeType="String"/>
+        <attribute name="spmIpAddress" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Pump" representedClassName=".Pump" syncable="YES">
+        <attribute name="maxPumpFrequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="outOfRangeMessage" optional="YES" attributeType="String"/>
+        <attribute name="screenName" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PumpDetail" representedClassName=".PumpDetail" syncable="YES">
+        <attribute name="aboveHighSP" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="belowLLLSP" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="belowLLSP" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="belowLSP" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="currentMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxFrequency" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pumpNumber" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="scaleMaxSP" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="scaleMinSP" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="temperatureMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="temperatureMid" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="voltageMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="voltageMin" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Show" representedClassName=".Show" syncable="YES">
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Wind" representedClassName=".Wind" syncable="YES">
+        <attribute name="enableSetPoints" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="metric" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="numberOfWindSensors" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="outOfRangeMessage" optional="YES" attributeType="String"/>
+        <attribute name="screenName" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="LakeShow" positionX="-54" positionY="108" width="128" height="88"/>
+        <element name="Network" positionX="-54" positionY="18" width="128" height="118"/>
+        <element name="Pump" positionX="-45" positionY="54" width="128" height="90"/>
+        <element name="PumpDetail" positionX="-54" positionY="45" width="128" height="240"/>
+        <element name="Show" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Wind" positionX="-54" positionY="27" width="128" height="120"/>
+    </elements>
+</model>

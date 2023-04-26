@@ -1,0 +1,83 @@
+//
+//  AirPressureSpecs.swift
+//  iPadControls
+//
+//  Created by Jan Manalo on 1/17/19.
+//  Copyright © 2019 WET. All rights reserved.
+//
+
+import Foundation
+
+
+//{
+//"***************************ESTOP STATUS**************************": "1",
+//"MCC101 EStop": 0,
+//"MCC102 EStop": 0,
+//"ShowStopper :Estop": 0,
+//"ShowStopper :WaterLevelLow": 0,
+//"ShowStopper :High Speed Wind Abort": 0,
+//"***************************SHOW STATUS***************************": "2",
+//"Show PlayMode": 0,
+//"Show PlayStatus": 0,
+//"CurrentShow Number": 0,
+//"deflate": "nothing",
+//"NextShowTime": 0,
+//"NextShowNumber": 0,
+//"timeLastCmnd": 0,
+//"SPM_RAT_Mode": 0,
+//"dayMode": 0,
+//"JumpToStepAuto": 0,
+//"JumpToStepManual": 0,
+//"***************************WIND STATUS***************************": "3",
+//"Wind: AboveHi": 0,
+//"Wind: BelowLow :": 0,
+//"Wind: SpeedFault :": 0,
+//"Wind: DirectionFault :": 0,
+//"***************************PUMPS STATUS**************************": "4",
+//"VFD 101 Network Fault": 0,
+//"VFD 102 Network Fault": 0,
+//"VFD 103 Network Fault": 0,
+//"VFD 104 Network Fault": 0,
+//"PSL1001 CleanStrainer": 0,
+//"PSL1002 CleanStrainer": 0,
+//"VFD 101 Pump Fault": 0,
+//"VFD 102 Pump Fault": 0,
+//"VFD 103 Pump Fault": 0,
+//"VFD 104 Pump Fault": 1,
+//"VFD 101 Pressure Fault": 0,
+//"VFD 102 Pressure Fault": 1,
+//"VFD 103 Pressure Fault": 0,
+//"VFD 104 Pressure Fault": 0,
+//"BackwashTrigger iPad/Server": 0,
+//"BackwashTrigger PDSH": 1,
+//"BackwashRunning PDSH": 0,
+//"BackwashRunning iPad/Server": 0,
+//"****************************WATERLEVEL STATUS********************": "5",
+//"LS1001 Below_Low": 0,
+//"LS1002 Below_Low": 0,
+//"LS1003 Below_Low": 0,
+//"LS1004 Below_Low": 0,
+//"LS1005 Below_Low": 0,
+//"LS1001 WaterMakeup On/Off": 0,
+//"LS1001 WaterMakeup Timeout": 0,
+//"****************************LIGHTS STATUS************************": "6",
+//"Lights Auto/Manual Mode": 0,
+//"Lights_OnOff": 0,
+//"****************************WATER QUALITY STATUS*****************": "7",
+//"TDS: AboveHi": 0,
+//"TDS: Below_Low": 0,
+//"TDS: Channel_Fault": 0,
+//"pH: AboveHi": 0,
+//"pH: Below_Low": 0,
+//"pH: Channel_Fault": 0,
+//"ORP: AboveHi": 0,
+//"ORP: Below_Low": 1,
+//"ORP: Channel_Fault": 0,
+//"Bromine Tiemout": 0,
+//"****************************DEVICE CONNECTION STATUS*************": "8",
+//"SPM_Heartbeat": 2,
+//"SPM_Modbus_Connection": true,
+//"PLC_Heartbeat": 1,
+//"PLC_Modbus _Connection": true
+//}
+

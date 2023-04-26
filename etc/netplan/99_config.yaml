@@ -1,0 +1,24 @@
+# optional true skips waiting for a disconnected port on boot, this would hang for 2 minutes
+# Example configs at netplan.io/examples
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp1s0:
+      optional: true
+      dhcp4: false
+      addresses:
+        - 10.0.4.2/24
+      gateway4: 10.0.4.1
+      nameservers:
+        addresses: [10.0.4.1]
+    enp2s0:
+      optional: true
+      dhcp4: false
+    enp3s0:
+      optional: true
+      dhcp4: false
+    enp6s0:
+      optional: true
+      dhcp4: true
+
