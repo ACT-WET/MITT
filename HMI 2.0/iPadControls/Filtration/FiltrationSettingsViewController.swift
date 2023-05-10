@@ -9,114 +9,184 @@
 import UIKit
 
 class FiltrationSettingsViewController: UIViewController, UITextFieldDelegate{
+ 
+    @IBOutlet weak var maxFrequency: UITextField!
+    @IBOutlet weak var maxTemperature: UITextField!
+    @IBOutlet weak var midTemperature: UITextField!
+    @IBOutlet weak var maxVoltage: UITextField!
+    @IBOutlet weak var minVoltage: UITextField!
+    @IBOutlet weak var maxCurrent: UITextField!
+    
+    @IBOutlet weak var pressDelay: UITextField!
+    @IBOutlet weak var bwDuration: UITextField!
+    @IBOutlet weak var bwTrigger: UITextField!
+    @IBOutlet weak var pdshDelay: UITextField!
+    @IBOutlet weak var noConnectionView: UIView!
+    @IBOutlet weak var noConnectionLbl: UILabel!
+    
+    //Object References
+    let logger = Logger()
+    
+    //Show stoppers tructure
+    var showStopper = ShowStoppers()
+    
+    //Selected Pump Number and Details
+    var pumpDetails:PumpDetail?
 
     
-    @IBOutlet weak var bwDuration: UITextField!
-    @IBOutlet weak var valveOpenClose: UITextField!
-    @IBOutlet weak var noConnectionView: UIView!
-    @IBOutlet weak var noConnectionErrorLbl: UILabel!
-    
-    @IBOutlet weak var pdshDelay: UITextField!
-    private var readSettings = true
-    private var centralSystem = CentralSystem()
     //MARK: - View Life Cycle
     
     override func viewDidLoad(){
         
         super.viewDidLoad()
-
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        centralSystem.getNetworkParameters()
-        centralSystem.mittlagconnect()
-        CENTRAL_SYSTEM = centralSystem
-        constructSaveButton()
+    }
+
+    
+    //MARK: - View Did Appear
+    
+    override func viewWillAppear(_ animated: Bool){
+        
+        var pumpDetail = PumpDetail.query(["pumpNumber":1]) as! [PumpDetail]
+        
+        guard pumpDetail.count != 0 else{
+            return
+        }
+        
+        pumpDetails = pumpDetail[0] as PumpDetail
+        
+        self.getCurrentSetpoints()
+        self.constructSaveButton()
         
         //Add notification observer to get system stat
         NotificationCenter.default.addObserver(self, selector: #selector(checkSystemStat), name: NSNotification.Name(rawValue: "updateSystemStat"), object: nil)
-        readValues()
+        
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
     
+    //MARK: - Get Current Setpoints
     
+    private func getCurrentSetpoints(){
+         
+       guard let maxFreq = UserDefaults.standard.object(forKey: "defaultmaxFreq") as? Float else { return }
+       guard let maxCurrent = UserDefaults.standard.object(forKey: "defaultmaxCurrent") as? Float else { return }
+       guard let maxVltg = UserDefaults.standard.object(forKey: "defaultmaxVoltage") as? Float else { return }
+       guard let minVltg = UserDefaults.standard.object(forKey: "defaultminVoltage") as? Float else { return }
+       guard let maxTemp = UserDefaults.standard.object(forKey: "defaultmaxTemp") as? Float else { return }
+       guard let midTemp = UserDefaults.standard.object(forKey: "defaultmidTemp") as? Float else { return }
+       
+       self.maxFrequency.text = "\(maxFreq)"
+       self.maxCurrent.text = "\(maxCurrent)"
+       self.maxVoltage.text = "\(maxVltg)"
+       self.minVoltage.text = "\(minVltg)"
+       self.maxTemperature.text = "\(maxTemp)"
+       self.midTemperature.text = "\(midTemp)"
+        
+        CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(PRESSURE_DELAYTIMER), completion:{ (success, response) in
+            
+            guard success == true else { return }
+            
+            let pressValue = Int(truncating: response![0] as! NSNumber)
+            self.pressDelay.text = "\(pressValue)"
+            
+        })
+        
+        CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 3, startingRegister: Int32(PDSH_DELAYTIMER), completion:{ (success, response) in
+            
+            guard success == true else { return }
+            
+            let pdshValue = Int(truncating: response![0] as! NSNumber)
+            let bwDurValue = Int(truncating: response![1] as! NSNumber)
+            let bwTrigValue = Int(truncating: response![2] as! NSNumber)
+            self.pdshDelay.text = "\(pdshValue)"
+            self.bwDuration.text = "\(bwDurValue)"
+            self.bwTrigger.text = "\(bwTrigValue)"
+            
+        })
+    }
+    
+    
+    //MARK: - Construct Save bar button item
+    
+    private func constructSaveButton(){
+    
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(savePumpSettings))
+
+    }
+
     @objc func checkSystemStat(){
-        let (plcConnection,_,_,_) = CENTRAL_SYSTEM!.getConnectivityStat()
+        let (plcConnection,_,_,_) = (CENTRAL_SYSTEM?.getConnectivityStat())!
         
         if plcConnection == CONNECTION_STATE_CONNECTED {
-            
             //Change the connection stat indicator
             noConnectionView.alpha = 0
+            noConnectionView.isUserInteractionEnabled = false
             
         } else {
             noConnectionView.alpha = 1
             if plcConnection == CONNECTION_STATE_FAILED {
-                noConnectionErrorLbl.text = "PLC CONNECTION FAILED, SERVER GOOD"
+                noConnectionLbl.text = "PLC CONNECTION FAILED, SERVER GOOD"
             } else if plcConnection == CONNECTION_STATE_CONNECTING {
-                noConnectionErrorLbl.text = "CONNECTING TO PLC, SERVER CONNECTED"
+                noConnectionLbl.text = "CONNECTING TO PLC, SERVER CONNECTED"
             } else if plcConnection == CONNECTION_STATE_POOR_CONNECTION {
-                noConnectionErrorLbl.text = "PLC POOR CONNECTION, SERVER CONNECTED"
+                noConnectionLbl.text = "PLC POOR CONNECTION, SERVER CONNECTED"
             }
         }
     }
-    //MARK: - Construct Save bar button item
     
-    private func constructSaveButton(){
+    
+    //MARK: - Pressure Delay Setpoint
+    
+    @objc private func savePumpSettings(){
+       
+          //MAX_FREQUENCY_SP = 2000
+          //MAX_TEMPERATURE_SP = 2002
+          //MID_TEMPERATURE_SP = 2004
+          //MAX_VOLTAGE_SP = 2008
+          //MIN_VOLTAGE_SP = 2010
+          //MAX_CURRENT_SP = 2012
+
+          let maxFrequency = Float(self.maxFrequency.text!)
+          let maxTemperature = Float(self.maxTemperature.text!)
+          let midTemperature = Float(self.midTemperature.text!)
+          let maxVoltage = Float(self.maxVoltage.text!)
+          let minVoltage = Float(self.minVoltage.text!)
+          let maxCurrent = Float(self.maxCurrent.text!)
+          let pressure = Int(self.pressDelay.text!)
+          let pdsh = Int(self.pdshDelay.text!)
+          let bwDur = Int(self.bwDuration.text!)
+          let bwTrig = Int(self.bwTrigger.text!)
+
+          guard maxFrequency != nil && maxTemperature != nil && midTemperature != nil && maxVoltage != nil && minVoltage != nil && maxCurrent != nil && pressure != nil && pdsh != nil && bwDur != nil && bwTrig != nil else{
+              self.logger.logData(data: "INVALID OR NO INPUT IN ONE OR MORE SETPOINT FIELDS")
+              return
+          }
+          
+        CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_FREQUENCY_SP, value: maxFrequency!)
+          CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_TEMPERATURE_SP, value: maxTemperature!)
+          CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MID_TEMPERATURE_SP, value: midTemperature!)
+          CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_VOLTAGE_SP, value: maxVoltage!)
+          CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MIN_VOLTAGE_SP, value: minVoltage!)
+          CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_CURRENT_SP, value: maxCurrent!)
+          UserDefaults.standard.set(maxCurrent!, forKey: "defaultmaxCurrent")
+          UserDefaults.standard.set(maxFrequency!, forKey: "defaultmaxFreq")
+          UserDefaults.standard.set(maxTemperature!, forKey: "defaultmaxTemp")
+          UserDefaults.standard.set(midTemperature!, forKey: "defaultmidTemp")
+          UserDefaults.standard.set(maxVoltage!, forKey: "defaultmaxVoltage")
+          UserDefaults.standard.set(minVoltage!, forKey: "defaultminVoltage")
+          UserDefaults.standard.synchronize()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(saveSetpoints))
+          CENTRAL_SYSTEM!.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: PRESSURE_DELAYTIMER, value: pressure!)
+          CENTRAL_SYSTEM!.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: PDSH_DELAYTIMER, value: pdsh!)
+          CENTRAL_SYSTEM!.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: PDSH_DELAYTIMER+1, value: bwDur!)
+          CENTRAL_SYSTEM!.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: PDSH_DELAYTIMER+2, value: bwTrig!)
         
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1.50) {
+              self.getCurrentSetpoints()
+          }
     }
-    
-    
-    private func readValues() {
-        
-            CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_BW_DURATION_REGISTER), completion: { (success, response) in
-                
-                guard success == true else { return }
-                
-                let bwDuration = Int(truncating: response![0] as! NSNumber)
-                
-                CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_VALVE_OPEN_CLOSE_TIME_BIT), completion: { (success, response) in
-                    
-                    guard success == true else { return }
-                    
-                    let valveOpenCloseValue = Int(truncating: response![0] as! NSNumber)
-                    CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_PDSH_DELAY), completion: { (success, response) in
-                        
-                        guard success == true else { return }
-                        
-                        let pdsh = Int(truncating: response![0] as! NSNumber)
-                        self.pdshDelay.text = "\(pdsh)"
-                        self.bwDuration.text = "\(bwDuration)"
-                        self.valveOpenClose.text = "\(valveOpenCloseValue)"
-                    })
-                })
-            })
-        
-    }
-    
-    
-    
-    //MARK: - Save  Setpoints
-    
-    @objc private func saveSetpoints(){
-        guard let backwashDurationText = bwDuration.text,
-            let backWashValue = Int(backwashDurationText),
-            let pdshText = pdshDelay.text,
-            let pdshvalue = Int(pdshText),
-            let valveOpenCloseText = valveOpenClose.text,
-            let valveOpenCloseValue = Int(valveOpenCloseText) else { return }
-        
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: FILTRATION_BW_DURATION_REGISTER, value: backWashValue)
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: FILTRATION_PDSH_DELAY, value: pdshvalue)
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: FILTRATION_VALVE_OPEN_CLOSE_TIME_BIT, value: valveOpenCloseValue)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.readSettings = true
-        }
-    }
+
 }

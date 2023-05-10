@@ -20,19 +20,19 @@ function waterQualityWrapper(){
   var gwq1TDS;
   var gwq1BR;
 
-  if (ATHOPLCConnected){
-    // if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
-    athoplc_client.readHoldingRegister(300, 2, function(resp){
+  if (PLCConnected){
+   if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
+    plc_client.readHoldingRegister(300, 2, function(resp){
 
       wq1PH =  parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
       
-      athoplc_client.readHoldingRegister(310, 2, function(resp){
+      plc_client.readHoldingRegister(310, 2, function(resp){
         wq1ORP = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
 
-        athoplc_client.readHoldingRegister(320, 2, function(resp){
+        plc_client.readHoldingRegister(320, 2, function(resp){
           wq1TDS = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
 
-          athoplc_client.readCoils(332,1,function(resp){
+          plc_client.readCoils(332,1,function(resp){
             wq1BR= (resp.coils[0]) ? 1 : 0;
 
             //"LIVE" data
@@ -56,87 +56,8 @@ function waterQualityWrapper(){
         });
       });
     });
- // }
+  }
 } 
-
-if (ATSUPLCConnected){
-    // if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
-    atsuplc_client.readHoldingRegister(300, 2, function(resp){
-
-      swq1PH =  parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-      
-      atsuplc_client.readHoldingRegister(310, 2, function(resp){
-        swq1ORP = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-
-        atsuplc_client.readHoldingRegister(320, 2, function(resp){
-          swq1TDS = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-
-          atsuplc_client.readCoils(332,1,function(resp){
-            swq1BR= (resp.coils[0]) ? 1 : 0;
-
-            //"LIVE" data
-            //sampling frequency is once every second
-            //collect and display only 15 mins worth data
-            if (swq1_Live["ph"].length > 900) {
-              swq1_Live["ph"].shift();
-              swq1_Live["orp"].shift();
-              swq1_Live["tds"].shift();
-              swq1_Live["br"].shift();
-              swq1_Live["date"].shift();
-            }
-
-            swq1_Live["ph"].push(swq1PH);
-            swq1_Live["orp"].push(swq1ORP);
-            swq1_Live["tds"].push(swq1TDS);
-            swq1_Live["br"].push(swq1BR);
-            swq1_Live["date"].push(time);
-
-          }); 
-        });
-      });
-    });
- // }
-} 
-
-if (ATGLPLCConnected){
-    // if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
-    atglplc_client.readHoldingRegister(300, 2, function(resp){
-
-      gwq1PH =  parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-      
-      atglplc_client.readHoldingRegister(310, 2, function(resp){
-        gwq1ORP = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-
-        atglplc_client.readHoldingRegister(320, 2, function(resp){
-          gwq1TDS = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-
-          atglplc_client.readCoils(332,1,function(resp){
-            gwq1BR= (resp.coils[0]) ? 1 : 0;
-
-            //"LIVE" data
-            //sampling frequency is once every second
-            //collect and display only 15 mins worth data
-            if (gwq1_Live["ph"].length > 900) {
-              gwq1_Live["ph"].shift();
-              gwq1_Live["orp"].shift();
-              gwq1_Live["tds"].shift();
-              gwq1_Live["br"].shift();
-              gwq1_Live["date"].shift();
-            }
-
-            gwq1_Live["ph"].push(gwq1PH);
-            gwq1_Live["orp"].push(gwq1ORP);
-            gwq1_Live["tds"].push(gwq1TDS);
-            gwq1_Live["br"].push(gwq1BR);
-            gwq1_Live["date"].push(time);
-
-          }); 
-        });
-      });
-    });
- // }
-} 
-   
 
 function back2Real(low, high){
   var fpnum=low|(high<<16);

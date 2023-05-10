@@ -27,101 +27,72 @@ public struct ShowPlayStat{
 }
 public struct DeviceStat{
     
+    var cp601estop = 0
+    var sysWarning = 0
+    var sysFault = 0
     var showStoppereStop = 0
     var showStopperwind = 0
     var showStopperwater = 0
     
-    var wf1lights = 0
-    var wf2lights = 0
-    var wf3lights = 0
-    var wf4lights = 0
-    var wf5lights = 0
-    var wf6lights = 0
-    var lights101 = 0
-    var lights102A = 0
-    var lights102B = 0
+    var playMode = 0
+    var spmRatmode = 0
+    var dayMode = 0
     
-    var pumpFault1101 = 0
-    var pumpFault1102 = 0
-    var pumpFault1301 = 0
-    var pumpFault1302 = 0
-    var pumpFault1303 = 0
-    var pumpFault1401 = 0
-    var pumpFault1402 = 0
-    var pumpFault1501 = 0
-    var pumpFault1502 = 0
-    var pumpFault1503 = 0
-    var pumpFault1601 = 0
-    var pumpFault1602 = 0
-    var pressFault1101 = 0
-    var pressFault1102 = 0
-    var pressFault1301 = 0
-    var pressFault1302 = 0
-    var pressFault1303 = 0
-    var pressFault1401 = 0
-    var pressFault1402 = 0
-    var pressFault1501 = 0
-    var pressFault1502 = 0
-    var pressFault1503 = 0
-    var pressFault1601 = 0
-    var pressFault1602 = 0
-    
-    var ls1101belowLL = 0
-    var ls1201belowLL = 0
-    var ls1301belowLL = 0
-    var ls1401belowLL = 0
-    var ls1501belowLL = 0
-    var ls1601belowLL = 0
-    var ls1201makeupOn = 0
-    var ls1201makeupTimeout = 0
-    var lt1001makeupTimeout = 0
-    var lt1001makeupOn = 0
-    
-    var ph1ChFault = 0
-    var ph1AbvHi = 0
-    var ph1belowL = 0
-    var orp1ChFault = 0
-    var orp1AbvHi = 0
-    var orp1belowL = 0
-    var tds1ChFault = 0
-    var tds1AbvHi = 0
-    var tds1belowL = 0
-    var ph2ChFault = 0
-    var ph2AbvHi = 0
-    var ph2belowL = 0
-    var orp2ChFault = 0
-    var orp2AbvHi = 0
-    var orp2belowL = 0
-    var tds2ChFault = 0
-    var tds2AbvHi = 0
-    var tds2belowL = 0
-    var bw1Running = 0
-    var bw2Running = 0
-    var pressFault1001 = 0
-    var pressFault1201 = 0
-    var pumpFault1001 = 0
-    var pumpFault1201 = 0
-
     var windAbvHi = 0
+    var windAbvMed = 0
     var windbelowL = 0
+    var windnW = 0
     var windspeedFault = 0
     var windDirectionFault = 0
     
-    var fs101pumpOverload = 0
-    var fs101pumpFault = 0
-    var fs101pressFault = 0
-    var fs102pumpOverload = 0
-    var fs102pumpFault = 0
-    var fs102pressFault = 0
+    var lsAbvHi = 0
+    var lsblwL = 0
+    var lsblwLL = 0
     
-    var sysWarning = 0
-    var sysFault = 0
-    var spmRatmode = 0
-    var dayMode = 0
-    var winterizeMode = 0
-    var playMode = 0
+    var bender13current  = 0.0
+    var bender23current  = 0.0
+    var bender33current  = 0.0
+    var bender43current  = 0.0
+    var bender53current  = 0.0
+    var bender63current  = 0.0
+    var bender73current  = 0.0
+    var bender83current  = 0.0
+    var bender93current  = 0.0
+    var bender103current = 0.0
+    var bender113current = 0.0
+    var bender123current = 0.0
     
-
+    var bw1Running = 0
+    var tds1AbvHi = 0
+    var tds1ChFault = 0
+    var ph1AbvHi = 0
+    var ph1belowL = 0
+    var ph1ChFault = 0
+    var orp1AbvHi = 0
+    var orp1belowL = 0
+    var orp1ChFault = 0
+    var brDosing = 0
+    var brTimeout = 0
+    var wfBrEnable = 0
+    
+    var fsHAmode = 0
+    var fsON = 0
+    
+    var lights201 = 0
+    var lights202 = 0
+    
+    var ys201Tripped = 0
+    var ys202Tripped = 0
+    var ys203Tripped = 0
+    var ys204Tripped = 0
+    var ys205Tripped = 0
+    var ys206Tripped = 0
+    var ys207Tripped = 0
+    var ys208Tripped = 0
+    var ys209Tripped = 0
+    var ys210Tripped = 0
+    var ys211Tripped = 0
+    var ys212Tripped = 0
 }
 public class ShowManager{
     
@@ -258,12 +229,11 @@ public class ShowManager{
                     let currentShow      = responseDictionary["Current Show"] as? Int,
                     let currentShowName      = responseDictionary["Current Show Name"] as? String,
                     let currentShowDur      = responseDictionary["Current Show Duration"] as? Int,
+                    let playType         = responseDictionary["Show Type"] as? Int,
                     let deflate          = responseDictionary["deflate"] as? String,
                     let showremaining    = responseDictionary["show time remaining"] as? Int,
-                    let nextShowTime     = responseDictionary["next Show Time"] as? Int,
                     let servReq          = responseDictionary["Service Required"] as? Int,
-                    let playType         = responseDictionary["Show Type"] as? Int,
-                    let deadMan          = responseDictionary["enableDeadman"] as? Int,
+                    let nextShowTime     = responseDictionary["next Show Time"] as? Int,
                     let nextShowNumber   = responseDictionary["next Show Num"] as? Int {
                     
                     
@@ -274,7 +244,6 @@ public class ShowManager{
                     self.showPlayStat.nextShowTime      = nextShowTime
                     self.showPlayStat.nextShowNumber    = nextShowNumber
                     self.showPlayStat.playMode          = playMode
-                    self.showPlayStat.enableDeadMan     = deadMan
                     self.showPlayStat.playStatus        = playStatus
                     self.showPlayStat.servRequired      = servReq
                     self.showPlayStat.showRemaining = showremaining
@@ -304,17 +273,17 @@ public class ShowManager{
                 guard let responseDictionary = responseArray[0] as? [String : Any] else { return }
                 
                 
-                if  let playMode         = responseDictionary["Play Mode"] as? Int,
+                if
+                    let playMode         = responseDictionary["Play Mode"] as? Int,
                     let playStatus       = responseDictionary["play status"] as? Int,
                     let currentShow      = responseDictionary["Current Show"] as? Int,
                     let currentShowName      = responseDictionary["Current Show Name"] as? String,
                     let currentShowDur      = responseDictionary["Current Show Duration"] as? Int,
+                    let playType         = responseDictionary["Show Type"] as? Int,
                     let deflate          = responseDictionary["deflate"] as? String,
                     let showremaining    = responseDictionary["show time remaining"] as? Int,
-                    let nextShowTime     = responseDictionary["next Show Time"] as? Int,
                     let servReq          = responseDictionary["Service Required"] as? Int,
-                    let playType         = responseDictionary["Show Type"] as? Int,
-                    let deadMan          = responseDictionary["enableDeadman"] as? Int,
+                    let nextShowTime     = responseDictionary["next Show Time"] as? Int,
                     let nextShowNumber   = responseDictionary["next Show Num"] as? Int {
                     
                     
@@ -325,7 +294,6 @@ public class ShowManager{
                     self.lakeshowPlayStat.nextShowTime      = nextShowTime
                     self.lakeshowPlayStat.nextShowNumber    = nextShowNumber
                     self.lakeshowPlayStat.playMode          = playMode
-                    self.lakeshowPlayStat.enableDeadMan     = deadMan
                     self.lakeshowPlayStat.playStatus        = playStatus
                     self.lakeshowPlayStat.servRequired      = servReq
                     self.lakeshowPlayStat.showRemaining = showremaining
@@ -361,194 +329,140 @@ public class ShowManager{
                     let responseDictionary = responseArray[0] as? NSDictionary
                         
                         if responseDictionary != nil{
-                            if  let showStoppereStop = responseDictionary!["ShowStopper :Estop"] as? Int,
+                            
+                            if let estop = responseDictionary!["CP601 Estop"] as? Int,
+                            let sysWarning = responseDictionary!["Out_BMS2001A"] as? Int,
+                            let sysFault = responseDictionary!["Out_BMS2001B"] as? Int,
+                            let showStoppereStop = responseDictionary!["ShowStopper :Estop"] as? Int,
                             let showStopperwind = responseDictionary!["ShowStopper :High Speed Wind Abort"] as? Int,
                             let showStopperwater = responseDictionary!["ShowStopper :WaterLevelLow"] as? Int,
                             
-                            let wf1lights = responseDictionary!["WF-1 Lights Off"] as? Int,
-                            let wf2lights = responseDictionary!["WF-2 Lights Off"] as? Int,
-                            let wf3lights = responseDictionary!["WF-3 Lights Off"] as? Int,
-                            let wf4lights = responseDictionary!["WF-4 Lights Off"] as? Int,
-                            let wf5lights = responseDictionary!["WF-5 Lights Off"] as? Int,
-                            let wf6lights = responseDictionary!["WF-6 Lights Off"] as? Int,
-                            let lights101 = responseDictionary!["LCP 101 Relay OFF"] as? Int,
-                            let lights102A = responseDictionary!["LCP 102A Relay OFF"] as? Int,
-                            let lights102B = responseDictionary!["LCP 102B Relay OFF"] as? Int,
-                            
-                            let pumpFault1101 = responseDictionary!["VFD 1101 Pump Fault"] as? Int,
-                            let pumpFault1102 = responseDictionary!["VFD 1102 Pump Fault"] as? Int,
-                            let pumpFault1301 = responseDictionary!["VFD 1301 Pump Fault"] as? Int,
-                            let pumpFault1302 = responseDictionary!["VFD 1302 Pump Fault"] as? Int,
-                            let pumpFault1303 = responseDictionary!["VFD 1303 Pump Fault"] as? Int,
-                            let pumpFault1401 = responseDictionary!["VFD 1401 Pump Fault"] as? Int,
-                            let pumpFault1402 = responseDictionary!["VFD 1402 Pump Fault"] as? Int,
-                            let pumpFault1501 = responseDictionary!["VFD 1501 Pump Fault"] as? Int,
-                            let pumpFault1502 = responseDictionary!["VFD 1502 Pump Fault"] as? Int,
-                            let pumpFault1503 = responseDictionary!["VFD 1503 Pump Fault"] as? Int,
-                            let pumpFault1601 = responseDictionary!["VFD 1601 Pump Fault"] as? Int,
-                            let pumpFault1602 = responseDictionary!["VFD 1602 Pump Fault"] as? Int,
-                            let pressFault1101 = responseDictionary!["VFD 1101 Pressure Fault"] as? Int,
-                            let pressFault1102 = responseDictionary!["VFD 1102 Pressure Fault"] as? Int,
-                            let pressFault1301 = responseDictionary!["VFD 1301 Pressure Fault"] as? Int,
-                            let pressFault1302 = responseDictionary!["VFD 1302 Pressure Fault"] as? Int,
-                            let pressFault1303 = responseDictionary!["VFD 1303 Pressure Fault"] as? Int,
-                            let pressFault1401 = responseDictionary!["VFD 1401 Pressure Fault"] as? Int,
-                            let pressFault1402 = responseDictionary!["VFD 1402 Pressure Fault"] as? Int,
-                            let pressFault1501 = responseDictionary!["VFD 1501 Pressure Fault"] as? Int,
-                            let pressFault1502 = responseDictionary!["VFD 1502 Pressure Fault"] as? Int,
-                            let pressFault1503 = responseDictionary!["VFD 1503 Pressure Fault"] as? Int,
-                            let pressFault1601 = responseDictionary!["VFD 1601 Pressure Fault"] as? Int,
-                            let pressFault1602 = responseDictionary!["VFD 1602 Pressure Fault"] as? Int,
-                            
-                            let ls1101belowLL = responseDictionary!["LS1101 Below_LL"] as? Int,
-                            let ls1201belowLL = responseDictionary!["LS1201 Below_LL"] as? Int,
-                            let ls1301belowLL = responseDictionary!["LS1301 Below_LL"] as? Int,
-                            let ls1401belowLL = responseDictionary!["LS1401 Below_LL"] as? Int,
-                            let ls1501belowLL = responseDictionary!["LS1501 Below_LL"] as? Int,
-                            let ls1601belowLL = responseDictionary!["LS1601 Below_LL"] as? Int,
-                            let ls1201makeupOn = responseDictionary!["LS1201 WaterMakeup On/Off"] as? Int,
-                            let ls1201makeupTimeout = responseDictionary!["LS1201 WaterMakeup Timeout"] as? Int,
-                            let lt1001makeupTimeout = responseDictionary!["LT1001 WaterMakeup Timeout"] as? Int,
-                            let lt1001makeupOn = responseDictionary!["LT1001 WaterMakeup On/Off"] as? Int,
-                            
-                            let ph1ChFault = responseDictionary!["pH1: Channel_Fault"] as? Int,
-                            let ph1AbvHi = responseDictionary!["pH1: AboveHi"] as? Int,
-                            let ph1belowL = responseDictionary!["pH1: Below_Low"] as? Int,
-                            let orp1ChFault = responseDictionary!["ORP1: Channel_Fault"] as? Int,
-                            let orp1AbvHi = responseDictionary!["ORP1: AboveHi"] as? Int,
-                            let orp1belowL = responseDictionary!["ORP1: Below_Low"] as? Int,
-                            let tds1ChFault = responseDictionary!["TDS1: Channel_Fault"] as? Int,
-                            let tds1AbvHi = responseDictionary!["TDS1: AboveHi"] as? Int,
-                            let ph2ChFault = responseDictionary!["pH2: Channel_Fault"] as? Int,
-                            let ph2AbvHi = responseDictionary!["pH2: AboveHi"] as? Int,
-                            let ph2belowL = responseDictionary!["pH2: Below_Low"] as? Int,
-                            let orp2ChFault = responseDictionary!["ORP2: Channel_Fault"] as? Int,
-                            let orp2AbvHi = responseDictionary!["ORP2: AboveHi"] as? Int,
-                            let orp2belowL = responseDictionary!["ORP2: Below_Low"] as? Int,
-                            let tds2ChFault = responseDictionary!["TDS2: Channel_Fault"] as? Int,
-                            let tds2AbvHi = responseDictionary!["TDS2: AboveHi"] as? Int,
-                            let bw1Running = responseDictionary!["BackwashRunning WF-13456"] as? Int,
-                            let bw2Running = responseDictionary!["BackwashRunning WF-2"] as? Int,
-                            let pressFault1001 = responseDictionary!["VFD 1001 Pressure Fault"] as? Int,
-                            let pressFault1201 = responseDictionary!["VFD 1201 Pressure Fault"] as? Int,
-                            let pumpFault1001 = responseDictionary!["VFD 1001 Pump Fault"] as? Int,
-                            let pumpFault1201 = responseDictionary!["VFD 1201 Pump Fault"] as? Int,
-
-                            
-                            
-                            
-                            let windAbvHi = responseDictionary!["Wind_AboveHi"] as? Int,
-                            let windbelowL = responseDictionary!["Wind_BelowLow"] as? Int,
-                            let windspeedFault = responseDictionary!["Wind: SpeedFault"] as? Int,
-                            let windDirectionFault = responseDictionary!["Wind: DirectionFault"] as? Int,
-                            
-                            let fs101pumpOverload = responseDictionary!["FS101 PumpOverload"] as? Int,
-                            let fs101pumpFault = responseDictionary!["FS101 Pump Fault"] as? Int,
-                            let fs101pressFault = responseDictionary!["FS101 Pressure Fault"] as? Int,
-                            let fs102pumpOverload = responseDictionary!["FS102 PumpOverload"] as? Int,
-                            let fs102pumpFault = responseDictionary!["FS102 Pump Fault"] as? Int,
-                            let fs102pressFault = responseDictionary!["FS102 Pressure Fault"] as? Int,
-                            
-                            let sysWarning = responseDictionary!["SYSTEM WARNINGS"] as? Int,
-                            let sysFault = responseDictionary!["SYSTEM FAULTS"] as? Int,
-                            let spmRatmode = responseDictionary!["SPM RAT MODE"] as? Int,
-                            let dayMode = responseDictionary!["DayMode Status"] as? Int,
-                            let winterizeMode = responseDictionary!["Winterize Mode"] as? Int,
-                            let playMode = responseDictionary!["Show PlayMode"] as? Int{
+                            let playMode = responseDictionary!["Show PlayMode"] as? Int,
+                            let spmRatmode = responseDictionary!["SPM_RAT_Mode"] as? Int,
+                            let dayMode = responseDictionary!["SPM: DayMode Status"] as? Int,
                                 
+                            let windAbvHi = responseDictionary!["ST1001 Above_Hi"] as? Int,
+                            let windAbvMed = responseDictionary!["ST1001 Above_Med"] as? Int,
+                            let windbelowL = responseDictionary!["ST1001 Below_Low"] as? Int,
+                            let windnW = responseDictionary!["ST1001 No_Wind"] as? Int,
+                            let windspeedFault = responseDictionary!["ST1001 Speed_Channel_Fault"] as? Int,
+                            let windDirectionFault = responseDictionary!["ST1001 Direction_Channel_Fault"] as? Int,
+                            
+                            let lsAbvHi = responseDictionary!["LS2001 Above_Hi"] as? Int,
+                            let lsblwL = responseDictionary!["LS2001 Below_Low"] as? Int,
+                            let lsblwLL = responseDictionary!["LS2001 Below_LowLow"] as? Int,
+                            
+                            let bender13current  = responseDictionary!["BENDER 1 3-PHASE CURRENT DATA"] as? Double,
+                            let bender23current  = responseDictionary!["BENDER 2 3-PHASE CURRENT DATA"] as? Double,
+                            let bender33current  = responseDictionary!["BENDER 3 3-PHASE CURRENT DATA"] as? Double,
+                            let bender43current  = responseDictionary!["BENDER 4 3-PHASE CURRENT DATA"] as? Double,
+                            let bender53current  = responseDictionary!["BENDER 5 3-PHASE CURRENT DATA"] as? Double,
+                            let bender63current  = responseDictionary!["BENDER 6 3-PHASE CURRENT DATA"] as? Double,
+                            let bender73current  = responseDictionary!["BENDER 7 3-PHASE CURRENT DATA"] as? Double,
+                            let bender83current  = responseDictionary!["BENDER 8 3-PHASE CURRENT DATA"] as? Double,
+                            let bender93current  = responseDictionary!["BENDER 9 3-PHASE CURRENT DATA"] as? Double,
+                            let bender103current = responseDictionary!["BENDER 10 3-PHASE CURRENT DATA"] as? Double,
+                            let bender113current = responseDictionary!["BENDER 11 3-PHASE CURRENT DATA"] as? Double,
+                            let bender123current = responseDictionary!["BENDER 12 3-PHASE CURRENT DATA"] as? Double,
+                            
+                            let bw1Running = responseDictionary!["Backwash1 Run"] as? Int,
+                            let tds1AbvHi = responseDictionary!["TDS Above Hi"] as? Int,
+                            let tds1ChFault = responseDictionary!["TDS ChannelFault"] as? Int,
+                            let ph1AbvHi = responseDictionary!["PH Above Hi"] as? Int,
+                            let ph1belowL = responseDictionary!["PH Below Low"] as? Int,
+                            let ph1ChFault = responseDictionary!["PH ChannelFault"] as? Int,
+                            let orp1AbvHi = responseDictionary!["ORP Above Hi"] as? Int,
+                            let orp1belowL = responseDictionary!["ORP Below Low"] as? Int,
+                            let orp1ChFault = responseDictionary!["ORP ChannelFault"] as? Int,
+                            let brDosing = responseDictionary!["Bromine Dosing"] as? Int,
+                            let brTimeout = responseDictionary!["Bromine Timeout"] as? Int,
+                            let wfBrEnable = responseDictionary!["WaterFlow Bromine Enabled"] as? Int,
+                            
+                            let fsHAmode = responseDictionary!["FS113 HA Mode"] as? Int,
+                            let fsON = responseDictionary!["FS113 Hand On"] as? Int,
+                            
+                            let lights201 = responseDictionary!["MicroShooter Lights ON"] as? Int,
+                            let lights202 = responseDictionary!["Oarsman Lights ON"] as? Int,
+                            
+                            let ys201Tripped = responseDictionary!["YS201 GFCI TRIPPED"] as? Int,
+                            let ys202Tripped = responseDictionary!["YS202 GFCI TRIPPED"] as? Int,
+                            let ys203Tripped = responseDictionary!["YS203 GFCI TRIPPED"] as? Int,
+                            let ys204Tripped = responseDictionary!["YS204 GFCI TRIPPED"] as? Int,
+                            let ys205Tripped = responseDictionary!["YS205 GFCI TRIPPED"] as? Int,
+                            let ys206Tripped = responseDictionary!["YS206 GFCI TRIPPED"] as? Int,
+                            let ys207Tripped = responseDictionary!["YS207 GFCI TRIPPED"] as? Int,
+                            let ys208Tripped = responseDictionary!["YS208 GFCI TRIPPED"] as? Int,
+                            let ys209Tripped = responseDictionary!["YS209 GFCI TRIPPED"] as? Int,
+                            let ys210Tripped = responseDictionary!["YS210 GFCI TRIPPED"] as? Int,
+                            let ys211Tripped = responseDictionary!["YS211 GFCI TRIPPED"] as? Int,
+                            let ys212Tripped = responseDictionary!["YS212 GFCI TRIPPED"] as? Int{
+                                
+                                self.deviceStat.cp601estop = estop
+                                self.deviceStat.sysWarning = sysWarning
+                                self.deviceStat.sysFault = sysFault
                                 self.deviceStat.showStoppereStop = showStoppereStop
                                 self.deviceStat.showStopperwater = showStopperwater
                                 self.deviceStat.showStopperwind = showStopperwind
                                 
-                                self.deviceStat.wf1lights = wf1lights
-                                self.deviceStat.wf2lights = wf2lights
-                                self.deviceStat.wf3lights = wf3lights
-                                self.deviceStat.wf4lights = wf4lights
-                                self.deviceStat.wf5lights = wf5lights
-                                self.deviceStat.wf6lights = wf6lights
-                                self.deviceStat.lights101 = lights101
-                                self.deviceStat.lights102A = lights102A
-                                self.deviceStat.lights102B = lights102B
-                                
-                                self.deviceStat.pumpFault1101 = pumpFault1101
-                                self.deviceStat.pumpFault1102 = pumpFault1102
-                                self.deviceStat.pumpFault1301 = pumpFault1301
-                                self.deviceStat.pumpFault1302 = pumpFault1302
-                                self.deviceStat.pumpFault1303 = pumpFault1303
-                                self.deviceStat.pumpFault1401 = pumpFault1401
-                                self.deviceStat.pumpFault1402 = pumpFault1402
-                                self.deviceStat.pumpFault1501 = pumpFault1501
-                                self.deviceStat.pumpFault1502 = pumpFault1502
-                                self.deviceStat.pumpFault1503 = pumpFault1503
-                                self.deviceStat.pumpFault1601 = pumpFault1601
-                                self.deviceStat.pumpFault1602 = pumpFault1602
-                                self.deviceStat.pressFault1101 = pressFault1101
-                                self.deviceStat.pressFault1102 = pressFault1102
-                                self.deviceStat.pressFault1301 = pressFault1301
-                                self.deviceStat.pressFault1302 = pressFault1302
-                                self.deviceStat.pressFault1303 = pressFault1303
-                                self.deviceStat.pressFault1401 = pressFault1401
-                                self.deviceStat.pressFault1402 = pressFault1402
-                                self.deviceStat.pressFault1501 = pressFault1501
-                                self.deviceStat.pressFault1502 = pressFault1502
-                                self.deviceStat.pressFault1503 = pressFault1503
-                                self.deviceStat.pressFault1601 = pressFault1601
-                                self.deviceStat.pressFault1602 = pressFault1602
-                                
-                                self.deviceStat.ls1101belowLL = ls1101belowLL
-                                self.deviceStat.ls1201belowLL = ls1201belowLL
-                                self.deviceStat.ls1301belowLL = ls1301belowLL
-                                self.deviceStat.ls1401belowLL = ls1401belowLL
-                                self.deviceStat.ls1501belowLL = ls1501belowLL
-                                self.deviceStat.ls1601belowLL = ls1601belowLL
-                                self.deviceStat.ls1201makeupOn = ls1201makeupOn
-                                self.deviceStat.ls1201makeupTimeout = ls1201makeupTimeout
-                                self.deviceStat.lt1001makeupOn = lt1001makeupOn
-                                self.deviceStat.lt1001makeupTimeout = lt1001makeupTimeout
-                                
-                                self.deviceStat.ph1ChFault = ph1ChFault
-                                self.deviceStat.ph1AbvHi = ph1AbvHi
-                                self.deviceStat.ph1belowL = ph1belowL
-                                self.deviceStat.orp1ChFault = orp1ChFault
-                                self.deviceStat.orp1AbvHi = orp1AbvHi
-                                self.deviceStat.orp1belowL = orp1belowL
-                                self.deviceStat.tds1ChFault = tds1ChFault
-                                self.deviceStat.tds1AbvHi = tds1AbvHi
-                                self.deviceStat.ph2ChFault = ph2ChFault
-                                self.deviceStat.ph2AbvHi = ph2AbvHi
-                                self.deviceStat.ph2belowL = ph2belowL
-                                self.deviceStat.orp2ChFault = orp2ChFault
-                                self.deviceStat.orp2AbvHi = orp2AbvHi
-                                self.deviceStat.orp2belowL = orp2belowL
-                                self.deviceStat.tds2ChFault = tds2ChFault
-                                self.deviceStat.tds2AbvHi = tds2AbvHi
-                                self.deviceStat.bw1Running = bw1Running
-                                self.deviceStat.bw2Running = bw2Running
-                                self.deviceStat.pumpFault1001 = pumpFault1001
-                                self.deviceStat.pumpFault1201 = pumpFault1201
-                                self.deviceStat.pressFault1001 = pressFault1001
-                                self.deviceStat.pressFault1201 = pressFault1201
-                                
-                                self.deviceStat.windAbvHi = windAbvHi
-                                self.deviceStat.windbelowL = windbelowL
-                                self.deviceStat.windspeedFault = windspeedFault
-                                self.deviceStat.windDirectionFault = windDirectionFault
-
-                                self.deviceStat.fs101pumpFault = fs101pumpFault
-                                self.deviceStat.fs101pumpOverload = fs101pumpOverload
-                                self.deviceStat.fs101pressFault = fs101pressFault
-                                self.deviceStat.fs102pumpFault = fs102pumpFault
-                                self.deviceStat.fs102pumpOverload = fs102pumpOverload
-                                self.deviceStat.fs102pressFault = fs102pressFault
-                                
-                                self.deviceStat.sysFault = sysFault
-                                self.deviceStat.sysWarning = sysWarning
+                                self.deviceStat.playMode = playMode
                                 self.deviceStat.spmRatmode = spmRatmode
                                 self.deviceStat.dayMode = dayMode
-                                self.deviceStat.playMode = playMode
-                                self.deviceStat.winterizeMode = winterizeMode
                                 
+                                self.deviceStat.windAbvHi = windAbvHi
+                                self.deviceStat.windAbvMed = windAbvMed
+                                self.deviceStat.windbelowL = windbelowL
+                                self.deviceStat.windnW = windnW
+                                self.deviceStat.windspeedFault = windspeedFault
+                                self.deviceStat.windDirectionFault = windDirectionFault
                                 
+                                self.deviceStat.lsAbvHi = lsAbvHi
+                                self.deviceStat.lsblwL = lsblwL
+                                self.deviceStat.lsblwLL = lsblwLL
+                                
+                                self.deviceStat.bender13current = bender13current
+                                self.deviceStat.bender23current = bender23current
+                                self.deviceStat.bender33current = bender33current
+                                self.deviceStat.bender43current = bender43current
+                                self.deviceStat.bender53current = bender53current
+                                self.deviceStat.bender63current = bender63current
+                                self.deviceStat.bender73current = bender73current
+                                self.deviceStat.bender83current = bender83current
+                                self.deviceStat.bender93current = bender93current
+                                self.deviceStat.bender103current = bender103current
+                                self.deviceStat.bender113current = bender113current
+                                self.deviceStat.bender123current = bender123current
+                                
+                                self.deviceStat.bw1Running = bw1Running
+                                self.deviceStat.tds1AbvHi = tds1AbvHi
+                                self.deviceStat.tds1ChFault = tds1ChFault
+                                self.deviceStat.ph1AbvHi = ph1AbvHi
+                                self.deviceStat.ph1belowL = ph1belowL
+                                self.deviceStat.ph1ChFault = ph1ChFault
+                                self.deviceStat.orp1AbvHi = orp1AbvHi
+                                self.deviceStat.orp1belowL = orp1belowL
+                                self.deviceStat.orp1ChFault = orp1ChFault
+                                self.deviceStat.brDosing = brDosing
+                                self.deviceStat.brTimeout = brTimeout
+                                self.deviceStat.wfBrEnable = wfBrEnable
+                                
+                                self.deviceStat.fsHAmode = fsHAmode
+                                self.deviceStat.fsON = fsON
+                                
+                                self.deviceStat.lights201 = lights201
+                                self.deviceStat.lights202 = lights202
+                                
+                                self.deviceStat.ys201Tripped = ys201Tripped
+                                self.deviceStat.ys202Tripped = ys202Tripped
+                                self.deviceStat.ys203Tripped = ys203Tripped
+                                self.deviceStat.ys204Tripped = ys204Tripped
+                                self.deviceStat.ys205Tripped = ys205Tripped
+                                self.deviceStat.ys206Tripped = ys206Tripped
+                                self.deviceStat.ys207Tripped = ys207Tripped
+                                self.deviceStat.ys208Tripped = ys208Tripped
+                                self.deviceStat.ys209Tripped = ys209Tripped
+                                self.deviceStat.ys210Tripped = ys210Tripped
+                                self.deviceStat.ys211Tripped = ys211Tripped
+                                self.deviceStat.ys212Tripped = ys212Tripped
                             }
                             
                         }

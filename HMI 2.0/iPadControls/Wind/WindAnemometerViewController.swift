@@ -252,13 +252,6 @@ class WindAnemometerViewController: UIViewController,UIGestureRecognizerDelegate
             self.medSP = windSensor1.SPEED_MED_SET_POINT.register
             self.lowSP = windSensor1.SPEED_LOW_SET_POINT.register
             self.getWindSpeedReading(windSpeedRegister: windSensor1.SPEED_SCALED_VALUE.register, windAbortSetpoint: windSensor1.SPEED_ABORT_SET_POINT.register, aboveHigh:windSensor1.SPEED_HIGH_SET_POINT.register,aboveMed:windSensor1.SPEED_MED_SET_POINT.register,belowLow: windSensor1.SPEED_LOW_SET_POINT.register)
-        case 111:
-            let windSensor2 = wind_sensors?[1] as! WIND_SENSOR_2
-            self.currentAbortSetpointRegister = windSensor2.SPEED_ABORT_SET_POINT.register
-            self.highSP = windSensor2.SPEED_HIGH_SET_POINT.register
-            self.medSP = windSensor2.SPEED_MED_SET_POINT.register
-            self.lowSP = windSensor2.SPEED_LOW_SET_POINT.register
-            self.getWindSpeedReading(windSpeedRegister: windSensor2.SPEED_SCALED_VALUE.register, windAbortSetpoint: windSensor2.SPEED_ABORT_SET_POINT.register, aboveHigh:windSensor2.SPEED_HIGH_SET_POINT.register,aboveMed:windSensor2.SPEED_MED_SET_POINT.register,belowLow: windSensor2.SPEED_LOW_SET_POINT.register)
         default:
             
             self.logger.logData(data: "WIND SENSOR NOT FOUND")

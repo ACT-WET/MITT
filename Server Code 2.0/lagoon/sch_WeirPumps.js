@@ -42,14 +42,14 @@ function weirSchWrapper(){
 
     if ((current_time >= on_time)&&(current_time < off_time)){
         //turn ON
-        athoplc_client.writeSingleCoil(2114,1,function(resp){
+        plc_client.writeSingleCoil(2111,1,function(resp){
                     //watchDog.eventLog('Display Sch IF' +on_time +' off ' +off_time);
         });
 
     }
     else{
         //turn OFF
-        athoplc_client.writeSingleCoil(2114,0,function(resp){
+        plc_client.writeSingleCoil(2111,0,function(resp){
                     //watchDog.eventLog('Display Sch ELSE' +on_time +' off ' +off_time);
         });
 

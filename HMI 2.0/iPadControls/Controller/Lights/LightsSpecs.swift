@@ -17,14 +17,10 @@ import Foundation
 
 
 let LIGHTS_AUTO_HAND_PLC_REGISTER              = 3500
-let LIGHTS_STATUS                              = 3503
+let LIGHTS_STATUS                              = 3500
 let LIGHTS_ON_OFF_WRITE_REGISTERS              = 3501
 
-let STROBE_LIGHTS_AUTO_HAND_PLC_REGISTER      = 3504
-let STROBE_LIGHTS_STATUS                      = 3507
-let STROBE_LIGHTS_ON_OFF_WRITE_REGISTERS      = 3505
-
-let WATER_LEVEL_BELOW_L                        = 3104
+let WATER_LEVE_LSH2001                         = 3103
 let SURGE_WATER_LEVEL_BELOW_L                  = 3102
 let GLIMMER_WATER_LEVEL_BELOW_L                = 3100
 let LIGHTS_DAY_MODE_BTN_UI_TAG_NUMBER          = 15
@@ -41,15 +37,4 @@ let LCP901_STATUS                              = 3503
 let LCP902_ON_OFF_WRITE_REGISTERS              = 3504
 let LCP902_STATUS                              = 3505
 
-let READ_LCP901_SERVER_PATH              = "readSurgeLights"
-let WRITE_LCP901_SERVER_PATH             = "writeSurgeLights"
-
-let READ_GLIMMER_SERVER_PATH              = "readGlimLights"
-let WRITE_GLIMMER_SERVER_PATH             = "writeGlimLights"
 let LIGHTS_LANGUAGE_DATA_PARAM           = "lights"
-
-let GLIMMER_AUTO_HAND_PLC_REGISTER               = 3500
-let GLIMPICO_ON_OFF_WRITE_REGISTERS              = 3502
-let GLIMPICO_STATUS                              = 3503
-let GLIMZEPTO_ON_OFF_WRITE_REGISTERS             = 3504
-let GLIMZEPTO_STATUS                             = 3505

@@ -199,9 +199,9 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *serverConnectionStatus = [defaults objectForKey:@"ServerConnectionStatus"];
-    NSString *plcConnectionStatus   = [defaults objectForKey:@"ATHOPLCConnectionStatus"];
+    NSString *plcConnectionStatus   = [defaults objectForKey:@"MITTLAGPLCConnectionStatus"];
     
-    if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"] && [serverConnectionStatus isEqualToString:@"serverConnected"]){
+    if ([plcConnectionStatus isEqualToString:@"MITTLAGPLCConnected"] && [serverConnectionStatus isEqualToString:@"serverConnected"]){
         
         [self readStopButton];
         [self getCurrentShowInfo];
@@ -231,7 +231,7 @@
         if ([plcConnectionStatus isEqualToString:@"plcFailed"] || [serverConnectionStatus isEqualToString:@"serverFailed"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                  self.noConnectionLabel.text = @"PLC CONNECTION FAILED, SERVER GOOD";
-            } else if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+            } else if ([plcConnectionStatus isEqualToString:@"MITTLAGPLCConnected"]) {
                  self.noConnectionLabel.text = @"SERVER CONNECTION FAILED, PLC GOOD";
             } else {
                  self.noConnectionLabel.text = @"SERVER AND PLC CONNECTION FAILED";
@@ -241,7 +241,7 @@
          if ([plcConnectionStatus isEqualToString:@"connectingPLC"] || [serverConnectionStatus isEqualToString:@"connectingServer"]) {
              if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                    self.noConnectionLabel.text = @"CONNECTING TO PLC, SERVER CONNECTED";
-             } else if ([serverConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+             } else if ([serverConnectionStatus isEqualToString:@"MITTLAGPLCConnected"]) {
                    self.noConnectionLabel.text = @"CONNECTING TO SERVER, PLC CONNECTED";
              } else {
                    self.noConnectionLabel.text = @"CONNECTING TO SERVER AND PLC..";
@@ -363,16 +363,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _state = [[defaults objectForKey:@"playMode"] intValue];
     
-    //We want to make sure user does not constantly tap on the toggle button
-    int toggledValue = [[defaults objectForKey:@"toggledStatus"] intValue];
-    
-    if (toggledValue != _state){
-        self.autoHandToggle.enabled = NO;
-    }else{
-        self.autoHandToggle.enabled = YES;
-    }
-    
-    //Check if System is in Manual mode or Auto Mode
+    //Check if System is in Manual mode or Auto Mode or Off
     if (_state == 0){
         
         _autoMode.alpha = 1;
@@ -380,8 +371,12 @@
         [self rotateAutoModeImage:YES];
         _stopButton.hidden = YES;
         
-    }else{
-        
+    } else if (_state == 2){
+        _autoMode.alpha = 0;
+        _handMode.alpha = 0;
+        [self rotateAutoModeImage:NO];
+        _stopButton.hidden = YES;
+    } else if (_state == 1) {
         _autoMode.alpha = 0;
         _handMode.alpha = 1;
         [self rotateAutoModeImage:NO];
@@ -423,42 +418,6 @@
 }
 
 #pragma mark - Auto and Hand Mode
-
--(IBAction)toggleAutoHandMode:(UIButton *)sender{
-    
-    NSString *fullpath = [NSString stringWithFormat:@"http://wet_act:A3139gg1121@%@:8080/autoMan",_ip];
-    int newState = 0;
-    
-    if (_state == 0){
-        
-        newState = 1;
-        [_defaults setObject:[NSNumber numberWithInt:(int)1] forKey:@"toggledStatus"];
-
-    }else{
-    
-        newState = 0;
-        [_defaults setObject:[NSNumber numberWithInt:(int)0] forKey:@"toggledStatus"];
-
-    }
-    
-    NSMutableDictionary *autoMan = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:newState], @"state", [NSNumber numberWithInt:41], @"focus", nil];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:autoMan options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSString *escapedDataString = [jsonString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    NSString *strURL = [NSString stringWithFormat:@"%@?%@", fullpath, escapedDataString];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-    
-    [manager GET:strURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
-        [self readStopButton];
-        
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
-    }];
-    
-}
 
 -(void)rotateAutoModeImage:(BOOL)value{
     

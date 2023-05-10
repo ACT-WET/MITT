@@ -14,7 +14,7 @@ function bwWrapper(){
 	var schedule = alphabufferData[1];
 
 	//get duration from the PLC
-	athoplc_client.readHoldingRegister(6519,1,function(resp){
+	plc_client.readHoldingRegister(6519,1,function(resp){
 		if (resp != undefined && resp != null){
 			bwData.duration = resp.register[0];	
 		}  
@@ -40,7 +40,7 @@ function bwWrapper(){
 	// var filtrationPump_Status = [0,0,0];
 
 	// // VFD 107
-	// athoplc_client.readCoils(1120,1,function(resp){
+	// plc_client.readCoils(1120,1,function(resp){
 	// 	if(resp.coils[0]){
 	// 		filtrationPump_Status[0] = 1;
 	// 	}
@@ -51,7 +51,7 @@ function bwWrapper(){
 	// });
 
 	// // VFD 207
-	// athoplc_client.readCoils(1400,1,function(resp){
+	// plc_client.readCoils(1400,1,function(resp){
 	// 	if(resp.coils[0]){
 	// 		filtrationPump_Status[1] = 1;
 	// 	}
@@ -62,7 +62,7 @@ function bwWrapper(){
 	// });
 
 	// // VFD 307
-	// athoplc_client.readCoils(1540,1,function(resp){
+	// plc_client.readCoils(1540,1,function(resp){
 	// 	if(resp.coils[0]){
 	// 		filtrationPump_Status[2] = 1;
 	// 	}
@@ -83,9 +83,9 @@ function bwWrapper(){
 	var pdsh_sensor = 0;
 
 	//BW 1 & 2 & 3 Sensor
-	athoplc_client.readCoils(4007,3,function(resp){
+	plc_client.readCoils(4007,1,function(resp){
 		if (resp != undefined && resp != null){
-			if(resp.coils[0] + resp.coils[1] + resp.coils[2] > 0){
+			if(resp.coils[0] > 0){
 				pdsh_sensor = 1;
 			}
 			else{
@@ -165,8 +165,8 @@ function bwWrapper(){
 		}// end of IF blockSchBW
 
 		else if (bwData.SchBWStatus === 1){
-			athoplc_client.writeSingleCoil(4000,0,function(resp){
-				athoplc_client.readCoils(4001,1,function(resp){
+			plc_client.writeSingleCoil(4000,0,function(resp){
+				plc_client.readCoils(4001,1,function(resp){
 					if(resp.coils[0]){
 						bwData.SchBWStatus = 2;
 						watchDog.eventLog("Sch BW1 Running");
@@ -243,7 +243,7 @@ function checkManualBW(duration,timeNow,dayID){
 
 function trigBW(now,moment){
 	//only when there is no pump Fault
-	athoplc_client.writeSingleCoil(4000,1,function(resp){
+	plc_client.writeSingleCoil(4000,1,function(resp){
 		watchDog.eventLog("BW Trigger Sent to PLC");
 		bwData.SchBWStatus = 1;
 		bwData.timeLastBW = now;

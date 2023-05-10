@@ -222,9 +222,9 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *serverConnectionStatus = [defaults objectForKey:@"ServerConnectionStatus"];
-    NSString *plcConnectionStatus   = [defaults objectForKey:@"ATHOPLCConnectionStatus"];
+    NSString *plcConnectionStatus   = [defaults objectForKey:@"MITTLAGPLCConnectionStatus"];
     
-    if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"] && [serverConnectionStatus isEqualToString:@"serverConnected"]){
+    if ([plcConnectionStatus isEqualToString:@"MITTLAGPLCConnected"] && [serverConnectionStatus isEqualToString:@"serverConnected"]){
 
         [self checkAutoHandMode];
         [self getCurrentShowInformation];
@@ -244,7 +244,7 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
         if ([plcConnectionStatus isEqualToString:@"plcFailed"] || [serverConnectionStatus isEqualToString:@"serverFailed"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                 self.noConnectionLabel.text = @"PLC CONNECTION FAILED, SERVER GOOD";
-            } else if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+            } else if ([plcConnectionStatus isEqualToString:@"MITTLAGPLCConnected"]) {
                 self.noConnectionLabel.text = @"SERVER CONNECTION FAILED, PLC GOOD";
             } else {
                 self.noConnectionLabel.text = @"SERVER AND PLC CONNECTION FAILED";
@@ -254,7 +254,7 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
         if ([plcConnectionStatus isEqualToString:@"connectingPLC"] || [serverConnectionStatus isEqualToString:@"connectingServer"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                 self.noConnectionLabel.text = @"CONNECTING TO PLC, SERVER CONNECTED";
-            } else if ([serverConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+            } else if ([serverConnectionStatus isEqualToString:@"MITTLAGPLCConnected"]) {
                 self.noConnectionLabel.text = @"CONNECTING TO SERVER, PLC CONNECTED";
             } else {
                 self.noConnectionLabel.text = @"CONNECTING TO SERVER AND PLC..";
@@ -345,31 +345,6 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
         }failure:^(AFHTTPRequestOperation *operation, NSError *error){
             
         }];
-
-        
-//        fullpath = [NSString stringWithFormat:@"%@%@:8080/autoMan", _pass, _ip];
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//
-//        //Before setting the current palylist to playlist 1 , we need to check if the SPM is on auto or manual mode
-//        _state = [[defaults objectForKey:@"playMode"] intValue];
-//
-//        NSMutableDictionary *autoMan = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:_state], @"state", [NSNumber numberWithInt:1], @"focus", nil];
-//
-//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:autoMan options:NSJSONWritingPrettyPrinted error:nil];
-//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSString *escapedDataString = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        NSString *strURL = [NSString stringWithFormat:@"%@?%@", fullpath, escapedDataString];
-//
-//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-//
-//        [manager GET:strURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
-//
-//            NSLog(@"switched to playlist %@", jsonString);
-//
-//        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-//
-//        }];
         
         [_playlistTable reloadData];
         
@@ -383,15 +358,6 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _state = [[defaults objectForKey:@"playMode"] intValue];
     
-    //We want to make sure user does not constantly tap on the toggle button
-    int toggledValue = [[defaults objectForKey:@"toggledStatus"] intValue];
-    
-    if (toggledValue != _state){
-        self.autoHandToggle.enabled = NO;
-    }else{
-        self.autoHandToggle.enabled = YES;
-    }
-    
     if (_state == 0){
         
         _autoMode.alpha = 1;
@@ -401,7 +367,12 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
         
         [self rotateAutoModeImage:YES];
         
-    }else{
+    } else if (_state == 2){
+        _autoMode.alpha = 0;
+        _handMode.alpha = 0;
+        _playStopButton.alpha = 0;
+        _duplicateStatus.alpha = 0;
+    } else if (_state == 1) {
         
         _autoMode.alpha = 0;
         _handMode.alpha = 1;
@@ -1036,20 +1007,11 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
 
     }else{
         
-        NSLog(@"VIEWING PLAYLIST: %d",_viewingPlaylist);
+            NSLog(@"VIEWING PLAYLIST: %d",_viewingPlaylist);
     
-        
-        NSString *fullpath = [NSString stringWithFormat:@"%@%@:8080/autoMan", _pass, _ip];
-
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-        
-        [manager GET:fullpath parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             _state = [[defaults objectForKey:@"playMode"] intValue];
-            int playlist = [responseObject[1] intValue];
-            NSLog(@"PLAYLIST FROM AUTO MAN: %i",playlist);
-            if (((_state == 1) && ( playlist == _viewingPlaylist + 1) )){
+            if (_state == 1) {
                 
                 [_playlistTable setSeparatorInset:UIEdgeInsetsZero];
                 
@@ -1091,67 +1053,10 @@ static NSString *returnTappedTextFieldHint = @"~"; // HACK to mark when return w
                     
                 }
             }
-            
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-            
-            NSLog(@"Error: %@", error);
-            [_serverErrorCount addObject:error];
-            
-        }];
     }
 }
 
 #pragma mark - perform server operations
-
--(IBAction)toggleAutoHandMode:(UIButton *)sender{
-    
-    NSString *fullpath = [NSString stringWithFormat:@"%@%@:8080/autoMan", _pass, _ip];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int newState = 0;
-    
-    if (_state == 0){
-        
-        newState = 1;
-        [defaults setObject:[NSNumber numberWithInt:(int)1] forKey:@"toggledStatus"];
-        
-    }else{
-        
-        newState = 0;
-        [defaults setObject:[NSNumber numberWithInt:(int)0] forKey:@"toggledStatus"];
-        
-    }
-    
-    NSMutableDictionary *autoMan = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:newState], @"state", [NSNumber numberWithInt:_viewingPlaylist+1], @"focus", nil];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:autoMan options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSString *escapedDataString = [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *strURL = [NSString stringWithFormat:@"%@?%@", fullpath, escapedDataString];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-    
-    [manager GET:strURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
-        NSString *fullpath = [NSString stringWithFormat:@"http://wet_act:A3139gg1121@%@:8080/autoManPlay?0",_ip];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-        
-        [manager GET:fullpath parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
-            
-            [_playStopButton setEnabled:NO];
-            _justPressedStop = YES;
-            
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-            
-        }];
-
-        [self checkAutoHandMode];
-        
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
-        
-    }];
-    
-}
 
 -(IBAction)togglePlayStop:(UIButton *)sender{
     

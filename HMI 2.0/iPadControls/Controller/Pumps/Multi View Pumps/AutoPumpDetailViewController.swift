@@ -70,8 +70,6 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
     
     
     //MARK: - Auto or Manual
-    @IBOutlet weak var autoModeIndicator: UIImageView!
-    @IBOutlet weak var handModeIndicator: UIImageView!
     @IBOutlet weak var autoManualButton: UIButton!
     @IBOutlet weak var playStopButtonIcon: UIButton!
     private var isManualMode = false
@@ -156,30 +154,7 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
      
     func setupLagoonPumpLabel(){
         switch pumpNumber {
-            case 601: vfdNumber.text = "VFD - 601"
-            case 602: vfdNumber.text = "VFD - 602"
-            case 603: vfdNumber.text = "VFD - 603"
-            case 604: vfdNumber.text = "VFD - 604"
-            case 605: vfdNumber.text = "VFD - 605"
-            case 606: vfdNumber.text = "VFD - 606"
-            case 607: vfdNumber.text = "VFD - 607"
-            case 608: vfdNumber.text = "VFD - 608"
-            case 609: vfdNumber.text = "VFD - 609"
-            case 610: vfdNumber.text = "VFD - 610"
-            case 611: vfdNumber.text = "VFD - 611"
-            case 612: vfdNumber.text = "VFD - 612"
-            case 613: vfdNumber.text = "VFD - 613"
-            case 614: vfdNumber.text = "VFD - 614"
-            case 615: vfdNumber.text = "VFD - 615"
-            case 616: vfdNumber.text = "VFD - 616"
-            case 617: vfdNumber.text = "VFD - 617"
-            case 618: vfdNumber.text = "VFD - 618"
-            case 619: vfdNumber.text = "VFD - 619"
-            case 620: vfdNumber.text = "VFD - 620"
-            case 621: vfdNumber.text = "VFD - 621"
-            case 622: vfdNumber.text = "VFD - 622"
-            case 623: vfdNumber.text = "VFD - 623"
-            case 624: vfdNumber.text = "VFD - 624"
+            case 101: vfdNumber.text = "VFD - 101"
             
         default:
             print("FAULT TAG")
@@ -455,10 +430,6 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
         constructVoltageSlider()
         constructCurrentSlider()
         constructTemperatureSlider()
-        
-        autoModeIndicator.alpha = 0
-        handModeIndicator.alpha = 0
-        
     }
     
     
@@ -543,53 +514,7 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
             self.getTemperatureReading(response: response)
             self.getManualSpeedReading(response: response)
             self.getFrequencyReading(response: response)
-            self.checkForAutoManMode(response: response)
             self.getManualSpeedReading(response: response)
-            
-            
-            if self.readOnce == 0 {
-                self.readOnce = 1
-                let feedback = Int(truncating: response![8] as! NSNumber)
-                let startStopMode = Int(truncating: response![7] as! NSNumber)
-                
-                if feedback == 0{
-                    
-                    //Pump is in auto mode
-                    self.localStat = 0
-                    self.changeAutManModeIndicatorRotation(autoMode: true)
-                    self.autoModeIndicator.alpha = 1
-                    self.handModeIndicator.alpha = 0
-                    self.frequencyIndicator.isHidden = false
-                    self.setFrequencyHandle.isHidden = true
-                    self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps_on"), for: .normal)
-                    
-                }else if feedback == 1 && startStopMode == 1{
-                    
-                    //Pump is in manual mode
-                    self.localStat = 2
-                    self.changeAutManModeIndicatorRotation(autoMode: false)
-                    self.autoModeIndicator.alpha = 0
-                    self.handModeIndicator.alpha = 1
-                    self.frequencyIndicator.isHidden = false
-                    self.setFrequencyHandle.isHidden = false
-                    self.isManualMode = true
-                    
-                    self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps_on"), for: .normal)
-                    
-                }else if feedback == 1 && startStopMode == 0{
-                    
-                    //Pump is in off mode
-                    self.localStat = 1
-                    self.changeAutManModeIndicatorRotation(autoMode: false)
-                    self.autoModeIndicator.alpha = 0
-                    self.handModeIndicator.alpha = 0
-                    self.frequencyIndicator.isHidden = true
-                    self.setFrequencyHandle.isHidden = false
-                    self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps"), for: .normal)
-                    
-                }
-                
-            }
             
         })
     }
@@ -613,54 +538,7 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
                self.getTemperatureReading(response: response)
                self.getManualSpeedReading(response: response)
                self.getFrequencyReading(response: response)
-               self.checkForAutoManMode(response: response)
                self.getManualSpeedReading(response: response)
-               
-               
-               if self.readOnce == 0 {
-                   self.readOnce = 1
-                   let feedback = Int(truncating: response![8] as! NSNumber)
-                   let startStopMode = Int(truncating: response![7] as! NSNumber)
-                   
-                   if feedback == 0{
-                       
-                       //Pump is in auto mode
-                       self.localStat = 0
-                       self.changeAutManModeIndicatorRotation(autoMode: true)
-                       self.autoModeIndicator.alpha = 1
-                       self.handModeIndicator.alpha = 0
-                       self.frequencyIndicator.isHidden = false
-                       self.setFrequencyHandle.isHidden = true
-                       self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps_on"), for: .normal)
-                       
-                   }else if feedback == 1 && startStopMode == 1{
-                       
-                       //Pump is in manual mode
-                       self.localStat = 2
-                       self.changeAutManModeIndicatorRotation(autoMode: false)
-                       self.autoModeIndicator.alpha = 0
-                       self.handModeIndicator.alpha = 1
-                       self.frequencyIndicator.isHidden = false
-                       self.setFrequencyHandle.isHidden = false
-                       self.isManualMode = true
-                       
-                       self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps_on"), for: .normal)
-                       
-                   }else if feedback == 1 && startStopMode == 0{
-                       
-                       //Pump is in off mode
-                       self.localStat = 1
-                       self.changeAutManModeIndicatorRotation(autoMode: false)
-                       self.autoModeIndicator.alpha = 0
-                       self.handModeIndicator.alpha = 0
-                       self.frequencyIndicator.isHidden = true
-                       self.setFrequencyHandle.isHidden = false
-                       self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps"), for: .normal)
-                       
-                   }
-                   
-               }
-               
            })
        }
     
@@ -919,232 +797,15 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
     
     //MARK: - Check For Auto/Man Mode
     
-    private func checkForAutoManMode(response:[AnyObject]?){
-        
-        let feedback = Int(truncating: response![6] as! NSNumber)
-        let startStopMode = Int(truncating: response![7] as! NSNumber)
-        
-        if feedback == 0 && self.localStat == 0{
-            
-            //Pump is in auto mode
-            self.pumpState = 0
-            self.changeAutManModeIndicatorRotation(autoMode: true)
-            self.autoModeIndicator.alpha = 1
-            self.handModeIndicator.alpha = 0
-            self.manualSpeedView.alpha = 0
-            self.frequencyIndicator.isHidden = false
-            self.setFrequencyHandle.isHidden = true
-            self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps_on"), for: .normal)
-            
-        }else if feedback == 1 && startStopMode == 0 && self.localStat == 1{
-            
-            //Pump is in off mode
-            self.pumpState = 1
-            self.changeAutManModeIndicatorRotation(autoMode: false)
-            self.autoModeIndicator.alpha = 0
-            self.handModeIndicator.alpha = 0
-            self.manualSpeedView.alpha = 0
-            self.frequencyIndicator.isHidden = true
-            self.setFrequencyHandle.isHidden = true
-            self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps"), for: .normal)
-            
-        }else if feedback == 1 && startStopMode == 0 && self.localStat == 2{
-            
-            //Pump is in manual mode
-            self.pumpState = 2
-            self.changeAutManModeIndicatorRotation(autoMode: false)
-            self.autoModeIndicator.alpha = 0
-            self.handModeIndicator.alpha = 1
-            self.manualSpeedView.alpha = 1
-            self.frequencyIndicator.isHidden = false
-            self.setFrequencyHandle.isHidden = false
-            self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps_on"), for: .normal)
-            
-        }else if feedback == 1 && startStopMode == 0 && self.localStat == 3{
-            
-            //Pump is in off mode
-            self.pumpState = 3
-            self.changeAutManModeIndicatorRotation(autoMode: false)
-            self.autoModeIndicator.alpha = 0
-            self.handModeIndicator.alpha = 0
-            self.manualSpeedView.alpha = 0
-            self.frequencyIndicator.isHidden = true
-            self.setFrequencyHandle.isHidden = true
-            self.autoManualButton.setImage(#imageLiteral(resourceName: "pumps"), for: .normal)
-            
-        }
-        
-        
-    }
-    
-    
-    
-    
-    @IBAction func changeAutoManMode(_ sender: Any) {
-        
-        var manualBit = 0
-        var autoBit = 0
-        var startStopBit = 0
-        
-        
-        if iPadNumber == 1{
-            
-            let registerSet = PUMP_SETS[0]
-            
-            autoBit = registerSet[6].register
-            manualBit = registerSet[7].register
-            startStopBit = registerSet[8].register
-            
-            
-        }else{
-            
-            let registerSet = PUMP_SETS[1]
-            
-            
-            autoBit = registerSet[6].register
-            manualBit = registerSet[7].register
-            startStopBit = registerSet[8].register
-            
-            
-        }
-        
-        if featureId == 1{
-            switch pumpState{
-                
-            case 0:
-                
-                //Switch to off mode
-                self.localStat = 1
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: manualBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: autoBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = false
-                
-                break
-                
-            case 1:
-                
-                //Switch to Manual Mode mode
-                self.localStat = 2
-                
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: manualBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: autoBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = true
-                
-                
-                break
-                
-            case 2:
-                
-                //Switch to off mode
-                self.localStat = 3
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: manualBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: autoBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = false
-                
-                
-                break
-                
-            case 3:
-                
-                //Switch To Auto Mode
-                self.localStat = 0
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: manualBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: autoBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = false
-                
-                
-                
-                break
-                
-                
-            default:
-                
-                print("PUMP STATE NOT FOUND")
-                
-            }
-        }
-        if featureId == 2{
-            switch pumpState{
-                
-            case 0:
-                
-                //Switch to off mode
-                self.localStat = 1
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: manualBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: autoBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = false
-                
-                break
-                
-            case 1:
-                
-                //Switch to Manual Mode mode
-                self.localStat = 2
-                
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: manualBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: autoBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = true
-                
-                
-                break
-                
-            case 2:
-                
-                //Switch to off mode
-                self.localStat = 3
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: manualBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: autoBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = false
-                
-                
-                break
-                
-            case 3:
-                
-                //Switch To Auto Mode
-                self.localStat = 0
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: manualBit, value: 0)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: autoBit, value: 1)
-                CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: startStopBit, value: 0)
-                isManualMode = false
-                
-                
-                
-                break
-                
-                
-            default:
-                
-                print("PUMP STATE NOT FOUND")
-                
-            }
-        }
-        
-    }
-    
-    
     private func readPlayStopBit(startStopMode: Int) {
-        if isManualMode {
-            playStopButtonIcon.isHidden = false
+        if startStopMode == 1 {
+            //stop
+            playStopButtonIcon.setImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
             
-            if startStopMode == 1 {
-                //stop
-                playStopButtonIcon.setImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-                
-            } else {
-                //play
-                playStopButtonIcon.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
-                
-            }
         } else {
-            playStopButtonIcon.isHidden = true
+            //play
+            playStopButtonIcon.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+            
         }
     }
     
@@ -1175,30 +836,6 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
     
     
     //MARK: - Change Auto/Man Mode Indicator Rotation
-    
-    func changeAutManModeIndicatorRotation(autoMode:Bool){
-        
-        /*
-         NOTE: 2 Possible Options
-         Option 1: Automode (animate) = True => Will result in any view object to rotate 360 degrees infinitly
-         Option 2: Automode (animate) = False => Will result in any view object to stand still
-         */
-        
-        
-        
-        if autoMode == true{  
-            self.autoModeIndicator.alpha = 1
-            self.handModeIndicator.alpha = 0
-            autoModeIndicator.rotate360Degrees(animate: true)
-            
-        }else{
-            
-            self.autoModeIndicator.alpha = 1
-            self.handModeIndicator.alpha = 0
-            
-        }
-        
-    }
     
     
     

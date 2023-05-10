@@ -720,7 +720,7 @@
         <!--SCUEDULE LIST-->
         <scene sceneID="N2F-OW-mfh">
             <objects>
-                <viewController title="SCUEDULE LIST" useStoryboardIdentifierAsRestorationIdentifier="YES" id="egH-Qp-ZUd" customClass="AlightShowScheduleListViewController" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SCUEDULE LIST" useStoryboardIdentifierAsRestorationIdentifier="YES" id="egH-Qp-ZUd" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jP8-1V-VMP"/>
                         <viewControllerLayoutGuide type="bottom" id="wmy-4T-zPg"/>

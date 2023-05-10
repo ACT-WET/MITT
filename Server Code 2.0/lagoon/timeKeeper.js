@@ -76,7 +76,6 @@ function timeKeeperWrapper(){
 
             //watchDog.eventLog("SERVER IS IN MANUAL MODE");
             jumpToStep_auto = 0;
-            deadMan = 0;
 
             //Logic
             //Play show 0 as soon as it enters manual mode - only once
@@ -261,7 +260,6 @@ function timeKeeperWrapper(){
                             if(CALLED_CONDITION_1 == 0)
                             {
                                 watchDog.eventLog("NOW 30 Seconds Before Show" + now);
-                                deadMan = 1;
                                 GOT_SCHEDLED_SHOW = 1;
                                 CALLED_CONDITION_1 = 1;
                             }else
@@ -358,11 +356,7 @@ function timeKeeperWrapper(){
 
                     //watchDog.eventLog("jumpToStep_auto is " + jumpToStep_auto);
                     watchDog.eventLog("About to Start Show # " + currentShow);
-                    if ((currentShow==3) || (currentShow==6) || (currentShow==9)){
-                        fireLog.fireEventLog('Playing Show #   ' +currentShow);  
-                    }
                     CALLED_CONDITION_1 = 0;
-                    deadMan = 0;
                     //Issue the SPM to Play SHOW
                     spm_client.writeSingleRegister(1005,currentShow,function(resp){
                         show = currentShow;
@@ -471,7 +465,7 @@ function timeKeeperWrapper(){
             var futureTime_3mins = alphaconverter.endtime(now,5);
 
             if ((futureTime_3mins >= schedule_mirror[g] && now <= schedule_mirror[g]) && (schedule_mirror[g+1] != 0) && (schedule_mirror[g] > timeLastCmnd)){
-                athoplc_client.writeSingleCoil(2,1,function(resp){});
+                plc_client.writeSingleCoil(2,1,function(resp){});
                 break;
             }
             
@@ -479,7 +473,7 @@ function timeKeeperWrapper(){
     }
 
     if ( (playing===1) || (showStopper > 0) ){
-       athoplc_client.writeSingleCoil(2,0,function(resp){});
+       plc_client.writeSingleCoil(2,0,function(resp){});
     }
     //============================== offset show playing Time  ============//
 
@@ -616,82 +610,43 @@ function timeKeeperWrapper(){
     //     }//log it only once
     //     ATDEPLCConnected = false;
     // }
-
-    //Check ATHO PLC Connection
-    if(ATHOPLC_Heartbeat == 2){
-        athoplc_client.readHoldingRegister(1,1,function(resp){
-            ATHOPLC_Heartbeat = 0; //check again in the next scan
-            ATHOPLCConnected = true;       
+    //Check Bender Connection
+    if(Bndr_Heartbeat == 2){
+        bender_client.readInputRegister(528,1,function(resp){
+            Bndr_Heartbeat = 0; //check again in the next scan
+            BenderConnected = true;       
         });
-        ATHOPLC_Heartbeat = 3;
+        Bndr_Heartbeat = 3;
     }
     else{
-        ATHOPLC_Heartbeat++;
+        Bndr_Heartbeat++;
     }
 
-    if(ATHOPLC_Heartbeat==9){
-        if (ATHOPLCConnected){
-            watchDog.eventLog('ATHO PLC MODBUS CONNECTION FAILED');
+    if(Bndr_Heartbeat==9){
+        if (BenderConnected){
+            watchDog.eventLog('TK: Bender MODBUS CONNECTION FAILED');
         }//log it only once
-        ATHOPLCConnected = false;
+        BenderConnected = false;
     }
 
-    if(ATHONOEPLC_Heartbeat == 2){
-        atho_noe_plc_client.readHoldingRegister(2251,1,function(resp){
-            ATHONOEPLC_Heartbeat = 0; //check again in the next scan
-            ATHONOEPLCConnected = true;       
+    //Check PLC Connection
+    if(PLC_Heartbeat == 2){
+        plc_client.readHoldingRegister(1,1,function(resp){
+            PLC_Heartbeat = 0; //check again in the next scan
+            PLCConnected = true;       
         });
-        ATHONOEPLC_Heartbeat = 3;
+        PLC_Heartbeat = 3;
     }
     else{
-        ATHONOEPLC_Heartbeat++;
+        PLC_Heartbeat++;
     }
 
-    if(ATHONOEPLC_Heartbeat==9){
-        if (ATHONOEPLCConnected){
-            watchDog.eventLog('ATHO NOE PLC MODBUS CONNECTION FAILED');
+    if(PLC_Heartbeat==9){
+        if (PLCConnected){
+            watchDog.eventLog('TK: PLC MODBUS CONNECTION FAILED');
         }//log it only once
-        ATHONOEPLCConnected = false;
+        PLCConnected = false;
     }
-
-     //Check ATGL PLC Connection
-    if(ATGLPLC_Heartbeat == 2){
-        atglplc_client.readHoldingRegister(1,1,function(resp){
-            ATGLPLC_Heartbeat = 0; //check again in the next scan
-            ATGLPLCConnected = true;       
-        });
-        ATGLPLC_Heartbeat = 3;
-    }
-    else{
-        ATGLPLC_Heartbeat++;
-    }
-
-    if(ATGLPLC_Heartbeat==9){
-        if (ATGLPLCConnected){
-            watchDog.eventLog('ATGL PLC MODBUS CONNECTION FAILED');
-        }//log it only once
-        ATGLPLCConnected = false;
-    }
-
-    //  //Check ATSU PLC Connection
-    if(ATSUPLC_Heartbeat == 2){
-        atsuplc_client.readHoldingRegister(1,1,function(resp){
-            ATSUPLC_Heartbeat = 0; //check again in the next scan
-            ATSUPLCConnected = true;       
-        });
-        ATSUPLC_Heartbeat = 3;
-    }
-    else{
-        ATSUPLC_Heartbeat++;
-    }
-
-    if(ATSUPLC_Heartbeat==9){
-        if (ATSUPLCConnected){
-            watchDog.eventLog('ATSU PLC MODBUS CONNECTION FAILED');
-        }//log it only once
-        ATSUPLCConnected = false;
-    }
-
     //========================== TIME CALCULATION FUNCIONS ===========//
     //Watch until last moments of the day
     if(now>235950){
@@ -729,7 +684,17 @@ spm_client.readHoldingRegister(2000,2,function(resp){
     spmRATMode = nthBit(resp.register[0],8);
     dayModeStatus = nthBit(resp.register[1],7);
     showPlayingBit = nthBit(resp.register[0],4);
-    //watchDog.eventLog('DayMode '+dayModeStatus); 
+    
+    if(dayModeStatus === dayMode){}else{
+        if (dayMode == 1){
+            watchDog.eventLog("DayMode Set to " +dayMode +" Description: Lights OFF"); 
+            dayModeStatus = dayMode
+        } else {
+            watchDog.eventLog("DayMode Set to " +dayMode +" Description: Lights ON"); 
+            dayModeStatus = dayMode
+        }
+    }
+    
     if (windHA == 0){
         if (dayModeStatus===1){
             if(windHi==1){
@@ -761,97 +726,44 @@ spm_client.readHoldingRegister(2000,2,function(resp){
             } 
         }
     } else {
-        athoplc_client.readHoldingRegister(840,1,function(resp){
+        plc_client.readHoldingRegister(840,1,function(resp){
           if (resp != undefined && resp != null){
 
                var spmWindMde = resp.register[0];
-               if (spmWindMde == 0){
-                  spm_client.writeSingleRegister(1002,0,function(resp){});
-               }
-               if (spmWindMde == 1){
-                  spm_client.writeSingleRegister(1002,1,function(resp){});
-               }
-               if (spmWindMde == 2){
-                  spm_client.writeSingleRegister(1002,2,function(resp){});
-               }
-               if (spmWindMde == 3){
-                  spm_client.writeSingleRegister(1002,4,function(resp){});
+               if (dayModeStatus===1){
+                   if (spmWindMde == 0){
+                      spm_client.writeSingleRegister(1002,16,function(resp){});
+                   }
+                   if (spmWindMde == 1){
+                      spm_client.writeSingleRegister(1002,17,function(resp){});
+                   }
+                   if (spmWindMde == 2){
+                      spm_client.writeSingleRegister(1002,18,function(resp){});
+                   }
+                   if (spmWindMde == 3){
+                      spm_client.writeSingleRegister(1002,20,function(resp){});
+                   }
+               } else {
+                   if (spmWindMde == 0){
+                      spm_client.writeSingleRegister(1002,0,function(resp){});
+                   }
+                   if (spmWindMde == 1){
+                      spm_client.writeSingleRegister(1002,1,function(resp){});
+                   }
+                   if (spmWindMde == 2){
+                      spm_client.writeSingleRegister(1002,2,function(resp){});
+                   }
+                   if (spmWindMde == 3){
+                      spm_client.writeSingleRegister(1002,4,function(resp){});
+                   }
                }
           }      
         });
     }
     
-    athoplc_client.writeSingleCoil(3,(spmRATMode || showPlayingBit),function(resp){});
+    plc_client.writeSingleCoil(3,(spmRATMode || showPlayingBit),function(resp){});
 });
 
-
-    
-spm_client.readHoldingRegister(2005,1,function(resp)
-{
-    var spm_data_2005 = resp.register[0];
-    if (spm_data_2005 == spmTempData){
-
-    } else {
-        spmTempData = spm_data_2005;  
-    }
-
-    // Modbus Register 2005 from SPM will give a 16-bit Int value
-
-    // bit 0    - Audio Mute
-    // bit 1    - Lights Dim
-    // bit 2    - Fire Enable
-    // bit 3    - Fog Enable
-    // bit 4    - Fire Enable Spire 1
-    // bit 5    - Fire Enable Spire 2
-    // bit 6    - Fire Enable Spire 3
-    // bit 7    - Fire Enable Spire 4
-    // bit 8    - Fire Enable Spire 5
-    // bit 9    - Fire Enable Spire 6
-    // bit 10   - Fire Spire 1 Anim 
-    // bit 11   - Fire Spire 2 Anim 
-    // bit 12   - Fire Spire 3 Anim 
-    // bit 13   - Fire Spire 4 Anim 
-    // bit 14   - Fire Spire 5 Anim 
-    // bit 15   - Fire Spire 6 Anim 
-    
-    // var audMu = nthBit(resp.register[0],0);
-    // var lightOn = nthBit(resp.register[0],1);
-    // var fireEn = nthBit(resp.register[0],2);
-    // var fogEn = nthBit(resp.register[0],3);
-    // var fireSp1 = nthBit(resp.register[0],4);
-    // var fireSp2 = nthBit(resp.register[0],5);
-    // var fireSp3 = nthBit(resp.register[0],6);
-    // var fireSp4 = nthBit(resp.register[0],7);
-    // var fireSp5 = nthBit(resp.register[0],8);
-    // var fireSp6 = nthBit(resp.register[0],9);
-    // var fireSp1En = nthBit(resp.register[0],10);
-    // var fireSp2En = nthBit(resp.register[0],11);
-    // var fireSp3En = nthBit(resp.register[0],12);
-    // var fireSp4En = nthBit(resp.register[0],13);
-    // var fireSp5En = nthBit(resp.register[0],14);
-    // var fireSp6En = nthBit(resp.register[0],15);
-
-    // watchDog.eventLog('audMu ' +audMu); 
-    // watchDog.eventLog('lightOn ' +lightOn); 
-    // watchDog.eventLog('fireEn ' +fireEn); 
-    // watchDog.eventLog('fogEn ' +fogEn); 
-    // watchDog.eventLog('fireSp1 ' +fireSp1); 
-    // watchDog.eventLog('fireSp2 ' +fireSp2); 
-    // watchDog.eventLog('fireSp3 ' +fireSp3); 
-    // watchDog.eventLog('fireSp4 ' +fireSp4); 
-    // watchDog.eventLog('fireSp5 ' +fireSp5); 
-    // watchDog.eventLog('fireSp6 ' +fireSp6); 
-    // watchDog.eventLog('fireSp1En ' +fireSp1En); 
-    // watchDog.eventLog('fireSp2En ' +fireSp2En); 
-    // watchDog.eventLog('fireSp3En ' +fireSp3En); 
-    // watchDog.eventLog('fireSp4En ' +fireSp4En); 
-    // watchDog.eventLog('fireSp5En ' +fireSp5En); 
-    // watchDog.eventLog('fireSp6En ' +fireSp6En); 
-    // athoplc_client.writeSingleCoil(506,fireEn,function(resp){
-    //         watchDog.eventLog('SPM to PLC Send: fireEn ' +fireEn); 
-    // });
-    
-}); 
 }
 
 //==== Return the value of the b-th of n 

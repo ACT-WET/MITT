@@ -44,20 +44,9 @@ function lightsWrapper(){
         //watchDog.eventLog('current Time' +current_time);
         //watchDog.eventLog('Off Time' +off_time);
     if ((current_time >= on_time)&&(current_time < off_time)){
-
-        //watchDog.eventLog("Turn On Lights");
-        //turn ON
-        athoplc_client.writeSingleCoil(3502,1,function(resp){
-            //watchDog.eventLog('WaterSkin Pump Sch ON');
-        });
-        
+        dayMode=0; 
     }else{
-
-        //watchDog.eventLog("Lights Off");
-        athoplc_client.writeSingleCoil(3502,0,function(resp){
-            //watchDog.eventLog('WaterSkin Pump Sch ON');
-        });
-
+        dayMode=1; 
     }
 }
 

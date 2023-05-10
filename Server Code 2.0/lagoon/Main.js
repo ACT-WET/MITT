@@ -19,7 +19,6 @@ var triggerScripts = require("./trigScripts.js");
 fs = require("fs");
 jsModbus = require("./Includes/jsModbus");
 watchDog = require("./Includes/watchDog");
-fireLog = require("./Includes/fireLog");
 watchLog = require("./Includes/watchLog");
 
 //emailReq = require("./emailClient.js");
@@ -28,7 +27,7 @@ alphaconverter = require("./Includes/alphaconverter");
 //===============  Global Parameters
 
 homeD = __dirname;       //Location of the main scripts
-proj = 'ATLANTIS';    //display this on WatchDog. Also extracted from the folder name on the server    
+proj = 'MITT-LAGOON';    //display this on WatchDog. Also extracted from the folder name on the server    
 timerCount = [0,0,0,0,0,0,0,0,0,0];
 sysStatus = [];          //Array that is displayed on Read ErrorLog - old
 firesysStatus = [];      //Array that is displayed on Read ErrorLog - old
@@ -70,33 +69,14 @@ smpFgData2=0;
 smpFgData3=0;
 
 vfd1_faultCode = [];
-vfd2_faultCode = [];
-vfd3_faultCode = [];
-
-gvfd1_faultCode = [];
 
 jumpToStep_auto=0;       //auto mode case 
 jumpToStep_manual=0;     //man mode case
 autoTimeout=0;           //timekeeper code to reset jumpToStep variables   
 currentShow=0;           //variable used in timekeeper to update the global variable show
 
-ATALPLCConnected=false;      //Server - PLC Modbus connection status 
-ATALPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATAL PLC 
-
-ATDEPLCConnected=false;      //Server - PLC Modbus connection status 
-ATDEPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATDE PLC 
-
-ATGLPLCConnected=false;      //Server - PLC Modbus connection status 
-ATGLPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATGL PLC 
-
-ATHOPLCConnected=false;      //Server - PLC Modbus connection status 
-ATHOPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATHO PLC 
-
-ATHONOEPLCConnected=false;      //Server - PLC Modbus connection status 
-ATHONOEPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATHO PLC 
-
-ATSUPLCConnected=false;      //Server - PLC Modbus connection status 
-ATSUPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATSU PLC 
+PLCConnected=false;      //Server - PLC Modbus connection status 
+PLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATHO PLC 
 
 SPMConnected=false;      //Server - SPM Modbus connection status
 SPM_Heartbeat=0;         //Counter used to check Modbus connection with the SPM  
@@ -104,8 +84,13 @@ SPM_Heartbeat=0;         //Counter used to check Modbus connection with the SPM
 BMSConnected=false;      //Server - BMS Modbus connection status 
 BMS_Heartbeat=0;         //Counter used to check Modbus connection with the BMS
 
+BenderConnected=false;
+Bndr_Heartbeat=0;
+
 timeLastCmnd = 0;
 dailyShow=[];
+vfdfaultCodeDescription = [];
+tempfc1=0;
 //TimeKeeper records for which time last show-open command was sent to SPM, scheduler/manual
 //has to be updated by the iPad when time is synced 
 
@@ -141,13 +126,10 @@ fillerShow_ok = 0;       //will be set based on the start time and end time
 //===============  User Changeable Parameters
 
 autoMan = 0;                //0 = scheduler 1 = manual
-deadMan = 0;                //1 = enabledeadMan 0 = disableDeadman 
 manPlay = 0;                //0 = user wants to stop show, SPM transforms to segment 0
 manFocus = 1;            //Denotes what playlist is in focus on user's iPad. betaBuffer is generated using this variable
 
 // ===============  Water Quality
-swq1_Live = {"orp" : [], "ph" : [], "tds" :[], "br" : [], "date" : []};
-gwq1_Live = {"orp" : [], "ph" : [], "tds" :[], "br" : [], "date" : []};
 wq1_Live = {"orp" : [], "ph" : [], "tds" :[], "br" : [], "date" : []};
 sysData  = {"data" : [], "date" : []};
 scanStatus = {"done":true , "progress": {"numShows": 0, "currentShow": 0, "numTestShows": 0, "currentTestShow":0}};
@@ -158,61 +140,34 @@ scanStatus = {"done":true , "progress": {"numShows": 0, "currentShow": 0, "numTe
 runOnceOnly = 1; //timeSync.js
 
 //Filtration Pump Status used in BW code
-filtrationPump_Status = 1; //1 - pump fault, 0 - good
+filtrationPump_Status = 0; //1 - pump fault, 0 - good
 
 //==================== Modbus Connection
-//let ATGL_PLC_IP_ADDRESS            = "10.0.5.230"
-//let ATSU_PLC_IP_ADDRESS            = "10.0.9.230"
-//let ATHO_PLC_IP_ADDRESS            = "10.0.6.230"
-//let ATHO_NOE_PLC_IP_ADDRESS        = "10.0.6.231"
-//let SERVER_IP_ADDRESS              = "10.0.6.2"
-//let SPM_IP_ADDRESS                 = "10.0.6.201"
 
-athoplc_client = jsModbus.createTCPClient(502,'10.0.6.230',function(err){
+
+plc_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
     if(err){
-        watchDog.eventLog(' ATHO PLC Modbus Connection Failed');
-        ATHOPLCConnected=false;
+        watchDog.eventLog(' PLC Modbus Connection Failed');
+        PLCConnected=false;
     }
     else{  
-        watchDog.eventLog(' ATHO PLC Modbus Connection Successful');
-        ATHOPLCConnected=true;
+        watchDog.eventLog(' PLC Modbus Connection Successful');
+        PLCConnected=true;
     }
 });
 
-atho_noe_plc_client = jsModbus.createTCPClient(502,'10.0.6.231',function(err){
+bender_client = jsModbus.createTCPClient(502,'10.0.4.230',function(err){
     if(err){
-        watchDog.eventLog(' ATHO NOE PLC Modbus Connection Failed');
-        ATHONOEPLCConnected=false;
+        watchDog.eventLog('Bender Modbus Connection Failed');
+        BenderConnected=false;
     }
     else{  
-        watchDog.eventLog(' ATHO NOE PLC Modbus Connection Successful');
-        ATHONOEPLCConnected=true;
+        watchDog.eventLog('Bender Modbus Connection Successful');
+        BenderConnected=true;
     }
 });
 
-atglplc_client = jsModbus.createTCPClient(502,'10.0.5.230',function(err){
-    if(err){
-        watchDog.eventLog(' ATGL PLC Modbus Connection Failed');
-        ATGLPLCConnected=false;
-    }
-    else{  
-        watchDog.eventLog(' ATGL PLC Modbus Connection Successful');
-        ATGLPLCConnected=true;
-    }
-});
-
-atsuplc_client = jsModbus.createTCPClient(502,'10.0.9.230',function(err){
-    if(err){
-        watchDog.eventLog(' ATSU PLC Modbus Connection Failed');
-        ATSUPLCConnected=false;
-    }
-    else{  
-        watchDog.eventLog(' ATSU PLC Modbus Connection Successful');
-        ATSUPLCConnected=true;
-    }
-});
-
-spm_client = jsModbus.createTCPClient(502,'10.0.6.201',function(err){
+spm_client = jsModbus.createTCPClient(502,'10.0.4.201',function(err){
     if(err){
         watchDog.eventLog('SPM Modbus Connection Failed');
         SPMConnected=false; 
@@ -238,35 +193,16 @@ for(var f=1;f<5;f++){
 
 timetable=riskyParse(fs.readFileSync(__dirname+'/UserFiles/timetable.txt','utf-8'),'timetable','timetableBkp',1);
 lights=riskyParse(fs.readFileSync(__dirname+'/UserFiles/lights.txt','utf-8'),'lights','lightsBkp',1);
-strobelights=riskyParse(fs.readFileSync(__dirname+'/UserFiles/strobelights.txt','utf-8'),'strobelights','strobelightsBkp',1);
 filterSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/filterSch.txt','utf-8'),'filterSch','filterSchBkp',1);
 weirPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/weirPumpSch.txt','utf-8'),'weirPumpSch','weirPumpSchBkp',1);
-windScalingData=riskyParse(fs.readFileSync(__dirname+'/UserFiles/windScalingData.txt','utf-8'),'windScalingData','windScalingDataBkp',1);
 
 fillerShowSch = riskyParse(fs.readFileSync(__dirname+'/UserFiles/fillerShowSch.txt','utf-8'),'fillerShowSch','fillerShowSchBkp',1);
 fillerShow=riskyParse(fs.readFileSync(__dirname+'/UserFiles/fillerShow.txt','utf-8'),'fillerShow','fillerShowBkp',1);
-fireSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/horizonfire.txt','utf-8'),'horizonfire','horizonfireBkp',1);
 bwData=riskyParse(fs.readFileSync(__dirname+'/UserFiles/backwash.txt','utf-8'),'backwash','backwashBkp',1);
 bwData.SchBWStatus = 0;
 
 playMode_init = riskyParse(fs.readFileSync(__dirname+'/UserFiles/playMode.txt','utf-8'),'playMode','playModeBkp',1);
 
-//Surge
-surgelights=riskyParse(fs.readFileSync(__dirname+'/UserFiles/surgelights.txt','utf-8'),'surgelights','surgelightsBkp',1);
-surgewwPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/surgeSch.txt','utf-8'),'surgeSch','surgeSchBkp',1);
-surgefilterSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/surgefilter.txt','utf-8'),'surgefilter','surgefilterBkp',1);
-surgebwData=riskyParse(fs.readFileSync(__dirname+'/UserFiles/surgebackwash.txt','utf-8'),'surgebackwash','surgebackwashBkp',1);
-surgebwData.SchBWStatus = 0;
-
-
-//Glimmer
-glimlights=riskyParse(fs.readFileSync(__dirname+'/UserFiles/glimlights.txt','utf-8'),'glimlights','glimlightsBkp',1);
-glimweirPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/glimweirSch.txt','utf-8'),'glimweirSch','glimweirSchBkp',1);
-glimwcPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/glimwcSch.txt','utf-8'),'glimwcSch','glimwcSchBkp',1);
-glimfilterSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/glimfilter.txt','utf-8'),'glimfilter','glimfilterBkp',1);
-glimfireSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/glimfire.txt','utf-8'),'glimfire','glimfireBkp',1);
-glimbwData=riskyParse(fs.readFileSync(__dirname+'/UserFiles/glimbackwash.txt','utf-8'),'glimbackwash','glimbackwashBkp',1);
-glimbwData.SchBWStatus = 0;
 
 if (playMode_init.autoMan !== undefined){
     autoMan = playMode_init.autoMan; // user changeable. 0=scheduler 1=manual
@@ -322,11 +258,6 @@ function onRequest(request, response){
                 response.writeHead(200,{"Content-Type": "text"});
                 response.end(JSON.stringify(sysStatus)); 
             
-            }else if (path === '/readFireStatusLog'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(firesysStatus)); 
-            
             }else if (path === '/readServerTime'){
                 var serverTime = new Date();
                 var sendTime = (serverTime.getFullYear()+'-'+(serverTime.getMonth()+1))+'-'+ serverTime.getDate()+' '+ serverTime.getHours()+':' + (serverTime.getMinutes()<10?'0':'') + serverTime.getMinutes()+':'+ (serverTime.getSeconds()<10?'0':'')+serverTime.getSeconds();
@@ -344,17 +275,6 @@ function onRequest(request, response){
                 setWeirSch(query);
                 response.end(JSON.stringify(weirPumpSch));
 
-            }else if (path === '/setDayMode'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                dayMode = query;
-                //This will set the dayMode bit'4' on the SPM 
-                watchDog.eventLog('dayMode set to  ' +dayMode);
-                if (dayMode == 1){
-                     spm_client.writeSingleRegister(1002,16,function(resp){});
-                } else {
-                     spm_client.writeSingleRegister(1002,0,function(resp){});
-                }
             }else if (path === '/readShowList'){
                 dailyShow=[];
                 response.writeHead(200,{"Content-Type": "text"});
@@ -408,7 +328,7 @@ function onRequest(request, response){
             
                 timeLastCmnd = 0;
                 response.writeHead(200,{"Content-Type": "text"});
-                watchDog.eventLog('Time Synced from iPad');
+                watchDog.eventLog('Time Last Cmd Set to 0');
 
             }else if (path === '/readFillerShow'){
             
@@ -437,114 +357,53 @@ function onRequest(request, response){
                 response.writeHead(200,{"Content-Type": "text"});
                 response.end(JSON.stringify(filterSch));
             
+            }else if (path === '/WQ1_Live'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                response.end(JSON.stringify(wq1_Live));
+            
             }else if (path === '/writeFilterSch'){
             
                 response.writeHead(200,{"Content-Type": "text"});
                 setFilterPump(query);
                 response.end(JSON.stringify(filterSch));
             
-            }else if (path === '/readGlimFilterPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(glimfilterSch));
-            
-            }else if (path === '/writeGlimFilterPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setGlimFilterPump(query);
-                response.end(JSON.stringify(glimfilterSch));
-            
-            }else if (path === '/readFireSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(fireSch));
-            
-            }else if (path === '/writeFireSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setFire(query);
-                response.end(JSON.stringify(fireSch));
-            
-            }else if (path === '/readGlimFireSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(glimfireSch));
-            
-            }else if (path === '/writeGlimFireSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setGlimFire(query);
-                response.end(JSON.stringify(glimfireSch));
-            
-            }else if (path === '/readSurgeFilterPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(surgefilterSch));
-            
-            }else if (path === '/writeSurgeFilterPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setSurgeFilterPump(query);
-                response.end(JSON.stringify(surgefilterSch));
-            
-            }else if (path === '/readGlimWcPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(glimwcPumpSch));
-            
-            }else if (path === '/writeGlimWcPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setGlimWcPump(query);
-                response.end(JSON.stringify(glimwcPumpSch));
-            
-            }else if (path === '/readGlimWeirPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(glimweirPumpSch));
-            
-            }else if (path === '/writeGlimWeirPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setGlimWeirPump(query);
-                response.end(JSON.stringify(glimweirPumpSch));
-            
-            }else if (path === '/readSurgeWWPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(surgewwPumpSch));
-            
-            }else if (path === '/writeSurgeWWPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setSurgeWWPump(query);
-                response.end(JSON.stringify(surgewwPumpSch));
-            
-            }else if (path === '/WQ1_Live'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(wq1_Live));   
+            }else if (path === '/benderTest'){
 
-            }else if (path === '/SWQ1_Live'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(swq1_Live));   
+                fs.readFile(__dirname+'/benderTest.html','utf-8',function(err,data){
 
-            }else if (path === '/GWQ1_Live'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(gwq1_Live));   
+                    if(err){throw err;}
+                    var dataString = data.toString();
+
+                    response.writeHead(200,{"Content-Type": "text/html"});
+                    response.end(dataString);
+
+                });
 
             }else if (path === '/readBW'){
             
                 response.writeHead(200,{"Content-Type": "text"});
                 response.end(JSON.stringify(bwData));
 
-            }else if (path === '/writePLC'){
+            }else if (path === '/writeBoolPLC'){
             
                 //watchDog.eventLog('BW Query from ipad');
                 response.writeHead(200,{"Content-Type": "text"});
-                setPLC(query);
+                setBoolPLC(query);
+                response.end();    
+
+            }else if (path === '/writeIntPLC'){
+            
+                //watchDog.eventLog('BW Query from ipad');
+                response.writeHead(200,{"Content-Type": "text"});
+                setIntPLC(query);
+                response.end();    
+
+            }else if (path === '/writeRealPLC'){
+            
+                //watchDog.eventLog('BW Query from ipad');
+                response.writeHead(200,{"Content-Type": "text"});
+                setRealPLC(query);
                 response.end();    
 
             }else if (path === '/writeBW'){
@@ -553,30 +412,6 @@ function onRequest(request, response){
                 response.writeHead(200,{"Content-Type": "text"});
                 setBW(query);
                 response.end(JSON.stringify(bwData));    
-
-            }else if (path === '/readSBW'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(surgebwData));
-
-            }else if (path === '/writeSBW'){
-            
-                //watchDog.eventLog('BW Query from ipad');
-                response.writeHead(200,{"Content-Type": "text"});
-                setSBW(query);
-                response.end(JSON.stringify(surgebwData));    
-
-            }else if (path === '/readGBW'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(glimbwData));
-
-            }else if (path === '/writeGBW'){
-            
-                //watchDog.eventLog('BW Query from ipad');
-                response.writeHead(200,{"Content-Type": "text"});
-                setGBW(query);
-                response.end(JSON.stringify(glimbwData));    
 
             }else if (path === '/readLights'){
             
@@ -588,39 +423,6 @@ function onRequest(request, response){
                 response.writeHead(200,{"Content-Type": "text"});
                 setLights(query);
                 response.end(JSON.stringify(lights));
-            
-            }else if (path === '/readStrobeLights'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(strobelights));
-            
-            }else if (path === '/writeStrobeLights'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setStrobeLights(query);
-                response.end(JSON.stringify(strobelights));
-            
-            }else if (path === '/readGlimLights'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(glimlights));
-            
-            }else if (path === '/writeGlimLights'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setGlimLights(query);
-                response.end(JSON.stringify(glimlights));
-            
-            }else if (path === '/readSurgeLights'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(surgelights));
-            
-            }else if (path === '/writeSurgeLights'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setSurgeLights(query);
-                response.end(JSON.stringify(surgelights));
             
             }else if (path === '/readScheduler'){
 
@@ -753,17 +555,6 @@ function onRequest(request, response){
                 response.end(JSON.stringify(success));
                 success = null;
 
-            }else if (path === '/readWindScalingData'){
-
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(windScalingData));
-
-            }else if (path === '/writeWindScalingData'){
-
-                response.writeHead(200,{"Content-Type": "text"});
-                setWindScalingData(query);
-                response.end(JSON.stringify(windScalingData));
-
             }else if (path === '/saveSettings'){
 
                 parsedData = querystring.parse(query);
@@ -853,7 +644,7 @@ function onRequest(request, response){
                     '<strong>' + proj.toUpperCase() + '</strong>' + '<input type=\'button\' onclick=\"location.href=\'/debug\';\" value=\'Refresh\' /><br>'+
                     current_time + '<br><br>' +
 
-                    '<br><strong>' + (autoMan === 1 ? 'Manual/Hand </strong>Mode' : 'Auto/Schedule </strong>Mode') +
+                    '<br>' + 'Auto(0)/Hand(1)/OFF(2): ' + autoMan +
                     '<br>' + (playing === 1 ? 'Playing: ' : 'Last Played: ') +  (show < shows.length ? shows[show].name : 'Must Show Scan! Show ' + show + ' is not in show.txt')+
                     '<br>' + 'Last Time: ' + (deflate === 'nothing' ? '---' : deflate) +
                     '<br>' + 'Next Time: ' + (nxtTime === 0 ? '---' : nxtTime) + 
@@ -862,12 +653,8 @@ function onRequest(request, response){
                     '<br>' + 'Show Stopping Condition: ' + showStopper +
                     '<br>' + 'RATMODE Status: ' + Boolean(spmRATMode) +
                     '<br>' +
-                    // '<br>ATAL PLC-MB? <strong>'+atalplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'PLC Test\' />'+
-                    // '<br>ATDE PLC-MB? <strong>'+atdeplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'PLC Test\' />'+
-                    '<br>ATHO PLC-MB? <strong>'+athoplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'ATHO PLC Test\' />'+
-                    '<br>ATGL PLC-MB? <strong>'+atglplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcGTest\';\" value=\' ATGL PLC Test\' />'+
-                    '<br>ATSU PLC-MB? <strong>'+atsuplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcSTest\';\" value=\'ATSU PLC Test\' />'+
-                    '<br>ATHO NOE-MB? <strong>'+atho_noe_plc_client.isConnected()+'</strong>'+
+                    '<br>PLC-MB? <strong>'+plc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'PLC Test\' />'+
+                    '<br>BNDR-MB? <strong>'+Boolean(BenderConnected)+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/benderTest\';\" value=\'BENDER Test\' />'+
                     '<br>SPM-MB? <strong>'+spm_client.isConnected()+'</strong>'+
                     '<br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/startShowScanner\';\" value=\'ScanSPMShows\' />' +
@@ -883,44 +670,6 @@ function onRequest(request, response){
 
                     '<br><input type=\'button\' onclick=\"location.href=\'/readLog\';\" value=\'Read Log\' /><br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/readFireStatusLog\';\" value=\'Read FireStatusLog\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readStatusLog\';\" value=\'Read StatusLog\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readLogClient\';\" value=\'Read DeviceStatus\' />' +
-                    '<input type=\'button\' onclick=\"location.href=\'/clearLogClient\';\" value=\'Clear DeviceLogs\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/userfilesIndex?W3trocks!\';\" value=\'Download System Files\' /><br>' +
-
-                    '<br><br><input type=\'button\' onclick=\"location.href=\'/reboot\';\" value=\'REBOOT\' /><br>');
-                    response.end();
-
-            }else if (path === '/atho'){
-                var current_time = new Date();
-                response.writeHead(200,{"Content-Type": "text/html"});
-                response.write(
-
-                    '<strong>' + proj.toUpperCase() + " - ATAL" + '</strong>' + '<input type=\'button\' onclick=\"location.href=\'/atal\';\" value=\'Refresh\' /><br>'+
-                    current_time + '<br><br>' +
-
-                    '<br><strong>' + (autoMan === 1 ? 'Manual/Hand </strong>Mode' : 'Auto/Schedule </strong>Mode') +
-                    '<br>' + (playing === 1 ? 'Playing: ' : 'Last Played: ') +  (show < shows.length ? shows[show].name : 'Must Show Scan! Show ' + show + ' is not in show.txt')+
-                    '<br>' + 'Last Time: ' + (deflate === 'nothing' ? '---' : deflate) +
-                    '<br>' + 'Next Time: ' + (nxtTime === 0 ? '---' : nxtTime) + 
-                    '<br>' + 'Next Show: ' + (nxtShow === 0 ? '---' : nxtShow) + 
-                    '<br>' +
-                    '<br>' + 'Show Stopping Condition: ' + showStopper +
-                    '<br>' + 'RATMODE Status: ' + Boolean(spmRATMode) +
-                    '<br>' +
-                    '<br>ATHO PLC-MB? <strong>'+athoplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'PLC Test\' />'+
-                    '<br>ATAL SPM-MB? <strong>'+spm_client.isConnected()+'</strong>'+
-                    '<br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/startShowScanner\';\" value=\'ScanSPMShows\' />' +
-                    '<input type=\'button\' onclick=\"location.href=\'/showScannerStatus\';\" value=\'ScanStatus\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readShows\';\" value=\'Shows\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readPlaylists\';\" value=\'Playlists\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readScheduler?1\';\" value=\'Schedule 1\' />' +
-                    '<input type=\'button\' onclick=\"location.href=\'/readScheduler?2\';\" value=\'Schedule 2\' />' +
-                    '<input type=\'button\' onclick=\"location.href=\'/readScheduler?3\';\" value=\'Schedule 3\' />' +
-                    '<input type=\'button\' onclick=\"location.href=\'/readScheduler?4\';\" value=\'Schedule 4\' /><br>' +
-
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readLog\';\" value=\'Read Log\' /><br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/readStatusLog\';\" value=\'Read StatusLog\' /><br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/readLogClient\';\" value=\'Read DeviceStatus\' />' +
                     '<input type=\'button\' onclick=\"location.href=\'/clearLogClient\';\" value=\'Clear DeviceLogs\' /><br>' +
@@ -1007,126 +756,6 @@ function onRequest(request, response){
 
                 },query);
             
-            }else if (path === '/mbSReadMW'){
-
-                mbSReadMW(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbSReadM'){
-
-                mbSReadM(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbSReadReal'){
-
-                mbSReadReal(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbSWriteMW'){
-
-                query = querystring.parse(query);
-
-                mbSWriteMW(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbSWriteM'){
-
-                query = querystring.parse(query);
-
-                mbSWriteM(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbSWriteReal'){
-
-                query = querystring.parse(query);
-
-                mbSWriteReal(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/plcSTest'){
-
-                fs.readFile(__dirname+'/plcSTest.html','utf-8',function(err,data){
-
-                    if(err){throw err;}
-                    var dataString = data.toString();
-
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(dataString);
-
-                });
-
-            }else if (path === '/mbGReadMW'){
-
-                mbGReadMW(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbGReadM'){
-
-                mbGReadM(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbGReadReal'){
-
-                mbGReadReal(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbGWriteMW'){
-
-                query = querystring.parse(query);
-
-                mbGWriteMW(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbGWriteM'){
-
-                query = querystring.parse(query);
-
-                mbGWriteM(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            } else if (path === '/mbGWriteReal'){
-
-                query = querystring.parse(query);
-
-                mbGWriteReal(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/plcGTest'){
-
-                fs.readFile(__dirname+'/plcGTest.html','utf-8',function(err,data){
-
-                    if(err){throw err;}
-                    var dataString = data.toString();
-
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(dataString);
-
-                });
-
             }else if (path === '/userfilesIndex'){
 
                 if(query === "W3trocks!"){
@@ -1178,7 +807,7 @@ function onRequest(request, response){
                     '<br>' +
                     '<br>' + 'Show Stopping Condition: ' + showStopper +
                     '<br>' +
-                    '<br>PLC-MB? <strong>'+athoplc_client.isConnected()+'</strong>' +
+                    '<br>PLC-MB? <strong>'+plc_client.isConnected()+'</strong>' +
                     '<br>SPM-MB? <strong>'+spm_client.isConnected()+'</strong>'+
                     '<br><input type=\'button\' onclick=\"location.href=\'/readLog_2\';\" value=\'Read Log\' /><br>' +
                     '<br>');
@@ -1220,6 +849,29 @@ function onRequest(request, response){
 
 function back2Real(low, high){
 
+    var fpnum=low|(high<<16);
+    var negative=(fpnum>>31)&1;
+    var exponent=(fpnum>>23)&0xFF;
+    var mantissa=(fpnum&0x7FFFFF);
+    
+    if(exponent==255){
+     
+        if(mantissa!==0)return Number.NaN;
+        return (negative) ? Number.NEGATIVE_INFINITY :Number.POSITIVE_INFINITY;
+    
+    }
+    
+    if(exponent===0)exponent++;
+    else mantissa|=0x800000;
+    
+    exponent-=127;
+    var ret=(mantissa*1.0/0x800000)*Math.pow(2,exponent);
+    
+    if(negative)ret=-ret;
+    return ret;
+}
+
+function back2Float(low, high){
     var fpnum=low|(high<<16);
     var negative=(fpnum>>31)&1;
     var exponent=(fpnum>>23)&0xFF;
@@ -1316,7 +968,7 @@ function real2Back(value){
 
 function mbReadM(pasd,query){
 
-    athoplc_client.readCoils(parseInt(query, 10),1,function(resp){
+    plc_client.readCoils(parseInt(query, 10),1,function(resp){
 
         resp = "<strong>Reading " + resp.coils[0] + "</strong> at <em>%M</em> " + query;
         pasd(resp);
@@ -1326,7 +978,7 @@ function mbReadM(pasd,query){
 
 function mbReadMW(pasd,query){
 
-    athoplc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
+    plc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
 
         resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
         pasd(resp);
@@ -1336,7 +988,7 @@ function mbReadMW(pasd,query){
 
 function mbReadReal(pasd,query){
 
-    athoplc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
+    plc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
 
         resp = "<strong>Reading " + back2Real(resp.register[0], resp.register[1]) + "</strong> at <em>%MW Real</em> " + query;
         pasd(resp);
@@ -1346,7 +998,7 @@ function mbReadReal(pasd,query){
 
 function mbWriteM(pasd,query){
 
-    athoplc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
+    plc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
 
         resp = "<strong>Wrote " + query.val + "</strong> to <em>%M</em> " + query.addr;
         pasd(resp);
@@ -1356,7 +1008,7 @@ function mbWriteM(pasd,query){
 
 function mbWriteMW(pasd,query){
 
-    athoplc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
+    plc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
 
         resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW INT</em> " + query.addr;
         pasd(resp);
@@ -1368,14 +1020,34 @@ function mbWriteReal(pasd,query){
 
     var realNum = real2Back(query.val);
 
-    athoplc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
+    plc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
 
-        athoplc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
+        plc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
 
             resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW Real</em> " + query.addr;
             pasd(resp);
 
         });
+    });
+}
+
+function mbReadM4W(pasd,query){
+
+    bender_client.readInputRegister(parseInt(query, 10),1,function(resp){
+
+        resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
+        pasd(resp);
+
+    });
+}
+
+function mbReadM4WReal(pasd,query){
+
+    bender_client.readInputRegister(parseInt(query, 10),2,function(resp){
+
+        resp = "<strong>Reading " + back2Float(resp.register[1], resp.register[0]) + "</strong> at <em>%M4W Real</em> " + query;
+        pasd(resp);
+
     });
 }
 
@@ -1393,136 +1065,6 @@ function mbWriteSPM(pasd,query){
     });
 }
 
-function mbSReadM(pasd,query){
-
-    atsuplc_client.readCoils(parseInt(query, 10),1,function(resp){
-
-        resp = "<strong>Reading " + resp.coils[0] + "</strong> at <em>%M</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbSReadMW(pasd,query){
-
-    atsuplc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
-
-        resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbSReadReal(pasd,query){
-
-    atsuplc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
-
-        resp = "<strong>Reading " + back2Real(resp.register[0], resp.register[1]) + "</strong> at <em>%MW Real</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbSWriteM(pasd,query){
-
-    atsuplc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
-
-        resp = "<strong>Wrote " + query.val + "</strong> to <em>%M</em> " + query.addr;
-        pasd(resp);
-
-    });
-}
-
-function mbSWriteMW(pasd,query){
-
-    atsuplc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
-
-        resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW INT</em> " + query.addr;
-        pasd(resp);
-
-    });
-}
-
-function mbSWriteReal(pasd,query){
-
-    var realNum = real2Back(query.val);
-
-    atsuplc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
-
-        atsuplc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
-
-            resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW Real</em> " + query.addr;
-            pasd(resp);
-
-        });
-    });
-}
-
-
-function mbGReadM(pasd,query){
-
-    atglplc_client.readCoils(parseInt(query, 10),1,function(resp){
-
-        resp = "<strong>Reading " + resp.coils[0] + "</strong> at <em>%M</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbGReadMW(pasd,query){
-
-    atglplc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
-
-        resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbGReadReal(pasd,query){
-
-    atglplc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
-
-        resp = "<strong>Reading " + back2Real(resp.register[0], resp.register[1]) + "</strong> at <em>%MW Real</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbGWriteM(pasd,query){
-
-    atglplc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
-
-        resp = "<strong>Wrote " + query.val + "</strong> to <em>%M</em> " + query.addr;
-        pasd(resp);
-
-    });
-}
-
-function mbGWriteMW(pasd,query){
-
-    atglplc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
-
-        resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW INT</em> " + query.addr;
-        pasd(resp);
-
-    });
-}
-
-function mbGWriteReal(pasd,query){
-
-    var realNum = real2Back(query.val);
-
-    atglplc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
-
-        atglplc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
-
-            resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW Real</em> " + query.addr;
-            pasd(resp);
-
-        });
-    });
-}
 //==================== Set User Files
 
 function setLights(query){
@@ -1540,35 +1082,7 @@ function setLights(query){
     }
 }
 
-function setSurgeLights(query){
 
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setSurgeLights');
-
-    if((buf !== 0) && (buf.length == surgelights.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/surgelights.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/surgelightsBkp.txt',query,'utf-8');
-        surgelights = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setGlimLights(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setGlimLights');
-
-    if((buf !== 0) && (buf.length == glimlights.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/glimlights.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/glimlightsBkp.txt',query,'utf-8');
-        glimlights = buf;
-    }
-    else{
-        watchDog.eventLog('Glimmer: Lights. Bad data. No donut for you.');
-    }
-}
 
 function setProj(query){
 
@@ -1579,51 +1093,6 @@ function setProj(query){
         fs.writeFileSync(__dirname+'/UserFiles/projSch.txt',query,'utf-8');
         fs.writeFileSync(__dirname+'/UserFiles/projSchBkp.txt',query,'utf-8');
         projSch = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setStrobeLights(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setStrobeLights');
-
-    if((buf !== 0) && (buf.length == strobelights.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/strobelights.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/storbelightsBkp.txt',query,'utf-8');
-        strobelights = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setRunnelSch(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setRunnelSch');
-
-    if((buf !== 0) && (buf.length == runnelSch.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/runnelSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/runnelSchBkp.txt',query,'utf-8');
-        runnelSch = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setPixieSch(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setPixieSch');
-
-    if((buf !== 0) && (buf.length == runnelLightSch.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/runnelLightSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/runnelLightSchBkp.txt',query,'utf-8');
-        runnelLightSch = buf;
     }
     else{
         watchDog.eventLog('Lights. Bad data. No donut for you.');
@@ -1660,110 +1129,7 @@ function setFilterPump(query){
     }
 }
 
-function setSurgeFilterPump(query){
 
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setSurgeFilterPump');
-
-    if((buf !== 0) && (buf.length == surgefilterSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/surgefilter.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/surgefilterBkp.txt',query,'utf-8');
-        surgefilterSch = buf;
-    }
-    else{
-        watchDog.eventLog('Filter Sch. Bad data. No donut for you.');
-    }
-}
-
-function setGlimFilterPump(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setGlimFilterPump');
-
-    if((buf !== 0) && (buf.length == glimfilterSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/glimfilter.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/glimfilterBkp.txt',query,'utf-8');
-        glimfilterSch = buf;
-    }
-    else{
-        watchDog.eventLog('Glimmer: Filter Sch. Bad data. No donut for you.');
-    }
-}
-
-function setGlimFire(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setGlimFire');
-
-    if((buf !== 0) && (buf.length == glimfireSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/glimfire.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/glimfireBkp.txt',query,'utf-8');
-        glimfireSch = buf;
-    }
-    else{
-        watchDog.eventLog('Glimmer: Fire Sch. Bad data. No donut for you.');
-    }
-}
-
-function setFire(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setFire');
-
-    if((buf !== 0) && (buf.length == fireSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/horizonfire.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/horizonfireBkp.txt',query,'utf-8');
-        fireSch = buf;
-    }
-    else{
-        watchDog.eventLog('Horizon: Fire Sch. Bad data. No donut for you.');
-    }
-}
-
-function setGlimWeirPump(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setGlimWeirPump');
-
-    if((buf !== 0) && (buf.length == glimweirPumpSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/glimweirSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/glimweirSchBkp.txt',query,'utf-8');
-        glimweirPumpSch = buf;
-    }
-    else{
-        watchDog.eventLog('Glimmer Weir Sch. Bad data. No donut for you.');
-    }
-}
-
-function setGlimWcPump(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setGlimWcPump');
-
-    if((buf !== 0) && (buf.length == glimwcPumpSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/glimwcSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/glimwcSchBkp.txt',query,'utf-8');
-        glimwcPumpSch = buf;
-    }
-    else{
-        watchDog.eventLog('Glimmer WaterCandle Sch. Bad data. No donut for you.');
-    }
-}
-
-function setSurgeWWPump(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setSurgeWWPump');
-
-    if((buf !== 0) && (buf.length == surgewwPumpSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/surgeSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/surgeSchBkp.txt',query,'utf-8');
-        surgewwPumpSch = buf;
-    }
-    else{
-        watchDog.eventLog('Filter Sch. Bad data. No donut for you.');
-    }
-}
 function setBW(query){
 
     //watchDog.eventLog('query 1st :' +query);
@@ -1792,104 +1158,61 @@ function setBW(query){
     }
 }
 
-function setPLC(query){
+function setBoolPLC(query){
 
     //watchDog.eventLog('query 1st :' +query);
     query = decodeURIComponent(query);
     query = JSON.parse(query);
     //watchDog.eventLog('query 2nd :' +query);
-    watchDog.eventLog('query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
+    watchDog.eventLog('Bool query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
 
     if (query.length === 2){
         //tempBWdata.duration = query[0];
-        athoplc_client.writeSingleCoil(query[0],query[1],function(resp){});
+        plc_client.writeSingleCoil(query[0],query[1],function(resp){});
     }
     else{
-        watchDog.eventLog('Write PLC error. Bad data. No donut for you.');
+        watchDog.eventLog('Write PLC Bool error. Bad data. No donut for you.');
     }
 }
 
-function setSBW(query){
+function setIntPLC(query){
 
     //watchDog.eventLog('query 1st :' +query);
     query = decodeURIComponent(query);
     query = JSON.parse(query);
     //watchDog.eventLog('query 2nd :' +query);
-    var tempBWdata = surgebwData;
-    //watchDog.eventLog('query length :' +query.length +' :: ' +query[0] +' :: ' +query[1] +' :: ' +query[2]);
+    watchDog.eventLog('Int query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
 
     if (query.length === 2){
         //tempBWdata.duration = query[0];
-        tempBWdata.schDay = query[0];
-        tempBWdata.schTime = query[1];
-        //watchDog.eventLog('tempBWdata.schTime:' +tempBWdata.schTime);
-
-        var buf = riskyParse(tempBWdata,'setSBW');
-
-        if(buf !== 0){
-            fs.writeFileSync(__dirname+'/UserFiles/surgebackwash.txt',tempBWdata,'utf-8');
-            fs.writeFileSync(__dirname+'/UserFiles/surgebackwashBkp.txt',tempBWdata,'utf-8');
-            surgebwData = buf;
-        }
+        plc_client.writeSingleRegister(query[0],query[1],function(resp){});
     }
     else{
-        watchDog.eventLog('Surge BW. Bad data. No donut for you.');
+        watchDog.eventLog('Write PLC Int error. Bad data. No donut for you.');
     }
 }
 
-function setGBW(query){
+function setRealPLC(query){
 
     //watchDog.eventLog('query 1st :' +query);
     query = decodeURIComponent(query);
     query = JSON.parse(query);
     //watchDog.eventLog('query 2nd :' +query);
-    var tempBWdata = glimbwData;
-    //watchDog.eventLog('query length :' +query.length +' :: ' +query[0] +' :: ' +query[1] +' :: ' +query[2]);
+    watchDog.eventLog('Real query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
 
     if (query.length === 2){
         //tempBWdata.duration = query[0];
-        tempBWdata.schDay = query[0];
-        tempBWdata.schTime = query[1];
-        //watchDog.eventLog('tempBWdata.schTime:' +tempBWdata.schTime);
+        var realNum = real2Back(query[1]);
 
-        var buf = riskyParse(tempBWdata,'setGBW');
+        plc_client.writeSingleRegister(parseInt(query[0], 10), realNum[0],function(resp){
 
-        if(buf !== 0){
-            fs.writeFileSync(__dirname+'/UserFiles/glimbackwash.txt',tempBWdata,'utf-8');
-            fs.writeFileSync(__dirname+'/UserFiles/glimbackwashBkp.txt',tempBWdata,'utf-8');
-            glimbwData = buf;
-        }
+            plc_client.writeSingleRegister(parseInt(query[0], 10) + 1, realNum[1],function(resp){
+
+            });
+        });
     }
     else{
-        watchDog.eventLog('Glimmer BW. Bad data. No donut for you.');
-    }
-}
-
-function setPurge(query){
-
-    //watchDog.eventLog('query 1st :' +query);
-    query = decodeURIComponent(query);
-    query = JSON.parse(query);
-    //watchDog.eventLog('query 2nd :' +query);
-    var tempBWdata = purgeData;
-    //watchDog.eventLog('query length :' +query.length +' :: ' +query[0] +' :: ' +query[1] +' :: ' +query[2]);
-
-    if (query.length === 2){
-        //tempBWdata.duration = query[0];
-        tempBWdata.eodschTime = query[0];
-        tempBWdata.bodschTime = query[1];
-        //watchDog.eventLog('tempBWdata.schTime:' +tempBWdata.schTime);
-
-        var buf = riskyParse(tempBWdata,'setPurge');
-
-        if(buf !== 0){
-            fs.writeFileSync(__dirname+'/UserFiles/purgeSch.txt',tempBWdata,'utf-8');
-            fs.writeFileSync(__dirname+'/UserFiles/purgeSchBkp.txt',tempBWdata,'utf-8');
-            purgeData = buf;
-        }
-    }
-    else{
-        watchDog.eventLog('Purge. Bad data. No donut for you.');
+        watchDog.eventLog('Write PLC Real error. Bad data. No donut for you.');
     }
 }
 
@@ -2284,7 +1607,79 @@ function setWindScalingData(query){
 }
 
 //==================== Scheduled Interrupts
+setInterval(function(){
+       spm_client.readHoldingRegister(2005,1,function(resp)
+        {
+            var spm_data_2005 = resp.register[0];
+            
+            if (spm_data_2005 == spmTempData){
+                //watchDog.eventLog('spm_data_2005 ::: ' +spm_data_2005);
+            } else {
+                plc_client.writeSingleCoil(503,spm_data_2005,function(resp){
+                    watchDog.eventLog('SPM to PLC Send: SPM Data ' +spm_data_2005); 
+                });
+                //watchDog.eventLog('spm_data_2005 ::: ' +spm_data_2005);
+                spmTempData = spm_data_2005;  
+            }
 
+            // Modbus Register 2005 from SPM will give a 16-bit Int value
+
+            // bit 0    - Audio Mute
+            // bit 1    - Lights Dim
+            // bit 2    - Fire Enable
+            // bit 3    - Fog Enable
+            // bit 4    - Fire Enable Spire 1
+            // bit 5    - Fire Enable Spire 2
+            // bit 6    - Fire Enable Spire 3
+            // bit 7    - Fire Enable Spire 4
+            // bit 8    - Fire Enable Spire 5
+            // bit 9    - Fire Enable Spire 6
+            // bit 10   - Fire Spire 1 Anim 
+            // bit 11   - Fire Spire 2 Anim 
+            // bit 12   - Fire Spire 3 Anim 
+            // bit 13   - Fire Spire 4 Anim 
+            // bit 14   - Fire Spire 5 Anim 
+            // bit 15   - Fire Spire 6 Anim 
+
+            // var audMu = nthBit(resp.register[0],0);
+            // var lightOn = nthBit(resp.register[0],1);
+            // var fireEn = nthBit(resp.register[0],2);
+            // var fogEn = nthBit(resp.register[0],3);
+            // var fireSp1 = nthBit(resp.register[0],4);
+            // var fireSp2 = nthBit(resp.register[0],5);
+            // var fireSp3 = nthBit(resp.register[0],6);
+            // var fireSp4 = nthBit(resp.register[0],7);
+            // var fireSp5 = nthBit(resp.register[0],8);
+            // var fireSp6 = nthBit(resp.register[0],9);
+            // var fireSp1En = nthBit(resp.register[0],10);
+            // var fireSp2En = nthBit(resp.register[0],11);
+            // var fireSp3En = nthBit(resp.register[0],12);
+            // var fireSp4En = nthBit(resp.register[0],13);
+            // var fireSp5En = nthBit(resp.register[0],14);
+            // var fireSp6En = nthBit(resp.register[0],15);
+
+            // watchDog.eventLog('audMu ' +audMu); 
+            // watchDog.eventLog('lightOn ' +lightOn); 
+            // watchDog.eventLog('fireEn ' +fireEn); 
+            // watchDog.eventLog('fogEn ' +fogEn); 
+            // watchDog.eventLog('fireSp1 ' +fireSp1); 
+            // watchDog.eventLog('fireSp2 ' +fireSp2); 
+            // watchDog.eventLog('fireSp3 ' +fireSp3); 
+            // watchDog.eventLog('fireSp4 ' +fireSp4); 
+            // watchDog.eventLog('fireSp5 ' +fireSp5); 
+            // watchDog.eventLog('fireSp6 ' +fireSp6); 
+            // watchDog.eventLog('fireSp1En ' +fireSp1En); 
+            // watchDog.eventLog('fireSp2En ' +fireSp2En); 
+            // watchDog.eventLog('fireSp3En ' +fireSp3En); 
+            // watchDog.eventLog('fireSp4En ' +fireSp4En); 
+            // watchDog.eventLog('fireSp5En ' +fireSp5En); 
+            // watchDog.eventLog('fireSp6En ' +fireSp6En); 
+
+            
+        
+        });      
+
+},200); 
 //Timer Trial
 setTimeout(function(){
 

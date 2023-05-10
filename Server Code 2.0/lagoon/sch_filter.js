@@ -43,7 +43,7 @@ function filterSchWrapper(){
     if ((current_time >= on_time)&&(current_time < off_time)){
         //watchDog.eventLog('Filter Sch IF' +on_time +' off ' +off_time);
         //turn ON
-        athoplc_client.writeSingleCoil(2111,1,function(resp){
+        plc_client.writeSingleCoil(2116,1,function(resp){
             //watchDog.eventLog('Fire Sch ON');
         });
 
@@ -51,7 +51,7 @@ function filterSchWrapper(){
     else{
         //watchDog.eventLog('Filter Sch ELSE' +on_time +' off ' +off_time);
         //turn OFF
-        athoplc_client.writeSingleCoil(2111,0,function(resp){
+        plc_client.writeSingleCoil(2116,0,function(resp){
             //watchDog.eventLog('Fire Sch OFF');
         });
 

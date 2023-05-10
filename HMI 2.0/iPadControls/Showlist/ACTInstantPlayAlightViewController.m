@@ -231,7 +231,7 @@
         if ([plcConnectionStatus isEqualToString:@"plcFailed"] || [serverConnectionStatus isEqualToString:@"serverFailed"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                  self.noConnectionLabel.text = @"PLC CONNECTION FAILED, SERVER GOOD";
-            } else if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+            } else if ([plcConnectionStatus isEqualToString:@"MITTLAPLCConnected"]) {
                  self.noConnectionLabel.text = @"SERVER CONNECTION FAILED, PLC GOOD";
             } else {
                  self.noConnectionLabel.text = @"SERVER AND PLC CONNECTION FAILED";
@@ -241,7 +241,7 @@
          if ([plcConnectionStatus isEqualToString:@"connectingPLC"] || [serverConnectionStatus isEqualToString:@"connectingServer"]) {
              if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                    self.noConnectionLabel.text = @"CONNECTING TO PLC, SERVER CONNECTED";
-             } else if ([serverConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+             } else if ([serverConnectionStatus isEqualToString:@"MITTLAPLCConnected"]) {
                    self.noConnectionLabel.text = @"CONNECTING TO SERVER, PLC CONNECTED";
              } else {
                    self.noConnectionLabel.text = @"CONNECTING TO SERVER AND PLC..";

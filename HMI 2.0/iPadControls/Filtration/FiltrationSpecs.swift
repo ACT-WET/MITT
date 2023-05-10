@@ -23,19 +23,19 @@ let FILTRATION_PUMP_NUMBERS                     = [113,114]
 let READ_FILTRATION_SERVER_PATH               = "readFilterSch"
 let WRITE_FILTRATION_SERVER_PATH              = "writeFilterSch"
 
-let READ_FIRE_SERVER_PATH               = "readFireSch"
-let WRITE_FIRE_SERVER_PATH              = "writeFireSch"
+let READ_SKIMMER_SERVER_PATH               = "readWeirPumpSch"
+let WRITE_SKIMMER_SERVER_PATH              = "writeWeirPumpSch"
 
-let FIRE_EN                = 2116
-let FIRE_SCHSTATUS         = 2118
+let SKIMMER_PUMP_EN                = 2110
+let SKIMMER_PUMP_SCH_BIT           = 2112
 
 let SS_AUTOHAND         = 945
 let SS_HANDCMD          = 946
 
 let READ_ALIGHTBACK_WASH1                              = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readABW"
 
-let FILTRATION_PUMP_EN                = 2110
-let FILTRATION_PUMP_SCH_BIT           = 2112
+let FILTRATION_PUMP_EN                = 2115
+let FILTRATION_PUMP_SCH_BIT           = 2117
 
 let FILTRATION_RUNNING_BIT            = 2121
 

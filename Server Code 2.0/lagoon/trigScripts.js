@@ -8,41 +8,21 @@ var timeKeeper_timer = require("./timeKeeper.js");
 
 var timedWatchDog_timer = require("./TimedWatchDog.js");
 var statusLog_timer = require("./statusLog.js");
-var firestatusLog_timer = require("./firedevicestatusLog.js");
 var fillerShw_timer = require("./sch_FillerShows.js");
 
-var windSpeedDayMode_timer = require("./windSpeedDayMode.js");
 var backwash_timer = require("./backwash.js");
 var lights_timer = require("./sch_lights.js");
-var lightsTwo_timer = require("./sch_lightsTwo.js");
 var waterQuality_timer = require("./waterQualityReadings.js");
 
 var filter_timer = require("./sch_filter.js");
-var fire_timer = require("./sch_fire.js");
 var weirPumpSch_timer = require("./sch_WeirPumps.js");
 
-//Surge
-var surgelights_timer = require("./surge/sch_surgelights.js");
-var surgebackwash_timer = require("./surge/surgebackwash.js");
-var surgefilter_timer = require("./surge/sch_surgefilter.js");
-var surgeww_timer = require("./surge/sch_surgewwPumps.js");
-
-//Glimmer
-var glimlights_timer = require("./glimmer/sch_glimmerlights.js");
-var glimbackwash_timer = require("./glimmer/glimmerbackwash.js");
-var glimfilter_timer = require("./glimmer/sch_glimmerfilter.js");
-var glimfire_timer = require("./glimmer/sch_glimmerfire.js");
-var glimwc_timer = require("./glimmer/sch_glimmerwcPumps.js");
-var glimweir_timer = require("./glimmer/sch_glimmerweirPumps.js");
 if ((isBetween(msec,0,250)) || (isBetween(msec,250,500)) || (isBetween(msec,500,750)) || (isBetween(msec,750,999))){
 	if (timerCount[0] != sec){
 		//watchDog.eventLog('Hey! Execute TimeKeeper');
 		//timeSync_timer();
 		timeKeeper_timer();
 		statusLog_timer();
-		surgefilter_timer();
-		surgeww_timer();
-		glimlights_timer();
 		timerCount[0] = sec;
 	}
 	else{
@@ -54,11 +34,7 @@ if (isBetween(msec,250,500)){
 	if (timerCount[1] != sec){
 		//watchDog.eventLog('Hey! Execute BW');
 		backwash_timer();
-		glimfire_timer();
 		filter_timer();
-		surgebackwash_timer();
-		glimbackwash_timer();
-		firestatusLog_timer();
 		//surge_timer();
 		timerCount[1] = sec;
 	}
@@ -71,8 +47,6 @@ if (isBetween(msec,500,750)){
 	if (timerCount[2] != sec){
 		//watchDog.eventLog('Hey! Execute WQ');
 		waterQuality_timer();
-		surgelights_timer();
-		glimfilter_timer();
 		fillerShw_timer();
 		//flog();
 		timerCount[2] = sec;
@@ -100,10 +74,6 @@ if ( (sec%2 === 0) && (isBetween(msec,0,250)) ){
 		//watchDog.eventLog('Hey! Execute ErrorLog');
 		weirPumpSch_timer();
 		lights_timer();
-		glimwc_timer();
-		lightsTwo_timer();
-		fire_timer();
-		//pj_timer();
 		timerCount[4] = sec;
 	}
 	else{
@@ -141,7 +111,6 @@ if ( (sec%5 === 0) && (isBetween(msec,500,750)) ){
 	if (timerCount[7] != sec){
 		//watchDog.eventLog('Hey! Execute Watch TimedDog');
 		timedWatchDog_timer();
-		glimweir_timer();
 		timerCount[7] = sec;
 	}
 	else{

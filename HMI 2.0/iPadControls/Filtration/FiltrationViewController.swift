@@ -14,10 +14,13 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
     @IBOutlet weak var noConnectionView: UIView!
     @IBOutlet weak var noConnectionErrorLbl: UILabel!
     
+    @IBOutlet weak var bWashRunning: UILabel!
     //MARK: - Show Stoppers
     
     @IBOutlet weak var pumpButton: UIButton!
     
+    @IBOutlet weak var skimmerSchBtn: UIButton!
+    @IBOutlet weak var filterSchBtn: UIButton!
     @IBOutlet weak var filtrationRunningIndicator: UIImageView!
     @IBOutlet weak var cleanStrainerIndicator: UILabel!
     
@@ -28,7 +31,6 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
     @IBOutlet weak var bwashSpeedIndicator: UIView!
     @IBOutlet weak var bwashSpeedIndicatorValue: UILabel!
     
-    @IBOutlet weak var manualBwashButton: UIButton!
     @IBOutlet weak var cannotRunBwashLbl: UILabel!
     
     @IBOutlet weak var dayPicker: UIPickerView!
@@ -52,7 +54,7 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
     
     private var langData = [String : String]()
     private var iPadNumber = 0
-    var pumpNumber = 0
+    var pumpNumber = 101
     private var bwashRunning = 0
     private var is24hours = true
     private var showStoppers = ShowStoppers()
@@ -126,13 +128,8 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
     }
     
     func setInitialParam(){
-        if pumpNumber == 621{
-            self.navigationItem.title = "FILTRATION - 621"
-            self.pumpButton.setTitle("P - 621", for: .normal)
-        } else if pumpNumber == 622{
-            self.navigationItem.title = "FILTRATION - 622"
-            self.pumpButton.setTitle("P - 622", for: .normal)
-        }
+        self.navigationItem.title = "FILTRATION - 101"
+        self.pumpButton.setTitle("P - 101", for: .normal)
     }
     
     
@@ -536,40 +533,40 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
      ***************************************************************************/
     
     private func readBackWashRunning(){
+        CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_BWASH_RUNNING_BIT), completion: { (success, response) in
+            
+            guard success == true else { return }
+            
+            let running = Int(truncating: response![0] as! NSNumber)
+            self.bwashRunning = running
+            
+            if running == 1{
+                self.bWashRunning.isHidden = false
+                UserDefaults.standard.set(1, forKey: "backWashRunningStat")
+            } else {
+                self.bWashRunning.isHidden = true
+                UserDefaults.standard.set(0, forKey: "backWashRunningStat")
+            }
+        })
         
-        if pumpNumber == 621 {
-            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_BWASH_RUNNING_BIT), completion: { (success, response) in
-                
-                guard success == true else { return }
-                
-                let running = Int(truncating: response![0] as! NSNumber)
-                self.bwashRunning = running
-                
-                if running == 1{
-                    self.manualBwashButton.setImage(#imageLiteral(resourceName: "bwashRunning"), for: .normal)
-                    UserDefaults.standard.set(1, forKey: "backWashRunningStat")
-                } else {
-                    self.manualBwashButton.setImage(#imageLiteral(resourceName: "bwashIcon"), for: .normal)
-                    UserDefaults.standard.set(0, forKey: "backWashRunningStat")
-                }
-            })
-        } else if pumpNumber == 622 {
-            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_BWASH_RUNNING_BIT_W2), completion: { (success, response) in
-                
-                guard success == true else { return }
-                
-                let running = Int(truncating: response![0] as! NSNumber)
-                self.bwashRunning = running
-                
-                if running == 1{
-                    self.manualBwashButton.setImage(#imageLiteral(resourceName: "bwashRunning"), for: .normal)
-                    UserDefaults.standard.set(1, forKey: "backWashRunningStat")
-                } else {
-                    self.manualBwashButton.setImage(#imageLiteral(resourceName: "bwashIcon"), for: .normal)
-                    UserDefaults.standard.set(0, forKey: "backWashRunningStat")
-                }
-            })
-        }
+        CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 6, startingRegister: Int32(SKIMMER_PUMP_SCH_BIT), completion: { (success, response) in
+            
+            guard success == true else { return }
+            
+            let skimmSchOn = Int(truncating: response![0] as! NSNumber)
+            let filterSchOn = Int(truncating: response![5] as! NSNumber)
+            
+            if skimmSchOn == 1{
+                self.skimmerSchBtn.setTitleColor(GREEN_COLOR, for: .normal)
+            } else {
+                self.skimmerSchBtn.setTitleColor(DEFAULT_GRAY, for: .normal)
+            }
+            if filterSchOn == 1{
+                self.filterSchBtn.setTitleColor(GREEN_COLOR, for: .normal)
+            } else {
+                self.filterSchBtn.setTitleColor(DEFAULT_GRAY, for: .normal)
+            }
+        })
     }
     
     
@@ -752,43 +749,12 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
             let backwash = Int(truncating: responseDictionary.object(forKey: "manBWcanRun") as! NSNumber)
             
             if backwash == 1{
-                
-                self.manualBwashButton.isHidden = false
                 self.cannotRunBwashLbl.isHidden = true
-                
             }else{
-                
-                self.manualBwashButton.isHidden = true
                 self.cannotRunBwashLbl.isHidden = false
-                
             }
         }
     }
-    
-    
-    /***************************************************************************
-     * Function :  e Manual Back Wash Button
-     * Input    :  none
-     * Output   :  none
-     * Comment  :  Pulsates the Filtration toggle backwash bit. Write 1 then write 0 after 1 sec.
-     ***************************************************************************/
-    
-    @IBAction func toggleManualBackwash(_ sender: Any){
-        if pumpNumber == 621{
-            CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FILTRATION_TOGGLE_BWASH_BIT, value: 1)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FILTRATION_TOGGLE_BWASH_BIT, value: 0)
-                
-            }
-        } else if pumpNumber == 622{
-            CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FILTRATION_TOGGLE_BWASH_BIT2, value: 1)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FILTRATION_TOGGLE_BWASH_BIT2, value: 0)
-                
-            }
-        }
-    }
-    
     
     /***************************************************************************
      * Function :  Construct Back Wash Scheduler
@@ -1028,9 +994,21 @@ class FiltrationViewController: UIViewController,UIGestureRecognizerDelegate, UI
         
         let pumpDetail = storyBoard.instantiateViewController(withIdentifier: "pumpDetail") as! AutoPumpDetailViewController
         pumpDetail.pumpNumber = pumpNumber
-        pumpDetail.featureId = 4
+        pumpDetail.featureId = 1
         self.navigationController?.pushViewController(pumpDetail, animated: true)
 
+    }
+    
+    @IBAction func redirectToPumpScheduler(_ sender: UIButton) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "pumps", bundle:nil)
+        let pumpDetail = storyBoard.instantiateViewController(withIdentifier: "pumpSchedulerViewController") as! PumpSchedulerViewController
+        pumpDetail.schedulerTag = sender.tag
+        self.navigationController?.pushViewController(pumpDetail, animated: true)
+
+    }
+    
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+       self.addAlertAction(button: sender)
     }
     
     func checkAMPM(){

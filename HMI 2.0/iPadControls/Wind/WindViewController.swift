@@ -44,10 +44,8 @@ class WindViewController: UIViewController{
     private var langData = Dictionary<String, String>()
     private var windModel:Wind?
     private let wind_sensor_1   = WIND_SENSOR_1()  //If there are more wind sensors, this variable needs to be duplicated and number incremented
-    private let wind_sensor_2   = WIND_SENSOR_2()
     
     private var wind_sensors:Array<Any>?
-    private var wind_sensors2:Array<Any>?
     
     private var sensorNumber    = 0
     private var counter         = 0
@@ -67,7 +65,7 @@ class WindViewController: UIViewController{
         
         super.viewDidLoad()
         
-        wind_sensors  = [wind_sensor_1,wind_sensor_2]
+        wind_sensors  = [wind_sensor_1]
    
     }
     
@@ -264,10 +262,6 @@ class WindViewController: UIViewController{
             self.readWindSpeed(register: self.wind_sensor_1.SPEED_SCALED_VALUE.register, labelTag: WIND_SPEED_1_UI_TAG)
             //Read wind direction for all wind sensors
             self.readWindDirection(register: self.wind_sensor_1.DIRECTION_SCALED_VALUE.register, directionTag: WIND_DIRECTION_1_UI_TAG)
-        
-            self.readWindSpeed(register: self.wind_sensor_2.SPEED_SCALED_VALUE.register, labelTag: WIND_SPEED_2_UI_TAG)
-            //Read wind direction for all wind sensors
-            self.readWindDirection(register: self.wind_sensor_2.DIRECTION_SCALED_VALUE.register, directionTag: WIND_DIRECTION_2_UI_TAG)
             
             CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(WIND_SPM_HAND_MODE), completion:{ (success, response) in
                 
@@ -324,9 +318,6 @@ class WindViewController: UIViewController{
         
             self.readChannelFault(register: self.wind_sensor_1.DIRECTION_CHANNEL_FAULT.register)
             self.readChannelFault(register: self.wind_sensor_1.SPEED_CHANNEL_FAULT.register)
-        
-           self.readChannelFault(register: self.wind_sensor_2.DIRECTION_CHANNEL_FAULT.register)
-            self.readChannelFault(register: self.wind_sensor_2.SPEED_CHANNEL_FAULT.register)
     
         if windChannelFaults.contains(1) {
             windStat.image = #imageLiteral(resourceName: "windicon")
@@ -417,22 +408,6 @@ class WindViewController: UIViewController{
                 self.belowLow = belowLowValue
                 
             })
-        
-           CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(self.wind_sensor_2.SPEED_ABOVE_HIGH.register), completion:{ (success, response) in
-               
-               guard success == true else{return}
-               let aboveHighValue = Int(truncating: response![0] as! NSNumber)
-               self.aboveHigh = aboveHighValue
-               
-           })
-           
-           CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(self.wind_sensor_2.SPEED_BELOW_LOW.register), completion:{ (success, response) in
-               
-               guard success == true else{return}
-               let belowLowValue = Int(truncating: response![0] as! NSNumber)
-               self.belowLow = belowLowValue
-               
-           })
         
         
         CENTRAL_SYSTEM!.readRealRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: register, length: 2){ (success, response)  in

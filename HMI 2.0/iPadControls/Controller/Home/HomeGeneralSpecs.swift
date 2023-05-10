@@ -157,6 +157,11 @@ let DATA_ACQUISITION_STATE_SUCCESS = 1
 let DATA_ACQUISITION_STATE_FAILED  = 0
 let FAULT_DETECTED                 = 1  // was 0 in previous projects it would seem. Now in ARISE it is a 1.
 
+let CONTACTOR_EN = 6000
+let BENDER_ALARM_TEST = 6015
+let BENDER_ALARM_TESET_RESET = 6016
+let BENDER_ALARM_STATUS = 6020
+let GFCI_EN = 6040
 
 let WARNING_RESET_REGISTER         = 10503
 let FAULT_RESET_REGISTER           = 10504
@@ -222,16 +227,16 @@ let SCREENS = [
     "scheduler",
     "lights",
     "WQMultiple",
-    "pumps",
-    "weirPump",
+    "pumpsafety",
+    "",
     "wind",
-    "airPressure",
-    "waterLevel",
-    "intrusion",
+    "systemstatus",
+    "",
+    "",
     "filtration",
-    "supervisory",
+    "",
     "fillerShows",
-    "Projector",
+    "",
     "fog",
     "settings",
     "showList",
@@ -262,5 +267,9 @@ let LAKE_SCREENS = [
     
 ];
 
-
-
+//httpComm.httpGetResponseFromPath(url: "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/writeBoolPLC?[2000,1]"){ (response) in
+//}
+//httpComm.httpGetResponseFromPath(url: "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/writeIntPLC?[2000,24]"){ (response) in
+//}
+//httpComm.httpGetResponseFromPath(url: "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/writeRealPLC?[2000,24.5]"){ (response) in
+//}

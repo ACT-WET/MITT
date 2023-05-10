@@ -118,7 +118,7 @@ class LakeSystemStatusViewController: UIViewController {
     private func parseYellowStates(bits:[String]){
         var yPosition = 121
         let offset    = 36
-        for fault in ALIGHT_SYSTEM_YELLOW_STATUS{
+        for fault in SYSTEM_YELLOW_STATUS{
             
             var faultTag = fault.tag
             let state = Int(bits[15 - fault.bitwiseLocation])
@@ -136,8 +136,8 @@ class LakeSystemStatusViewController: UIViewController {
                         checkStrainerFault.isHidden = false
                         checkStrainerFault.frame.origin.y = CGFloat(yPosition-offset-3)
                         
-                        for index in 0...ALIGHT_STRAINER_STATUS.count - 1 {
-                            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(ALIGHT_STRAINER_STATUS.startingregister+index), completion:{ (success, response) in
+                        for index in 0...STRAINER_STATUS.count - 1 {
+                            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(STRAINER_STATUS.startingregister+index), completion:{ (success, response) in
                                 
                                 guard success == true else { return }
                                 
@@ -185,7 +185,7 @@ class LakeSystemStatusViewController: UIViewController {
     private func parseRedStates(bits:[String]){
         var yPosition = 121
         let offset    = 36
-        for fault in ALIGHT_SYSTEM_RED_STATUS{
+        for fault in SYSTEM_RED_STATUS{
             
             let faultTag = fault.tag
             let state = Int(bits[15 - fault.bitwiseLocation])
@@ -204,8 +204,8 @@ class LakeSystemStatusViewController: UIViewController {
                         checkFaultButton.isHidden = false
                         checkFaultButton.frame.origin.y = CGFloat(yPosition-offset-3)
                         
-                        for index in 0...ALIGHT_ETHERNET_STATUS.count - 1 {
-                            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(ALIGHT_ETHERNET_STATUS.startingregister+index), completion:{ (success, response) in
+                        for index in 0...ETHERNET_STATUS.count - 1 {
+                            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(ETHERNET_STATUS.startingregister+index), completion:{ (success, response) in
                                 
                                 guard success == true else { return }
                        

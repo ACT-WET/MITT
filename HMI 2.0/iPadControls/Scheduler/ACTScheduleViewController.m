@@ -112,9 +112,9 @@
 
   
     NSString *serverConnectionStatus = [_defaults objectForKey:@"ServerConnectionStatus"];
-    NSString *plcConnectionStatus   = [_defaults objectForKey:@"ATHOPLCConnectionStatus"];
+    NSString *plcConnectionStatus   = [_defaults objectForKey:@"MITTLAGPLCConnectionStatus"];
     
-    if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"] && [serverConnectionStatus isEqualToString:@"serverConnected"]){
+    if ([plcConnectionStatus isEqualToString:@"MITTLAGPLCConnected"] && [serverConnectionStatus isEqualToString:@"serverConnected"]){
         self.noConnection.alpha = 0;
         if(_readInitialData == 0){
             [self readPlaylistsAndShows];
@@ -128,7 +128,7 @@
         if ([plcConnectionStatus isEqualToString:@"plcFailed"] || [serverConnectionStatus isEqualToString:@"serverFailed"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                 self.noConnectionLabel.text = @"PLC CONNECTION FAILED, SERVER GOOD";
-            } else if ([plcConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+            } else if ([plcConnectionStatus isEqualToString:@"MITTLAPLCConnected"]) {
                 self.noConnectionLabel.text = @"SERVER CONNECTION FAILED, PLC GOOD";
             } else {
                 self.noConnectionLabel.text = @"SERVER AND PLC CONNECTION FAILED";
@@ -138,7 +138,7 @@
         if ([plcConnectionStatus isEqualToString:@"connectingPLC"] || [serverConnectionStatus isEqualToString:@"connectingServer"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                 self.noConnectionLabel.text = @"CONNECTING TO PLC, SERVER CONNECTED";
-            } else if ([serverConnectionStatus isEqualToString:@"ATHOPLCConnected"]) {
+            } else if ([serverConnectionStatus isEqualToString:@"MITTLAPLCConnected"]) {
                 self.noConnectionLabel.text = @"CONNECTING TO SERVER, PLC CONNECTED";
             } else {
                 self.noConnectionLabel.text = @"CONNECTING TO SERVER AND PLC..";

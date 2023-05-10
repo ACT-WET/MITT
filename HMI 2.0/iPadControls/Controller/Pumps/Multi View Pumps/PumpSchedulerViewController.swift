@@ -80,22 +80,16 @@ class PumpSchedulerViewController: UIViewController {
         }
         readPumpEnStatus()
         if schedulerTag == 11{
-            readServerPath = READ_FIRE_SERVER_PATH
-            writeServerPath = WRITE_FIRE_SERVER_PATH
-            self.navigationItem.title = "FIRE SCHEDULER"
-            self.noteSchedulerData.text = ""
-        }else if schedulerTag == 22{
             readServerPath = READ_FILTRATION_SERVER_PATH
             writeServerPath = WRITE_FILTRATION_SERVER_PATH
-            self.navigationItem.title = "FILTRATION PUMPS SCHEDULER"
-            self.noteSchedulerData.text = "PUMP-621 AND 622 ARE CONTROLLED BY THIS SCHEDULER"
-        }else if schedulerTag == 33{
-            readServerPath = READ_WEIR_SERVER_PATH
-            writeServerPath = WRITE_WEIR_SERVER_PATH
-            self.navigationItem.title = "WEIR PUMPS SCHEDULER"
-            self.noteSchedulerData.text = "PUMP-623 AND 624 ARE CONTROLLED BY THIS SCHEDULER"
+            self.navigationItem.title = "FILTRATION PUMP SCHEDULER"
+            self.noteSchedulerData.text = "PUMP-101 IS CONTROLLED BY THIS SCHEDULER"
+        }else if schedulerTag == 22{
+            readServerPath = READ_SKIMMER_SERVER_PATH
+            writeServerPath = WRITE_SKIMMER_SERVER_PATH
+            self.navigationItem.title = "SKIMMER PUMP SCHEDULER"
+            self.noteSchedulerData.text = ""
         }
-        
         //Add notification observer to get system stat
         NotificationCenter.default.addObserver(self, selector: #selector(PumpSchedulerViewController.checkSystemStat), name: NSNotification.Name(rawValue: "updateSystemStat"), object: nil)
         
@@ -170,25 +164,19 @@ class PumpSchedulerViewController: UIViewController {
         if schedulerTag == 11{
             
             if scheduleSwitch.isOn{
-                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FIRE_EN, value: 1)
-            } else {
-                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FIRE_EN, value: 0)
-            }
-           
-        } else if schedulerTag == 22{
-            
-            if scheduleSwitch.isOn{
                 CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FILTRATION_PUMP_EN, value: 1)
             } else {
                 CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: FILTRATION_PUMP_EN, value: 0)
             }
            
-        } else if schedulerTag == 33{
+        } else if schedulerTag == 22{
+            
             if scheduleSwitch.isOn{
-                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: WEIR_PUMP_EN, value: 1)
+                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: SKIMMER_PUMP_EN, value: 1)
             } else {
-                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: WEIR_PUMP_EN, value: 0)
+                CENTRAL_SYSTEM?.writeBit(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, bit: SKIMMER_PUMP_EN, value: 0)
             }
+           
         }
         readPumpEnStatus()
     }
@@ -198,19 +186,6 @@ class PumpSchedulerViewController: UIViewController {
     
     func readPumpEnStatus(){
         if schedulerTag == 11{
-            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FIRE_EN), completion: { (success, response) in
-                
-                guard success == true else { return }
-                
-                let status = Int(truncating: response![0] as! NSNumber)
-                
-                if status == 1{
-                    self.scheduleSwitch.isOn = true
-                } else {
-                    self.scheduleSwitch.isOn = false
-                }
-            })
-        } else if schedulerTag == 22{
             CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FILTRATION_PUMP_EN), completion: { (success, response) in
                 
                 guard success == true else { return }
@@ -223,8 +198,8 @@ class PumpSchedulerViewController: UIViewController {
                     self.scheduleSwitch.isOn = false
                 }
             })
-        } else if schedulerTag == 33{
-            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(WEIR_PUMP_EN), completion: { (success, response) in
+        } else if schedulerTag == 22{
+            CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(SKIMMER_PUMP_EN), completion: { (success, response) in
                 
                 guard success == true else { return }
                 
@@ -236,7 +211,7 @@ class PumpSchedulerViewController: UIViewController {
                     self.scheduleSwitch.isOn = false
                 }
             })
-        } 
+        }
     }
    
     
