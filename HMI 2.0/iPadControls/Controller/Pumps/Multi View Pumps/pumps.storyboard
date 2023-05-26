@@ -35,7 +35,7 @@
                                     <segue destination="p6j-Hh-W9m" kind="embed" id="BE2-ks-ZN8"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixd-E0-Fk1">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixd-E0-Fk1">
                                 <rect key="frame" x="82" y="192" width="180" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -337,7 +337,7 @@
                                     <action selector="playStopButtonPressed:" destination="6B3-j5-ofQ" eventType="touchUpInside" id="utD-oi-vl0"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFJ-2n-zyI">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFJ-2n-zyI">
                                 <rect key="frame" x="443" y="285" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>

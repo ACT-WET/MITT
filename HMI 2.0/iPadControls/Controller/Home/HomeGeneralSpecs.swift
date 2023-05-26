@@ -44,11 +44,11 @@ let iPAD1_IP_ADDRESS               = "192.168.1.11"
 let iPAD2_IP_ADDRESS               = "192.168.1.12"
 let PLC_PORT:Int32                 = 502
 //For Site only
-let MITT_LAG_PLC_IP_ADDRESS        = "10.0.4.231"
-let MITT_LA_PLC_IP_ADDRESS         = "10.0.4.230"
+let MITT_LAG_PLC_IP_ADDRESS        = "10.0.4.230"
+let MITT_LA_PLC_IP_ADDRESS         = "10.0.4.231"
 let SERVER_IP_ADDRESS              = "10.0.4.2"
 let SERVER_IP2_ADDRESS             = "10.0.4.3"
-let SPM_IP_ADDRESS                 = "10.0.6.201"
+let SPM_IP_ADDRESS                 = "10.0.4.201"
 
 //For ACT only
 //let MITT_LAG_PLC_IP_ADDRESS        = "10.0.4.231"

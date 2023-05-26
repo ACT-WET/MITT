@@ -145,7 +145,7 @@ filtrationPump_Status = 0; //1 - pump fault, 0 - good
 //==================== Modbus Connection
 
 
-plc_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
+plc_client = jsModbus.createTCPClient(502,'10.0.4.230',function(err){
     if(err){
         watchDog.eventLog(' PLC Modbus Connection Failed');
         PLCConnected=false;
@@ -156,16 +156,16 @@ plc_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
     }
 });
 
-bender_client = jsModbus.createTCPClient(502,'10.0.4.230',function(err){
-    if(err){
-        watchDog.eventLog('Bender Modbus Connection Failed');
-        BenderConnected=false;
-    }
-    else{  
-        watchDog.eventLog('Bender Modbus Connection Successful');
-        BenderConnected=true;
-    }
-});
+// bender_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
+//     if(err){
+//         watchDog.eventLog('Bender Modbus Connection Failed');
+//         BenderConnected=false;
+//     }
+//     else{  
+//         watchDog.eventLog('Bender Modbus Connection Successful');
+//         BenderConnected=true;
+//     }
+// });
 
 spm_client = jsModbus.createTCPClient(502,'10.0.4.201',function(err){
     if(err){
@@ -654,7 +654,7 @@ function onRequest(request, response){
                     '<br>' + 'RATMODE Status: ' + Boolean(spmRATMode) +
                     '<br>' +
                     '<br>PLC-MB? <strong>'+plc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'PLC Test\' />'+
-                    '<br>BNDR-MB? <strong>'+Boolean(BenderConnected)+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/benderTest\';\" value=\'BENDER Test\' />'+
+                    //'<br>BNDR-MB? <strong>'+Boolean(BenderConnected)+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/benderTest\';\" value=\'BENDER Test\' />'+
                     '<br>SPM-MB? <strong>'+spm_client.isConnected()+'</strong>'+
                     '<br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/startShowScanner\';\" value=\'ScanSPMShows\' />' +
@@ -669,7 +669,6 @@ function onRequest(request, response){
                     '<input type=\'button\' onclick=\"location.href=\'/readScheduler?4\';\" value=\'Schedule 4\' /><br>' +
 
                     '<br><input type=\'button\' onclick=\"location.href=\'/readLog\';\" value=\'Read Log\' /><br>' +
-                    '<br><input type=\'button\' onclick=\"location.href=\'/readFireStatusLog\';\" value=\'Read FireStatusLog\' /><br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/readStatusLog\';\" value=\'Read StatusLog\' /><br>' +
                     '<br><input type=\'button\' onclick=\"location.href=\'/readLogClient\';\" value=\'Read DeviceStatus\' />' +
                     '<input type=\'button\' onclick=\"location.href=\'/clearLogClient\';\" value=\'Clear DeviceLogs\' /><br>' +
@@ -1625,58 +1624,53 @@ setInterval(function(){
             // Modbus Register 2005 from SPM will give a 16-bit Int value
 
             // bit 0    - Audio Mute
-            // bit 1    - Lights Dim
-            // bit 2    - Fire Enable
-            // bit 3    - Fog Enable
-            // bit 4    - Fire Enable Spire 1
-            // bit 5    - Fire Enable Spire 2
-            // bit 6    - Fire Enable Spire 3
-            // bit 7    - Fire Enable Spire 4
-            // bit 8    - Fire Enable Spire 5
-            // bit 9    - Fire Enable Spire 6
-            // bit 10   - Fire Spire 1 Anim 
-            // bit 11   - Fire Spire 2 Anim 
-            // bit 12   - Fire Spire 3 Anim 
-            // bit 13   - Fire Spire 4 Anim 
-            // bit 14   - Fire Spire 5 Anim 
-            // bit 15   - Fire Spire 6 Anim 
+            // bit 1    - Fog Enable 
+            // bit 2    - MicroShooter Lights enable
+            // bit 3    - Oarsman 101 Lights enable
+            // bit 4    - Oarsman 102 Lights enable
+            // bit 5    - Oarsman 103 Lights enable
+            // bit 6    - Oarsman 104 Lights enable
+            // bit 7    - Oarsman 105 Lights enable
+            // bit 8    - Oarsman 106 Lights enable
+            // bit 9    - Oarsman 107 Lights enable
+            // bit 10   - Oarsman 108 Lights enable
+            // bit 11   - Oarsman 109 Lights enable 
+            // bit 12   - Oarsman 110 Lights enable
+            // bit 13   - Oarsman 111 Lights enable
+            // bit 14   - Oarsman 112 Lights enable
+            // bit 15   - <Not Used>
 
             // var audMu = nthBit(resp.register[0],0);
-            // var lightOn = nthBit(resp.register[0],1);
-            // var fireEn = nthBit(resp.register[0],2);
-            // var fogEn = nthBit(resp.register[0],3);
-            // var fireSp1 = nthBit(resp.register[0],4);
-            // var fireSp2 = nthBit(resp.register[0],5);
-            // var fireSp3 = nthBit(resp.register[0],6);
-            // var fireSp4 = nthBit(resp.register[0],7);
-            // var fireSp5 = nthBit(resp.register[0],8);
-            // var fireSp6 = nthBit(resp.register[0],9);
-            // var fireSp1En = nthBit(resp.register[0],10);
-            // var fireSp2En = nthBit(resp.register[0],11);
-            // var fireSp3En = nthBit(resp.register[0],12);
-            // var fireSp4En = nthBit(resp.register[0],13);
-            // var fireSp5En = nthBit(resp.register[0],14);
-            // var fireSp6En = nthBit(resp.register[0],15);
+            // var fogEn = nthBit(resp.register[0],1);
+            // var micrLight = nthBit(resp.register[0],2);
+            // var oarsLight101 = nthBit(resp.register[0],3);
+            // var oarsLight102 = nthBit(resp.register[0],4);
+            // var oarsLight103 = nthBit(resp.register[0],5);
+            // var oarsLight104 = nthBit(resp.register[0],6);
+            // var oarsLight105 = nthBit(resp.register[0],7);
+            // var oarsLight106 = nthBit(resp.register[0],8);
+            // var oarsLight107 = nthBit(resp.register[0],9);
+            // var oarsLight108 = nthBit(resp.register[0],10);
+            // var oarsLight109 = nthBit(resp.register[0],11);
+            // var oarsLight110 = nthBit(resp.register[0],12);
+            // var oarsLight111 = nthBit(resp.register[0],13);
+            // var oarsLight112 = nthBit(resp.register[0],14);
 
             // watchDog.eventLog('audMu ' +audMu); 
-            // watchDog.eventLog('lightOn ' +lightOn); 
-            // watchDog.eventLog('fireEn ' +fireEn); 
             // watchDog.eventLog('fogEn ' +fogEn); 
-            // watchDog.eventLog('fireSp1 ' +fireSp1); 
-            // watchDog.eventLog('fireSp2 ' +fireSp2); 
-            // watchDog.eventLog('fireSp3 ' +fireSp3); 
-            // watchDog.eventLog('fireSp4 ' +fireSp4); 
-            // watchDog.eventLog('fireSp5 ' +fireSp5); 
-            // watchDog.eventLog('fireSp6 ' +fireSp6); 
-            // watchDog.eventLog('fireSp1En ' +fireSp1En); 
-            // watchDog.eventLog('fireSp2En ' +fireSp2En); 
-            // watchDog.eventLog('fireSp3En ' +fireSp3En); 
-            // watchDog.eventLog('fireSp4En ' +fireSp4En); 
-            // watchDog.eventLog('fireSp5En ' +fireSp5En); 
-            // watchDog.eventLog('fireSp6En ' +fireSp6En); 
-
-            
-        
+            // watchDog.eventLog('micrLight ' +micrLight); 
+            // watchDog.eventLog('oarsLight101 ' +oarsLight101); 
+            // watchDog.eventLog('oarsLight102 ' +oarsLight102); 
+            // watchDog.eventLog('oarsLight103 ' +oarsLight103); 
+            // watchDog.eventLog('oarsLight104 ' +oarsLight104); 
+            // watchDog.eventLog('oarsLight105 ' +oarsLight105); 
+            // watchDog.eventLog('oarsLight106 ' +oarsLight106); 
+            // watchDog.eventLog('oarsLight107 ' +oarsLight107); 
+            // watchDog.eventLog('oarsLight108 ' +oarsLight108); 
+            // watchDog.eventLog('oarsLight109 ' +oarsLight109); 
+            // watchDog.eventLog('oarsLight110 ' +oarsLight110); 
+            // watchDog.eventLog('oarsLight111 ' +oarsLight111); 
+            // watchDog.eventLog('oarsLight112 ' +oarsLight112);
         });      
 
 },200); 

@@ -203,35 +203,9 @@ class WeekSchedulerViewController: UIViewController, UIPopoverPresentationContro
                     scheduleIsOn = true
                 } else if readServerPath == "readDisplayPumpSch" {
                     scheduleIsOn = true
-                } else if readServerPath == "readCascadeSch" {
-                    scheduleIsOn = true
                 } else if readServerPath == "readWeirPumpSch" {
                     scheduleIsOn = true
                 } else if readServerPath == "readFilterSch" {
-                    scheduleIsOn = true
-                } else if readServerPath == "readFireSch" {
-                    scheduleIsOn = true
-                } else if readServerPath == "readSurgeFilterPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readSurgeWWPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readGlimFilterPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readGlimWeirPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readGlimWcPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readWWPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readAlWeirPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readAlFilterSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readAlFillerShowSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readDelugeDispPumpSch" {
-                    scheduleIsOn = true
-                }else if readServerPath == "readDelugeFilterPumpSch" {
                     scheduleIsOn = true
                 }
                 

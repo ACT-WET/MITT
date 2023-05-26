@@ -227,10 +227,10 @@
                                     <action selector="pushToStoryboard:" destination="pKM-ao-vnB" eventType="touchUpInside" id="Ns2-1I-eVv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msl-CT-WJI" userLabel="Pumps">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msl-CT-WJI" userLabel="Pumps">
                                 <rect key="frame" x="478" y="339" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="pumpSafety">
+                                <state key="normal" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -441,7 +441,7 @@
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8p-33-gp2" userLabel="Lights">
                                 <rect key="frame" x="267" y="340" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="horizonbasinIcon" backgroundImage="background">
+                                <state key="normal" image="lagoonBasin" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -449,10 +449,10 @@
                                     <segue destination="pKM-ao-vnB" kind="show" id="Jyx-IQ-nBo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-lh-2Fc" userLabel="Playlist">
+                            <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-lh-2Fc" userLabel="Playlist">
                                 <rect key="frame" x="683" y="340" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="alightbasinIcon" backgroundImage="background">
+                                <state key="normal" image="lakeBasin" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -821,18 +821,17 @@
     </scenes>
     <resources>
         <image name="WETLogo" width="138" height="36"/>
-        <image name="alightbasinIcon" width="1918" height="1917"/>
         <image name="background" width="313" height="313"/>
         <image name="fillerShow" width="522" height="522"/>
         <image name="filtration" width="500" height="500"/>
         <image name="fog" width="500" height="500"/>
-        <image name="horizonbasinIcon" width="1918" height="1917"/>
         <image name="intrusion" width="500" height="500"/>
         <image name="ios_settings_icon" width="512" height="512"/>
+        <image name="lagoonBasin" width="1950" height="1950"/>
+        <image name="lakeBasin" width="1951" height="1950"/>
         <image name="lights" width="500" height="500"/>
         <image name="outOfRange" width="1105" height="781"/>
         <image name="playlist" width="500" height="500"/>
-        <image name="pumpSafety" width="313" height="313"/>
         <image name="pumps" width="500" height="500"/>
         <image name="scheduler" width="500" height="500"/>
         <image name="settings" width="251" height="251"/>

@@ -165,7 +165,7 @@ class FiltrationSettingsViewController: UIViewController, UITextFieldDelegate{
               return
           }
           
-        CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_FREQUENCY_SP, value: maxFrequency!)
+          CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_FREQUENCY_SP, value: maxFrequency!)
           CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_TEMPERATURE_SP, value: maxTemperature!)
           CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MID_TEMPERATURE_SP, value: midTemperature!)
           CENTRAL_SYSTEM!.writeRealValue(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: MAX_VOLTAGE_SP, value: maxVoltage!)

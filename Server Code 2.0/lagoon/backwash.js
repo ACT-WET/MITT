@@ -14,7 +14,7 @@ function bwWrapper(){
 	var schedule = alphabufferData[1];
 
 	//get duration from the PLC
-	plc_client.readHoldingRegister(6519,1,function(resp){
+	plc_client.readHoldingRegister(6516,1,function(resp){
 		if (resp != undefined && resp != null){
 			bwData.duration = resp.register[0];	
 		}  

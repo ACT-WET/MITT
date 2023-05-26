@@ -156,7 +156,7 @@ let MIN_VOLTAGE_SP              = 2010
 let MAX_CURRENT_SP              = 2012
 
 let PRESSURE_DELAYTIMER         = 6500
-let PDSH_DELAYTIMER             = 6518
+let PDSH_DELAYTIMER             = 6515
 
 let SURGE_PUMP_SETPOINTS     = 3021
 let PUMPSETPOINTSPEED        = 1007

@@ -414,7 +414,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
             guard self.mittlaplcConnectionState == CONNECTION_STATE_CONNECTED else{
                 return
             }
-            getCurrentLakeShowAlInfo()
+            getCurrentShowInfo()
             readLakeBackWashRunning()
                         
     }
@@ -488,7 +488,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                 guard self.mittlaplcConnectionState == CONNECTION_STATE_CONNECTED else{
                     return
                 }
-                getCurrentLakeShowAlInfo()
+                //getCurrentLakeShowAlInfo()
                 readLakeBackWashRunning()
                 
     }

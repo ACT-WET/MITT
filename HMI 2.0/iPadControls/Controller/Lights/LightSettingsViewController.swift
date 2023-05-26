@@ -150,10 +150,10 @@ class LightSettingsViewController: UIViewController {
             return
         }
         
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WATER_LEVEL_ABOVE_H_DELAY_TIMER, value: aboveHiSPDelay!)
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WATER_LEVEL_BELOW_L_TIMER, value: belowLDelay!)
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WATER_LEVEL_BELOW_LL_TIMER, value: belowLLDelay!)
-        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WATER_MAKEUP_TIMEROUT_TIMER, value: mkpTimeout!)
+        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: WATER_LEVEL_ABOVE_H_DELAY_TIMER, value: aboveHiSPDelay!)
+        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: WATER_LEVEL_BELOW_L_TIMER, value: belowLDelay!)
+        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: WATER_LEVEL_BELOW_LL_TIMER, value: belowLLDelay!)
+        CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: WATER_MAKEUP_TIMEROUT_TIMER, value: mkpTimeout!)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.50) {
             self.readTimersFromPLC()

@@ -21,110 +21,111 @@ function statusLogWrapper(){
     var bender3AData = [];
     var bender3BData = [];
     var benderAlarm = [];
+    var date = new Date();   
  
-if (BenderConnected){
+// if (BenderConnected){
 
-     bender_client.readInputRegister(528,23,function(resp){
-      if (resp != undefined && resp != null){
-        bender3AData[0] = back2Float(resp.register[1], resp.register[0]);
-        bender3AData[1] = intByte_HiLo(resp.register[2])[1],function(resp){};
-        bender3AData[2] = back2Float(resp.register[5], resp.register[4]);
-        bender3AData[3] = intByte_HiLo(resp.register[6])[1],function(resp){};
-        bender3AData[4] = back2Float(resp.register[9], resp.register[8]);
-        bender3AData[5] = intByte_HiLo(resp.register[10])[1],function(resp){};
-        bender3AData[6] = back2Float(resp.register[13], resp.register[12]);
-        bender3AData[7] = intByte_HiLo(resp.register[14])[1],function(resp){};
-        bender3AData[8] = back2Float(resp.register[17], resp.register[16]);
-        bender3AData[9] = intByte_HiLo(resp.register[18])[1],function(resp){};
-        bender3AData[10] = back2Float(resp.register[21], resp.register[20]);
-        bender3AData[11] = intByte_HiLo(resp.register[22])[1],function(resp){};
+//      bender_client.readInputRegister(528,23,function(resp){
+//       if (resp != undefined && resp != null){
+//         bender3AData[0] = back2Float(resp.register[1], resp.register[0]);
+//         bender3AData[1] = intByte_HiLo(resp.register[2])[1],function(resp){};
+//         bender3AData[2] = back2Float(resp.register[5], resp.register[4]);
+//         bender3AData[3] = intByte_HiLo(resp.register[6])[1],function(resp){};
+//         bender3AData[4] = back2Float(resp.register[9], resp.register[8]);
+//         bender3AData[5] = intByte_HiLo(resp.register[10])[1],function(resp){};
+//         bender3AData[6] = back2Float(resp.register[13], resp.register[12]);
+//         bender3AData[7] = intByte_HiLo(resp.register[14])[1],function(resp){};
+//         bender3AData[8] = back2Float(resp.register[17], resp.register[16]);
+//         bender3AData[9] = intByte_HiLo(resp.register[18])[1],function(resp){};
+//         bender3AData[10] = back2Float(resp.register[21], resp.register[20]);
+//         bender3AData[11] = intByte_HiLo(resp.register[22])[1],function(resp){};
 
-        plc_client.writeSingleRegister(6000,bender3AData[1],function(resp){});
-        plc_client.writeSingleRegister(6001,bender3AData[3],function(resp){});
-        plc_client.writeSingleRegister(6002,bender3AData[5],function(resp){});
-        plc_client.writeSingleRegister(6003,bender3AData[7],function(resp){});
-        plc_client.writeSingleRegister(6004,bender3AData[9],function(resp){});
-        plc_client.writeSingleRegister(6005,bender3AData[11],function(resp){});
+//         plc_client.writeSingleRegister(6000,bender3AData[1],function(resp){});
+//         plc_client.writeSingleRegister(6001,bender3AData[3],function(resp){});
+//         plc_client.writeSingleRegister(6002,bender3AData[5],function(resp){});
+//         plc_client.writeSingleRegister(6003,bender3AData[7],function(resp){});
+//         plc_client.writeSingleRegister(6004,bender3AData[9],function(resp){});
+//         plc_client.writeSingleRegister(6005,bender3AData[11],function(resp){});
 
-        // if (playing == 1 && (date.getSeconds()%5 == 0))
-        // {
-        //    b3_Curr["b31"] = (bender3Data[0]*1000).toFixed(2);
-        //    b3_Curr["b32"] = (bender3Data[2]*1000).toFixed(2);
-        //    b3_Curr["b33"] = (bender3Data[4]*1000).toFixed(2);
-        //    b3_Curr["b34"] = (bender3Data[6]*1000).toFixed(2);
-        //    b3_Curr["b35"] = (bender3Data[8]*1000).toFixed(2);
-        //    b3_Curr["b36"] = (bender3Data[10]*1000).toFixed(2);
-        //    b3_Curr["showNum"] = show;   
-        //    b3_Curr["date"] = time;  
+//         // if (playing == 1 && (date.getSeconds()%5 == 0))
+//         // {
+//         //    b3_Curr["b31"] = (bender3Data[0]*1000).toFixed(2);
+//         //    b3_Curr["b32"] = (bender3Data[2]*1000).toFixed(2);
+//         //    b3_Curr["b33"] = (bender3Data[4]*1000).toFixed(2);
+//         //    b3_Curr["b34"] = (bender3Data[6]*1000).toFixed(2);
+//         //    b3_Curr["b35"] = (bender3Data[8]*1000).toFixed(2);
+//         //    b3_Curr["b36"] = (bender3Data[10]*1000).toFixed(2);
+//         //    b3_Curr["showNum"] = show;   
+//         //    b3_Curr["date"] = time;  
 
-        //    b3_Alam["b31"] = bender3Data[1];
-        //    b3_Alam["b32"] = bender3Data[3];
-        //    b3_Alam["b33"] = bender3Data[5];
-        //    b3_Alam["b34"] = bender3Data[7];
-        //    b3_Alam["b35"] = bender3Data[9];
-        //    b3_Alam["b36"] = bender3Data[11];
-        //    b3_Alam["showNum"] = show;   
-        //    b3_Alam["date"] = time; 
+//         //    b3_Alam["b31"] = bender3Data[1];
+//         //    b3_Alam["b32"] = bender3Data[3];
+//         //    b3_Alam["b33"] = bender3Data[5];
+//         //    b3_Alam["b34"] = bender3Data[7];
+//         //    b3_Alam["b35"] = bender3Data[9];
+//         //    b3_Alam["b36"] = bender3Data[11];
+//         //    b3_Alam["showNum"] = show;   
+//         //    b3_Alam["date"] = time; 
 
-        //    fs.appendFileSync(homeD+'/UserFiles/b3CurrentData.txt','\n','utf-8');
-        //    fs.appendFileSync(homeD+'/UserFiles/b3CurrentData.txt',JSON.stringify(b3_Curr),'utf-8');
-        //    fs.appendFileSync(homeD+'/UserFiles/b3AlarmData.txt','\n','utf-8');
-        //    fs.appendFileSync(homeD+'/UserFiles/b3AlarmData.txt',JSON.stringify(b3_Alam),'utf-8');
-        // }
+//         //    fs.appendFileSync(homeD+'/UserFiles/b3CurrentData.txt','\n','utf-8');
+//         //    fs.appendFileSync(homeD+'/UserFiles/b3CurrentData.txt',JSON.stringify(b3_Curr),'utf-8');
+//         //    fs.appendFileSync(homeD+'/UserFiles/b3AlarmData.txt','\n','utf-8');
+//         //    fs.appendFileSync(homeD+'/UserFiles/b3AlarmData.txt',JSON.stringify(b3_Alam),'utf-8');
+//         // }
         
-      }      
-     });
+//       }      
+//      });
 
-     bender_client.readInputRegister(552,23,function(resp){
-      if (resp != undefined && resp != null){
-        bender3BData[0] = back2Float(resp.register[1], resp.register[0]);
-        bender3BData[1] = intByte_HiLo(resp.register[2])[1],function(resp){};
-        bender3BData[2] = back2Float(resp.register[5], resp.register[4]);
-        bender3BData[3] = intByte_HiLo(resp.register[6])[1],function(resp){};
-        bender3BData[4] = back2Float(resp.register[9], resp.register[8]);
-        bender3BData[5] = intByte_HiLo(resp.register[10])[1],function(resp){};
-        bender3BData[6] = back2Float(resp.register[13], resp.register[12]);
-        bender3BData[7] = intByte_HiLo(resp.register[14])[1],function(resp){};
-        bender3BData[8] = back2Float(resp.register[17], resp.register[16]);
-        bender3BData[9] = intByte_HiLo(resp.register[18])[1],function(resp){};
-        bender3BData[10] = back2Float(resp.register[21], resp.register[20]);
-        bender3BData[11] = intByte_HiLo(resp.register[22])[1],function(resp){};
+//      bender_client.readInputRegister(552,23,function(resp){
+//       if (resp != undefined && resp != null){
+//         bender3BData[0] = back2Float(resp.register[1], resp.register[0]);
+//         bender3BData[1] = intByte_HiLo(resp.register[2])[1],function(resp){};
+//         bender3BData[2] = back2Float(resp.register[5], resp.register[4]);
+//         bender3BData[3] = intByte_HiLo(resp.register[6])[1],function(resp){};
+//         bender3BData[4] = back2Float(resp.register[9], resp.register[8]);
+//         bender3BData[5] = intByte_HiLo(resp.register[10])[1],function(resp){};
+//         bender3BData[6] = back2Float(resp.register[13], resp.register[12]);
+//         bender3BData[7] = intByte_HiLo(resp.register[14])[1],function(resp){};
+//         bender3BData[8] = back2Float(resp.register[17], resp.register[16]);
+//         bender3BData[9] = intByte_HiLo(resp.register[18])[1],function(resp){};
+//         bender3BData[10] = back2Float(resp.register[21], resp.register[20]);
+//         bender3BData[11] = intByte_HiLo(resp.register[22])[1],function(resp){};
 
-        plc_client.writeSingleRegister(6006,bender3BData[1],function(resp){});
-        plc_client.writeSingleRegister(6007,bender3BData[3],function(resp){});
-        plc_client.writeSingleRegister(6008,bender3BData[5],function(resp){});
-        plc_client.writeSingleRegister(6009,bender3BData[7],function(resp){});
-        plc_client.writeSingleRegister(6010,bender3BData[9],function(resp){});
-        plc_client.writeSingleRegister(6011,bender3BData[11],function(resp){});
+//         plc_client.writeSingleRegister(6006,bender3BData[1],function(resp){});
+//         plc_client.writeSingleRegister(6007,bender3BData[3],function(resp){});
+//         plc_client.writeSingleRegister(6008,bender3BData[5],function(resp){});
+//         plc_client.writeSingleRegister(6009,bender3BData[7],function(resp){});
+//         plc_client.writeSingleRegister(6010,bender3BData[9],function(resp){});
+//         plc_client.writeSingleRegister(6011,bender3BData[11],function(resp){});
 
-        // if (playing == 1 && (date.getSeconds()%5 == 0))
-        // {
-        //    b1_Curr["b11"] = (bender1Data[0]*1000).toFixed(2);
-        //    b1_Curr["b12"] = (bender1Data[2]*1000).toFixed(2);
-        //    b1_Curr["b13"] = (bender1Data[4]*1000).toFixed(2);
-        //    b1_Curr["b14"] = (bender1Data[6]*1000).toFixed(2);
-        //    b1_Curr["b15"] = (bender1Data[8]*1000).toFixed(2);
-        //    b1_Curr["b16"] = (bender1Data[10]*1000).toFixed(2);
-        //    b1_Curr["showNum"] = show;   
-        //    b1_Curr["date"] = time;   
+//         // if (playing == 1 && (date.getSeconds()%5 == 0))
+//         // {
+//         //    b1_Curr["b11"] = (bender1Data[0]*1000).toFixed(2);
+//         //    b1_Curr["b12"] = (bender1Data[2]*1000).toFixed(2);
+//         //    b1_Curr["b13"] = (bender1Data[4]*1000).toFixed(2);
+//         //    b1_Curr["b14"] = (bender1Data[6]*1000).toFixed(2);
+//         //    b1_Curr["b15"] = (bender1Data[8]*1000).toFixed(2);
+//         //    b1_Curr["b16"] = (bender1Data[10]*1000).toFixed(2);
+//         //    b1_Curr["showNum"] = show;   
+//         //    b1_Curr["date"] = time;   
 
-        //    b1_Alam["b11"] = bender1Data[1];
-        //    b1_Alam["b12"] = bender1Data[3];
-        //    b1_Alam["b13"] = bender1Data[5];
-        //    b1_Alam["b14"] = bender1Data[7];
-        //    b1_Alam["b15"] = bender1Data[9];
-        //    b1_Alam["b16"] = bender1Data[11];
-        //    b1_Alam["showNum"] = show;   
-        //    b1_Alam["date"] = time;   
+//         //    b1_Alam["b11"] = bender1Data[1];
+//         //    b1_Alam["b12"] = bender1Data[3];
+//         //    b1_Alam["b13"] = bender1Data[5];
+//         //    b1_Alam["b14"] = bender1Data[7];
+//         //    b1_Alam["b15"] = bender1Data[9];
+//         //    b1_Alam["b16"] = bender1Data[11];
+//         //    b1_Alam["showNum"] = show;   
+//         //    b1_Alam["date"] = time;   
 
-        //    fs.appendFileSync(homeD+'/UserFiles/b1CurrentData.txt','\n','utf-8');
-        //    fs.appendFileSync(homeD+'/UserFiles/b1CurrentData.txt',JSON.stringify(b1_Curr),'utf-8');
-        //    fs.appendFileSync(homeD+'/UserFiles/b1AlarmData.txt','\n','utf-8');
-        //    fs.appendFileSync(homeD+'/UserFiles/b1AlarmData.txt',JSON.stringify(b1_Alam),'utf-8');
-        // }
-      }      
-     });
-}
+//         //    fs.appendFileSync(homeD+'/UserFiles/b1CurrentData.txt','\n','utf-8');
+//         //    fs.appendFileSync(homeD+'/UserFiles/b1CurrentData.txt',JSON.stringify(b1_Curr),'utf-8');
+//         //    fs.appendFileSync(homeD+'/UserFiles/b1AlarmData.txt','\n','utf-8');
+//         //    fs.appendFileSync(homeD+'/UserFiles/b1AlarmData.txt',JSON.stringify(b1_Alam),'utf-8');
+//         // }
+//       }      
+//      });
+// }
 
 if (PLCConnected){
 
@@ -144,26 +145,26 @@ if (PLCConnected){
         }
 
 
-    plc_client.readCoils(6020,12,function(resp){
+    // plc_client.readCoils(6020,12,function(resp){
         
-        if (resp != undefined && resp != null){
+    //     if (resp != undefined && resp != null){
 
-            benderAlarm.push(resp.coils[0] ? resp.coils[0] : 0);         // Bender 101 AlarmTripped
-            benderAlarm.push(resp.coils[1] ? resp.coils[1] : 0);         // Bender 102 AlarmTripped
-            benderAlarm.push(resp.coils[2] ? resp.coils[2] : 0);         // Bender 103 AlarmTripped
-            benderAlarm.push(resp.coils[3] ? resp.coils[3] : 0);         // Bender 104 AlarmTripped
-            benderAlarm.push(resp.coils[4] ? resp.coils[4] : 0);         // Bender 105 AlarmTripped
-            benderAlarm.push(resp.coils[5] ? resp.coils[5] : 0);         // Bender 106 AlarmTripped
+    //         benderAlarm.push(resp.coils[0] ? resp.coils[0] : 0);         // Bender 101 AlarmTripped
+    //         benderAlarm.push(resp.coils[1] ? resp.coils[1] : 0);         // Bender 102 AlarmTripped
+    //         benderAlarm.push(resp.coils[2] ? resp.coils[2] : 0);         // Bender 103 AlarmTripped
+    //         benderAlarm.push(resp.coils[3] ? resp.coils[3] : 0);         // Bender 104 AlarmTripped
+    //         benderAlarm.push(resp.coils[4] ? resp.coils[4] : 0);         // Bender 105 AlarmTripped
+    //         benderAlarm.push(resp.coils[5] ? resp.coils[5] : 0);         // Bender 106 AlarmTripped
 
-            benderAlarm.push(resp.coils[6] ? resp.coils[6] : 0);         // Bender 107 AlarmTripped
-            benderAlarm.push(resp.coils[7] ? resp.coils[7] : 0);         // Bender 108 AlarmTripped
-            benderAlarm.push(resp.coils[8] ? resp.coils[8] : 0);         // Bender 109 AlarmTripped
-            benderAlarm.push(resp.coils[9] ? resp.coils[9] : 0);         // Bender 110 AlarmTripped
-            benderAlarm.push(resp.coils[10] ? resp.coils[10] : 0);       // Bender 111 AlarmTripped
-            benderAlarm.push(resp.coils[11] ? resp.coils[11] : 0);       // Bender 112 AlarmTripped
+    //         benderAlarm.push(resp.coils[6] ? resp.coils[6] : 0);         // Bender 107 AlarmTripped
+    //         benderAlarm.push(resp.coils[7] ? resp.coils[7] : 0);         // Bender 108 AlarmTripped
+    //         benderAlarm.push(resp.coils[8] ? resp.coils[8] : 0);         // Bender 109 AlarmTripped
+    //         benderAlarm.push(resp.coils[9] ? resp.coils[9] : 0);         // Bender 110 AlarmTripped
+    //         benderAlarm.push(resp.coils[10] ? resp.coils[10] : 0);       // Bender 111 AlarmTripped
+    //         benderAlarm.push(resp.coils[11] ? resp.coils[11] : 0);       // Bender 112 AlarmTripped
 
-        }
-    });//end of first PLC modbus call
+    //     }
+    // });//end of first PLC modbus call
 
     plc_client.readCoils(0,11,function(resp1){
         
@@ -190,7 +191,7 @@ if (PLCConnected){
 
             fault_ESTOP.push(nthBit(resp.register[0],0) ? nthBit(resp.register[0],0) : 0); // CP301 Estop
             fault_ESTOP.push(nthBit(resp.register[3],6) ? nthBit(resp.register[3],6) : 0); // Out_BMS2001A
-            fault_ESTOP.push(nthBit(resp.register[3],7) ? nthBit(resp.register[3],7) : 0); // Out_BMS2001B
+            //fault_ESTOP.push(nthBit(resp.register[3],7) ? nthBit(resp.register[3],7) : 0); // Out_BMS2001B
 
             // Wind Speed - lagoon
 
@@ -233,11 +234,6 @@ if (PLCConnected){
             status_WaterQuality.push(nthBit(resp.register[1],8) ? nthBit(resp.register[1],8) : 0);   // Bromine Timeout
             status_WaterQuality.push(nthBit(resp.register[1],9) ? nthBit(resp.register[1],9) : 0);   // FSL6001 Enable
 
-            // Lights - lagoon 
-            
-            status_LIGHTS.push(nthBit(resp.register[1],10) ? nthBit(resp.register[1],10) : 0);    // LCP201 ON 
-            status_LIGHTS.push(nthBit(resp.register[1],13) ? nthBit(resp.register[1],13) : 0);    // LCP202 ON  
-
             // Pumps - lagoon 
 
             fault_PUMPS.push(nthBit(resp.register[2],0) ? nthBit(resp.register[2],0) : 0);      // VFD 101 NetworkFault (Filtration Pump)
@@ -260,9 +256,9 @@ if (PLCConnected){
             fault_PUMPS.push(nthBit(resp.register[3],0) ? nthBit(resp.register[3],0) : 0);      // YS211 GFCI Tripped
             fault_PUMPS.push(nthBit(resp.register[3],1) ? nthBit(resp.register[3],1) : 0);      // YS212 GFCI Tripped
 
-            fault_PUMPS.push(nthBit(resp.register[4],0) ? nthBit(resp.register[2],0) : 0);      // Skimmer Pump Sch Enable
-            fault_PUMPS.push(nthBit(resp.register[4],1) ? nthBit(resp.register[2],1) : 0);      // Skimmer Pump Sch ON
-            fault_PUMPS.push(nthBit(resp.register[4],2) ? nthBit(resp.register[2],2) : 0);      // Skimmer Pump Sch Run
+            fault_PUMPS.push(nthBit(resp.register[4],0) ? nthBit(resp.register[4],0) : 0);      // Skimmer Pump Sch Enable
+            fault_PUMPS.push(nthBit(resp.register[4],1) ? nthBit(resp.register[4],1) : 0);      // Skimmer Pump Sch ON
+            fault_PUMPS.push(nthBit(resp.register[4],2) ? nthBit(resp.register[4],2) : 0);      // Skimmer Pump Sch Run
 
             // Water Level Sensor - lagoon 
 
@@ -273,6 +269,16 @@ if (PLCConnected){
             showStopper = 0;
             for (var i=0; i <= (fault_ShowStoppers.length-1); i++){
                 showStopper = showStopper + fault_ShowStoppers[i];
+                if(serviceRequired === 1){
+                   showStopper = 1; 
+                   watchDog.eventLog("ShowStopper:: Service Required 1");
+                }
+            }   
+
+            if (((date.getMonth() > 3) && (date.getDate() > 29)) || (date.getMonth() > 4)){
+                //serviceRequired = 1;
+            } else {
+                //serviceRequired = 0;
             }   
 
             totalStatus = [ 
@@ -281,7 +287,6 @@ if (PLCConnected){
                             status_windSensor,
                             fault_FOG,
                             status_WaterQuality,
-                            status_LIGHTS,
                             fault_PUMPS,
                             status_WaterLevel];
 
@@ -297,8 +302,8 @@ if (PLCConnected){
             sysStatus = [{
                             "***************************ESTOP STATUS**************************" : "1",
                             "CP601 Estop": fault_ESTOP[0],
-                            "Out_BMS2001A": fault_ESTOP[1],
-                            "Out_BMS2001B": fault_ESTOP[2],
+                            "Out_BMS1000A": fault_ESTOP[1],
+                            //"Out_BMS2001B": fault_ESTOP[2],
                             "ShowStopper :Estop": fault_ShowStoppers[0],
                             "ShowStopper :WaterLevelLow": fault_ShowStoppers[1],
                             "ShowStopper :ST1001 Wind_Abort": fault_ShowStoppers[2],
@@ -328,44 +333,44 @@ if (PLCConnected){
                             "LS2001 Above_Hi":status_WaterLevel[0],
                             "LS2001 Below_Low":status_WaterLevel[1],
                             "LS2001 Below_LowLow":status_WaterLevel[2],
-                            "***************************BENDER STATUS**************************" : "5",
-                            "BENDER 1 3-PHASE CURRENT DATA":bender3AData[0],
-                            "BENDER 1 3-PHASE ALARM DATA":bender3AData[1],
-                            "BENDER 2 3-PHASE CURRENT DATA":bender3AData[2],
-                            "BENDER 2 3-PHASE ALARM DATA":bender3AData[3],
-                            "BENDER 3 3-PHASE CURRENT DATA":bender3AData[4],
-                            "BENDER 3 3-PHASE ALARM DATA":bender3AData[5],
-                            "BENDER 4 3-PHASE CURRENT DATA":bender3AData[6],
-                            "BENDER 4 3-PHASE ALARM DATA":bender3AData[7],
-                            "BENDER 5 3-PHASE CURRENT DATA":bender3AData[8],
-                            "BENDER 5 3-PHASE ALARM DATA":bender3AData[9],
-                            "BENDER 6 3-PHASE CURRENT DATA":bender3AData[10],
-                            "BENDER 6 3-PHASE ALARM DATA":bender3AData[11],
-                            "BENDER 7 3-PHASE CURRENT DATA":bender3BData[0],
-                            "BENDER 7 3-PHASE ALARM DATA":bender3BData[1],
-                            "BENDER 8 3-PHASE CURRENT DATA":bender3BData[2],
-                            "BENDER 8 3-PHASE ALARM DATA":bender3BData[3],
-                            "BENDER 9 3-PHASE CURRENT DATA":bender3BData[4],
-                            "BENDER 9 3-PHASE ALARM DATA":bender3BData[5],
-                            "BENDER 10 3-PHASE CURRENT DATA":bender3BData[6],
-                            "BENDER 10 3-PHASE ALARM DATA":bender3BData[7],
-                            "BENDER 11 3-PHASE CURRENT DATA":bender3BData[8],
-                            "BENDER 11 3-PHASE ALARM DATA":bender3BData[9],
-                            "BENDER 12 3-PHASE CURRENT DATA":bender3BData[10],
-                            "BENDER 12 3-PHASE ALARM DATA":bender3BData[11],
-                            "BENDER 1 3-PHASE ALARM TRIPPED":benderAlarm[0],
-                            "BENDER 2 3-PHASE ALARM TRIPPED":benderAlarm[1],
-                            "BENDER 3 3-PHASE ALARM TRIPPED":benderAlarm[2],
-                            "BENDER 4 3-PHASE ALARM TRIPPED":benderAlarm[3],
-                            "BENDER 5 3-PHASE ALARM TRIPPED":benderAlarm[4],
-                            "BENDER 6 3-PHASE ALARM TRIPPED":benderAlarm[5],
-                            "BENDER 7 3-PHASE ALARM TRIPPED":benderAlarm[6],
-                            "BENDER 8 3-PHASE ALARM TRIPPED":benderAlarm[7],
-                            "BENDER 9 3-PHASE ALARM TRIPPED":benderAlarm[8],
-                            "BENDER 10 3-PHASE ALARM TRIPPED":benderAlarm[9],
-                            "BENDER 11 3-PHASE ALARM TRIPPED":benderAlarm[10],
-                            "BENDER 12 3-PHASE ALARM TRIPPED":benderAlarm[11],
-                            "****************************WATER QUALITY STATUS*****************" : "6",
+                            // "***************************BENDER STATUS**************************" : "5",
+                            // "BENDER 1 3-PHASE CURRENT DATA":bender3AData[0],
+                            // "BENDER 1 3-PHASE ALARM DATA":bender3AData[1],
+                            // "BENDER 2 3-PHASE CURRENT DATA":bender3AData[2],
+                            // "BENDER 2 3-PHASE ALARM DATA":bender3AData[3],
+                            // "BENDER 3 3-PHASE CURRENT DATA":bender3AData[4],
+                            // "BENDER 3 3-PHASE ALARM DATA":bender3AData[5],
+                            // "BENDER 4 3-PHASE CURRENT DATA":bender3AData[6],
+                            // "BENDER 4 3-PHASE ALARM DATA":bender3AData[7],
+                            // "BENDER 5 3-PHASE CURRENT DATA":bender3AData[8],
+                            // "BENDER 5 3-PHASE ALARM DATA":bender3AData[9],
+                            // "BENDER 6 3-PHASE CURRENT DATA":bender3AData[10],
+                            // "BENDER 6 3-PHASE ALARM DATA":bender3AData[11],
+                            // "BENDER 7 3-PHASE CURRENT DATA":bender3BData[0],
+                            // "BENDER 7 3-PHASE ALARM DATA":bender3BData[1],
+                            // "BENDER 8 3-PHASE CURRENT DATA":bender3BData[2],
+                            // "BENDER 8 3-PHASE ALARM DATA":bender3BData[3],
+                            // "BENDER 9 3-PHASE CURRENT DATA":bender3BData[4],
+                            // "BENDER 9 3-PHASE ALARM DATA":bender3BData[5],
+                            // "BENDER 10 3-PHASE CURRENT DATA":bender3BData[6],
+                            // "BENDER 10 3-PHASE ALARM DATA":bender3BData[7],
+                            // "BENDER 11 3-PHASE CURRENT DATA":bender3BData[8],
+                            // "BENDER 11 3-PHASE ALARM DATA":bender3BData[9],
+                            // "BENDER 12 3-PHASE CURRENT DATA":bender3BData[10],
+                            // "BENDER 12 3-PHASE ALARM DATA":bender3BData[11],
+                            // "BENDER 1 3-PHASE ALARM TRIPPED":benderAlarm[0],
+                            // "BENDER 2 3-PHASE ALARM TRIPPED":benderAlarm[1],
+                            // "BENDER 3 3-PHASE ALARM TRIPPED":benderAlarm[2],
+                            // "BENDER 4 3-PHASE ALARM TRIPPED":benderAlarm[3],
+                            // "BENDER 5 3-PHASE ALARM TRIPPED":benderAlarm[4],
+                            // "BENDER 6 3-PHASE ALARM TRIPPED":benderAlarm[5],
+                            // "BENDER 7 3-PHASE ALARM TRIPPED":benderAlarm[6],
+                            // "BENDER 8 3-PHASE ALARM TRIPPED":benderAlarm[7],
+                            // "BENDER 9 3-PHASE ALARM TRIPPED":benderAlarm[8],
+                            // "BENDER 10 3-PHASE ALARM TRIPPED":benderAlarm[9],
+                            // "BENDER 11 3-PHASE ALARM TRIPPED":benderAlarm[10],
+                            // "BENDER 12 3-PHASE ALARM TRIPPED":benderAlarm[11],
+                            "****************************WATER QUALITY STATUS*****************" : "5",
                             "Backwash1 Run": status_WaterQuality[0],
                             "Schedule Backwash Trigger": status_WaterQuality[1],
                             "PDSH1": status_WaterQuality[2],
@@ -380,14 +385,11 @@ if (PLCConnected){
                             "Bromine Dosing": status_WaterQuality[11],
                             "Bromine Timeout": status_WaterQuality[12],
                             "WaterFlow Bromine Enabled": status_WaterQuality[13],
-                            "****************************FOG STATUS*****************" : "7",
+                            "****************************FOG STATUS*****************" : "6",
                             "FS113 HA Mode": fault_FOG[0],
                             "FS113 Hand On": fault_FOG[1],
                             "FS113 Running": fault_FOG[5],
-                            "****************************LIGHTS STATUS*****************" : "9",
-                            "MicroShooter Lights ON": status_LIGHTS[0],
-                            "Oarsman Lights ON": status_LIGHTS[1],
-                            "***************************PUMPS STATUS**************************" : "10",
+                            "***************************PUMPS STATUS**************************" : "7",
                             "VFD 101 Schedule Enable": fault_PUMPS[1],
                             "VFD 101 Schedule On": fault_PUMPS[2],
                             "VFD 101 Schedule Run": fault_PUMPS[3],
@@ -410,7 +412,7 @@ if (PLCConnected){
                             "YS210 GFCI TRIPPED":fault_PUMPS[15],
                             "YS211 GFCI TRIPPED":fault_PUMPS[16],
                             "YS212 GFCI TRIPPED":fault_PUMPS[17],
-                           "****************************DEVICE CONNECTION STATUS*************" : "11",
+                           "****************************DEVICE CONNECTION STATUS*************" : "8",
                             "SPM_Heartbeat": SPM_Heartbeat,
                             "SPM_Modbus_Connection": SPMConnected,
                             "PLC_Heartbeat": PLC_Heartbeat,
@@ -469,7 +471,7 @@ if (SPMConnected){
             [   // estop - lagoon 
                 {"yes":"CP601 Estop Triggered","no":"Resolved: CP601 Estop"}, 
                 {"yes":"One/More System Warning","no":"No Warnings"}, 
-                {"yes":"One/More System Faults ","no":"No Faults"},
+                //{"yes":"One/More System Faults ","no":"No Faults"},
             ],
 
             [   // anemometer - lagoon
@@ -505,11 +507,6 @@ if (SPMConnected){
                 {"yes":"Bromine Dosing ON","no":"Bromine Dosing OFF"},
                 {"yes":"Bromine Timeout","no":"Resolved:Bromine Timeout"},
                 {"yes":"FSL 6001 WaterFlow Enabled","no":"FSL 6001 WaterFlow Disabled"},
-            ],
-
-            [   // Lights Status - lagoon
-                {"yes":"Microshooter Lights On","no":"Microshooter Lights Off"},
-                {"yes":"Oarsman Lights On","no":"Oarsman Lights Off"},
             ],
 
             [   // pumps - lagoon

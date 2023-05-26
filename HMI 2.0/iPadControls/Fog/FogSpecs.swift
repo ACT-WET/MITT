@@ -15,7 +15,7 @@ import Foundation
 
 let FOG113_AUTO_HAND_BIT_ADDR     = 7006
 let FOG113_PLAY_STOP_BIT_ADDR     = 7000
-let FOG113_PUMP_RUNNING           = 7000
+let FOG113_PUMP_RUNNING           = 7001
 
 let FOG_JOCKEYPUMP_TRIGGER     = 6523
 

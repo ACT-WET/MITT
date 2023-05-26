@@ -611,23 +611,23 @@ function timeKeeperWrapper(){
     //     ATDEPLCConnected = false;
     // }
     //Check Bender Connection
-    if(Bndr_Heartbeat == 2){
-        bender_client.readInputRegister(528,1,function(resp){
-            Bndr_Heartbeat = 0; //check again in the next scan
-            BenderConnected = true;       
-        });
-        Bndr_Heartbeat = 3;
-    }
-    else{
-        Bndr_Heartbeat++;
-    }
+    // if(Bndr_Heartbeat == 2){
+    //     bender_client.readInputRegister(528,1,function(resp){
+    //         Bndr_Heartbeat = 0; //check again in the next scan
+    //         BenderConnected = true;       
+    //     });
+    //     Bndr_Heartbeat = 3;
+    // }
+    // else{
+    //     Bndr_Heartbeat++;
+    // }
 
-    if(Bndr_Heartbeat==9){
-        if (BenderConnected){
-            watchDog.eventLog('TK: Bender MODBUS CONNECTION FAILED');
-        }//log it only once
-        BenderConnected = false;
-    }
+    // if(Bndr_Heartbeat==9){
+    //     if (BenderConnected){
+    //         watchDog.eventLog('TK: Bender MODBUS CONNECTION FAILED');
+    //     }//log it only once
+    //     BenderConnected = false;
+    // }
 
     //Check PLC Connection
     if(PLC_Heartbeat == 2){
@@ -684,13 +684,16 @@ spm_client.readHoldingRegister(2000,2,function(resp){
     spmRATMode = nthBit(resp.register[0],8);
     dayModeStatus = nthBit(resp.register[1],7);
     showPlayingBit = nthBit(resp.register[0],4);
-    
+    //watchDog.eventLog("SPM DayMode " +dayModeStatus);
+    //watchDog.eventLog("iPad DayMode " +dayMode);
     if(dayModeStatus === dayMode){}else{
         if (dayMode == 1){
             watchDog.eventLog("DayMode Set to " +dayMode +" Description: Lights OFF"); 
+            spm_client.writeSingleRegister(1002,16,function(resp){}); 
             dayModeStatus = dayMode
         } else {
             watchDog.eventLog("DayMode Set to " +dayMode +" Description: Lights ON"); 
+            spm_client.writeSingleRegister(1002,0,function(resp){}); 
             dayModeStatus = dayMode
         }
     }

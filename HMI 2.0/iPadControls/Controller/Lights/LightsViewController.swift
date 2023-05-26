@@ -92,7 +92,7 @@ class LightsViewController: UIViewController {
     //MARK: - Read Lights On Off
     @objc private func readIndividualLightsOnOff(){
         
-            CENTRAL_SYSTEM?.readBits(plcIpAddress:MITT_LAG_PLC_IP_ADDRESS, length: 3, startingRegister: Int32(WATER_LEVE_LSH2001), completion: { (success, response) in
+            CENTRAL_SYSTEM?.readBits(plcIpAddress:MITT_LAG_PLC_IP_ADDRESS, length: 6, startingRegister: Int32(WATER_LEVE_LSH2001), completion: { (success, response) in
                 
                 guard response != nil else{
                     return
@@ -101,14 +101,30 @@ class LightsViewController: UIViewController {
                 let abvH = self.view.viewWithTag(2002) as? UIImageView
                 let blwL = self.view.viewWithTag(2003) as? UIImageView
                 let blwLL = self.view.viewWithTag(2004) as? UIImageView
+                let mkeup = self.view.viewWithTag(2009) as? UILabel
+                let mkeupTmout = self.view.viewWithTag(2010) as? UIImageView
+                let mlfunction = self.view.viewWithTag(2011) as? UIImageView
                 
                 let aboveH  = Int(truncating: response![0] as! NSNumber)
                 let belowL  = Int(truncating: response![1] as! NSNumber)
                 let belowLL = Int(truncating: response![2] as! NSNumber)
+                let maekup = Int(truncating: response![3] as! NSNumber)
+                let makeupTimeout = Int(truncating: response![4] as! NSNumber)
+                let malfunction = Int(truncating: response![5] as! NSNumber)
                 
-                aboveH == 1 ? ( abvH?.image = #imageLiteral(resourceName: "red")) : (abvH?.image = #imageLiteral(resourceName: "green"))
-                belowL == 1 ? ( blwL?.image = #imageLiteral(resourceName: "red")) : (blwL?.image = #imageLiteral(resourceName: "green"))
-                belowLL == 1 ? ( blwLL?.image = #imageLiteral(resourceName: "red")) : (blwLL?.image = #imageLiteral(resourceName: "green"))
+                aboveH == 1 ? ( abvH?.image = #imageLiteral(resourceName: "red")) : (abvH?.image = #imageLiteral(resourceName: "blank_icon_on"))
+                belowL == 1 ? ( blwL?.image = #imageLiteral(resourceName: "red")) : (blwL?.image = #imageLiteral(resourceName: "blank_icon_on"))
+                belowLL == 1 ? ( blwLL?.image = #imageLiteral(resourceName: "red")) : (blwLL?.image = #imageLiteral(resourceName: "blank_icon_on"))
+                makeupTimeout == 1 ? ( mkeupTmout?.image = #imageLiteral(resourceName: "red")) : (mkeupTmout?.image = #imageLiteral(resourceName: "blank_icon_on"))
+                malfunction == 1 ? ( mlfunction?.image = #imageLiteral(resourceName: "red")) : (mlfunction?.image = #imageLiteral(resourceName: "blank_icon_on"))
+                
+                if maekup == 1 {
+                    mkeup?.text = "ON"
+                    mkeup?.textColor = GREEN_COLOR
+                } else {
+                    mkeup?.text = "OFF"
+                    mkeup?.textColor = DEFAULT_GRAY
+                }
                 
                 if belowL == 1 {
                     self.lowWaterNoLights.isHidden = false

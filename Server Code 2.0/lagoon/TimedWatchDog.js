@@ -14,7 +14,7 @@ function tmdWrapper(){
     plc_client.destroy();
     plc_client=null;
 
-    plc_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
+    plc_client = jsModbus.createTCPClient(502,'10.0.4.230',function(err){
 
       if(err){
 
@@ -37,32 +37,32 @@ function tmdWrapper(){
 
  //========================== BENDER CONNECTION ===========//
 
-  if((BenderConnected == 0)&& (5 <= Bndr_Heartbeat) && (Bndr_Heartbeat < 10)){
-    watchDog.eventLog('Attempted to reconnect to Bender ' +Bndr_Heartbeat);
+  // if((BenderConnected == 0)&& (5 <= Bndr_Heartbeat) && (Bndr_Heartbeat < 10)){
+  //   watchDog.eventLog('Attempted to reconnect to Bender ' +Bndr_Heartbeat);
 
-    bender_client.destroy();
-    bender_client=null;
+  //   bender_client.destroy();
+  //   bender_client=null;
 
-    bender_client = jsModbus.createTCPClient(502,'10.0.4.230',function(err){
+  //   bender_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
 
-      if(err){
+  //     if(err){
 
-        //watchDog.eventLog('PLC MODBUS CONNECTION FAILED');
-        BenderConnected=false;
+  //       //watchDog.eventLog('PLC MODBUS CONNECTION FAILED');
+  //       BenderConnected=false;
 
-      }else{
+  //     }else{
 
-        watchDog.eventLog('BENDER MODBUS CONNECTION SUCCESSFUL');
-        BenderConnected = 1;
-        Bndr_Heartbeat = 0;
+  //       watchDog.eventLog('BENDER MODBUS CONNECTION SUCCESSFUL');
+  //       BenderConnected = 1;
+  //       Bndr_Heartbeat = 0;
 
-      }
+  //     }
 
-    });
-  } 
-  else if((BenderConnected == 0) && (Bndr_Heartbeat > 10)){
-    Bndr_Heartbeat = 1;
-  }
+  //   });
+  // } 
+  // else if((BenderConnected == 0) && (Bndr_Heartbeat > 10)){
+  //   Bndr_Heartbeat = 1;
+  // }
   
   //========================== SPM CONNECTION ===========//
 

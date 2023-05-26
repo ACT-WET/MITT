@@ -119,7 +119,7 @@ class FogViewController: UIViewController{
     
     func getFogDataFromPLC(){
         
-        CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FOG113_PUMP_RUNNING), completion:{ (success, response) in
+        CENTRAL_SYSTEM?.readBits(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(FOG113_PUMP_RUNNING), completion:{ (success, response) in
             
             guard success == true else { return }
             

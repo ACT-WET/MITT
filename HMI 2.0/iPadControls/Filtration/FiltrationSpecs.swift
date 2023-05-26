@@ -48,7 +48,7 @@ let FILTRATION_STRAINERSP_REGISTER              = 4100 //
 let FILTRATION_PUMPOFF_REGISTER                 = 4101 //
 let FILTRATION_BWPRESSSP_REGISTER               = 4102 //
 
-let FILTRATION_BW_DURATION_REGISTER             = 6519 // BW_Duration_SP
+let FILTRATION_BW_DURATION_REGISTER             = 6516 // BW_Duration_SP
 let FILTRATION_TOGGLE_BWASH_BIT                 = 4002 // BW1_Server_Trigger
 let FILTRATION_TOGGLE_BWASH_BIT2                = 4004 // BW2_Server_Trigger
 let FILTRATION_TOGGLE_BWASH_BIT3                = 4006 // BW3_Server_Trigger

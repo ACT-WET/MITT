@@ -268,7 +268,7 @@ class ACTHomeViewController: UIViewController{
             }  else if screenName == "filtration" {
                 readServerPath = READ_FILTRATION_SERVER_PATH
                 writeServerPath = WRITE_FILTRATION_SERVER_PATH
-                screen_Name = screenName
+                screen_Name = "pumps"
             } else if screenName == "weirPump" {
                 readServerPath = READ_WEIR_SERVER_PATH
                 writeServerPath = WRITE_WEIR_SERVER_PATH
