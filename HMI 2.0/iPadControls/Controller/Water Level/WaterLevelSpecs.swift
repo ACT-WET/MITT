@@ -64,6 +64,7 @@ let AL_WATER_LEVEL_SENSOR_BITS_2         = (startBit: 3110, count: 7)
 /* Note double check with kranti, so far only two water below_ll */
 let ALL_WATER_LEVEL_BELOW_LL_REGISTER          = (register: 3003, count: 20)
 let WATER_LEVEL_TIMER_BITS                     = (startBit: 6511, count: 4)
+let LAKE_WATER_LEVEL_TIMER_BITS                = (startBit: 6514, count: 4)
 //Settings Page Timer Registers
 //TYPE: INT
 
@@ -84,6 +85,10 @@ let WATER_LEVEL_BELOW_L_TIMER                  = 6512
 let WATER_LEVEL_BELOW_LL_TIMER                 = 6513
 let WATER_LEVEL_BELOW_LLL_TIMER                = 6517
 let WATER_MAKEUP_TIMEROUT_TIMER                = 6522
+
+let LAKE_WATER_LEVEL_ABOVE_H_DELAY_TIMER       = 6514
+let LAKE_WATER_LEVEL_BELOW_L_TIMER             = 6515
+let LAKE_WATER_LEVEL_BELOW_LL_TIMER            = 6516
 
 let LT1001_WATER_LEVEL_SCALED_VALUE            = 3080
 let LT1001_WATER_LEVEL_SCALED_MIN              = 3082

@@ -224,7 +224,7 @@ class WaterQualitySettingsViewController: UIViewController, UITextFieldDelegate 
         })
         //Get Brominator Timeout Setpoints
         
-        CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(WQ_BROMINATOR_TIMEOUT_REGISTER), completion: { (success, response) in
+        CENTRAL_SYSTEM?.readRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, length: 1, startingRegister: Int32(LAKE_WQ_BROMINATOR_TIMEOUT_REGISTER), completion: { (success, response) in
             
             if success == true{
                 let brominatorTimeout = Int(truncating: response![0] as! NSNumber)
@@ -338,7 +338,7 @@ class WaterQualitySettingsViewController: UIViewController, UITextFieldDelegate 
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: WQ_BR_TIMER_REGISTER+1, value: w1doseVal!)
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: WQ_BR_TIMER_REGISTER+2, value: w1closeVal!)
            
-           DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
+           DispatchQueue.main.asyncAfter(deadline: .now() + 1.50) {
                self.getLagoonSetpoints()
            }
         }
@@ -346,13 +346,13 @@ class WaterQualitySettingsViewController: UIViewController, UITextFieldDelegate 
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_ORP_TIMER_REGISTER, value: oprDelayTimerSP!)
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_PH_TIMER_REGISTER, value: phDelayTimerSP!)
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_TDS_TIMER_REGISTER, value: tdsDelayTimerSP!)
-           CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_BROMINATOR_TIMEOUT_REGISTER, value: brominatorTimeoutSP!)
+           CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: LAKE_WQ_BROMINATOR_TIMEOUT_REGISTER, value: brominatorTimeoutSP!)
            
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_BR_TIMER_REGISTER, value: w1openVal!)
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_BR_TIMER_REGISTER+1, value: w1doseVal!)
            CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: WQ_BR_TIMER_REGISTER+2, value: w1closeVal!)
            
-           DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
+           DispatchQueue.main.asyncAfter(deadline: .now() + 1.50) {
                self.getLakeSetpoints()
            }
         }

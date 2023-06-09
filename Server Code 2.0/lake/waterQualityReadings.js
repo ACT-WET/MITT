@@ -10,24 +10,29 @@ function waterQualityWrapper(){
   var wq1TDS;
   var wq1BR;
 
-  var dwq1PH;
-  var dwq1ORP;
-  var dwq1TDS;
-  var dwq1BR;
+  var swq1PH;
+  var swq1ORP;
+  var swq1TDS;
+  var swq1BR;
 
-  if (ATALPLCConnected){
-    // if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
-    atalplc_client.readHoldingRegister(300, 2, function(resp){
+  var gwq1PH;
+  var gwq1ORP;
+  var gwq1TDS;
+  var gwq1BR;
+
+  if (PLCConnected){
+   if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
+    plc_client.readHoldingRegister(300, 2, function(resp){
 
       wq1PH =  parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
       
-      atalplc_client.readHoldingRegister(310, 2, function(resp){
+      plc_client.readHoldingRegister(310, 2, function(resp){
         wq1ORP = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
 
-        atalplc_client.readHoldingRegister(320, 2, function(resp){
+        plc_client.readHoldingRegister(320, 2, function(resp){
           wq1TDS = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
 
-          atalplc_client.readCoils(332,1,function(resp){
+          plc_client.readCoils(332,1,function(resp){
             wq1BR= (resp.coils[0]) ? 1 : 0;
 
             //"LIVE" data
@@ -51,47 +56,8 @@ function waterQualityWrapper(){
         });
       });
     });
- // }
+  }
 } 
-
-if (ATDEPLCConnected){
-    // if ((date.getSeconds() === 1) || (date.getSeconds() === 11) || (date.getSeconds() === 21) || (date.getSeconds() === 31) || (date.getSeconds() === 41) || (date.getSeconds() === 51)) {
-    atdeplc_client.readHoldingRegister(300, 2, function(resp){
-
-      dwq1PH =  parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-      
-      atdeplc_client.readHoldingRegister(310, 2, function(resp){
-        dwq1ORP = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-
-        atdeplc_client.readHoldingRegister(320, 2, function(resp){
-          dwq1TDS = parseFloat( Number( parseFloat("" + back2Real(resp.register[0], resp.register[1]) + "").toFixed(1) ) );
-
-          atdeplc_client.readCoils(332,1,function(resp){
-            dwq1BR= (resp.coils[0]) ? 1 : 0;
-
-            //"LIVE" data
-            //sampling frequency is once every second
-            //collect and display only 15 mins worth data
-            if (dwq1_Live["ph"].length > 900) {
-              dwq1_Live["ph"].shift();
-              dwq1_Live["orp"].shift();
-              dwq1_Live["tds"].shift();
-              dwq1_Live["br"].shift();
-              dwq1_Live["date"].shift();
-            }
-
-            dwq1_Live["ph"].push(dwq1PH);
-            dwq1_Live["orp"].push(dwq1ORP);
-            dwq1_Live["tds"].push(dwq1TDS);
-            dwq1_Live["br"].push(dwq1BR);
-            dwq1_Live["date"].push(time);
-
-          }); 
-        });
-      });
-    });
- // }
-}  
 
 function back2Real(low, high){
   var fpnum=low|(high<<16);

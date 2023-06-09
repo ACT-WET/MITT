@@ -1,7 +1,7 @@
 function timeSyncWrapper(){
 
 if (PLCConnected){
-	atalplc_client.readHoldingRegister(100,5,function(resp){
+	plc_client.readHoldingRegister(100,5,function(resp){
 		time_dayofWeek = resp.register[0];
 		time_Seconds = resp.register[1];
 

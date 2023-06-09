@@ -318,7 +318,7 @@
                         <outlet property="faultBtn" destination="bRx-Hd-rPQ" id="Anp-vH-J66"/>
                         <outlet property="ipad1button" destination="OBn-D5-eUz" id="cMW-FY-v6z"/>
                         <outlet property="ipad2button" destination="dYA-UZ-Oip" id="2UL-Zd-33g"/>
-                        <outlet property="ipadDateLbl" destination="eb1-vh-PRP" id="b9U-be-Bem"/>
+                        <outlet property="ipadDateLbl" destination="eb1-vh-PRP" id="rnj-Dg-gXt"/>
                         <outlet property="ipadDesignatedAs" destination="NVU-T7-irP" id="Wcu-eL-JS5"/>
                         <outlet property="rebootMsg" destination="Uhq-fh-gzu" id="Qk5-QP-ZxF"/>
                         <outlet property="resetBtn" destination="7XX-Ug-Lwh" id="VZP-oC-Shj"/>

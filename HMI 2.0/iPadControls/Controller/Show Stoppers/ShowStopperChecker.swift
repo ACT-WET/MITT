@@ -68,17 +68,11 @@ class ShowStopperChecker: UIViewController {
         
                //Estop Show Stopper
                let estopNot_ok                 = Int(truncating: response[0] as! NSNumber)
-        
-               //Wind speed show stopper
-               let intrusion_abort_show        = Int(truncating: response[1] as! NSNumber)
                     
                //Wind speed show stopper
                let wind_speed_1_abort_show     = Int(truncating: response[2] as! NSNumber)
                //Water Level Show Stopper
-               let water_level_below_ll     = Int(truncating: response[3] as! NSNumber)
-               //SS601 Show Stopper
-               let lel_alarm_abort_show     = Int(truncating: response[4] as! NSNumber)
-               let fire_alarm_showstopper     = Int(truncating: response[5] as! NSNumber)
+               let water_level_below_ll     = Int(truncating: response[1] as! NSNumber)
         
                
                /* DO NOT CHANGE THE (showStopper: "NAME"). ALREADY SET AND CORRESPONDS TO THE CORRECT IMAGE NAME */
@@ -91,11 +85,11 @@ class ShowStopperChecker: UIViewController {
                     removeShowStopper(showStopper: "eStop")
                }
                
-               if intrusion_abort_show == FAULT_DETECTED {
-                  createShowStoppers(showStopper: "showStopperIntrusion")
-               } else {
-                    removeShowStopper(showStopper: "showStopperIntrusion")
-               }
+//               if intrusion_abort_show == FAULT_DETECTED {
+//                  createShowStoppers(showStopper: "showStopperIntrusion")
+//               } else {
+//                    removeShowStopper(showStopper: "showStopperIntrusion")
+//               }
                
                if wind_speed_1_abort_show == FAULT_DETECTED {
                    createShowStoppers(showStopper: "showStopperWind")
@@ -103,11 +97,11 @@ class ShowStopperChecker: UIViewController {
                    removeShowStopper(showStopper: "showStopperWind")
                }
                
-               if fire_alarm_showstopper == FAULT_DETECTED || lel_alarm_abort_show == FAULT_DETECTED {
-                  createShowStoppers(showStopper: "showStopperFire")
-               } else {
-                    removeShowStopper(showStopper: "showStopperFire")
-               }
+//               if fire_alarm_showstopper == FAULT_DETECTED || lel_alarm_abort_show == FAULT_DETECTED {
+//                  createShowStoppers(showStopper: "showStopperFire")
+//               } else {
+//                    removeShowStopper(showStopper: "showStopperFire")
+//               }
                
                if water_level_below_ll == FAULT_DETECTED {
                    createShowStoppers(showStopper: "showStopperWaterLevel")

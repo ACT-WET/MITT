@@ -19,7 +19,6 @@ var triggerScripts = require("./trigScripts.js");
 fs = require("fs");
 jsModbus = require("./Includes/jsModbus");
 watchDog = require("./Includes/watchDog");
-fireLog = require("./Includes/fireLog");
 watchLog = require("./Includes/watchLog");
 
 //emailReq = require("./emailClient.js");
@@ -28,9 +27,11 @@ alphaconverter = require("./Includes/alphaconverter");
 //===============  Global Parameters
 
 homeD = __dirname;       //Location of the main scripts
-proj = 'ATALDE';    //display this on WatchDog. Also extracted from the folder name on the server    
+proj = 'LAKE';    //display this on WatchDog. Also extracted from the folder name on the server    
 timerCount = [0,0,0,0,0,0,0,0,0,0];
 sysStatus = [];          //Array that is displayed on Read ErrorLog - old
+firesysStatus = [];      //Array that is displayed on Read ErrorLog - old
+firedevStatus = [];      //Array is used to compare with firesysStatus to determine change in status
 devStatus = [];          //Array is used to compare with sysStatus to determine change in status
 playStatus = [];         //Array that is displayed on Read ErrorLog - new
 manPlaying = 0;          //TimeKeeper records if SPM is playing from Manual Mode. 0 = not playing 1 = playing
@@ -51,8 +52,6 @@ spmTempData = 0;
 spmPLCData = 0;
 serviceRequired = 0;
 
-dailyShow=[];
-
 dayMode=0;
 dayModeStatus=0;
 spmRATMode = 0;      //read RAT mode status from SPM and display it on iPad
@@ -65,26 +64,33 @@ tempflameSp4=0;
 tempflameSp5=0;
 tempflameSp6=0;
 
+smpFgData1=0;
+smpFgData2=0;
+smpFgData3=0;
+
 vfd1_faultCode = [];
-vfd2_faultCode = [];
-vfd3_faultCode = [];
 
 jumpToStep_auto=0;       //auto mode case 
 jumpToStep_manual=0;     //man mode case
 autoTimeout=0;           //timekeeper code to reset jumpToStep variables   
 currentShow=0;           //variable used in timekeeper to update the global variable show
 
-ATALPLCConnected=false;      //Server - PLC Modbus connection status 
-ATALPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATAL PLC 
-
-ATDEPLCConnected=false;      //Server - PLC Modbus connection status 
-ATDEPLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATDE PLC 
+PLCConnected=false;      //Server - PLC Modbus connection status 
+PLC_Heartbeat=0;         //Counter used to check Modbus connection with the ATHO PLC 
 
 SPMConnected=false;      //Server - SPM Modbus connection status
 SPM_Heartbeat=0;         //Counter used to check Modbus connection with the SPM  
 
+BMSConnected=false;      //Server - BMS Modbus connection status 
+BMS_Heartbeat=0;         //Counter used to check Modbus connection with the BMS
+
+BenderConnected=false;
+Bndr_Heartbeat=0;
+
 timeLastCmnd = 0;
-ss401Alarm = 0;
+dailyShow=[];
+vfdfaultCodeDescription = [];
+tempfc1=0;
 //TimeKeeper records for which time last show-open command was sent to SPM, scheduler/manual
 //has to be updated by the iPad when time is synced 
 
@@ -92,6 +98,8 @@ ss401Alarm = 0;
 idleState_Counter = 0;   //used to play show0 when no show is playing
 show0_endShow = 1;      // flag used to play show0 at the end
 windHi = 0;
+windHA = 0;
+windMed = 0;
 windLo = 0;
 windNo = 0;
 
@@ -118,12 +126,10 @@ fillerShow_ok = 0;       //will be set based on the start time and end time
 //===============  User Changeable Parameters
 
 autoMan = 0;                //0 = scheduler 1 = manual
-deadMan = 0;                //1 = enabledeadMan 0 = disableDeadman 
 manPlay = 0;                //0 = user wants to stop show, SPM transforms to segment 0
 manFocus = 1;            //Denotes what playlist is in focus on user's iPad. betaBuffer is generated using this variable
 
 // ===============  Water Quality
-dwq1_Live = {"orp" : [], "ph" : [], "tds" :[], "br" : [], "date" : []};
 wq1_Live = {"orp" : [], "ph" : [], "tds" :[], "br" : [], "date" : []};
 sysData  = {"data" : [], "date" : []};
 scanStatus = {"done":true , "progress": {"numShows": 0, "currentShow": 0, "numTestShows": 0, "currentTestShow":0}};
@@ -137,32 +143,20 @@ runOnceOnly = 1; //timeSync.js
 filtrationPump_Status = 0; //1 - pump fault, 0 - good
 
 //==================== Modbus Connection
-//let ATAL_PLC_IP_ADDRESS            = "10.0.4.231"
-//let ATDE_PLC_IP_ADDRESS            = "10.0.4.230"
-//let SERVER_IP_ADDRESS              = "10.0.4.2"
 
-atalplc_client = jsModbus.createTCPClient(502,'10.0.4.231',function(err){
+
+plc_client = jsModbus.createTCPClient(502,'10.0.4.235',function(err){
     if(err){
-        watchDog.eventLog(' ATAL PLC Modbus Connection Failed');
-        ATALPLCConnected=false;
+        watchDog.eventLog(' PLC Modbus Connection Failed');
+        PLCConnected=false;
     }
     else{  
-        watchDog.eventLog(' ATAL PLC Modbus Connection Successful');
-        ATALPLCConnected=true;
+        watchDog.eventLog(' PLC Modbus Connection Successful');
+        PLCConnected=true;
     }
 });
 
-atdeplc_client = jsModbus.createTCPClient(502,'10.0.4.230',function(err){
-    if(err){
-        watchDog.eventLog(' ATDE PLC Modbus Connection Failed');
-        ATDEPLCConnected=false;
-    }
-    else{  
-        watchDog.eventLog(' ATDE PLC Modbus Connection Successful');
-        ATDEPLCConnected=true;
-    }
-});
-spm_client = jsModbus.createTCPClient(502,'10.0.4.201',function(err){
+spm_client = jsModbus.createTCPClient(502,'10.0.4.202',function(err){
     if(err){
         watchDog.eventLog('SPM Modbus Connection Failed');
         SPMConnected=false; 
@@ -187,10 +181,9 @@ for(var f=1;f<5;f++){
 }
 
 timetable=riskyParse(fs.readFileSync(__dirname+'/UserFiles/timetable.txt','utf-8'),'timetable','timetableBkp',1);
+lights=riskyParse(fs.readFileSync(__dirname+'/UserFiles/lights.txt','utf-8'),'lights','lightsBkp',1);
+poollights=riskyParse(fs.readFileSync(__dirname+'/UserFiles/poollights.txt','utf-8'),'poollights','poollightsBkp',1);
 filterSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/filterSch.txt','utf-8'),'filterSch','filterSchBkp',1);
-weirPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/weirPumpSch.txt','utf-8'),'weirPumpSch','weirPumpSchBkp',1);
-wwPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/wwPumpSch.txt','utf-8'),'wwPumpSch','wwPumpSchBkp',1);
-windScalingData=riskyParse(fs.readFileSync(__dirname+'/UserFiles/windScalingData.txt','utf-8'),'windScalingData','windScalingDataBkp',1);
 
 fillerShowSch = riskyParse(fs.readFileSync(__dirname+'/UserFiles/fillerShowSch.txt','utf-8'),'fillerShowSch','fillerShowSchBkp',1);
 fillerShow=riskyParse(fs.readFileSync(__dirname+'/UserFiles/fillerShow.txt','utf-8'),'fillerShow','fillerShowBkp',1);
@@ -199,11 +192,6 @@ bwData.SchBWStatus = 0;
 
 playMode_init = riskyParse(fs.readFileSync(__dirname+'/UserFiles/playMode.txt','utf-8'),'playMode','playModeBkp',1);
 
-//Deluge
-deldispPumpSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/delugeSch.txt','utf-8'),'delugeSch','delugeSchBkp',1);
-delugefilterSch=riskyParse(fs.readFileSync(__dirname+'/UserFiles/delugefilter.txt','utf-8'),'delugefilter','delugefilterBkp',1);
-delugebwData=riskyParse(fs.readFileSync(__dirname+'/UserFiles/delugebackwash.txt','utf-8'),'delugebackwash','delugebackwashBkp',1);
-delugebwData.SchBWStatus = 0;
 
 if (playMode_init.autoMan !== undefined){
     autoMan = playMode_init.autoMan; // user changeable. 0=scheduler 1=manual
@@ -265,94 +253,6 @@ function onRequest(request, response){
                 response.writeHead(200,{"Content-Type": "text"});
                 response.end(JSON.stringify(sendTime));
                 
-            }else if (path === '/readAlWeirPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(weirPumpSch));
-            
-            }else if (path === '/writeAlWeirPumpSch'){
-                // Write Microshooter Basin Pump Scheduler
-                response.writeHead(200,{"Content-Type": "text"});
-                setWeirSch(query);
-                response.end(JSON.stringify(weirPumpSch));
-
-            }else if (path === '/readWWPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(wwPumpSch));
-            
-            }else if (path === '/writeWWPumpSch'){
-                // Write Microshooter WaterWall Pump Scheduler
-                response.writeHead(200,{"Content-Type": "text"});
-                setWWSch(query);
-                response.end(JSON.stringify(wwPumpSch));
-
-            }else if (path === '/setDayMode'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                dayMode = query;
-                //This will set the dayMode bit'4' on the SPM 
-                watchDog.eventLog('dayMode set to  ' +dayMode);
-                if (dayMode == 1){
-                     spm_client.writeSingleRegister(1002,16,function(resp){});
-                } else {
-                     spm_client.writeSingleRegister(1002,0,function(resp){});
-                }
-            }else if (path === '/readplayStatus'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(playStatus));
-
-            }else if (path === '/setTimeLastCmnd'){
-            
-                timeLastCmnd = 0;
-                response.writeHead(200,{"Content-Type": "text"});
-                watchDog.eventLog('Time Synced from iPad');
-
-            }else if (path === '/readFillerShow'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(fillerShow));
-            
-            }else if (path === '/writeFillerShow'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setfillerShow(query);
-                response.end(JSON.stringify(fillerShow));
-
-            }else if (path === '/readAlFillerShowSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(fillerShowSch));
-            
-            }else if (path === '/writeAlFillerShowSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setFillerShowSch(query);
-                response.end(JSON.stringify(fillerShowSch));
-
-            }else if (path === '/readAlFilterSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(filterSch));
-            
-            }else if (path === '/writeAlFilterSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setFilterPump(query);
-                response.end(JSON.stringify(filterSch));
-            
-            }else if (path === '/readDelugeFilterPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(delugefilterSch));
-            
-            }else if (path === '/writeDelugeFilterPumpSch'){
-            
-                response.writeHead(200,{"Content-Type": "text"});
-                setDelugeFilterPump(query);
-                response.end(JSON.stringify(delugefilterSch));
-            
             }else if (path === '/readShowList'){
                 dailyShow=[];
                 response.writeHead(200,{"Content-Type": "text"});
@@ -386,7 +286,7 @@ function onRequest(request, response){
                         if (isNaN(sunday[i+1])){//playlist
                             var pn=parseInt(sunday[i+1].replace(/^\D+/g,''));
                             //watchDog.eventLog("PLAYLIST Number     "+pn); 
-                            var showName = "PLAYLIST  " + pn+1;
+                            var showName = "PLAYLIST  " + pn;
                         } else {
                             var showName = shows[sunday[i+1]].name;
                             //watchDog.eventLog("Sunday Name is "+showName);
@@ -397,51 +297,110 @@ function onRequest(request, response){
                 } 
                 response.end(JSON.stringify(dailyShow));
             
-            }else if (path === '/readDelugeDispPumpSch'){
+            }else if (path === '/readplayStatus'){
             
                 response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(deldispPumpSch));
+                response.end(JSON.stringify(playStatus));
+
+            }else if (path === '/setTimeLastCmnd'){
             
-            }else if (path === '/writeDelugeDispPumpSch'){
+                timeLastCmnd = 0;
+                response.writeHead(200,{"Content-Type": "text"});
+                watchDog.eventLog('Time Last Cmd Set to 0');
+
+            }else if (path === '/readLakeFillerShow'){
             
                 response.writeHead(200,{"Content-Type": "text"});
-                setDelugeDispPump(query);
-                response.end(JSON.stringify(deldispPumpSch));
+                response.end(JSON.stringify(fillerShow));
+            
+            }else if (path === '/writeLakeFillerShow'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                setfillerShow(query);
+                response.end(JSON.stringify(fillerShow));
+
+            }else if (path === '/readLakeFillerShowSch'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                response.end(JSON.stringify(fillerShowSch));
+            
+            }else if (path === '/writeLakeFillerShowSch'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                setFillerShowSch(query);
+                response.end(JSON.stringify(fillerShowSch));
+
+            }else if (path === '/readLakeFilterSch'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                response.end(JSON.stringify(filterSch));
             
             }else if (path === '/WQ1_Live'){
             
                 response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(wq1_Live));   
-
-            }else if (path === '/DWQ1_Live'){
+                response.end(JSON.stringify(wq1_Live));
+            
+            }else if (path === '/writeLakeFilterSch'){
             
                 response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(dwq1_Live));   
-
-            }else if (path === '/readABW'){
+                setFilterPump(query);
+                response.end(JSON.stringify(filterSch));
+            
+            }else if (path === '/readBW'){
             
                 response.writeHead(200,{"Content-Type": "text"});
                 response.end(JSON.stringify(bwData));
 
-            }else if (path === '/writeABW'){
+            }else if (path === '/writeBoolPLC'){
+            
+                //watchDog.eventLog('BW Query from ipad');
+                response.writeHead(200,{"Content-Type": "text"});
+                setBoolPLC(query);
+                response.end();    
+
+            }else if (path === '/writeIntPLC'){
+            
+                //watchDog.eventLog('BW Query from ipad');
+                response.writeHead(200,{"Content-Type": "text"});
+                setIntPLC(query);
+                response.end();    
+
+            }else if (path === '/writeRealPLC'){
+            
+                //watchDog.eventLog('BW Query from ipad');
+                response.writeHead(200,{"Content-Type": "text"});
+                setRealPLC(query);
+                response.end();    
+
+            }else if (path === '/writeBW'){
             
                 //watchDog.eventLog('BW Query from ipad');
                 response.writeHead(200,{"Content-Type": "text"});
                 setBW(query);
                 response.end(JSON.stringify(bwData));    
 
-            }else if (path === '/readDBW'){
+            }else if (path === '/readFeatureLights'){
             
                 response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(delugebwData));
-
-            }else if (path === '/writeDBW'){
+                response.end(JSON.stringify(lights));
             
-                //watchDog.eventLog('BW Query from ipad');
+            }else if (path === '/writeFeatureLights'){
+            
                 response.writeHead(200,{"Content-Type": "text"});
-                setDBW(query);
-                response.end(JSON.stringify(delugebwData));    
-
+                setLights(query);
+                response.end(JSON.stringify(lights));
+            
+            }else if (path === '/readPoolLights'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                response.end(JSON.stringify(poollights));
+            
+            }else if (path === '/writePoolLights'){
+            
+                response.writeHead(200,{"Content-Type": "text"});
+                setPoolLights(query);
+                response.end(JSON.stringify(poollights));
+            
             }else if (path === '/readScheduler'){
 
                 var z = parseInt(query, 10);
@@ -573,17 +532,6 @@ function onRequest(request, response){
                 response.end(JSON.stringify(success));
                 success = null;
 
-            }else if (path === '/readWindScalingData'){
-
-                response.writeHead(200,{"Content-Type": "text"});
-                response.end(JSON.stringify(windScalingData));
-
-            }else if (path === '/writeWindScalingData'){
-
-                response.writeHead(200,{"Content-Type": "text"});
-                setWindScalingData(query);
-                response.end(JSON.stringify(windScalingData));
-
             }else if (path === '/saveSettings'){
 
                 parsedData = querystring.parse(query);
@@ -673,7 +621,7 @@ function onRequest(request, response){
                     '<strong>' + proj.toUpperCase() + '</strong>' + '<input type=\'button\' onclick=\"location.href=\'/debug\';\" value=\'Refresh\' /><br>'+
                     current_time + '<br><br>' +
 
-                    '<br><strong>' + (autoMan === 1 ? 'Manual/Hand </strong>Mode' : 'Auto/Schedule </strong>Mode') +
+                    '<br>' + 'Auto(0)/Hand(1)/OFF(2): ' + autoMan +
                     '<br>' + (playing === 1 ? 'Playing: ' : 'Last Played: ') +  (show < shows.length ? shows[show].name : 'Must Show Scan! Show ' + show + ' is not in show.txt')+
                     '<br>' + 'Last Time: ' + (deflate === 'nothing' ? '---' : deflate) +
                     '<br>' + 'Next Time: ' + (nxtTime === 0 ? '---' : nxtTime) + 
@@ -682,12 +630,10 @@ function onRequest(request, response){
                     '<br>' + 'Show Stopping Condition: ' + showStopper +
                     '<br>' + 'RATMODE Status: ' + Boolean(spmRATMode) +
                     '<br>' +
-
-                    '<br>ATAL PLC-MB? <strong>'+atalplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'ATAL PLC Test\' />'+
-                    '<br>ATDE PLC-MB? <strong>'+atdeplc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcDTest\';\" value=\'ATDE PLC Test\' />'+
+                    '<br>PLC-MB? <strong>'+plc_client.isConnected()+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/plcTest\';\" value=\'PLC Test\' />'+
+                    //'<br>BNDR-MB? <strong>'+Boolean(BenderConnected)+'</strong>' + '<input type=\'button\' onclick=\"location.href=\'/benderTest\';\" value=\'BENDER Test\' />'+
                     '<br>SPM-MB? <strong>'+spm_client.isConnected()+'</strong>'+
                     '<br>' +
-
                     '<br><input type=\'button\' onclick=\"location.href=\'/startShowScanner\';\" value=\'ScanSPMShows\' />' +
                     '<input type=\'button\' onclick=\"location.href=\'/showScannerStatus\';\" value=\'ScanStatus\' /><br>' +
 
@@ -786,66 +732,6 @@ function onRequest(request, response){
 
                 },query);
             
-            }else if (path === '/mbDReadMW'){
-
-                mbDReadMW(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbDReadM'){
-
-                mbDReadM(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbDReadReal'){
-
-                mbDReadReal(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbDWriteMW'){
-
-                query = querystring.parse(query);
-
-                mbDWriteMW(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/mbDWriteM'){
-
-                query = querystring.parse(query);
-
-                mbDWriteM(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            } else if (path === '/mbDWriteReal'){
-
-                query = querystring.parse(query);
-
-                mbDWriteReal(function(data){
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(data);
-                },query);
-
-            }else if (path === '/plcDTest'){
-
-                fs.readFile(__dirname+'/plcDTest.html','utf-8',function(err,data){
-
-                    if(err){throw err;}
-                    var dataString = data.toString();
-
-                    response.writeHead(200,{"Content-Type": "text/html"});
-                    response.end(dataString);
-
-                });
-
             }else if (path === '/userfilesIndex'){
 
                 if(query === "W3trocks!"){
@@ -897,8 +783,8 @@ function onRequest(request, response){
                     '<br>' +
                     '<br>' + 'Show Stopping Condition: ' + showStopper +
                     '<br>' +
-                    '<br>ATALPLC-MB? <strong>'+atalplc_client.isConnected()+'</strong>' +
-                    '<br>ATDEPLC-MB? <strong>'+atdeplc_client.isConnected()+'</strong>' +
+                    '<br>PLC-MB? <strong>'+plc_client.isConnected()+'</strong>' +
+                    '<br>SPM-MB? <strong>'+spm_client.isConnected()+'</strong>'+
                     '<br><input type=\'button\' onclick=\"location.href=\'/readLog_2\';\" value=\'Read Log\' /><br>' +
                     '<br>');
 
@@ -939,6 +825,29 @@ function onRequest(request, response){
 
 function back2Real(low, high){
 
+    var fpnum=low|(high<<16);
+    var negative=(fpnum>>31)&1;
+    var exponent=(fpnum>>23)&0xFF;
+    var mantissa=(fpnum&0x7FFFFF);
+    
+    if(exponent==255){
+     
+        if(mantissa!==0)return Number.NaN;
+        return (negative) ? Number.NEGATIVE_INFINITY :Number.POSITIVE_INFINITY;
+    
+    }
+    
+    if(exponent===0)exponent++;
+    else mantissa|=0x800000;
+    
+    exponent-=127;
+    var ret=(mantissa*1.0/0x800000)*Math.pow(2,exponent);
+    
+    if(negative)ret=-ret;
+    return ret;
+}
+
+function back2Float(low, high){
     var fpnum=low|(high<<16);
     var negative=(fpnum>>31)&1;
     var exponent=(fpnum>>23)&0xFF;
@@ -1035,7 +944,7 @@ function real2Back(value){
 
 function mbReadM(pasd,query){
 
-    atalplc_client.readCoils(parseInt(query, 10),1,function(resp){
+    plc_client.readCoils(parseInt(query, 10),1,function(resp){
 
         resp = "<strong>Reading " + resp.coils[0] + "</strong> at <em>%M</em> " + query;
         pasd(resp);
@@ -1045,7 +954,7 @@ function mbReadM(pasd,query){
 
 function mbReadMW(pasd,query){
 
-    atalplc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
+    plc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
 
         resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
         pasd(resp);
@@ -1055,7 +964,7 @@ function mbReadMW(pasd,query){
 
 function mbReadReal(pasd,query){
 
-    atalplc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
+    plc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
 
         resp = "<strong>Reading " + back2Real(resp.register[0], resp.register[1]) + "</strong> at <em>%MW Real</em> " + query;
         pasd(resp);
@@ -1065,7 +974,7 @@ function mbReadReal(pasd,query){
 
 function mbWriteM(pasd,query){
 
-    atalplc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
+    plc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
 
         resp = "<strong>Wrote " + query.val + "</strong> to <em>%M</em> " + query.addr;
         pasd(resp);
@@ -1075,7 +984,7 @@ function mbWriteM(pasd,query){
 
 function mbWriteMW(pasd,query){
 
-    atalplc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
+    plc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
 
         resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW INT</em> " + query.addr;
         pasd(resp);
@@ -1087,14 +996,34 @@ function mbWriteReal(pasd,query){
 
     var realNum = real2Back(query.val);
 
-    atalplc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
+    plc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
 
-        atalplc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
+        plc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
 
             resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW Real</em> " + query.addr;
             pasd(resp);
 
         });
+    });
+}
+
+function mbReadM4W(pasd,query){
+
+    bender_client.readInputRegister(parseInt(query, 10),1,function(resp){
+
+        resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
+        pasd(resp);
+
+    });
+}
+
+function mbReadM4WReal(pasd,query){
+
+    bender_client.readInputRegister(parseInt(query, 10),2,function(resp){
+
+        resp = "<strong>Reading " + back2Float(resp.register[1], resp.register[0]) + "</strong> at <em>%M4W Real</em> " + query;
+        pasd(resp);
+
     });
 }
 
@@ -1112,70 +1041,6 @@ function mbWriteSPM(pasd,query){
     });
 }
 
-function mbDReadM(pasd,query){
-
-    atdeplc_client.readCoils(parseInt(query, 10),1,function(resp){
-
-        resp = "<strong>Reading " + resp.coils[0] + "</strong> at <em>%M</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbDReadMW(pasd,query){
-
-    atdeplc_client.readHoldingRegister(parseInt(query, 10),1,function(resp){
-
-        resp = "<strong>Reading " + resp.register[0] + "</strong> at <em>%MW INT</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbDReadReal(pasd,query){
-
-    atdeplc_client.readHoldingRegister(parseInt(query, 10),2,function(resp){
-
-        resp = "<strong>Reading " + back2Real(resp.register[0], resp.register[1]) + "</strong> at <em>%MW Real</em> " + query;
-        pasd(resp);
-
-    });
-}
-
-function mbDWriteM(pasd,query){
-
-    atdeplc_client.writeSingleCoil(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
-
-        resp = "<strong>Wrote " + query.val + "</strong> to <em>%M</em> " + query.addr;
-        pasd(resp);
-
-    });
-}
-
-function mbDWriteMW(pasd,query){
-
-    atdeplc_client.writeSingleRegister(parseInt(query.addr, 10),parseInt(query.val, 10),function(resp){
-
-        resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW INT</em> " + query.addr;
-        pasd(resp);
-
-    });
-}
-
-function mbDWriteReal(pasd,query){
-
-    var realNum = real2Back(query.val);
-
-    atdeplc_client.writeSingleRegister(parseInt(query.addr, 10), realNum[0],function(resp){
-
-        atdeplc_client.writeSingleRegister(parseInt(query.addr, 10) + 1, realNum[1],function(resp){
-
-            resp = "<strong>Wrote " + query.val + "</strong> to <em>%MW Real</em> " + query.addr;
-            pasd(resp);
-
-        });
-    });
-}
 //==================== Set User Files
 
 function setLights(query){
@@ -1193,6 +1058,23 @@ function setLights(query){
     }
 }
 
+function setPoolLights(query){
+
+    query = decodeURIComponent(query);
+    var buf = riskyParse(query,'setPoolLights');
+
+    if((buf !== 0) && (buf.length == poollights.length)) {
+        fs.writeFileSync(__dirname+'/UserFiles/poollights.txt',query,'utf-8');
+        fs.writeFileSync(__dirname+'/UserFiles/poollightsBkp.txt',query,'utf-8');
+        poollights = buf;
+    }
+    else{
+        watchDog.eventLog('Pool Lights. Bad data. No donut for you.');
+    }
+}
+
+
+
 function setProj(query){
 
     query = decodeURIComponent(query);
@@ -1205,81 +1087,6 @@ function setProj(query){
     }
     else{
         watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setStrobeLights(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setStrobeLights');
-
-    if((buf !== 0) && (buf.length == strobelights.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/strobelights.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/storbelightsBkp.txt',query,'utf-8');
-        strobelights = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setRunnelSch(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setRunnelSch');
-
-    if((buf !== 0) && (buf.length == runnelSch.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/runnelSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/runnelSchBkp.txt',query,'utf-8');
-        runnelSch = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setPixieSch(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setPixieSch');
-
-    if((buf !== 0) && (buf.length == runnelLightSch.length)) {
-        fs.writeFileSync(__dirname+'/UserFiles/runnelLightSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/runnelLightSchBkp.txt',query,'utf-8');
-        runnelLightSch = buf;
-    }
-    else{
-        watchDog.eventLog('Lights. Bad data. No donut for you.');
-    }
-}
-
-function setWeirSch(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setWeirSch');
-
-    if((buf !== 0) && (buf.length == weirPumpSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/weirPumpSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/weirPumpSchBkp.txt',query,'utf-8');
-        weirPumpSch = buf;
-    }
-    else{
-        watchDog.eventLog('WeirPump Sch. Bad data. No donut for you.');
-    }
-}
-
-function setWWSch(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setWWSch');
-
-    if((buf !== 0) && (buf.length == wwPumpSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/wwPumpSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/wwPumpSchBkp.txt',query,'utf-8');
-        wwPumpSch = buf;
-    }
-    else{
-        watchDog.eventLog('WaterWall Sch. Bad data. No donut for you.');
     }
 }
 
@@ -1298,35 +1105,7 @@ function setFilterPump(query){
     }
 }
 
-function setDelugeFilterPump(query){
 
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setDelugeFilterPump');
-
-    if((buf !== 0) && (buf.length == delugefilterSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/delugefilterSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/delugefilterSchBkp.txt',query,'utf-8');
-        delugefilterSch = buf;
-    }
-    else{
-        watchDog.eventLog('Deluge Filter Sch. Bad data. No donut for you.');
-    }
-}
-
-function setDelugeDispPump(query){
-
-    query = decodeURIComponent(query);
-    var buf = riskyParse(query,'setDelugeDispPump');
-
-    if((buf !== 0) && (buf.length == deldispPumpSch.length)){
-        fs.writeFileSync(__dirname+'/UserFiles/delugeSch.txt',query,'utf-8');
-        fs.writeFileSync(__dirname+'/UserFiles/delugeSchBkp.txt',query,'utf-8');
-        deldispPumpSch = buf;
-    }
-    else{
-        watchDog.eventLog('Display Pumps Sch. Bad data. No donut for you.');
-    }
-}
 function setBW(query){
 
     //watchDog.eventLog('query 1st :' +query);
@@ -1355,59 +1134,61 @@ function setBW(query){
     }
 }
 
-function setDBW(query){
+function setBoolPLC(query){
 
     //watchDog.eventLog('query 1st :' +query);
     query = decodeURIComponent(query);
     query = JSON.parse(query);
     //watchDog.eventLog('query 2nd :' +query);
-    var tempBWdata = delugebwData;
-    //watchDog.eventLog('query length :' +query.length +' :: ' +query[0] +' :: ' +query[1] +' :: ' +query[2]);
+    watchDog.eventLog('Bool query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
 
     if (query.length === 2){
         //tempBWdata.duration = query[0];
-        tempBWdata.schDay = query[0];
-        tempBWdata.schTime = query[1];
-        //watchDog.eventLog('tempBWdata.schTime:' +tempBWdata.schTime);
-
-        var buf = riskyParse(tempBWdata,'setSBW');
-
-        if(buf !== 0){
-            fs.writeFileSync(__dirname+'/UserFiles/delugebackwash.txt',tempBWdata,'utf-8');
-            fs.writeFileSync(__dirname+'/UserFiles/delugebackwashBkp.txt',tempBWdata,'utf-8');
-            delugebwData = buf;
-        }
+        plc_client.writeSingleCoil(query[0],query[1],function(resp){});
     }
     else{
-        watchDog.eventLog('Deluge BW. Bad data. No donut for you.');
+        watchDog.eventLog('Write PLC Bool error. Bad data. No donut for you.');
     }
 }
 
-function setPurge(query){
+function setIntPLC(query){
 
     //watchDog.eventLog('query 1st :' +query);
     query = decodeURIComponent(query);
     query = JSON.parse(query);
     //watchDog.eventLog('query 2nd :' +query);
-    var tempBWdata = purgeData;
-    //watchDog.eventLog('query length :' +query.length +' :: ' +query[0] +' :: ' +query[1] +' :: ' +query[2]);
+    watchDog.eventLog('Int query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
 
     if (query.length === 2){
         //tempBWdata.duration = query[0];
-        tempBWdata.eodschTime = query[0];
-        tempBWdata.bodschTime = query[1];
-        //watchDog.eventLog('tempBWdata.schTime:' +tempBWdata.schTime);
-
-        var buf = riskyParse(tempBWdata,'setPurge');
-
-        if(buf !== 0){
-            fs.writeFileSync(__dirname+'/UserFiles/purgeSch.txt',tempBWdata,'utf-8');
-            fs.writeFileSync(__dirname+'/UserFiles/purgeSchBkp.txt',tempBWdata,'utf-8');
-            purgeData = buf;
-        }
+        plc_client.writeSingleRegister(query[0],query[1],function(resp){});
     }
     else{
-        watchDog.eventLog('Purge. Bad data. No donut for you.');
+        watchDog.eventLog('Write PLC Int error. Bad data. No donut for you.');
+    }
+}
+
+function setRealPLC(query){
+
+    //watchDog.eventLog('query 1st :' +query);
+    query = decodeURIComponent(query);
+    query = JSON.parse(query);
+    //watchDog.eventLog('query 2nd :' +query);
+    watchDog.eventLog('Real query length :' +query.length +' :: ' +query[0] +' :: ' +query[1]);
+
+    if (query.length === 2){
+        //tempBWdata.duration = query[0];
+        var realNum = real2Back(query[1]);
+
+        plc_client.writeSingleRegister(parseInt(query[0], 10), realNum[0],function(resp){
+
+            plc_client.writeSingleRegister(parseInt(query[0], 10) + 1, realNum[1],function(resp){
+
+            });
+        });
+    }
+    else{
+        watchDog.eventLog('Write PLC Real error. Bad data. No donut for you.');
     }
 }
 
@@ -1443,7 +1224,7 @@ function setFillerShowSch(query){
         fillerShowSch = buf;
     }
     else{
-        watchDog.eventLog('FillerShow Sch. Bad data. No donut for you.' +buf.length +' ' +fillerShowSch.length);
+        watchDog.eventLog('FillerShow Sch. Bad data. No donut for you.' +buf.length +' ' +fillerShow.length);
     }
 }
 
@@ -1802,7 +1583,7 @@ function setWindScalingData(query){
 }
 
 //==================== Scheduled Interrupts
-
+setInterval(function(){},1000); 
 //Timer Trial
 setTimeout(function(){
 

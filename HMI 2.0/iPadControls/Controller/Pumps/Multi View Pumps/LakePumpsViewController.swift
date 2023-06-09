@@ -1,5 +1,5 @@
 //
-//  AlightPumpsViewController.swift
+//  LakePumpsViewController.swift
 //  iPadControls
 //
 //  Created by Rakesh Raveendra on 12/23/22.
@@ -182,7 +182,7 @@ class LakePumpsViewController: UIViewController {
     }
 
     @IBAction func redirectToPumpScheduler(_ sender: UIButton) {
-        let schedulerShowVC = UIStoryboard.init(name: "pumps", bundle: nil).instantiateViewController(withIdentifier: "pumpAlightSchedulerViewController") as! LakePumpsSchedulerViewController
+        let schedulerShowVC = UIStoryboard.init(name: "pumps", bundle: nil).instantiateViewController(withIdentifier: "pumpLakeSchedulerViewController") as! LakePumpsSchedulerViewController
         schedulerShowVC.schedulerTag = sender.tag
         screen_Name = "pumps"
         navigationController?.pushViewController(schedulerShowVC, animated: true)

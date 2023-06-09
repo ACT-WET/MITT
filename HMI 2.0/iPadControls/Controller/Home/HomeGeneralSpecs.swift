@@ -45,7 +45,7 @@ let iPAD2_IP_ADDRESS               = "192.168.1.12"
 let PLC_PORT:Int32                 = 502
 //For Site only
 let MITT_LAG_PLC_IP_ADDRESS        = "10.0.4.230"
-let MITT_LA_PLC_IP_ADDRESS         = "10.0.4.231"
+let MITT_LA_PLC_IP_ADDRESS         = "10.0.4.235"
 let SERVER_IP_ADDRESS              = "10.0.4.2"
 let SERVER_IP2_ADDRESS             = "10.0.4.3"
 let SPM_IP_ADDRESS                 = "10.0.4.201"
@@ -67,21 +67,22 @@ let SPM_IP_ADDRESS                 = "10.0.4.201"
 let HTTP_PASS                       = "http://wet_act:A3139gg1121@"
 
 let READ_SHOWS_PATH                = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readShows"
-let READ_LAKE_SHOWS_PATH                = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readShows"
+let READ_LAKE_SHOWS_PATH           = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readShows"
 let ERROR_LOG_FTP_PATH             = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readErrorLog"
 let STATUS_LOG_FTP_PATH            = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readStatusLog"
+let LAKE_STATUS_LOG_FTP_PATH       = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readStatusLog"
 
 let READ_SHOW_PLAY_STAT            = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readplayStatus"
-let READ_LAKE_SHOW_PLAY_STAT            = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readplayStatus"
+let READ_LAKE_SHOW_PLAY_STAT       = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readplayStatus"
 
 let READ_TIME_TABLE                = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readTimeTable"
-let READ_LAKE_TIME_TABLE                = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readTimeTable"
+let READ_LAKE_TIME_TABLE           = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readTimeTable"
 
 let RESET_TIME_LAST_COMMAND        = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/setTimeLastCmnd"
 let RESET_TIME_LAST2_COMMAND        = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/setTimeLastCmnd"
 
 let SERVER_TIME_PATH               = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readServerTime"
-let SERVER2_TIME_PATH               = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readServerTime"
+let SERVER2_TIME_PATH              = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readServerTime"
 
 let READ_AUTOMAN_PATH              = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/autoMan"
 
@@ -102,18 +103,18 @@ let GET_DROUGHTMODE_HTTP_PATH            = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):808
 let SET_DROUGHTMODE_HTTP_PATH            = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/writeDroughtMode"
 
 let SYS_STATUS_LOGPATH             = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readLogClient"
-let SYS_CLEAR_LOGPATH             = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/clearLogClient"
+let SYS_CLEAR_LOGPATH              = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/clearLogClient"
 
 let READ_SHOWSCAN_STATUS           = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/showScannerStatus"
-let READ_LAKE_SHOWSCAN_STATUS           = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/showScannerStatus"
+let READ_LAKE_SHOWSCAN_STATUS      = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/showScannerStatus"
 
 let WRITE_SHW_CMD                = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readShowList?"
 let WRITE_LAKE_SHW_CMD           = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readShowList?"
 
 let GET_FILLER_SHOWSCH_STATE_HTTP_PATH  = "readFillerShowSch"
 let SET_FILLER_SHOWSCH_STATE_HTTP_PATH  = "writeFillerShowSch"
-let GET_LAKE_FILLER_SHOWSCH_STATE_HTTP_PATH  = "readFillerShowSch"
-let SET_LAKE_FILLER_SHOWSCH_STATE_HTTP_PATH  = "writeFillerShowSch"
+let GET_LAKE_FILLER_SHOWSCH_STATE_HTTP_PATH  = "readLakeFillerShowSch"
+let SET_LAKE_FILLER_SHOWSCH_STATE_HTTP_PATH  = "writeLakeFillerShowSch"
 /***************************************************************************
  * Section  : SSH Credentials
  * Comments : Credentials to access the server
@@ -248,16 +249,16 @@ let LAKE_SCREENS = [
     
     "playlist",
     "scheduler",
-    "systemstatus",
+    "lights",
     "WQMultiple",
-    "pumps",
     "",
     "",
+    "wind",
+    "systemstatus",
     "",
-    "waterLevel",
-    "intrusion",
+    "",
     "filtration",
-    "supervisory",
+    "",
     "fillerShows",
     "",
     "",

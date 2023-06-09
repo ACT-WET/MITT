@@ -1353,7 +1353,7 @@
         <!--PUMPS-->
         <scene sceneID="lCo-Tf-tUW">
             <objects>
-                <viewController storyboardIdentifier="pumpsAlightViewController" title="PUMPS" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pp3-Qy-TPY" customClass="LakePumpsViewController" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pumpsLakeViewController" title="PUMPS" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pp3-Qy-TPY" customClass="LakePumpsViewController" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qOq-tA-DtF"/>
                         <viewControllerLayoutGuide type="bottom" id="Chs-DX-grF"/>

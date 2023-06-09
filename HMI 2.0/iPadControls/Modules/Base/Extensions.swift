@@ -130,7 +130,7 @@ extension UIViewController {
            }
        }
     
-    @objc public func checkAlScanStatus(){
+    @objc public func checkLakeScanStatus(){
         let httpComm = HTTPComm()
         httpComm.httpGetResponseFromPath(url: READ_LAKE_SHOWSCAN_STATUS){ (response) in
             
@@ -145,12 +145,12 @@ extension UIViewController {
             let totalNumOfTestShows = scanData?["numTestShows"] as? Int
             let currentTestShow = scanData?["currentTestShow"] as? Int
             if (state == 1){
-                UserDefaults.standard.set("0", forKey: "alscanningShows")
+                UserDefaults.standard.set("0", forKey: "lakescanningShows")
             } else {
-                UserDefaults.standard.set(totalNumOfShows, forKey: "alnumberOfSPMShows")
-                UserDefaults.standard.set(currentShow, forKey: "alshowScanned")
-                UserDefaults.standard.set(totalNumOfTestShows, forKey: "alnumberOfSPMTestShows")
-                UserDefaults.standard.set(currentTestShow, forKey: "altestshowScanned")
+                UserDefaults.standard.set(totalNumOfShows, forKey: "lakenumberOfSPMShows")
+                UserDefaults.standard.set(currentShow, forKey: "lakeshowScanned")
+                UserDefaults.standard.set(totalNumOfTestShows, forKey: "lakenumberOfSPMTestShows")
+                UserDefaults.standard.set(currentTestShow, forKey: "laketestshowScanned")
             }
         }
     }
@@ -230,7 +230,7 @@ extension UIViewController {
             if let specialSchedule3 = responseArray[2] as? [String : Int] {
                 self.checkSpecialSchedule(response: specialSchedule3, month: month, day: day, currentDateInSchedule: &currentDateInSpecialSchedule3)
             }
-            UserDefaults.standard.set(1, forKey: "AlCurrentSchedule")
+            UserDefaults.standard.set(1, forKey: "lakeCurrentSchedule")
             if currentDateInSpecialSchedule1 {
                currentSchedule = 2
             } else if currentDateInSpecialSchedule2 {
@@ -243,7 +243,7 @@ extension UIViewController {
 
             httpComm.httpGet(url: "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readScheduler\(currentSchedule)?") { (response, success) in
                 if success == true {
-                    UserDefaults.standard.set(currentSchedule, forKey: "AlCurrentSchedule")
+                    UserDefaults.standard.set(currentSchedule, forKey: "lakeCurrentSchedule")
                 }
             }
         }

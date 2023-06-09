@@ -369,7 +369,7 @@
         <!--SCHEDULER-->
         <scene sceneID="YPL-ji-zvU">
             <objects>
-                <viewController storyboardIdentifier="schedulerAlightViewController" title="SCHEDULER" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p07-nV-V5u" customClass="ACTSchedulerAlightViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="schedulerLakeViewController" title="SCHEDULER" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p07-nV-V5u" customClass="ACTSchedulerLakeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aRH-QI-fsQ"/>
                         <viewControllerLayoutGuide type="bottom" id="5Id-4N-1w1"/>
@@ -687,10 +687,10 @@
             </objects>
             <point key="canvasLocation" x="-1472" y="-2455"/>
         </scene>
-        <!--Alight Show Stopper Checker-->
+        <!--Lake Show Stopper Checker-->
         <scene sceneID="iwF-n3-3X4">
             <objects>
-                <viewController id="Agz-67-DhD" customClass="AlightShowStopperChecker" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Agz-67-DhD" customClass="LakeShowStopperChecker" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gbs-Fb-7IL"/>
                         <viewControllerLayoutGuide type="bottom" id="qGH-US-oNp"/>
@@ -720,7 +720,7 @@
         <!--SCUEDULE LIST-->
         <scene sceneID="N2F-OW-mfh">
             <objects>
-                <viewController title="SCUEDULE LIST" useStoryboardIdentifierAsRestorationIdentifier="YES" id="egH-Qp-ZUd" sceneMemberID="viewController">
+                <viewController title="SCUEDULE LIST" useStoryboardIdentifierAsRestorationIdentifier="YES" id="egH-Qp-ZUd" customClass="LakeShowScheduleListViewController" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jP8-1V-VMP"/>
                         <viewControllerLayoutGuide type="bottom" id="wmy-4T-zPg"/>

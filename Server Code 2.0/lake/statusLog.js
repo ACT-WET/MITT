@@ -13,205 +13,144 @@ function statusLogWrapper(){
     var status_LIGHTS = [];
     var fault_ESTOP = [];
     var fault_INTRUSION = [];
-    var fault_FOG = [];
     var status_AirPressure = [];
     var status_Ethernet = [];
     var fault_ShowStoppers = [];
-    var status_Fire = [];
+    var status_GasPressure = [];
+    var date = new Date();   
 
-    
-if (ATALPLCConnected){
+if (PLCConnected){
 
-     atalplc_client.readHoldingRegister(1006,71,function(resp){
-      if (resp != undefined && resp != null){
-
-        //P201
-        if(checkUpdatedValue(vfd1_faultCode[0],resp.register[0],201)){
-           vfd1_faultCode[0] = resp.register[0];
-        }
-
-        //P202
-        if(checkUpdatedValue(vfd1_faultCode[1],resp.register[14],202)){
-           vfd1_faultCode[1] = resp.register[14];
-        }
-
-        //P203
-        if(checkUpdatedValue(vfd1_faultCode[2],resp.register[28],203)){
-           vfd1_faultCode[2] = resp.register[28];
-        }
-
-        //P204
-        if(checkUpdatedValue(vfd1_faultCode[3],resp.register[42],204)){
-           vfd1_faultCode[3] = resp.register[42];
-        }
-
-        //P205
-        if(checkUpdatedValue(vfd1_faultCode[4],resp.register[56],205)){
-           vfd1_faultCode[4] = resp.register[56];
-        }
-
-        //P206
-        if(checkUpdatedValue(vfd1_faultCode[5],resp.register[70],206)){
-           vfd1_faultCode[5] = resp.register[70];
-        }
-
-      }      
-    });
-
-    atalplc_client.readCoils(935,1,function(resp){
+     //VFD-301
+    plc_client.readHoldingRegister(1006,1,function(resp){
         
         if (resp != undefined && resp != null){
-            status_Fire.push(resp.coils[0] ? resp.coils[0] : 0); // SS Alarm
-            
-            if (ss401Alarm !== resp.coils[0]){
-
-               ss401Alarm = resp.coils[0];
-               atalplc_client.readHoldingRegister(940,4,function(resp){
-                 if (resp != undefined && resp != null){
-                   watchDog.eventLog("SS 401 Value is ::   "+ss401Alarm);
-                   watchDog.eventLog("M 940 Value is ::   "+resp.register[0]);
-                   watchDog.eventLog("M 941 Value is ::   "+resp.register[1]);
-                   watchDog.eventLog("M 942 Value is ::   "+resp.register[2]);
-                   watchDog.eventLog("M 943 Value is ::   "+resp.register[3]);
-                 }      
-               });
-               
+            vfd1_faultCode[0] = resp.register[0];
+            if (vfd1_faultCode[0]>0){ 
+                if(tempfc1 == vfd1_faultCode[0]){}else{
+                    tempfc1 = vfd1_faultCode[0];
+                    vfdfaultCodeDescription[0] = vfdCode.vfdFaultCodeAnalyzer(301,vfd1_faultCode[0]);
+                    watchDog.eventLog("VFD-301 FaultCode:  " +vfd1_faultCode[0] +" Description: "+vfdfaultCodeDescription[0]); 
+                }
+            } else {
+                vfdfaultCodeDescription[0] = "";
+                if(tempfc1 == vfd1_faultCode[0]){}else{
+                    tempfc1 = vfd1_faultCode[0];
+                    watchDog.eventLog("Resolved: VFD-301 Fault");
+                } 
             }
         }
-    });//end of first PLC modbus call
-
-    atalplc_client.readHoldingRegister(940,4,function(resp){
-      if (resp != undefined && resp != null){
-        var kv1501vc = nthBit(resp.register[0],0);
-        var kv1502vc = nthBit(resp.register[0],1);
-        var kv1503vc = nthBit(resp.register[0],2);
-        var kv1504vc = nthBit(resp.register[0],3);
-        var kv1502vo = nthBit(resp.register[0],4);
-        var kv1503vo = nthBit(resp.register[0],5);
-        var kv1502fo = nthBit(resp.register[0],6);
-        var kv1502fc = nthBit(resp.register[0],7);
-        var kv1503fo = nthBit(resp.register[0],8);
-        var kv1503fc = nthBit(resp.register[0],9);
-        var estop = nthBit(resp.register[0],10);
-        var pslFault = nthBit(resp.register[0],11);
-        var pshFault = nthBit(resp.register[0],12);
-        var lel1501abvH = nthBit(resp.register[0],13);
-        var lel1502abvH = nthBit(resp.register[0],14);
-        var lel1503abvH = nthBit(resp.register[0],15);
-
-        var lel1504abvH = nthBit(resp.register[1],0);
-        var lel1505abvH = nthBit(resp.register[1],1);
-        var intrusion = nthBit(resp.register[1],2);
-        var f1ANR = nthBit(resp.register[1],3);
-        var f1BNR = nthBit(resp.register[1],4);
-        var f2ANR = nthBit(resp.register[1],5);
-        var f2BNR = nthBit(resp.register[1],6);
-        var f1ATr = nthBit(resp.register[1],7);
-        var f1BTr = nthBit(resp.register[1],8);
-        var f2ATr = nthBit(resp.register[1],9);
-        var f2BTr = nthBit(resp.register[1],10);
-        var fs1501NF = nthBit(resp.register[1],11);
-        var fs1502NF = nthBit(resp.register[1],12);
-        var psl1401 = nthBit(resp.register[1],13);
-
-        var t1000F = nthBit(resp.register[2],0);
-        var t2000F = nthBit(resp.register[2],1);
-        var t3000F = nthBit(resp.register[2],2);
-        var t4000F = nthBit(resp.register[2],3);
-        var t1001H = nthBit(resp.register[2],4);
-        var t1002H = nthBit(resp.register[2],5);
-        var t1003H = nthBit(resp.register[2],6);
-        var t2001H = nthBit(resp.register[2],7);
-        var t2002H = nthBit(resp.register[2],8);
-        var t2003H = nthBit(resp.register[2],9);
-        var t3001H = nthBit(resp.register[2],10);
-        var t3002H = nthBit(resp.register[2],11);
-        var t3003H = nthBit(resp.register[2],12);
-        var t4001H = nthBit(resp.register[2],13);
-        var t4002H = nthBit(resp.register[2],14);
-        var t4003H = nthBit(resp.register[2],15);
-        
-        var fsh1201FS = nthBit(resp.register[3],0);
-        var fsh1202FS = nthBit(resp.register[3],1);
-        var fsh1203FS = nthBit(resp.register[3],2);
-        var fsh1204FS = nthBit(resp.register[3],3);
-
-        status_Fire.push(kv1501vc ? kv1501vc : 0); //kv1501 Valve Closed
-        status_Fire.push(kv1502vc ? kv1502vc : 0); //kv1502 Valve Closed
-        status_Fire.push(kv1503vc ? kv1503vc : 0); //kv1503 Valve Closed
-        status_Fire.push(kv1504vc ? kv1504vc : 0); //kv1504 Valve Closed
-        status_Fire.push(kv1502vo ? kv1502vo : 0); //kv1502 Valve Open
-        status_Fire.push(kv1503vo ? kv1503vo : 0); //kv1503 Valve Open
-        status_Fire.push(kv1502fo ? kv1502fo : 0); //kv1502 Fail To Open
-        status_Fire.push(kv1502fc ? kv1502fc : 0); //kv1502 Fail To Close
-        status_Fire.push(kv1503fo ? kv1503fo : 0); //kv1503 Fail To Open
-        status_Fire.push(kv1503fc ? kv1503fc : 0); //kv1503 Fail To Close
-        status_Fire.push(estop ? estop : 0); //Estop
-        status_Fire.push(pslFault ? pslFault : 0); //PSL Fault
-        status_Fire.push(pshFault ? pshFault : 0); //PSH Fault
-        status_Fire.push(lel1501abvH ? lel1501abvH : 0); //LEL 1501 Above Hi
-        status_Fire.push(lel1502abvH ? lel1502abvH : 0); //LEL 1502 Above Hi
-        status_Fire.push(lel1503abvH ? lel1503abvH : 0); //LEL 1503 Above Hi
-
-        status_Fire.push(lel1504abvH ? lel1504abvH : 0); //LEL 1504 Above Hi
-        status_Fire.push(lel1505abvH ? lel1505abvH : 0); //LEL 1505 Above Hi
-        status_Fire.push(intrusion ? intrusion : 0); //Intrusion Alarm
-        status_Fire.push(f1ANR ? f1ANR : 0); //Fan 1A Not Running
-        status_Fire.push(f1BNR ? f1BNR : 0); //Fan 1B Not Running
-        status_Fire.push(f2ANR ? f2ANR : 0); //Fan 2A Not Running
-        status_Fire.push(f2BNR ? f2BNR : 0); //Fan 2B Not Running
-        status_Fire.push(f1ATr ? f1ATr : 0); //Fan 1A Tripped
-        status_Fire.push(f1BTr ? f1BTr : 0); //Fan 1B Tripped
-        status_Fire.push(f2ATr ? f2ATr : 0); //Fan 2A Tripped
-        status_Fire.push(f2BTr ? f2BTr : 0); //Fan 2B Tripped
-        status_Fire.push(fs1501NF ? fs1501NF : 0); //FS 1501 No Flow alarm
-        status_Fire.push(fs1502NF ? fs1502NF : 0); //FS 1502 No Flow alarm
-        status_Fire.push(psl1401 ? psl1401 : 0); //PSL1401 Air Receiver Alarm
-
-        status_Fire.push(t1000F ? t1000F : 0); //Temperature 1000 Fault
-        status_Fire.push(t2000F ? t2000F : 0); //Temperature 2000 Fault
-        status_Fire.push(t3000F ? t3000F : 0); //Temperature 3000 Fault
-        status_Fire.push(t4000F ? t4000F : 0); //Temperature 4000 Fault
-        status_Fire.push(t1001H ? t1001H : 0); //Temperature 1001 High
-        status_Fire.push(t1002H ? t1002H : 0); //Temperature 1002 High
-        status_Fire.push(t1003H ? t1003H : 0); //Temperature 1003 High
-        status_Fire.push(t2001H ? t2001H : 0); //Temperature 2001 High
-        status_Fire.push(t2002H ? t2002H : 0); //Temperature 2002 High
-        status_Fire.push(t2003H ? t2003H : 0); //Temperature 2003 High
-        status_Fire.push(t3001H ? t3001H : 0); //Temperature 3001 High
-        status_Fire.push(t3002H ? t3002H : 0); //Temperature 3002 High
-        status_Fire.push(t3003H ? t3003H : 0); //Temperature 3003 High
-        status_Fire.push(t4001H ? t4001H : 0); //Temperature 4001 High
-        status_Fire.push(t4002H ? t4002H : 0); //Temperature 4002 High
-        status_Fire.push(t4003H ? t4003H : 0); //Temperature 4003 High
-
-
-        status_Fire.push(fsh1201FS ? fsh1201FS : 0); //FSH 1201 Flow Switch Alarm
-        status_Fire.push(fsh1202FS ? fsh1202FS : 0); //FSH 1202 Flow Switch Alarm
-        status_Fire.push(fsh1203FS ? fsh1203FS : 0); //FSH 1203 Flow Switch Alarm
-        status_Fire.push(fsh1204FS ? fsh1204FS : 0); //FSH 1204 Flow Switch Alarm
-        
-      }      
     });
+
     
-    atalplc_client.readCoils(0,10,function(resp){
+
+    plc_client.readCoils(0,11,function(resp1){
+        
+        if (resp1 != undefined && resp1 != null){  
+            // Show Stoppers - lake
+            fault_ShowStoppers.push(resp1.coils[5] ? resp1.coils[5] : 0); // System Estop
+            fault_ShowStoppers.push(resp1.coils[6] ? resp1.coils[6] : 0); // WaterLevel ShowStopper
+            fault_ShowStoppers.push(resp1.coils[7] ? resp1.coils[7] : 0); // ST1001 Wind ShowStopper
+        }
+    });//end of first PLC modbus call  
+
+    plc_client.readHoldingRegister(502,1,function(resp){
         
         if (resp != undefined && resp != null){
+            autoMan = resp.register[0];
+        }
+    });
+    
+    plc_client.readHoldingRegister(100,5,function(resp){
+        
+        if (resp != undefined && resp != null){
+        
+            // EStop - lake
 
-            // Show Stoppers - atal
-            fault_ShowStoppers.push(resp.coils[5] ? resp.coils[5] : 0); // System Estop
-            fault_ShowStoppers.push(resp.coils[6] ? resp.coils[6] : 0); // SS_401 Alarm
-            fault_ShowStoppers.push(resp.coils[7] ? resp.coils[7] : 0); // LT1101 or LT2101 Below LLL
+            fault_ESTOP.push(nthBit(resp.register[0],0) ? nthBit(resp.register[0],0) : 0); // CP301 Estop
+            fault_ESTOP.push(nthBit(resp.register[2],6) ? nthBit(resp.register[2],6) : 0); // Out_BMS3001A
+            fault_ESTOP.push(nthBit(resp.register[2],7) ? nthBit(resp.register[2],7) : 0); // Out_BMS3001B
+
+            // Wind Speed - lake
+
+            status_windSensor.push(nthBit(resp.register[0],1) ? nthBit(resp.register[0],1) : 0); // ST1001_Drctn_Channel_Fault 
+            status_windSensor.push(nthBit(resp.register[0],2) ? nthBit(resp.register[0],2) : 0); // ST1001_Abort Show
+            status_windSensor.push(nthBit(resp.register[0],3) ? nthBit(resp.register[0],3) : 0); // ST1001_Above_Hi
+            status_windSensor.push(nthBit(resp.register[0],4) ? nthBit(resp.register[0],4) : 0); // ST1001_Above_Medium
+            status_windSensor.push(nthBit(resp.register[0],5) ? nthBit(resp.register[0],5) : 0); // ST1001_Above_Low
+            status_windSensor.push(nthBit(resp.register[0],6) ? nthBit(resp.register[0],6) : 0); // ST1001_Speed_Channel_Fault
+            status_windSensor.push(nthBit(resp.register[0],7) ? nthBit(resp.register[0],7) : 0); // ST1001_No_Wind
+            status_windSensor.push(nthBit(resp.register[0],8) ? nthBit(resp.register[0],8) : 0); // WindMode_HA 
+
+
+            windHi = status_windSensor[2];
+            windMed = status_windSensor[3];
+            windLo = status_windSensor[4];
+            windNo = status_windSensor[6];
+            windHA = status_windSensor[7];
+
+            // Water Quality - lake
+
+            status_WaterQuality.push(nthBit(resp.register[0],9) ? nthBit(resp.register[0],9) : 0);      // Backwash1 Run 
+            status_WaterQuality.push(nthBit(resp.register[0],10) ? nthBit(resp.register[0],10) : 0);    // Scheduled Backwash Running 
+            status_WaterQuality.push(nthBit(resp.register[0],11) ? nthBit(resp.register[0],11) : 0);    // PDSH1 Run
+            status_WaterQuality.push(nthBit(resp.register[0],12) ? nthBit(resp.register[0],12) : 0);    // TDS Above Hi
+            status_WaterQuality.push(nthBit(resp.register[0],13) ? nthBit(resp.register[0],13) : 0);    // TDS Channel Fault
+            status_WaterQuality.push(nthBit(resp.register[0],14) ? nthBit(resp.register[0],14) : 0);    // PH Above Hi
+            status_WaterQuality.push(nthBit(resp.register[0],15) ? nthBit(resp.register[0],15) : 0);    // PH Below Low
+            status_WaterQuality.push(nthBit(resp.register[1],0) ? nthBit(resp.register[1],0) : 0);      // PH Channel Fault
+            status_WaterQuality.push(nthBit(resp.register[1],1) ? nthBit(resp.register[1],1) : 0);      // ORP Above Hi
+            status_WaterQuality.push(nthBit(resp.register[1],2) ? nthBit(resp.register[1],2) : 0);      // ORP Below Low
+            status_WaterQuality.push(nthBit(resp.register[1],3) ? nthBit(resp.register[1],3) : 0);      // ORP Channel Fault
+            status_WaterQuality.push(nthBit(resp.register[1],4) ? nthBit(resp.register[1],4) : 0);      // Bromine Dosing
+            status_WaterQuality.push(nthBit(resp.register[1],5) ? nthBit(resp.register[1],5) : 0);      // Bromine Timeout
+            status_WaterQuality.push(nthBit(resp.register[1],6) ? nthBit(resp.register[1],6) : 0);      // FSL6001 Enable
+
+            //Lights - lake
+            
+            status_LIGHTS.push(nthBit(resp.register[1],7) ? nthBit(resp.register[1],7) : 0);        // LCP301 Status
+            status_LIGHTS.push(nthBit(resp.register[1],8) ? nthBit(resp.register[1],8) : 0);        // LCP 301 Sch ON
+            status_LIGHTS.push(nthBit(resp.register[1],10) ? nthBit(resp.register[1],10) : 0);      // LCP301 Status
+            status_LIGHTS.push(nthBit(resp.register[1],11) ? nthBit(resp.register[1],11) : 0);      // LCP 301 Sch ON
+
+            // Pumps - lake 
+
+            fault_PUMPS.push(nthBit(resp.register[1],13) ? nthBit(resp.register[1],13) : 0);      // VFD 301 NetworkFault (Filtration Pump)
+            fault_PUMPS.push(nthBit(resp.register[1],14) ? nthBit(resp.register[1],14) : 0);      // Filtration Pump Sch Enable
+            fault_PUMPS.push(nthBit(resp.register[1],15) ? nthBit(resp.register[1],15) : 0);      // Filtration Pump Sch ON
+            fault_PUMPS.push(nthBit(resp.register[2],0) ? nthBit(resp.register[2],0) : 0);        // Filtration Pump Sch Run
+            fault_PUMPS.push(nthBit(resp.register[2],1) ? nthBit(resp.register[2],1) : 0);        // VFD 301 Pressure Fault
+            fault_PUMPS.push(nthBit(resp.register[2],2) ? nthBit(resp.register[2],2) : 0);        // VFD 301 CLeanStrainer Warning
+
+            // Water Level Sensor - lake 
+
+            status_WaterLevel.push(nthBit(resp.register[2],3) ? nthBit(resp.register[2],3) : 0); // LS3001 Above Hi
+            status_WaterLevel.push(nthBit(resp.register[2],4) ? nthBit(resp.register[2],4) : 0); // LS3001 Below Low
+            status_WaterLevel.push(nthBit(resp.register[2],5) ? nthBit(resp.register[2],5) : 0); // LS3001 Below LowLow
 
             showStopper = 0;
             for (var i=0; i <= (fault_ShowStoppers.length-1); i++){
                 showStopper = showStopper + fault_ShowStoppers[i];
+                if(serviceRequired === 1){
+                   showStopper = 1; 
+                   watchDog.eventLog("ShowStopper:: Service Required 1");
+                }
+            }   
+
+            if (((date.getMonth() > 3) && (date.getDate() > 29)) || (date.getMonth() > 4)){
+                //serviceRequired = 1;
+            } else {
+                //serviceRequired = 0;
             }   
 
             totalStatus = [ 
                             fault_ShowStoppers,
-                            status_Fire
-                          ];
+                            fault_ESTOP,
+                            status_windSensor,
+                            status_WaterQuality,
+                            status_LIGHTS,
+                            fault_PUMPS,
+                            status_WaterLevel];
 
             totalStatus = bool2int(totalStatus);
 
@@ -224,9 +163,12 @@ if (ATALPLCConnected){
             // creates the status array that is sent to the iPad (via errorLog) AND logged to file
             sysStatus = [{
                             "***************************ESTOP STATUS**************************" : "1",
+                            "CP301 Estop": fault_ESTOP[0],
+                            "Out_BMS3001A": fault_ESTOP[1],
+                            "Out_BMS3001B": fault_ESTOP[2],
                             "ShowStopper :Estop": fault_ShowStoppers[0],
-                            "ShowStopper :SS_401": fault_ShowStoppers[1],
-                            "ShowStopper :Water Level": fault_ShowStoppers[2],
+                            "ShowStopper :WaterLevelLow": fault_ShowStoppers[1],
+                            "ShowStopper :ST1001 Wind_Abort": fault_ShowStoppers[2],
                             "***************************SHOW STATUS***************************" : "2",
                             "Show PlayMode": autoMan,
                             "Show PlayStatus":playing,
@@ -238,73 +180,55 @@ if (ATALPLCConnected){
                             "SPM_RAT_Mode":Boolean(spmRATMode),
                             "JumpToStepAuto": jumpToStep_auto,
                             "JumpToStepManual": jumpToStep_manual,
-                            "DayMode Status":dayModeStatus,
-                            "***************************PUMPS STATUS**************************" : "3",
-                            "ATAL VFD 201 Fault Code":vfd1_faultCode[0],
-                            "ATAL VFD 202 Fault Code":vfd1_faultCode[1],
-                            "ATAL VFD 203 Fault Code":vfd1_faultCode[2],
-                            "ATAL VFD 204 Fault Code":vfd1_faultCode[3],
-                            "ATAL VFD 205 Fault Code":vfd1_faultCode[4],
-                            "ATAL VFD 206 Fault Code":vfd1_faultCode[5],
-                            "***************************SUPERVISORY STATUS**************************" : "4",
-                            "ATAL Supervisory Station in Alarm":status_Fire[0],
-                            "KV1501 Valve Closed":status_Fire[1],
-                            "KV1502 Valve Closed":status_Fire[2],
-                            "KV1503 Valve Closed":status_Fire[3],
-                            "KV1504 Valve Closed":status_Fire[4],
-                            "KV1502 Valve Open":status_Fire[5],
-                            "KV1503 Valve Open":status_Fire[6],
-                            "KV1502 FailTo Open":status_Fire[7],
-                            "KV1502 FailTo Close":status_Fire[8],
-                            "KV1503 FailTo Open":status_Fire[9],
-                            "KV1503 FailTo Close":status_Fire[10],
-                            "Estop":status_Fire[11],
-                            "PSL Fault":status_Fire[12],
-                            "PSH Fault":status_Fire[13],
-                            "LEL 1501 Above Hi":status_Fire[14],
-                            "LEL 1502 Above Hi":status_Fire[15],
-                            "LEL 1503 Above Hi":status_Fire[16],
-                            "LEL 1504 Above Hi":status_Fire[17],
-                            "LEL 1505 Above Hi":status_Fire[18],
-                            "Intrusion":status_Fire[19],
-                            "Fan 1A Not Running":status_Fire[20],
-                            "Fan 1B Not Running":status_Fire[21],
-                            "Fan 2A Not Running":status_Fire[22],
-                            "Fan 2B Not Running":status_Fire[23],
-                            "Fan 1A Tripped":status_Fire[24],
-                            "Fan 1B Tripped":status_Fire[25],
-                            "Fan 2A Tripped":status_Fire[26],
-                            "Fan 2B Tripped":status_Fire[27],
-                            "FS 1501 No Flow Alarm":status_Fire[28],
-                            "FS 1502 No Flow Alarm":status_Fire[29],
-                            "PSL 1401 Air Receiver Alarm":status_Fire[30],
-                            "Temperature 1000 Fault":status_Fire[31],
-                            "Temperature 2000 Fault":status_Fire[32],
-                            "Temperature 3000 Fault":status_Fire[33],
-                            "Temperature 4000 Fault":status_Fire[34],
-                            "Temperature 1001 High":status_Fire[35],
-                            "Temperature 1002 High":status_Fire[36],
-                            "Temperature 1003 High":status_Fire[37],
-                            "Temperature 2001 High":status_Fire[38],
-                            "Temperature 2002 High":status_Fire[39],
-                            "Temperature 2003 High":status_Fire[40],
-                            "Temperature 3001 High":status_Fire[41],
-                            "Temperature 3002 High":status_Fire[42],
-                            "Temperature 3003 High":status_Fire[43],
-                            "Temperature 4001 High":status_Fire[44],
-                            "Temperature 4002 High":status_Fire[45],
-                            "Temperature 4003 High":status_Fire[46],
-                            "FSH 1201 FlowSwitch Alarm":status_Fire[47],
-                            "FSH 1202 FlowSwitch Alarm":status_Fire[48],
-                            "FSH 1203 FlowSwitch Alarm":status_Fire[49],
-                            "FSH 1204 FlowSwitch Alarm":status_Fire[50],
-                            "****************************DEVICE CONNECTION STATUS*************" : "5",
+                            "SPM: DayMode Status":dayModeStatus,
+                            "iPad Scheduler: DayMode Status":dayMode,
+                            "****************************WIND STATUS********************" : "3",
+                            "ST1001 Direction_Channel_Fault": status_windSensor[0],
+                            "ST1001 Abort_Show": status_windSensor[1],
+                            "ST1001 Above_Hi": status_windSensor[2],
+                            "ST1001 Above_Med": status_windSensor[3],
+                            "ST1001 Below_Low": status_windSensor[4],
+                            "ST1001 No_Wind": status_windSensor[5],
+                            "ST1001 Speed_Channel_Fault": status_windSensor[6],
+                            "ST1001 Wind Mode": status_windSensor[7],
+                             "****************************WATERLEVEL STATUS********************" : "4",
+                            "LS3001 Above_Hi":status_WaterLevel[0],
+                            "LS3001 Below_Low":status_WaterLevel[1],
+                            "LS3001 Below_LowLow":status_WaterLevel[2],
+                            "****************************WATER QUALITY STATUS*****************" : "5",
+                            "Backwash1 Run": status_WaterQuality[0],
+                            "Schedule Backwash Trigger": status_WaterQuality[1],
+                            "PDSH1": status_WaterQuality[2],
+                            "TDS Above Hi": status_WaterQuality[3],
+                            "TDS ChannelFault": status_WaterQuality[4],
+                            "PH Above Hi": status_WaterQuality[5],
+                            "PH Below Low": status_WaterQuality[6],
+                            "PH ChannelFault": status_WaterQuality[7],
+                            "ORP Above Hi": status_WaterQuality[8],
+                            "ORP Below Low": status_WaterQuality[9],
+                            "ORP ChannelFault": status_WaterQuality[10],
+                            "Bromine Dosing": status_WaterQuality[11],
+                            "Bromine Timeout": status_WaterQuality[12],
+                            "WaterFlow Bromine Enabled": status_WaterQuality[13],
+                            "****************************LIGHTS STATUS********************" : "6",
+                            "LCP301 Status": status_LIGHTS[0],
+                            "LCP301 Schedule On": status_LIGHTS[1],
+                            "LCP302 Status": status_LIGHTS[2],
+                            "LCP302 Schedule On": status_LIGHTS[3],
+                            "***************************PUMPS STATUS**************************" : "7",
+                            "VFD 301 Fault Code":vfd1_faultCode[0],
+                            "VFD 301 Network Fault":fault_PUMPS[0],
+                            "VFD 301 Schedule Enable": fault_PUMPS[1],
+                            "VFD 301 Schedule On": fault_PUMPS[2],
+                            "VFD 301 Schedule Run": fault_PUMPS[3],
+                            "VFD 301 Pressure Fault":fault_PUMPS[4],
+                            "VFD 301 CleanStrainer Warning":fault_PUMPS[5],
+                           "****************************DEVICE CONNECTION STATUS*************" : "8",
                             "SPM_Heartbeat": SPM_Heartbeat,
                             "SPM_Modbus_Connection": SPMConnected,
-                            "ATAL_PLC_Heartbeat": ATALPLC_Heartbeat,
-                            "ATAL_PLC_Modbus_Connection": ATALPLCConnected,
-                            "ATDE_PLC_Heartbeat": ATDEPLC_Heartbeat,
-                            "ATDE_PLC_Modbus_Connection": ATDEPLCConnected,
+                            "PLC_Heartbeat": PLC_Heartbeat,
+                            "PLC_Modbus_Connection": PLCConnected,
+                           
                             }];
 
             playStatus = [{
@@ -318,7 +242,6 @@ if (ATALPLCConnected){
                             "show time remaining": showTime_remaining,
                             "Service Required": serviceRequired,
                             "next Show Time": nxtTime,
-                            "enableDeadman": deadMan,
                             "next Show Num": nxtShow
                             }];
                             
@@ -335,12 +258,12 @@ if (ATALPLCConnected){
 if (SPMConnected){
 
     if(autoMan===1){
-       atalplc_client.writeSingleCoil(4,1,function(resp){});
+       plc_client.writeSingleCoil(4,1,function(resp){});
     }
     else{
-       atalplc_client.writeSingleCoil(4,0,function(resp){});
+      plc_client.writeSingleCoil(4,0,function(resp){});
     }
-
+      
 }
 
     // compares current state to previous state to log differences
@@ -350,63 +273,69 @@ if (SPMConnected){
         // pattern of statements must match devStatus and totalStatus format
         var statements=[
 
-            [   // Show Stopper - atal
+            [   // Show Stopper - lake
                 {"yes":"Show Stopper: Estop","no":"Show Stopper Resolved: Estop"},
-                {"yes":"Show Stopper: SS401 Alarm","no":"Show Stopper Resolved: SS401 Alarm"},
+                {"yes":"Show Stopper: ST1001 Wind_Speed_Abort_Show","no":"Show Stopper Resolved: ST1001 Wind_Speed_Abort_Show"},
                 {"yes":"Show Stopper: Water Level Below L","no":"Show Stopper Resolved: Water Level Below L"},
             ],
-            [   // Show Stopper - atal
-                {"yes":"SS in Alarm","no":"SS Not in Alarm"},
-                {"yes":"kv1501 Valve Closed is 1","no":"kv1501 Valve Closed is 0"},
-                {"yes":"kv1502 Valve Closed is 1","no":"kv1502 Valve Closed is 0"},
-                {"yes":"kv1503 Valve Closed is 1","no":"kv1503 Valve Closed is 0"},
-                {"yes":"kv1504 Valve Closed is 1","no":"kv1504 Valve Closed is 0"},
-                {"yes":"kv1502 Valve Open is 1","no":"kv1502 Valve Open is 0"},
-                {"yes":"kv1503 Valve Open is 1","no":"kv1503 Valve Open is 0"},
-                {"yes":"kv1502 Fail to Open","no":"Resolved : kv1502 Fail to Open"},
-                {"yes":"kv1502 Fail to Close","no":"Resolved : kv1502 Fail to Close"},
-                {"yes":"kv1503 Fail to Open","no":"Resolved : kv1503 Fail to Open"},
-                {"yes":"kv1503 Fail to Close","no":"Resolved : kv1503 Fail to Close"},
-                {"yes":"Estop","no":"Resolved : Estop"},
-                {"yes":"PSL Fault","no":"Resolved : PSL Fault"},
-                {"yes":"PSH Fault","no":"Resolved : PSH Fault"},
-                {"yes":"LEL 1501 Above Hi","no":"Resolved : LEL 1501 Above Hi"},
-                {"yes":"LEL 1502 Above Hi","no":"Resolved : LEL 1502 Above Hi"},
-                {"yes":"LEL 1503 Above Hi","no":"Resolved : LEL 1503 Above Hi"},
-                {"yes":"LEL 1504 Above Hi","no":"Resolved : LEL 1504 Above Hi"},
-                {"yes":"LEL 1505 Above Hi","no":"Resolved : LEL 1505 Above Hi"},
-                {"yes":"Intrusion Alarm","no":"Resolved : Intrusion Alarm"},
-                {"yes":"Fan 1A Not Running","no":"Resolved : Fan 1A Not Running"},
-                {"yes":"Fan 1B Not Running","no":"Resolved : Fan 1B Not Running"},
-                {"yes":"Fan 2A Not Running","no":"Resolved : Fan 2A Not Running"},
-                {"yes":"Fan 2B Not Running","no":"Resolved : Fan 2B Not Running"},
-                {"yes":"Fan 1A Tripped","no":"Resolved : Fan 1A Tripped"},
-                {"yes":"Fan 1B Tripped","no":"Resolved : Fan 1B Tripped"},
-                {"yes":"Fan 2A Tripped","no":"Resolved : Fan 2A Tripped"},
-                {"yes":"Fan 2B Tripped","no":"Resolved : Fan 2B Tripped"},
-                {"yes":"FS 1501 No Flow Alarm","no":"Resolved : FS 1501 No Flow Alarm"},
-                {"yes":"FS 1502 No Flow Alarm","no":"Resolved : FS 1502 No Flow Alarm"},
-                {"yes":"PSL 1401 Air Receiver Alarm","no":"Resolved : PSL 1401 Air Receiver Alarm"},
-                {"yes":"Temperature 1000 Fault","no":"Resolved : Temperature 1000 Fault"},
-                {"yes":"Temperature 2000 Fault","no":"Resolved : Temperature 2000 Fault"},
-                {"yes":"Temperature 3000 Fault","no":"Resolved : Temperature 3000 Fault"},
-                {"yes":"Temperature 4000 Fault","no":"Resolved : Temperature 4000 Fault"},
-                {"yes":"Temperature 1001 High","no":"Resolved : Temperature 1001 High"},
-                {"yes":"Temperature 1002 High","no":"Resolved : Temperature 1002 High"},
-                {"yes":"Temperature 1003 High","no":"Resolved : Temperature 1003 High"},
-                {"yes":"Temperature 2001 High","no":"Resolved : Temperature 2001 High"},
-                {"yes":"Temperature 2002 High","no":"Resolved : Temperature 2002 High"},
-                {"yes":"Temperature 2003 High","no":"Resolved : Temperature 2003 High"},
-                {"yes":"Temperature 3001 High","no":"Resolved : Temperature 3001 High"},
-                {"yes":"Temperature 3002 High","no":"Resolved : Temperature 3002 High"},
-                {"yes":"Temperature 3003 High","no":"Resolved : Temperature 3003 High"},
-                {"yes":"Temperature 4001 High","no":"Resolved : Temperature 4001 High"},
-                {"yes":"Temperature 4002 High","no":"Resolved : Temperature 4002 High"},
-                {"yes":"Temperature 4003 High","no":"Resolved : Temperature 4003 High"},
-                {"yes":"FSH 1201 No Flow Alarm","no":"Resolved : FSH 1201 No Flow Alarm"},
-                {"yes":"FSH 1202 No Flow Alarm","no":"Resolved : FSH 1202 No Flow Alarm"},
-                {"yes":"FSH 1203 No Flow Alarm","no":"Resolved : FSH 1203 No Flow Alarm"},
-                {"yes":"FSH 1204 No Flow Alarm","no":"Resolved : FSH 1204 No Flow Alarm"},
+
+            [   // estop - lake 
+                {"yes":"CP301 Estop Triggered","no":"Resolved: CP301 Estop"}, 
+                {"yes":"One/More System Warning","no":"No Warnings"}, 
+                {"yes":"One/More System Faults ","no":"No Faults"},
+            ],
+
+            [   // anemometer - lake
+                {"yes":"ST1001 Direction_Channel_Fault","no":"ST1001 Direction_Channel_Fault Resolved"},
+                {"yes":"ST1001 AbortShow","no":"ST1001 AbortShow Resolved"},
+                {"yes":"ST1001 Wind Speed Above Hi","no":"ST1001 Wind Above Hi Resolved"},
+                {"yes":"ST1001 Wind Speed Above Medium","no":"ST1001 Wind Above Medium Resolved"},
+                {"yes":"ST1001 Wind Speed Below Low","no":"ST1001 Wind Below Low Resolved"},
+                {"yes":"ST1001 Speed_Channel_Fault","no":"ST1001 Speed_Channel_Fault Resolved"},
+                {"yes":"ST1001 Wind Speed NoWind","no":"ST1001 Wind Speed Not in NoWind"},
+                {"yes":"Wind Mode in Hand","no":"Wind Mode in Auto"},
+                
+            ],
+
+            [   //Water Quality Status - lake
+                {"yes":"Backwash 1 Running","no":"Backwash 1 Ended"},
+                {"yes":"Scheduled Backwash Running","no":"Scheduled Backwash Ended"}, 
+                {"yes":"PDSH1 Triggered Backwash","no":"PDSH1 Triggered Backwash Ended"},
+                {"yes":"TDS AboveHi","no":"Resolved: TDS Above Hi Alarm "},
+                {"yes":"TDS Channel Fault","no":"Resolved: TDS Channel Fault"},
+                {"yes":"PH AboveHi","no":"Resolved: PH Above Hi Alarm "},
+                {"yes":"PH Below_Low","no":"Resolved: PH Below Low Alarm "},
+                {"yes":"PH Channel Fault","no":"Resolved: PH Channel Fault"},
+                {"yes":"ORP AboveHi","no":"Resolved: ORP Above Hi Alarm "},
+                {"yes":"ORP Below_Low","no":"Resolved: ORP Below Low Alarm "},
+                {"yes":"ORP Channel Fault","no":"Resolved: ORP Channel Fault"},
+                {"yes":"Bromine Dosing ON","no":"Bromine Dosing OFF"},
+                {"yes":"Bromine Timeout","no":"Resolved:Bromine Timeout"},
+                {"yes":"FSL 6001 WaterFlow Enabled","no":"FSL 6001 WaterFlow Disabled"},
+            ],
+
+            [   // lights - lake
+
+                {"yes":"Lights 301 ON","no":"Lights 301 ON"},
+                {"yes":"Lights 301 Schedule ON","no":"Lights 301 Schedule OFF"},
+                {"yes":"Lights 302 ON","no":"Lights 302 ON"},
+                {"yes":"Lights 302 Schedule ON","no":"Lights 302 Schedule OFF"},
+            ],
+
+            [   // pumps - lake
+                {"yes":"Resolved: P301 Network Fault","no":"P301 Network Fault"},
+                {"yes":"Filtration Pump Schedule Enabled","no":"Filtration Pump Schedule Disabled"},
+                {"yes":"Filtration Pump Schedule ON","no":"Filtration Pump Schedule OFF"},
+                {"yes":"Filtration Pump Schedule Running","no":"Filtration Pump Schedule Not_Running"},
+                {"yes":"Resolved: P101 Pressure Fault","no":"P101 Pressure Fault"},
+                {"yes":"Resolved: P101 CleanStrainer Warning","no":"P101 CleanStrainer Warning"},
+            ],
+
+            [   // water level - lake
+                {"yes":"LS2001 AboveHi","no":"Resolved: LS2001 AboveHi Alarm"},
+                {"yes":"LS2001 Below_Low","no":"Resolved: LS2001 Below_Low Alarm"},
+                {"yes":"LS2001 Below_LowLow","no":"Resolved: LS2001 Below_LowLow Alarm"},
+                
             ]
         ];
         
@@ -512,6 +441,29 @@ if (SPMConnected){
             }
         }
         return array;
+    }
+
+    function back2Float(low, high){
+        var fpnum=low|(high<<16);
+        var negative=(fpnum>>31)&1;
+        var exponent=(fpnum>>23)&0xFF;
+        var mantissa=(fpnum&0x7FFFFF);
+        
+        if(exponent==255){
+         
+            if(mantissa!==0)return Number.NaN;
+            return (negative) ? Number.NEGATIVE_INFINITY :Number.POSITIVE_INFINITY;
+        
+        }
+        
+        if(exponent===0)exponent++;
+        else mantissa|=0x800000;
+        
+        exponent-=127;
+        var ret=(mantissa*1.0/0x800000)*Math.pow(2,exponent);
+        
+        if(negative)ret=-ret;
+        return ret;
     }
 }
 

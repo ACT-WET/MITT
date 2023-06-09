@@ -17,7 +17,7 @@ import Foundation
 let READ_BACK_WASH1                              = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readBW"
 let READ_SURGEBACK_WASH1                              = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readSBW"
 let READ_GLIMBACK_WASH1                              = "\(HTTP_PASS)\(SERVER_IP_ADDRESS):8080/readGBW"
-let READ_DELBACK_WASH1                              = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readDBW"
+let READ_LAKEBACK_WASH1                              = "\(HTTP_PASS)\(SERVER_IP2_ADDRESS):8080/readBW"
 let FILTRATION_PUMP_NUMBERS                     = [113,114]
 
 let READ_FILTRATION_SERVER_PATH               = "readFilterSch"
@@ -122,8 +122,8 @@ let PT501_LEVEL_BELOW_LL                = 4112
 let PT501_LEVEL_BELOW_L                 = 4114
 let PT501_ABOVE_HI                      = 4116
 
-let READ_LAKE_FILTER_SERVER_PATH         = "readFilterSch"
-let WRITE_LAKE_FILTER_SERVER_PATH        = "writeFilterSch"
+let READ_LAKE_FILTER_SERVER_PATH         = "readLakeFilterSch"
+let WRITE_LAKE_FILTER_SERVER_PATH        = "writeLakeFilterSch"
 let READ_LAKE_PUMPSCH_PATH                = "readPumpSch"
 let WRITE_LAKE_PUMPSCH_PATH               = "writePumpSch"
 

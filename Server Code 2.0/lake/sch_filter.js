@@ -28,22 +28,20 @@ function filterSchWrapper(){
     var on_time = filterSchData[(3*day_ID)+1];
     var off_time = filterSchData[(3*day_ID)+2];
 
-    if ((current_time > 600)&&(off_time <= 600)){
-        off_time = 2400;
+    if (current_time < 600){
+        current_time = current_time + 2400;
     }
-    else if ((current_time <= 600)&&(off_time <=600)){
-        if (on_time >= 600){
-            on_time = 0;
-        }
-    }
-    else{
-        //So nothing
-    }
+    if (on_time < 600){
+        on_time = on_time + 2400;
+    } 
+    if (off_time < 600){
+        off_time = off_time + 2400;
+    } 
 
     if ((current_time >= on_time)&&(current_time < off_time)){
         //watchDog.eventLog('Filter Sch IF' +on_time +' off ' +off_time);
         //turn ON
-        atalplc_client.writeSingleCoil(2117,1,function(resp){
+        plc_client.writeSingleCoil(2116,1,function(resp){
             //watchDog.eventLog('Fire Sch ON');
         });
 
@@ -51,7 +49,7 @@ function filterSchWrapper(){
     else{
         //watchDog.eventLog('Filter Sch ELSE' +on_time +' off ' +off_time);
         //turn OFF
-        atalplc_client.writeSingleCoil(2117,0,function(resp){
+        plc_client.writeSingleCoil(2116,0,function(resp){
             //watchDog.eventLog('Fire Sch OFF');
         });
 

@@ -37,6 +37,8 @@ let WQ_PH_TIMER_REGISTER              = 6501
 let WQ_ORP_TIMER_REGISTER             = 6502
 let WQ_TDS_TIMER_REGISTER             = 6503
 let WQ_BROMINATOR_TIMEOUT_REGISTER    = 6519
+let LAKE_WQ_BROMINATOR_TIMEOUT_REGISTER    = 6521
+
 
 //Water Quality Scale Min/ Max Real Value Addresses
 

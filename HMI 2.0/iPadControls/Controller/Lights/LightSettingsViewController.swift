@@ -86,7 +86,7 @@ class LightSettingsViewController: UIViewController {
      ***************************************************************************/
     
     @objc func checkSystemStat(){
-        let (_,plcConnection,_,_) = (CENTRAL_SYSTEM?.getConnectivityStat())!
+        let (plcConnection,_,_,_) = (CENTRAL_SYSTEM?.getConnectivityStat())!
         
         if plcConnection == CONNECTION_STATE_CONNECTED {
             //Change the connection stat indicator

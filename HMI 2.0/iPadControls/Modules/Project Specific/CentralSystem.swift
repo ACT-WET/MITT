@@ -322,17 +322,13 @@ public class CentralSystem: NSObject, SimplePingDelegate{
     
     @objc func sendPing(){
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.pingServer()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.pinglagoonPLC()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.pinglakePLC()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.ping2Server()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.pinglagoonPLC()
+                self.pinglakePLC()
+            }
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateSystemStat"), object: nil)
     }
@@ -404,7 +400,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                 } else if self.numberOfFailedMITTLAPlcConnections >= MAX_CONNECTION_FAILED {
                     self.mittlaplcConnectionState = CONNECTION_STATE_FAILED
     //                print("PLC CONNECTION FAILED: \(self.numberOfFailedPlcConnections). MAX AMOUNT OF FAIL REACHED")
-                    UserDefaults.standard.set("MITTLAplcFailed", forKey: "MITTLAPLCConnectionStatus")
+                    UserDefaults.standard.set("MITTLAGplcFailed", forKey: "MITTLAGPLCConnectionStatus")
                     self.reinitialize()
                     
                 }
@@ -415,7 +411,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                 return
             }
             getCurrentShowInfo()
-            readLakeBackWashRunning()
+            readBackWashRunning()
                         
     }
     
@@ -488,7 +484,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                 guard self.mittlaplcConnectionState == CONNECTION_STATE_CONNECTED else{
                     return
                 }
-                //getCurrentLakeShowAlInfo()
+                getCurrentLakeShowAlInfo()
                 readLakeBackWashRunning()
                 
     }
@@ -536,7 +532,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
     }
     
     /***************************************************************************
-     * Function :  getAlightCurrentShowInfo
+     * Function :  getLakeCurrentShowInfo
      * Input    :  none
      * Output   :  none
      * Comment  :  Fetches current show info and saves data to user defaults
@@ -687,18 +683,18 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                     
                     //Same as pinging the plc.. For the server, you wanted to make sure that you are actually getting a data. If pinging fails then there's something wrong with the server itself, else you are just waiting for the server to give you a data. NOTE: any path number will do.
                     
-                    self.httpComm.httpGetResponseFromPath(url: SERVER2_TIME_PATH){ (response) in
+                    self.httpComm.httpGetResponseFromPath(url: READ_LAKE_SHOW_PLAY_STAT){ (response) in
                         
                         guard response != nil else {
                             self.serverConnection2State = CONNECTION_STATE_POOR_CONNECTION
-                            UserDefaults.standard.set("poorServer", forKey: "Server2ConnectionStatus")
+                            UserDefaults.standard.set("lakepoorServer", forKey: "Server2ConnectionStatus")
                             return
                         }
                         
                         self.serverConnection2State = CONNECTION_STATE_CONNECTED
                         
-                        UserDefaults.standard.set("serverConnected", forKey: "Server2ConnectionStatus")
-                        self.getErrorLogFromServer()
+                        UserDefaults.standard.set("lakeserverConnected", forKey: "Server2ConnectionStatus")
+                        //self.getErrorLogFromServer()
                         self.getServer2Time()
                     }
                     
@@ -721,7 +717,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                     } else if self.numberOfFailed2ServerConnections >= MAX_CONNECTION_FAILED {
                         self.serverConnection2State = CONNECTION_STATE_FAILED
     //                     print("SERVER CONNECTION FAILED: \(self.numberOfFailedServerConnections). MAX AMOUNT OF FAIL REACHED")
-                        UserDefaults.standard.set("serverFailed", forKey: "Server2ConnectionStatus")
+                        UserDefaults.standard.set("lakeserverFailed", forKey: "Server2ConnectionStatus")
                     }
                 }
             })
@@ -737,7 +733,7 @@ public class CentralSystem: NSObject, SimplePingDelegate{
                 } else if self.numberOfFailed2ServerConnections >= MAX_CONNECTION_FAILED {
                     self.serverConnection2State = CONNECTION_STATE_FAILED
     //                print("SERVER CONNECTION FAILED: \(self.serverConnection2State). MAX AMOUNT OF FAIL REACHED")
-                    UserDefaults.standard.set("serverFailed", forKey: "Server2ConnectionStatus")
+                    UserDefaults.standard.set("lakeserverFailed", forKey: "Server2ConnectionStatus")
                 }
             }
         }

@@ -148,17 +148,17 @@ class LightsViewController: UIViewController {
                 if lcp201 == 0 {
                     lcp201Lbl!.text = "OFF"
                 } else if lcp201 == 1 {
-                    lcp201Lbl!.text = "HAND"
-                } else if lcp201 == 2 {
                     lcp201Lbl!.text = "AUTO"
+                } else if lcp201 == 2 {
+                    lcp201Lbl!.text = "HAND"
                 }
                 
                 if lcp202 == 0 {
                     lcp202Lbl!.text = "OFF"
                 } else if lcp202 == 1 {
-                    lcp202Lbl!.text = "HAND"
-                } else if lcp202 == 2 {
                     lcp202Lbl!.text = "AUTO"
+                } else if lcp202 == 2 {
+                    lcp202Lbl!.text = "HAND"
                 }
             })
             CENTRAL_SYSTEM?.readBits(plcIpAddress:MITT_LAG_PLC_IP_ADDRESS, length: 6, startingRegister: Int32(LIGHTS_STATUS), completion: { (success, response) in

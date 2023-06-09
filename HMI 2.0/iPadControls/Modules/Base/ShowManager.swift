@@ -79,7 +79,9 @@ public struct DeviceStat{
     var fsON = 0
     
     var lights201 = 0
+    var lights301 = 0
     var lights202 = 0
+    var lights302 = 0
     
     var ys201Tripped = 0
     var ys202Tripped = 0
@@ -103,6 +105,7 @@ public class ShowManager{
     private var showPlayStat = ShowPlayStat()
     private var lakeshowPlayStat = ShowPlayStat()
     private var deviceStat = DeviceStat()
+    private var lakedeviceStat = DeviceStat()
     //MARK: - Get Shows From The Server
     
     public func getShowsFile(){
@@ -331,10 +334,9 @@ public class ShowManager{
                         if responseDictionary != nil{
                             
                             if let estop = responseDictionary!["CP601 Estop"] as? Int,
-                            let sysWarning = responseDictionary!["Out_BMS2001A"] as? Int,
-                            let sysFault = responseDictionary!["Out_BMS2001B"] as? Int,
+                            let sysWarning = responseDictionary!["Out_BMS1000A"] as? Int,
                             let showStoppereStop = responseDictionary!["ShowStopper :Estop"] as? Int,
-                            let showStopperwind = responseDictionary!["ShowStopper :High Speed Wind Abort"] as? Int,
+                            let showStopperwind = responseDictionary!["ShowStopper :ST1001 Wind_Abort"] as? Int,
                             let showStopperwater = responseDictionary!["ShowStopper :WaterLevelLow"] as? Int,
                             
                             let playMode = responseDictionary!["Show PlayMode"] as? Int,
@@ -352,18 +354,18 @@ public class ShowManager{
                             let lsblwL = responseDictionary!["LS2001 Below_Low"] as? Int,
                             let lsblwLL = responseDictionary!["LS2001 Below_LowLow"] as? Int,
                             
-                            let bender13current  = responseDictionary!["BENDER 1 3-PHASE CURRENT DATA"] as? Double,
-                            let bender23current  = responseDictionary!["BENDER 2 3-PHASE CURRENT DATA"] as? Double,
-                            let bender33current  = responseDictionary!["BENDER 3 3-PHASE CURRENT DATA"] as? Double,
-                            let bender43current  = responseDictionary!["BENDER 4 3-PHASE CURRENT DATA"] as? Double,
-                            let bender53current  = responseDictionary!["BENDER 5 3-PHASE CURRENT DATA"] as? Double,
-                            let bender63current  = responseDictionary!["BENDER 6 3-PHASE CURRENT DATA"] as? Double,
-                            let bender73current  = responseDictionary!["BENDER 7 3-PHASE CURRENT DATA"] as? Double,
-                            let bender83current  = responseDictionary!["BENDER 8 3-PHASE CURRENT DATA"] as? Double,
-                            let bender93current  = responseDictionary!["BENDER 9 3-PHASE CURRENT DATA"] as? Double,
-                            let bender103current = responseDictionary!["BENDER 10 3-PHASE CURRENT DATA"] as? Double,
-                            let bender113current = responseDictionary!["BENDER 11 3-PHASE CURRENT DATA"] as? Double,
-                            let bender123current = responseDictionary!["BENDER 12 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender13current  = responseDictionary!["BENDER 1 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender23current  = responseDictionary!["BENDER 2 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender33current  = responseDictionary!["BENDER 3 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender43current  = responseDictionary!["BENDER 4 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender53current  = responseDictionary!["BENDER 5 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender63current  = responseDictionary!["BENDER 6 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender73current  = responseDictionary!["BENDER 7 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender83current  = responseDictionary!["BENDER 8 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender93current  = responseDictionary!["BENDER 9 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender103current = responseDictionary!["BENDER 10 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender113current = responseDictionary!["BENDER 11 3-PHASE CURRENT DATA"] as? Double,
+//                            let bender123current = responseDictionary!["BENDER 12 3-PHASE CURRENT DATA"] as? Double,
                             
                             let bw1Running = responseDictionary!["Backwash1 Run"] as? Int,
                             let tds1AbvHi = responseDictionary!["TDS Above Hi"] as? Int,
@@ -381,8 +383,8 @@ public class ShowManager{
                             let fsHAmode = responseDictionary!["FS113 HA Mode"] as? Int,
                             let fsON = responseDictionary!["FS113 Hand On"] as? Int,
                             
-                            let lights201 = responseDictionary!["MicroShooter Lights ON"] as? Int,
-                            let lights202 = responseDictionary!["Oarsman Lights ON"] as? Int,
+//                            let lights201 = responseDictionary!["MicroShooter Lights ON"] as? Int,
+//                            let lights202 = responseDictionary!["Oarsman Lights ON"] as? Int,
                             
                             let ys201Tripped = responseDictionary!["YS201 GFCI TRIPPED"] as? Int,
                             let ys202Tripped = responseDictionary!["YS202 GFCI TRIPPED"] as? Int,
@@ -399,7 +401,6 @@ public class ShowManager{
                                 
                                 self.deviceStat.cp601estop = estop
                                 self.deviceStat.sysWarning = sysWarning
-                                self.deviceStat.sysFault = sysFault
                                 self.deviceStat.showStoppereStop = showStoppereStop
                                 self.deviceStat.showStopperwater = showStopperwater
                                 self.deviceStat.showStopperwind = showStopperwind
@@ -419,18 +420,18 @@ public class ShowManager{
                                 self.deviceStat.lsblwL = lsblwL
                                 self.deviceStat.lsblwLL = lsblwLL
                                 
-                                self.deviceStat.bender13current = bender13current
-                                self.deviceStat.bender23current = bender23current
-                                self.deviceStat.bender33current = bender33current
-                                self.deviceStat.bender43current = bender43current
-                                self.deviceStat.bender53current = bender53current
-                                self.deviceStat.bender63current = bender63current
-                                self.deviceStat.bender73current = bender73current
-                                self.deviceStat.bender83current = bender83current
-                                self.deviceStat.bender93current = bender93current
-                                self.deviceStat.bender103current = bender103current
-                                self.deviceStat.bender113current = bender113current
-                                self.deviceStat.bender123current = bender123current
+//                                self.deviceStat.bender13current = bender13current
+//                                self.deviceStat.bender23current = bender23current
+//                                self.deviceStat.bender33current = bender33current
+//                                self.deviceStat.bender43current = bender43current
+//                                self.deviceStat.bender53current = bender53current
+//                                self.deviceStat.bender63current = bender63current
+//                                self.deviceStat.bender73current = bender73current
+//                                self.deviceStat.bender83current = bender83current
+//                                self.deviceStat.bender93current = bender93current
+//                                self.deviceStat.bender103current = bender103current
+//                                self.deviceStat.bender113current = bender113current
+//                                self.deviceStat.bender123current = bender123current
                                 
                                 self.deviceStat.bw1Running = bw1Running
                                 self.deviceStat.tds1AbvHi = tds1AbvHi
@@ -448,9 +449,9 @@ public class ShowManager{
                                 self.deviceStat.fsHAmode = fsHAmode
                                 self.deviceStat.fsON = fsON
                                 
-                                self.deviceStat.lights201 = lights201
-                                self.deviceStat.lights202 = lights202
-                                
+//                                self.deviceStat.lights201 = lights201
+//                                self.deviceStat.lights202 = lights202
+//
                                 self.deviceStat.ys201Tripped = ys201Tripped
                                 self.deviceStat.ys202Tripped = ys202Tripped
                                 self.deviceStat.ys203Tripped = ys203Tripped
@@ -472,6 +473,104 @@ public class ShowManager{
                 }
                 
         return self.deviceStat
+    }
+    
+    public func getLakeStatusLogFromServer() -> DeviceStat{
+        
+            self.httpComm.httpGetResponseFromPath(url: LAKE_STATUS_LOG_FTP_PATH){ (response) in
+                
+                guard response != nil else { return }
+                
+                guard let responseArray = response as? [Any] else { return }
+                if !responseArray.isEmpty{
+                    let responseDictionary = responseArray[0] as? NSDictionary
+                        
+                        if responseDictionary != nil{
+                            
+                            if let estop = responseDictionary!["CP301 Estop"] as? Int,
+                            let sysWarning = responseDictionary!["Out_BMS3001A"] as? Int,
+                            let sysFault = responseDictionary!["Out_BMS3001B"] as? Int,
+                            let showStoppereStop = responseDictionary!["ShowStopper :Estop"] as? Int,
+                            let showStopperwind = responseDictionary!["ShowStopper :ST1001 Wind_Abort"] as? Int,
+                            let showStopperwater = responseDictionary!["ShowStopper :WaterLevelLow"] as? Int,
+                            
+                            let playMode = responseDictionary!["Show PlayMode"] as? Int,
+                            let spmRatmode = responseDictionary!["SPM_RAT_Mode"] as? Int,
+                            let dayMode = responseDictionary!["SPM: DayMode Status"] as? Int,
+                                
+                            let windAbvHi = responseDictionary!["ST1001 Above_Hi"] as? Int,
+                            let windAbvMed = responseDictionary!["ST1001 Above_Med"] as? Int,
+                            let windbelowL = responseDictionary!["ST1001 Below_Low"] as? Int,
+                            let windnW = responseDictionary!["ST1001 No_Wind"] as? Int,
+                            let windspeedFault = responseDictionary!["ST1001 Speed_Channel_Fault"] as? Int,
+                            let windDirectionFault = responseDictionary!["ST1001 Direction_Channel_Fault"] as? Int,
+                            
+                            let lsAbvHi = responseDictionary!["LS3001 Above_Hi"] as? Int,
+                            let lsblwL = responseDictionary!["LS3001 Below_Low"] as? Int,
+                            let lsblwLL = responseDictionary!["LS3001 Below_LowLow"] as? Int,
+                            
+                            let bw1Running = responseDictionary!["Backwash1 Run"] as? Int,
+                            let tds1AbvHi = responseDictionary!["TDS Above Hi"] as? Int,
+                            let tds1ChFault = responseDictionary!["TDS ChannelFault"] as? Int,
+                            let ph1AbvHi = responseDictionary!["PH Above Hi"] as? Int,
+                            let ph1belowL = responseDictionary!["PH Below Low"] as? Int,
+                            let ph1ChFault = responseDictionary!["PH ChannelFault"] as? Int,
+                            let orp1AbvHi = responseDictionary!["ORP Above Hi"] as? Int,
+                            let orp1belowL = responseDictionary!["ORP Below Low"] as? Int,
+                            let orp1ChFault = responseDictionary!["ORP ChannelFault"] as? Int,
+                            let brDosing = responseDictionary!["Bromine Dosing"] as? Int,
+                            let brTimeout = responseDictionary!["Bromine Timeout"] as? Int,
+                            let wfBrEnable = responseDictionary!["WaterFlow Bromine Enabled"] as? Int,
+                            
+                            let lights301 = responseDictionary!["LCP301 Status"] as? Int,
+                            let lights302 = responseDictionary!["LCP302 Status"] as? Int{
+                                
+                                self.lakedeviceStat.cp601estop = estop
+                                self.lakedeviceStat.sysWarning = sysWarning
+                                self.lakedeviceStat.sysFault = sysFault
+                                self.lakedeviceStat.showStoppereStop = showStoppereStop
+                                self.lakedeviceStat.showStopperwater = showStopperwater
+                                self.lakedeviceStat.showStopperwind = showStopperwind
+                                
+                                self.lakedeviceStat.playMode = playMode
+                                self.lakedeviceStat.spmRatmode = spmRatmode
+                                self.lakedeviceStat.dayMode = dayMode
+                                
+                                self.lakedeviceStat.windAbvHi = windAbvHi
+                                self.lakedeviceStat.windAbvMed = windAbvMed
+                                self.lakedeviceStat.windbelowL = windbelowL
+                                self.lakedeviceStat.windnW = windnW
+                                self.lakedeviceStat.windspeedFault = windspeedFault
+                                self.lakedeviceStat.windDirectionFault = windDirectionFault
+                                
+                                self.lakedeviceStat.lsAbvHi = lsAbvHi
+                                self.lakedeviceStat.lsblwL = lsblwL
+                                self.lakedeviceStat.lsblwLL = lsblwLL
+                                
+                                self.lakedeviceStat.bw1Running = bw1Running
+                                self.lakedeviceStat.tds1AbvHi = tds1AbvHi
+                                self.lakedeviceStat.tds1ChFault = tds1ChFault
+                                self.lakedeviceStat.ph1AbvHi = ph1AbvHi
+                                self.lakedeviceStat.ph1belowL = ph1belowL
+                                self.lakedeviceStat.ph1ChFault = ph1ChFault
+                                self.lakedeviceStat.orp1AbvHi = orp1AbvHi
+                                self.lakedeviceStat.orp1belowL = orp1belowL
+                                self.lakedeviceStat.orp1ChFault = orp1ChFault
+                                self.lakedeviceStat.brDosing = brDosing
+                                self.lakedeviceStat.brTimeout = brTimeout
+                                self.lakedeviceStat.wfBrEnable = wfBrEnable
+                                
+                                self.lakedeviceStat.lights301 = lights301
+                                self.lakedeviceStat.lights302 = lights302
+                            }
+                            
+                        }
+                        
+                       
+                    }
+                }
+                
+        return self.lakedeviceStat
     }
     //Data Logger
     

@@ -1,5 +1,5 @@
 //
-//  FillerShowsAlightViewController.swift
+//  FillerShowsLakeViewController.swift
 //  iPadControls
 //
 //  Created by Rakesh Raveendra on 1/10/23.
@@ -23,7 +23,7 @@ class FillerShowsLakeViewController: UIViewController,UITextViewDelegate, UIPick
     let PERCIPITATION_SP                         = 6000
     let PERCIPITATION_LIVE                       = 6002
     
-    private var shows: [Any]? = nil
+    private var lakeshows: [Any]? = nil
     private var fillerShowStatus: Int = 0
     var currentFillerShowState  = 0
     var currentFillerShowNumber = 0
@@ -69,9 +69,9 @@ class FillerShowsLakeViewController: UIViewController,UITextViewDelegate, UIPick
         if defaults.object(forKey: "lakeshows") != nil {
             
             if let object = defaults.object(forKey: "lakeshows") as? [Any] {
-                shows = object
+                lakeshows = object
             }
-            for show in self.shows!{
+            for show in self.lakeshows!{
                 
                 let dictionary  = show as! NSDictionary
                 let test       = dictionary.object(forKey: "test") as? Int
@@ -354,13 +354,13 @@ class FillerShowsLakeViewController: UIViewController,UITextViewDelegate, UIPick
             let showName = self.list[row]
             let defaults = UserDefaults.standard
         
-            if defaults.object(forKey: "alshows") != nil {
+            if defaults.object(forKey: "lakeshows") != nil {
                 
-                if let object = defaults.object(forKey: "alshows") as? [Any] {
-                    shows = object
+                if let object = defaults.object(forKey: "lakeshows") as? [Any] {
+                    lakeshows = object
                 }
             }
-             for show in self.shows!{
+             for show in self.lakeshows!{
                 let dictionary  = show as! NSDictionary
                 let number      = dictionary.object(forKey: "number") as! Int
                 

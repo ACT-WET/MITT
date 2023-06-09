@@ -14,7 +14,7 @@ function bwWrapper(){
 	var schedule = alphabufferData[1];
 
 	//get duration from the PLC
-	atalplc_client.readHoldingRegister(6519,1,function(resp){
+	plc_client.readHoldingRegister(6519,1,function(resp){
 		if (resp != undefined && resp != null){
 			bwData.duration = resp.register[0];	
 		}  
@@ -40,7 +40,7 @@ function bwWrapper(){
 	// var filtrationPump_Status = [0,0,0];
 
 	// // VFD 107
-	// atalplc_client.readCoils(1120,1,function(resp){
+	// plc_client.readCoils(1120,1,function(resp){
 	// 	if(resp.coils[0]){
 	// 		filtrationPump_Status[0] = 1;
 	// 	}
@@ -51,7 +51,7 @@ function bwWrapper(){
 	// });
 
 	// // VFD 207
-	// atalplc_client.readCoils(1400,1,function(resp){
+	// plc_client.readCoils(1400,1,function(resp){
 	// 	if(resp.coils[0]){
 	// 		filtrationPump_Status[1] = 1;
 	// 	}
@@ -62,7 +62,7 @@ function bwWrapper(){
 	// });
 
 	// // VFD 307
-	// atalplc_client.readCoils(1540,1,function(resp){
+	// plc_client.readCoils(1540,1,function(resp){
 	// 	if(resp.coils[0]){
 	// 		filtrationPump_Status[2] = 1;
 	// 	}
@@ -82,8 +82,8 @@ function bwWrapper(){
 	var trigger_BW_PDSH = 0;
 	var pdsh_sensor = 0;
 
-	//BW 1 Sensor
-	atalplc_client.readCoils(4007,1,function(resp){
+	//BW 1 & 2 & 3 Sensor
+	plc_client.readCoils(4007,1,function(resp){
 		if (resp != undefined && resp != null){
 			if(resp.coils[0] > 0){
 				pdsh_sensor = 1;
@@ -143,29 +143,33 @@ function bwWrapper(){
 
 			//PDSH request for BW. One SHOT
 			if (trigger_BW_PDSH){
-				watchDog.eventLog("About to trigger Alight BW routine as requested by PDSH Sensor");
-				//Issue the BW trigger to PLC
-			    trigBW(now,moment);    	
+				if (filtrationPump_Status === 0){
+					watchDog.eventLog("About to trigger BW routine as requested by PDSH Sensor");
+					//Issue the BW trigger to PLC
+			       	trigBW(now,moment); 
+			    }    	
 			}
 			//trigger backup BW when possible. One SHOT
 			if ((bwData.trigBacklog == 1) && (autoMan == 0)){
 				var gapCheck = checkManualBW(bwData.duration,Math.floor(now/100),dayToday);
 				if (gapCheck){
-					watchDog.eventLog("Triggering backed-up scheduled BW now");
-					//Issue the BW trigger to PLC
-					trigBW(now,moment);
-					bwData.trigBacklog = 0;
-			    }
+					if (filtrationPump_Status === 0){
+						watchDog.eventLog("Triggering backed-up scheduled BW now");
+						//Issue the BW trigger to PLC
+						trigBW(now,moment);
+						bwData.trigBacklog = 0;
+					}
+				}
 			}
 
 		}// end of IF blockSchBW
 
 		else if (bwData.SchBWStatus === 1){
-			atalplc_client.writeSingleCoil(4000,0,function(resp){
-				atalplc_client.readCoils(4001,1,function(resp){
+			plc_client.writeSingleCoil(4000,0,function(resp){
+				plc_client.readCoils(4001,1,function(resp){
 					if(resp.coils[0]){
 						bwData.SchBWStatus = 2;
-						watchDog.eventLog("Alight Sch BW Running");
+						watchDog.eventLog("Sch BW1 Running");
 						bwData.timeoutCountdown = bwData.timeout;
 					}
 					//else wait for PLC to acknowledge BW is running
@@ -239,8 +243,8 @@ function checkManualBW(duration,timeNow,dayID){
 
 function trigBW(now,moment){
 	//only when there is no pump Fault
-	atalplc_client.writeSingleCoil(4000,1,function(resp){
-		watchDog.eventLog("Alight BW Trigger Sent to PLC");
+	plc_client.writeSingleCoil(4000,1,function(resp){
+		watchDog.eventLog("BW Trigger Sent to PLC");
 		bwData.SchBWStatus = 1;
 		bwData.timeLastBW = now;
 		bwData.blockBWuntil = new Date(moment.getTime() + (bwData.timeout * 1000) );

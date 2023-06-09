@@ -449,7 +449,7 @@
                                     <segue destination="pKM-ao-vnB" kind="show" id="Jyx-IQ-nBo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-lh-2Fc" userLabel="Playlist">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI0-lh-2Fc" userLabel="Playlist">
                                 <rect key="frame" x="683" y="340" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="lakeBasin" backgroundImage="background">
@@ -584,7 +584,7 @@
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWC-Ae-a2k" userLabel="Lights">
                                 <rect key="frame" x="758" y="199" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="systemStatus">
+                                <state key="normal" backgroundImage="lights">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -592,7 +592,7 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="LpG-PM-ZGt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="15" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrZ-Sf-ODu" userLabel="Fog">
+                            <button opaque="NO" tag="15" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrZ-Sf-ODu" userLabel="Fog">
                                 <rect key="frame" x="758" y="619" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="background">
@@ -606,7 +606,7 @@
                             <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYy-f6-sec" userLabel="WaterQuality">
                                 <rect key="frame" x="898" y="339" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="background">
+                                <state key="normal" backgroundImage="systemStatus">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -618,7 +618,7 @@
                                 <rect key="frame" x="758" y="339" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <size key="titleShadowOffset" width="1" height="0.0"/>
-                                <state key="normal" backgroundImage="background">
+                                <state key="normal" backgroundImage="wind">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -626,7 +626,7 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="MDF-Yh-JeB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jm5-75-dUG" userLabel="Air Pressure">
+                            <button opaque="NO" tag="14" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jm5-75-dUG" userLabel="Air Pressure">
                                 <rect key="frame" x="618" y="619" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="background">
@@ -637,10 +637,10 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="ONN-YM-rMw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-Bo-CqG" userLabel="WaterLevel">
+                            <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-Bo-CqG" userLabel="WaterLevel">
                                 <rect key="frame" x="478" y="479" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="water_level">
+                                <state key="normal" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -648,10 +648,10 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="qy8-SB-J76"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ley-Ol-OCu" userLabel="Cascade">
+                            <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ley-Ol-OCu" userLabel="Cascade">
                                 <rect key="frame" x="618" y="479" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="intrusion">
+                                <state key="normal" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -670,7 +670,7 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="GvT-QF-qgt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7e-i1-DLq" userLabel="PumpSafety">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7e-i1-DLq" userLabel="PumpSafety">
                                 <rect key="frame" x="618" y="339" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="background">
@@ -681,10 +681,10 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="2KO-CP-qTr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU8-Zb-5K3" userLabel="Pumps">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU8-Zb-5K3" userLabel="Pumps">
                                 <rect key="frame" x="478" y="339" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="pumps">
+                                <state key="normal" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -692,10 +692,10 @@
                                     <action selector="pushToStoryboard:" destination="SMt-oz-gqb" eventType="touchUpInside" id="Cio-ze-z4R"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3o-Hu-RlP" userLabel="Fire">
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3o-Hu-RlP" userLabel="Fire">
                                 <rect key="frame" x="898" y="479" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="waterOnFire">
+                                <state key="normal" backgroundImage="background">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -788,10 +788,10 @@
             </objects>
             <point key="canvasLocation" x="-5154" y="-753"/>
         </scene>
-        <!--Alight Show Stopper Checker-->
+        <!--Lake Show Stopper Checker-->
         <scene sceneID="O6g-tT-oxg">
             <objects>
-                <viewController id="DGq-aY-NMn" customClass="AlightShowStopperChecker" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DGq-aY-NMn" customClass="LakeShowStopperChecker" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="73W-mc-dJd"/>
                         <viewControllerLayoutGuide type="bottom" id="dCw-CT-geH"/>
@@ -825,20 +825,16 @@
         <image name="fillerShow" width="522" height="522"/>
         <image name="filtration" width="500" height="500"/>
         <image name="fog" width="500" height="500"/>
-        <image name="intrusion" width="500" height="500"/>
         <image name="ios_settings_icon" width="512" height="512"/>
         <image name="lagoonBasin" width="1950" height="1950"/>
         <image name="lakeBasin" width="1951" height="1950"/>
         <image name="lights" width="500" height="500"/>
         <image name="outOfRange" width="1105" height="781"/>
         <image name="playlist" width="500" height="500"/>
-        <image name="pumps" width="500" height="500"/>
         <image name="scheduler" width="500" height="500"/>
         <image name="settings" width="251" height="251"/>
         <image name="shortcut_playlist_off" width="315" height="315"/>
         <image name="systemStatus" width="313" height="313"/>
-        <image name="waterOnFire" width="522" height="522"/>
-        <image name="water_level" width="500" height="500"/>
         <image name="water_quality" width="500" height="500"/>
         <image name="wind" width="500" height="500"/>
     </resources>

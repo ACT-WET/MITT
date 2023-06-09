@@ -27,7 +27,7 @@ alphaconverter = require("./Includes/alphaconverter");
 //===============  Global Parameters
 
 homeD = __dirname;       //Location of the main scripts
-proj = 'MITT-LAGOON';    //display this on WatchDog. Also extracted from the folder name on the server    
+proj = 'LAGOON';    //display this on WatchDog. Also extracted from the folder name on the server    
 timerCount = [0,0,0,0,0,0,0,0,0,0];
 sysStatus = [];          //Array that is displayed on Read ErrorLog - old
 firesysStatus = [];      //Array that is displayed on Read ErrorLog - old
@@ -1606,74 +1606,7 @@ function setWindScalingData(query){
 }
 
 //==================== Scheduled Interrupts
-setInterval(function(){
-       spm_client.readHoldingRegister(2005,1,function(resp)
-        {
-            var spm_data_2005 = resp.register[0];
-            
-            if (spm_data_2005 == spmTempData){
-                //watchDog.eventLog('spm_data_2005 ::: ' +spm_data_2005);
-            } else {
-                plc_client.writeSingleCoil(503,spm_data_2005,function(resp){
-                    watchDog.eventLog('SPM to PLC Send: SPM Data ' +spm_data_2005); 
-                });
-                //watchDog.eventLog('spm_data_2005 ::: ' +spm_data_2005);
-                spmTempData = spm_data_2005;  
-            }
-
-            // Modbus Register 2005 from SPM will give a 16-bit Int value
-
-            // bit 0    - Audio Mute
-            // bit 1    - Fog Enable 
-            // bit 2    - MicroShooter Lights enable
-            // bit 3    - Oarsman 101 Lights enable
-            // bit 4    - Oarsman 102 Lights enable
-            // bit 5    - Oarsman 103 Lights enable
-            // bit 6    - Oarsman 104 Lights enable
-            // bit 7    - Oarsman 105 Lights enable
-            // bit 8    - Oarsman 106 Lights enable
-            // bit 9    - Oarsman 107 Lights enable
-            // bit 10   - Oarsman 108 Lights enable
-            // bit 11   - Oarsman 109 Lights enable 
-            // bit 12   - Oarsman 110 Lights enable
-            // bit 13   - Oarsman 111 Lights enable
-            // bit 14   - Oarsman 112 Lights enable
-            // bit 15   - <Not Used>
-
-            // var audMu = nthBit(resp.register[0],0);
-            // var fogEn = nthBit(resp.register[0],1);
-            // var micrLight = nthBit(resp.register[0],2);
-            // var oarsLight101 = nthBit(resp.register[0],3);
-            // var oarsLight102 = nthBit(resp.register[0],4);
-            // var oarsLight103 = nthBit(resp.register[0],5);
-            // var oarsLight104 = nthBit(resp.register[0],6);
-            // var oarsLight105 = nthBit(resp.register[0],7);
-            // var oarsLight106 = nthBit(resp.register[0],8);
-            // var oarsLight107 = nthBit(resp.register[0],9);
-            // var oarsLight108 = nthBit(resp.register[0],10);
-            // var oarsLight109 = nthBit(resp.register[0],11);
-            // var oarsLight110 = nthBit(resp.register[0],12);
-            // var oarsLight111 = nthBit(resp.register[0],13);
-            // var oarsLight112 = nthBit(resp.register[0],14);
-
-            // watchDog.eventLog('audMu ' +audMu); 
-            // watchDog.eventLog('fogEn ' +fogEn); 
-            // watchDog.eventLog('micrLight ' +micrLight); 
-            // watchDog.eventLog('oarsLight101 ' +oarsLight101); 
-            // watchDog.eventLog('oarsLight102 ' +oarsLight102); 
-            // watchDog.eventLog('oarsLight103 ' +oarsLight103); 
-            // watchDog.eventLog('oarsLight104 ' +oarsLight104); 
-            // watchDog.eventLog('oarsLight105 ' +oarsLight105); 
-            // watchDog.eventLog('oarsLight106 ' +oarsLight106); 
-            // watchDog.eventLog('oarsLight107 ' +oarsLight107); 
-            // watchDog.eventLog('oarsLight108 ' +oarsLight108); 
-            // watchDog.eventLog('oarsLight109 ' +oarsLight109); 
-            // watchDog.eventLog('oarsLight110 ' +oarsLight110); 
-            // watchDog.eventLog('oarsLight111 ' +oarsLight111); 
-            // watchDog.eventLog('oarsLight112 ' +oarsLight112);
-        });      
-
-},200); 
+setInterval(function(){},1000); 
 //Timer Trial
 setTimeout(function(){
 

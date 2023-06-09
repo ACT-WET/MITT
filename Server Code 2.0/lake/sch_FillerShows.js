@@ -30,17 +30,15 @@ function pumpSchWrapper(){
     var off_time = fillerShowData[(3*day_ID)+2];
 
     //adjusting for 6am-6ma display on the iPad
-    if ((current_time > 600)&&(off_time <= 600)){
-        off_time = 2400;
+    if (current_time < 600){
+        current_time = current_time + 2400;
     }
-    else if ((current_time <= 600)&&(off_time <=600)){
-        if (on_time >= 600){
-            on_time = 0;
-        }
-    }
-    else{
-        //So nothing
-    }
+    if (on_time < 600){
+        on_time = on_time + 2400;
+    } 
+    if (off_time < 600){
+        off_time = off_time + 2400;
+    } 
 
     //watchDog.eventLog("on_time: " +on_time +" current_time: " +current_time +" off_time: " +off_time);
     var fillerShow_enable = fillerShow.FillerShow_Enable;

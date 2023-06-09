@@ -125,7 +125,7 @@
         //Show the no connection view
         self.noConnection.alpha = 1;
         
-        if ([plcConnectionStatus isEqualToString:@"plcFailed"] || [serverConnectionStatus isEqualToString:@"serverFailed"]) {
+        if ([plcConnectionStatus isEqualToString:@"MITTLAGplcFailed"] || [serverConnectionStatus isEqualToString:@"serverFailed"]) {
             if ([serverConnectionStatus isEqualToString:@"serverConnected"]) {
                 self.noConnectionLabel.text = @"PLC CONNECTION FAILED, SERVER GOOD";
             } else if ([plcConnectionStatus isEqualToString:@"MITTLAPLCConnected"]) {

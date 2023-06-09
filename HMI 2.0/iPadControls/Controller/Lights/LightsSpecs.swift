@@ -17,10 +17,13 @@ import Foundation
 
 
 let LIGHTS_AUTO_HAND_PLC_REGISTER              = 3500
+let LAKE_LIGHTS_AUTO_HAND_PLC_REGISTER         = 3500
 let LIGHTS_STATUS                              = 3500
+let LAKE_LIGHTS_STATUS                         = 3501
 let LIGHTS_ON_OFF_WRITE_REGISTERS              = 3501
 
 let WATER_LEVE_LSH2001                         = 3103
+let WATER_LEVE_LSH3001                         = 3103
 let SURGE_WATER_LEVEL_BELOW_L                  = 3102
 let GLIMMER_WATER_LEVEL_BELOW_L                = 3100
 let LIGHTS_DAY_MODE_BTN_UI_TAG_NUMBER          = 15
@@ -28,8 +31,10 @@ let LIGHTS_DAY_MODE_CMD                        = "\(HTTP_PASS)\(SERVER_IP_ADDRES
 let DAY_MODE_BUTTON_TAG                        = 6
 let READ_LIGHT_SERVER_PATH                     = "readLights"
 let WRITE_LIGHT_SERVER_PATH                    = "writeLights"
-let READ_LAKE_LIGHT_SERVER_PATH                = "readLights"
-let WRITE_LAKE_LIGHT_SERVER_PATH               = "writeLights"
+let READ_LAKE_LIGHT_SERVER_PATH                = "readFeatureLights"
+let WRITE_LAKE_LIGHT_SERVER_PATH               = "writeFeatureLights"
+let READ_LAKEPOOL_LIGHT_SERVER_PATH            = "readPoolLights"
+let WRITE_LAKEPOOL_LIGHT_SERVER_PATH           = "writePoolLights"
 
 let LCP901_AUTO_HAND_PLC_REGISTER              = 3500
 let LCP901_ON_OFF_WRITE_REGISTERS              = 3502

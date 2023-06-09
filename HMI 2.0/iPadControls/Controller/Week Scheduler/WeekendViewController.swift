@@ -33,7 +33,7 @@ class WeekendViewController: UIViewController {
         super.viewDidLoad()
         
         modifyWeekButtons()
-        if readServerPath == "readWWPumpSch" || readServerPath == "readAlWeirPumpSch" || readServerPath == "readAlFilterSch" || readServerPath == "readAlFillerShowSch" || readServerPath == "readDelugeFilterPumpSch" || readServerPath == "readDelugeDispPumpSch"{
+        if readServerPath == "readFeatureLights" || readServerPath == "readPoolLights" || readServerPath == "readLakeFilterSch" || readServerPath == "readLakeFillerShowSch" {
             IPADDR = SERVER_IP2_ADDRESS
         }
     }

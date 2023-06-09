@@ -163,13 +163,7 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
     
     func setupLakePumpLabel(){
         switch pumpNumber {
-            case 901: vfdNumber.text = "VFD - 9101"
-            case 902: vfdNumber.text = "VFD - 9201"
-            case 903: vfdNumber.text = "VFD - 9202"
-            case 904: vfdNumber.text = "VFD - 9203"
-            case 905: vfdNumber.text = "VFD - 9204"
-            case 906: vfdNumber.text = "VFD - 9205"
-            case 907: vfdNumber.text = "VFD - 9206"
+            case 101: vfdNumber.text = "VFD - 301"
             
         default:
             print("FAULT TAG")
@@ -514,7 +508,6 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
             self.getTemperatureReading(response: response)
             self.getManualSpeedReading(response: response)
             self.getFrequencyReading(response: response)
-            self.getManualSpeedReading(response: response)
             
         })
     }
@@ -538,7 +531,6 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
                self.getTemperatureReading(response: response)
                self.getManualSpeedReading(response: response)
                self.getFrequencyReading(response: response)
-               self.getManualSpeedReading(response: response)
            })
        }
     
@@ -953,13 +945,13 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
                 
                 
                 CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: 2, value: Int(manSpeed!))
-                
+                setReadManualSpeedBoolean()
                 
             } else {
                 
                 
                 CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LAG_PLC_IP_ADDRESS, register: 22, value: Int(manSpeed!))
-                
+                setReadManualSpeedBoolean()
             }
         }
         
@@ -968,19 +960,22 @@ class AutoPumpDetailViewController: UIViewController,UIGestureRecognizerDelegate
                 
                 
                 CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: 2, value: Int(manSpeed!))
+                setReadManualSpeedBoolean()
                 
                 
             } else {
                 
                 
                 CENTRAL_SYSTEM?.writeRegister(plcIpAddress: MITT_LA_PLC_IP_ADDRESS, register: 22, value: Int(manSpeed!))
+                setReadManualSpeedBoolean()
                 
             }
         }
-        readManualFrequencySpeedOnce = false
+        
+        
     }
     private func setReadManualSpeedBoolean(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.50) {
             self.readManualFrequencySpeed = true
             self.frequencySetLabel.textColor = DEFAULT_GRAY
         }

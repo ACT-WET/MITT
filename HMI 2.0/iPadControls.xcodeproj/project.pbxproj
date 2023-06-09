@@ -117,6 +117,15 @@
 		9BC042B82267C265001E2F49 /* FogSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC042B42267C265001E2F49 /* FogSpecs.swift */; };
 		9BC042B92267C265001E2F49 /* FogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC042B52267C265001E2F49 /* FogViewController.swift */; };
 		9BF5679D20DC69DE001AFD30 /* iPadControls-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BF5679C20DC69DE001AFD30 /* iPadControls-Info.plist */; };
+		BB0792C82A313D2900C6F38F /* LakeLightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792C72A313D2900C6F38F /* LakeLightsViewController.swift */; };
+		BB0792CA2A313D4700C6F38F /* LakeLightsSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792C92A313D4700C6F38F /* LakeLightsSelectViewController.swift */; };
+		BB0792CC2A32B21B00C6F38F /* LakeFiltrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792CB2A32B21B00C6F38F /* LakeFiltrationViewController.swift */; };
+		BB0792CE2A32C14700C6F38F /* LakeWindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792CD2A32C14700C6F38F /* LakeWindViewController.swift */; };
+		BB0792D02A32C2CE00C6F38F /* LakeWindAnemometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792CF2A32C2CE00C6F38F /* LakeWindAnemometerViewController.swift */; };
+		BB0792D22A32C36500C6F38F /* LakewindSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792D12A32C36500C6F38F /* LakewindSettingsViewController.swift */; };
+		BB0792D42A32C67D00C6F38F /* LakeShowScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792D32A32C67D00C6F38F /* LakeShowScheduleListViewController.swift */; };
+		BB0792D62A32F22F00C6F38F /* LakeLightSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792D52A32F22F00C6F38F /* LakeLightSettingsViewController.swift */; };
+		BB0792D82A32F56C00C6F38F /* LakeFiltrationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0792D72A32F56C00C6F38F /* LakeFiltrationSettingsViewController.swift */; };
 		BB153A3E29F9C5AE009F1C62 /* LakeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB153A3D29F9C5AE009F1C62 /* LakeHomeViewController.swift */; };
 		BB2E14652786144E00693B66 /* lights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2E14612786144E00693B66 /* lights.storyboard */; };
 		BB2E14672786144E00693B66 /* LightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E14632786144E00693B66 /* LightsViewController.swift */; };
@@ -140,23 +149,23 @@
 		BB6568E624215FDB00229999 /* SysLogTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6568E524215FDB00229999 /* SysLogTextViewController.swift */; };
 		BB69783B29556FF200EDC57E /* LakePumpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783A29556FF200EDC57E /* LakePumpsViewController.swift */; };
 		BB69783D295573E200EDC57E /* LakePumpsSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783C295573E200EDC57E /* LakePumpsSchedulerViewController.swift */; };
-		BB69783F29559CC200EDC57E /* AlightWaterLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783E29559CC200EDC57E /* AlightWaterLevelViewController.swift */; };
-		BB6978412955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978402955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift */; };
+		BB69783F29559CC200EDC57E /* LakeWaterLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69783E29559CC200EDC57E /* LakeWaterLevelViewController.swift */; };
+		BB6978412955AD1600EDC57E /* LakeWaterLevelSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978402955AD1600EDC57E /* LakeWaterLevelSettingsViewController.swift */; };
 		BB6978472956D0AB00EDC57E /* LakeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978462956D0AB00EDC57E /* LakeSettingsViewController.swift */; };
 		BB6978492956D83500EDC57E /* LakeSystemStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978482956D83500EDC57E /* LakeSystemStatusViewController.swift */; };
 		BB69784F295E371B00EDC57E /* FillerShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB69784D295E371A00EDC57E /* FillerShowsViewController.swift */; };
 		BB697850295E371B00EDC57E /* fillerShows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB69784E295E371A00EDC57E /* fillerShows.storyboard */; };
-		BB6978652967D69D00EDC57E /* AlShow+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978632967D69D00EDC57E /* AlShow+CoreDataClass.swift */; };
-		BB6978662967D69D00EDC57E /* AlShow+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978642967D69D00EDC57E /* AlShow+CoreDataProperties.swift */; };
-		BB6978692967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6978682967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m */; };
-		BB69786C2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m */; };
-		BB697871296C9A9400EDC57E /* AlightShowStopperChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB697870296C9A9400EDC57E /* AlightShowStopperChecker.swift */; };
-		BB697874296C9F0800EDC57E /* ACTPlaylistAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697873296C9F0800EDC57E /* ACTPlaylistAlightViewController.m */; };
-		BB697877296CA89100EDC57E /* ACTSelectShowAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697876296CA89100EDC57E /* ACTSelectShowAlightViewController.m */; };
-		BB69787A296CC53C00EDC57E /* ACTSchedulerAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697879296CC53C00EDC57E /* ACTSchedulerAlightViewController.m */; };
-		BB69787D296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69787C296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m */; };
-		BB697880296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m */; };
-		BB697883296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697882296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m */; };
+		BB6978652967D69D00EDC57E /* LakeShow+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978632967D69D00EDC57E /* LakeShow+CoreDataClass.swift */; };
+		BB6978662967D69D00EDC57E /* LakeShow+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6978642967D69D00EDC57E /* LakeShow+CoreDataProperties.swift */; };
+		BB6978692967DB5B00EDC57E /* ACTInstantPlayLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6978682967DB5B00EDC57E /* ACTInstantPlayLakeViewController.m */; };
+		BB69786C2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.m */; };
+		BB697871296C9A9400EDC57E /* LakeShowStopperChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB697870296C9A9400EDC57E /* LakeShowStopperChecker.swift */; };
+		BB697874296C9F0800EDC57E /* ACTPlaylistLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697873296C9F0800EDC57E /* ACTPlaylistLakeViewController.m */; };
+		BB697877296CA89100EDC57E /* ACTSelectShowLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697876296CA89100EDC57E /* ACTSelectShowLakeViewController.m */; };
+		BB69787A296CC53C00EDC57E /* ACTSchedulerLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697879296CC53C00EDC57E /* ACTSchedulerLakeViewController.m */; };
+		BB69787D296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69787C296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.m */; };
+		BB697880296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.m */; };
+		BB697883296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB697882296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.m */; };
 		BB697885296DEDFE00EDC57E /* FillerShowsLakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB697884296DEDFE00EDC57E /* FillerShowsLakeViewController.swift */; };
 		BB8FF4682A0C06BC009B12E9 /* pumpsafety.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB8FF4662A0C06BC009B12E9 /* pumpsafety.storyboard */; };
 		BB8FF4692A0C06BC009B12E9 /* PumpSafetyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8FF4672A0C06BC009B12E9 /* PumpSafetyViewController.swift */; };
@@ -327,6 +336,15 @@
 		9BC042B42267C265001E2F49 /* FogSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FogSpecs.swift; sourceTree = "<group>"; };
 		9BC042B52267C265001E2F49 /* FogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FogViewController.swift; sourceTree = "<group>"; };
 		9BF5679C20DC69DE001AFD30 /* iPadControls-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "iPadControls-Info.plist"; path = "Resources/iPadControls-Info.plist"; sourceTree = "<group>"; };
+		BB0792C72A313D2900C6F38F /* LakeLightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeLightsViewController.swift; sourceTree = "<group>"; };
+		BB0792C92A313D4700C6F38F /* LakeLightsSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeLightsSelectViewController.swift; sourceTree = "<group>"; };
+		BB0792CB2A32B21B00C6F38F /* LakeFiltrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeFiltrationViewController.swift; sourceTree = "<group>"; };
+		BB0792CD2A32C14700C6F38F /* LakeWindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWindViewController.swift; sourceTree = "<group>"; };
+		BB0792CF2A32C2CE00C6F38F /* LakeWindAnemometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWindAnemometerViewController.swift; sourceTree = "<group>"; };
+		BB0792D12A32C36500C6F38F /* LakewindSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakewindSettingsViewController.swift; sourceTree = "<group>"; };
+		BB0792D32A32C67D00C6F38F /* LakeShowScheduleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeShowScheduleListViewController.swift; sourceTree = "<group>"; };
+		BB0792D52A32F22F00C6F38F /* LakeLightSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeLightSettingsViewController.swift; sourceTree = "<group>"; };
+		BB0792D72A32F56C00C6F38F /* LakeFiltrationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeFiltrationSettingsViewController.swift; sourceTree = "<group>"; };
 		BB153A3D29F9C5AE009F1C62 /* LakeHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LakeHomeViewController.swift; sourceTree = "<group>"; };
 		BB2E14612786144E00693B66 /* lights.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = lights.storyboard; sourceTree = "<group>"; };
 		BB2E14632786144E00693B66 /* LightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightsViewController.swift; sourceTree = "<group>"; };
@@ -359,31 +377,31 @@
 		BB6568E524215FDB00229999 /* SysLogTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysLogTextViewController.swift; sourceTree = "<group>"; };
 		BB69783A29556FF200EDC57E /* LakePumpsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakePumpsViewController.swift; sourceTree = "<group>"; };
 		BB69783C295573E200EDC57E /* LakePumpsSchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakePumpsSchedulerViewController.swift; sourceTree = "<group>"; };
-		BB69783E29559CC200EDC57E /* AlightWaterLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightWaterLevelViewController.swift; sourceTree = "<group>"; };
-		BB6978402955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightWaterLevelSettingsViewController.swift; sourceTree = "<group>"; };
+		BB69783E29559CC200EDC57E /* LakeWaterLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWaterLevelViewController.swift; sourceTree = "<group>"; };
+		BB6978402955AD1600EDC57E /* LakeWaterLevelSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeWaterLevelSettingsViewController.swift; sourceTree = "<group>"; };
 		BB6978462956D0AB00EDC57E /* LakeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeSettingsViewController.swift; sourceTree = "<group>"; };
 		BB6978482956D83500EDC57E /* LakeSystemStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeSystemStatusViewController.swift; sourceTree = "<group>"; };
 		BB69784D295E371A00EDC57E /* FillerShowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillerShowsViewController.swift; sourceTree = "<group>"; };
 		BB69784E295E371A00EDC57E /* fillerShows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = fillerShows.storyboard; sourceTree = "<group>"; };
-		BB6978632967D69D00EDC57E /* AlShow+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AlShow+CoreDataClass.swift"; path = "Core Data Model/AlShow+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BB6978642967D69D00EDC57E /* AlShow+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AlShow+CoreDataProperties.swift"; path = "Core Data Model/AlShow+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BB6978672967DB5B00EDC57E /* ACTInstantPlayAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTInstantPlayAlightViewController.h; sourceTree = "<group>"; };
-		BB6978682967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTInstantPlayAlightViewController.m; sourceTree = "<group>"; };
-		BB69786A2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistSettingsAlightViewController.h; sourceTree = "<group>"; };
-		BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistSettingsAlightViewController.m; sourceTree = "<group>"; };
-		BB697870296C9A9400EDC57E /* AlightShowStopperChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlightShowStopperChecker.swift; sourceTree = "<group>"; };
-		BB697872296C9F0800EDC57E /* ACTPlaylistAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistAlightViewController.h; sourceTree = "<group>"; };
-		BB697873296C9F0800EDC57E /* ACTPlaylistAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistAlightViewController.m; sourceTree = "<group>"; };
-		BB697875296CA89100EDC57E /* ACTSelectShowAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTSelectShowAlightViewController.h; sourceTree = "<group>"; };
-		BB697876296CA89100EDC57E /* ACTSelectShowAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTSelectShowAlightViewController.m; sourceTree = "<group>"; };
-		BB697878296CC53C00EDC57E /* ACTSchedulerAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTSchedulerAlightViewController.h; sourceTree = "<group>"; };
-		BB697879296CC53C00EDC57E /* ACTSchedulerAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTSchedulerAlightViewController.m; sourceTree = "<group>"; };
-		BB69787B296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTAddShowPlaylistAlightViewController.h; sourceTree = "<group>"; };
-		BB69787C296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTAddShowPlaylistAlightViewController.m; sourceTree = "<group>"; };
-		BB69787E296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTMoveDeleteShowPlaylistAlightViewController.h; sourceTree = "<group>"; };
-		BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTMoveDeleteShowPlaylistAlightViewController.m; sourceTree = "<group>"; };
-		BB697881296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTCalendarScheduleAlightViewController.h; sourceTree = "<group>"; };
-		BB697882296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTCalendarScheduleAlightViewController.m; sourceTree = "<group>"; };
+		BB6978632967D69D00EDC57E /* LakeShow+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LakeShow+CoreDataClass.swift"; path = "Core Data Model/LakeShow+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BB6978642967D69D00EDC57E /* LakeShow+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LakeShow+CoreDataProperties.swift"; path = "Core Data Model/LakeShow+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BB6978672967DB5B00EDC57E /* ACTInstantPlayLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTInstantPlayLakeViewController.h; sourceTree = "<group>"; };
+		BB6978682967DB5B00EDC57E /* ACTInstantPlayLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTInstantPlayLakeViewController.m; sourceTree = "<group>"; };
+		BB69786A2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistSettingsLakeViewController.h; sourceTree = "<group>"; };
+		BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistSettingsLakeViewController.m; sourceTree = "<group>"; };
+		BB697870296C9A9400EDC57E /* LakeShowStopperChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LakeShowStopperChecker.swift; sourceTree = "<group>"; };
+		BB697872296C9F0800EDC57E /* ACTPlaylistLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTPlaylistLakeViewController.h; sourceTree = "<group>"; };
+		BB697873296C9F0800EDC57E /* ACTPlaylistLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTPlaylistLakeViewController.m; sourceTree = "<group>"; };
+		BB697875296CA89100EDC57E /* ACTSelectShowLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTSelectShowLakeViewController.h; sourceTree = "<group>"; };
+		BB697876296CA89100EDC57E /* ACTSelectShowLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTSelectShowLakeViewController.m; sourceTree = "<group>"; };
+		BB697878296CC53C00EDC57E /* ACTSchedulerLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTSchedulerLakeViewController.h; sourceTree = "<group>"; };
+		BB697879296CC53C00EDC57E /* ACTSchedulerLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTSchedulerLakeViewController.m; sourceTree = "<group>"; };
+		BB69787B296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTAddShowPlaylistLakeViewController.h; sourceTree = "<group>"; };
+		BB69787C296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTAddShowPlaylistLakeViewController.m; sourceTree = "<group>"; };
+		BB69787E296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTMoveDeleteShowPlaylistLakeViewController.h; sourceTree = "<group>"; };
+		BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTMoveDeleteShowPlaylistLakeViewController.m; sourceTree = "<group>"; };
+		BB697881296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACTCalendarScheduleLakeViewController.h; sourceTree = "<group>"; };
+		BB697882296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACTCalendarScheduleLakeViewController.m; sourceTree = "<group>"; };
 		BB697884296DEDFE00EDC57E /* FillerShowsLakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillerShowsLakeViewController.swift; sourceTree = "<group>"; };
 		BB8FF4662A0C06BC009B12E9 /* pumpsafety.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pumpsafety.storyboard; sourceTree = "<group>"; };
 		BB8FF4672A0C06BC009B12E9 /* PumpSafetyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpSafetyViewController.swift; sourceTree = "<group>"; };
@@ -516,8 +534,8 @@
 		88243C251DEF672A004D39D8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BB6978632967D69D00EDC57E /* AlShow+CoreDataClass.swift */,
-				BB6978642967D69D00EDC57E /* AlShow+CoreDataProperties.swift */,
+				BB6978632967D69D00EDC57E /* LakeShow+CoreDataClass.swift */,
+				BB6978642967D69D00EDC57E /* LakeShow+CoreDataProperties.swift */,
 				9B5F3F1420DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift */,
 				9B5F3F1820DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift */,
 				9B5F3F1520DC5AB400D3CFDF /* Network+CoreDataClass.swift */,
@@ -792,7 +810,7 @@
 			children = (
 				9B5F3FE720DC5B1200D3CFDF /* Indicators */,
 				9B5F3FF120DC5B1200D3CFDF /* ShowStopperChecker.swift */,
-				BB697870296C9A9400EDC57E /* AlightShowStopperChecker.swift */,
+				BB697870296C9A9400EDC57E /* LakeShowStopperChecker.swift */,
 				9B8DB3412148337B001CF70D /* ShowStopperSpecs.swift */,
 			);
 			name = "Show Stoppers";
@@ -822,8 +840,8 @@
 				9B5F3FF920DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift */,
 				9B8DB33F214832B6001CF70D /* WaterLevelSpecs.swift */,
 				9B5F3FFA20DC5B1200D3CFDF /* WaterLevelViewController.swift */,
-				BB69783E29559CC200EDC57E /* AlightWaterLevelViewController.swift */,
-				BB6978402955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift */,
+				BB69783E29559CC200EDC57E /* LakeWaterLevelViewController.swift */,
+				BB6978402955AD1600EDC57E /* LakeWaterLevelSettingsViewController.swift */,
 			);
 			name = "Water Level";
 			path = "Controller/Water Level";
@@ -844,7 +862,10 @@
 			isa = PBXGroup;
 			children = (
 				BB2E14612786144E00693B66 /* lights.storyboard */,
+				BB0792D52A32F22F00C6F38F /* LakeLightSettingsViewController.swift */,
 				BB2E14632786144E00693B66 /* LightsViewController.swift */,
+				BB0792C72A313D2900C6F38F /* LakeLightsViewController.swift */,
+				BB0792C92A313D4700C6F38F /* LakeLightsSelectViewController.swift */,
 				BB8FF46A2A0C3922009B12E9 /* LightSettingsViewController.swift */,
 				BB2E14642786144E00693B66 /* LightsSpecs.swift */,
 			);
@@ -855,9 +876,9 @@
 		BB629DDC26E0124F0005D4CB /* Showlist */ = {
 			isa = PBXGroup;
 			children = (
-				BB6978672967DB5B00EDC57E /* ACTInstantPlayAlightViewController.h */,
-				BB6978682967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m */,
-				BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m */,
+				BB6978672967DB5B00EDC57E /* ACTInstantPlayLakeViewController.h */,
+				BB6978682967DB5B00EDC57E /* ACTInstantPlayLakeViewController.m */,
+				BB69786B2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.m */,
 				BB629DDE26E0124F0005D4CB /* showList.storyboard */,
 				BB629DDD26E0124F0005D4CB /* ACTInstantPlayViewController.m */,
 				BB629DE026E0124F0005D4CB /* ACTInstantPlayViewController.h */,
@@ -871,14 +892,15 @@
 			children = (
 				BB629DF426E0126E0005D4CB /* scheduler.storyboard */,
 				BB37240E29D23293002BE775 /* ShowScheduleListViewController.swift */,
-				BB697879296CC53C00EDC57E /* ACTSchedulerAlightViewController.m */,
-				BB69787C296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m */,
-				BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m */,
-				BB697882296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m */,
-				BB697881296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.h */,
-				BB69787E296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.h */,
-				BB69787B296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.h */,
-				BB697878296CC53C00EDC57E /* ACTSchedulerAlightViewController.h */,
+				BB0792D32A32C67D00C6F38F /* LakeShowScheduleListViewController.swift */,
+				BB697879296CC53C00EDC57E /* ACTSchedulerLakeViewController.m */,
+				BB69787C296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.m */,
+				BB69787F296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.m */,
+				BB697882296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.m */,
+				BB697881296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.h */,
+				BB69787E296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.h */,
+				BB69787B296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.h */,
+				BB697878296CC53C00EDC57E /* ACTSchedulerLakeViewController.h */,
 				BB629DF526E0126E0005D4CB /* ACTScheduleViewController.m */,
 				BB629DF626E0126E0005D4CB /* ACTAddShowPlaylistViewController.m */,
 				BB629DFC26E0126E0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m */,
@@ -896,14 +918,14 @@
 			children = (
 				BB629E0326E013660005D4CB /* ACTPlaylistViewController.h */,
 				BB629E0426E013660005D4CB /* playlist.storyboard */,
-				BB697872296C9F0800EDC57E /* ACTPlaylistAlightViewController.h */,
-				BB697873296C9F0800EDC57E /* ACTPlaylistAlightViewController.m */,
+				BB697872296C9F0800EDC57E /* ACTPlaylistLakeViewController.h */,
+				BB697873296C9F0800EDC57E /* ACTPlaylistLakeViewController.m */,
 				BB629E0526E013660005D4CB /* ACTPlaylistSettingsViewController.h */,
-				BB69786A2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.h */,
+				BB69786A2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.h */,
 				BB629E0626E013660005D4CB /* ACTDesignateTestShowViewController.m */,
 				BB629E0726E013660005D4CB /* ACTSelectShowViewController.m */,
-				BB697875296CA89100EDC57E /* ACTSelectShowAlightViewController.h */,
-				BB697876296CA89100EDC57E /* ACTSelectShowAlightViewController.m */,
+				BB697875296CA89100EDC57E /* ACTSelectShowLakeViewController.h */,
+				BB697876296CA89100EDC57E /* ACTSelectShowLakeViewController.m */,
 				BB629E0826E013660005D4CB /* ACTPlaylistViewController.m */,
 				BB629E0926E013660005D4CB /* ACTDesignateTestShowViewController.h */,
 				BB629E0A26E013660005D4CB /* ACTSelectShowViewController.h */,
@@ -934,6 +956,8 @@
 			isa = PBXGroup;
 			children = (
 				BBF0F952240D911700886076 /* filtration.storyboard */,
+				BB0792D72A32F56C00C6F38F /* LakeFiltrationSettingsViewController.swift */,
+				BB0792CB2A32B21B00C6F38F /* LakeFiltrationViewController.swift */,
 				BBF0F953240D911700886076 /* FiltrationSettingsViewController.swift */,
 				BBF0F954240D911700886076 /* FiltrationViewController.swift */,
 				BBF0F955240D911700886076 /* FiltrationSpecs.swift */,
@@ -945,9 +969,12 @@
 			isa = PBXGroup;
 			children = (
 				BBF0F969240D9A2900886076 /* wind.storyboard */,
+				BB0792CD2A32C14700C6F38F /* LakeWindViewController.swift */,
+				BB0792CF2A32C2CE00C6F38F /* LakeWindAnemometerViewController.swift */,
 				BBF0F96C240D9A3800886076 /* WindAnemometerViewController.swift */,
 				BBF0F96E240D9A3800886076 /* WindSpecs.swift */,
 				BBF721F926E7F63F0090FFCC /* windSettingsViewController.swift */,
+				BB0792D12A32C36500C6F38F /* LakewindSettingsViewController.swift */,
 				BBF0F96B240D9A3800886076 /* WindViewController.swift */,
 			);
 			path = Wind;
@@ -1146,12 +1173,13 @@
 			files = (
 				9B5F3F2520DC5AB400D3CFDF /* Network+CoreDataProperties.swift in Sources */,
 				BB629E0E26E013670005D4CB /* ACTPlaylistViewController.m in Sources */,
-				BB6978662967D69D00EDC57E /* AlShow+CoreDataProperties.swift in Sources */,
+				BB6978662967D69D00EDC57E /* LakeShow+CoreDataProperties.swift in Sources */,
 				BB629E0126E0126F0005D4CB /* ACTMoveDeleteShowPlaylistViewController.m in Sources */,
 				9B5F3F2320DC5AB400D3CFDF /* Show+CoreDataClass.swift in Sources */,
 				9B5F3FB120DC5AF400D3CFDF /* ShowSettings.swift in Sources */,
 				9B8DB3422148337B001CF70D /* ShowStopperSpecs.swift in Sources */,
 				BBF0F95B240D911700886076 /* FiltrationSpecs.swift in Sources */,
+				BB0792C82A313D2900C6F38F /* LakeLightsViewController.swift in Sources */,
 				9B5F3FAB20DC5AF400D3CFDF /* ACTSchedulerTimePickerViewController.m in Sources */,
 				9B5F3F8220DC5AD900D3CFDF /* modbus-data.c in Sources */,
 				9B725D7E214775BD008886A2 /* PumpsSpecs.swift in Sources */,
@@ -1163,12 +1191,13 @@
 				9B147509225E649A00D9E577 /* OzonePopupViewController.swift in Sources */,
 				BBF9B8DA23F4B4F800DF67A1 /* SystemFaultViewController.swift in Sources */,
 				9B5F3FAC20DC5AF400D3CFDF /* HTTPComm.swift in Sources */,
+				BB0792D22A32C36500C6F38F /* LakewindSettingsViewController.swift in Sources */,
 				9B3D3B6F20DC615B00E34BE4 /* AppDelegate.swift in Sources */,
 				BBF9B8D723F4B4F800DF67A1 /* SystemStatusSpecs.swift in Sources */,
 				9B725DA121477601008886A2 /* WeekSchedulerPopoverView.swift in Sources */,
 				9B5F3FA920DC5AF400D3CFDF /* ACTDayValues.m in Sources */,
 				9B5F3F8120DC5AD900D3CFDF /* AFSecurityPolicy.m in Sources */,
-				BB697883296CCBA400EDC57E /* ACTCalendarScheduleAlightViewController.m in Sources */,
+				BB697883296CCBA400EDC57E /* ACTCalendarScheduleLakeViewController.m in Sources */,
 				BB629DE226E012500005D4CB /* ACTInstantPlayViewController.m in Sources */,
 				9B4E107C218265B700604006 /* TDSViewController.swift in Sources */,
 				BBF0F972240D9A3800886076 /* WindSpecs.swift in Sources */,
@@ -1179,14 +1208,16 @@
 				9B5F3F8F20DC5AD900D3CFDF /* RDVCalendarView.m in Sources */,
 				9B5F3F7B20DC5AD900D3CFDF /* AFURLConnectionOperation.m in Sources */,
 				9B5F3F7320DC5AD900D3CFDF /* UIRefreshControl+AFNetworking.m in Sources */,
-				BB697880296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistAlightViewController.m in Sources */,
-				BB6978692967DB5B00EDC57E /* ACTInstantPlayAlightViewController.m in Sources */,
+				BB697880296CCA6900EDC57E /* ACTMoveDeleteShowPlaylistLakeViewController.m in Sources */,
+				BB6978692967DB5B00EDC57E /* ACTInstantPlayLakeViewController.m in Sources */,
 				9B4E107E218265B700604006 /* WaterQualitySettingsViewController.swift in Sources */,
-				BB697877296CA89100EDC57E /* ACTSelectShowAlightViewController.m in Sources */,
+				BB697877296CA89100EDC57E /* ACTSelectShowLakeViewController.m in Sources */,
 				9BC042B92267C265001E2F49 /* FogViewController.swift in Sources */,
 				9B5F3F7120DC5AD900D3CFDF /* UIAlertView+AFNetworking.m in Sources */,
 				BB6978492956D83500EDC57E /* LakeSystemStatusViewController.swift in Sources */,
 				BBF0F95A240D911700886076 /* FiltrationViewController.swift in Sources */,
+				BB0792D42A32C67D00C6F38F /* LakeShowScheduleListViewController.swift in Sources */,
+				BB0792D82A32F56C00C6F38F /* LakeFiltrationSettingsViewController.swift in Sources */,
 				BB8FF46B2A0C3922009B12E9 /* LightSettingsViewController.swift in Sources */,
 				9B4E1080218265B700604006 /* ORPViewController.swift in Sources */,
 				9B5F3F9020DC5AD900D3CFDF /* RDVCalendarViewController.m in Sources */,
@@ -1204,7 +1235,7 @@
 				9B5F3F8520DC5AD900D3CFDF /* modbus-tcp.c in Sources */,
 				9B5F3F8020DC5AD900D3CFDF /* AFNetworkReachabilityManager.m in Sources */,
 				9B725DA221477601008886A2 /* WeekSchedulerViewController.swift in Sources */,
-				BB69787D296CC93300EDC57E /* ACTAddShowPlaylistAlightViewController.m in Sources */,
+				BB69787D296CC93300EDC57E /* ACTAddShowPlaylistLakeViewController.m in Sources */,
 				9B5F3F7A20DC5AD900D3CFDF /* AFHTTPSessionManager.m in Sources */,
 				9B5F3F7720DC5AD900D3CFDF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B5F404420DC5B1200D3CFDF /* ShowStopperChecker.swift in Sources */,
@@ -1214,6 +1245,7 @@
 				9B5F3F7F20DC5AD900D3CFDF /* AFHTTPRequestOperation.m in Sources */,
 				9B725D81214775BD008886A2 /* AutoPumpDetailViewController.swift in Sources */,
 				9B006223212C7E160066CC9B /* check12or24Hour.swift in Sources */,
+				BB0792CA2A313D4700C6F38F /* LakeLightsSelectViewController.swift in Sources */,
 				9B5F3F1F20DC5AB400D3CFDF /* PumpDetail+CoreDataClass.swift in Sources */,
 				9B5F3F7520DC5AD900D3CFDF /* UIImageView+AFNetworking.m in Sources */,
 				BBF0F959240D911700886076 /* FiltrationSettingsViewController.swift in Sources */,
@@ -1223,16 +1255,19 @@
 				9B5F3F7920DC5AD900D3CFDF /* AFURLResponseSerialization.m in Sources */,
 				9B5F3FA620DC5AF400D3CFDF /* CentralSystem.swift in Sources */,
 				9B5F3FAF20DC5AF400D3CFDF /* Extensions.swift in Sources */,
+				BB0792CC2A32B21B00C6F38F /* LakeFiltrationViewController.swift in Sources */,
 				9B4E107B218265B700604006 /* WaterQualitySpecs.swift in Sources */,
 				BB629DFE26E0126F0005D4CB /* ACTScheduleViewController.m in Sources */,
 				9B5F3F8B20DC5AD900D3CFDF /* ObjectiveLibModbus.m in Sources */,
 				9B5F3F2020DC5AB400D3CFDF /* IntrusionError+CoreDataClass.swift in Sources */,
-				BB69783F29559CC200EDC57E /* AlightWaterLevelViewController.swift in Sources */,
+				BB69783F29559CC200EDC57E /* LakeWaterLevelViewController.swift in Sources */,
+				BB0792CE2A32C14700C6F38F /* LakeWindViewController.swift in Sources */,
 				BB2E14682786144E00693B66 /* LightsSpecs.swift in Sources */,
 				BB629E0D26E013670005D4CB /* ACTSelectShowViewController.m in Sources */,
 				9B5F3F2220DC5AB400D3CFDF /* Pump+CoreDataClass.swift in Sources */,
 				9B5F3F7C20DC5AD900D3CFDF /* AFURLSessionManager.m in Sources */,
-				BB6978412955AD1600EDC57E /* AlightWaterLevelSettingsViewController.swift in Sources */,
+				BB0792D02A32C2CE00C6F38F /* LakeWindAnemometerViewController.swift in Sources */,
+				BB6978412955AD1600EDC57E /* LakeWaterLevelSettingsViewController.swift in Sources */,
 				9B725DA321477601008886A2 /* WeekendViewController.swift in Sources */,
 				BBF721FA26E7F63F0090FFCC /* windSettingsViewController.swift in Sources */,
 				BB153A3E29F9C5AE009F1C62 /* LakeHomeViewController.swift in Sources */,
@@ -1243,21 +1278,22 @@
 				BB2E14672786144E00693B66 /* LightsViewController.swift in Sources */,
 				9B4E1081218265B700604006 /* BromineViewController.swift in Sources */,
 				9B5F3F7D20DC5AD900D3CFDF /* AFHTTPRequestOperationManager.m in Sources */,
-				BB697871296C9A9400EDC57E /* AlightShowStopperChecker.swift in Sources */,
+				BB697871296C9A9400EDC57E /* LakeShowStopperChecker.swift in Sources */,
 				BB34707E27441F8500588FF5 /* HomeSelectViewController.swift in Sources */,
+				BB0792D62A32F22F00C6F38F /* LakeLightSettingsViewController.swift in Sources */,
 				9B5F404B20DC5B1200D3CFDF /* WaterLevelViewController.swift in Sources */,
 				BBF0F970240D9A3800886076 /* WindAnemometerViewController.swift in Sources */,
 				BBF9B8E023F4B6F900DF67A1 /* LogsViewController.swift in Sources */,
 				9B5F3F2420DC5AB400D3CFDF /* IntrusionError+CoreDataProperties.swift in Sources */,
 				BBF9B8E123F4B6F900DF67A1 /* StatusLogSpecs.swift in Sources */,
 				9B5F3F1C20DC5AB400D3CFDF /* Show+CoreDataProperties.swift in Sources */,
-				BB69787A296CC53C00EDC57E /* ACTSchedulerAlightViewController.m in Sources */,
+				BB69787A296CC53C00EDC57E /* ACTSchedulerLakeViewController.m in Sources */,
 				BB629E0026E0126F0005D4CB /* ACTCalendarScheduleViewController.m in Sources */,
 				BBF0F96F240D9A3800886076 /* WindViewController.swift in Sources */,
 				9B5F3F7220DC5AD900D3CFDF /* UIProgressView+AFNetworking.m in Sources */,
 				9B5F3FA520DC5AF400D3CFDF /* HomeGeneralSpecs.swift in Sources */,
 				9B5F3F8E20DC5AD900D3CFDF /* RDVCalendarDayCell.m in Sources */,
-				BB697874296C9F0800EDC57E /* ACTPlaylistAlightViewController.m in Sources */,
+				BB697874296C9F0800EDC57E /* ACTPlaylistLakeViewController.m in Sources */,
 				BB37240F29D23293002BE775 /* ShowScheduleListViewController.swift in Sources */,
 				9B5F404A20DC5B1200D3CFDF /* WaterLevelSettingsViewController.swift in Sources */,
 				9B5F3F1D20DC5AB400D3CFDF /* Wind+CoreDataClass.swift in Sources */,
@@ -1273,8 +1309,8 @@
 				9B5F3FAE20DC5AF400D3CFDF /* Logger.swift in Sources */,
 				9BBB8EF02135C359001F9F01 /* ShowHideSettingsLabel.swift in Sources */,
 				9B5F3F8D20DC5AD900D3CFDF /* SwiftRecord.swift in Sources */,
-				BB6978652967D69D00EDC57E /* AlShow+CoreDataClass.swift in Sources */,
-				BB69786C2968ADF900EDC57E /* ACTPlaylistSettingsAlightViewController.m in Sources */,
+				BB6978652967D69D00EDC57E /* LakeShow+CoreDataClass.swift in Sources */,
+				BB69786C2968ADF900EDC57E /* ACTPlaylistSettingsLakeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

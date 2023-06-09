@@ -1,5 +1,5 @@
 //
-//  AlightHomeViewController.swift
+//  LakeHomeViewController.swift
 //  iPadControls
 //
 //  Created by Rakesh Raveendra on 11/21/22.
@@ -250,8 +250,8 @@ class LakeHomeViewController: UIViewController {
                 writeServerPath = WRITE_LAKE_FILTER_SERVER_PATH
                 screen_Name = screenName
             } else if screenName == "pumps" {
-                readServerPath = READ_LAKE_PUMPSCH_PATH
-                writeServerPath = WRITE_LAKE_PUMPSCH_PATH
+                readServerPath = READ_LAKE_FILTER_SERVER_PATH
+                writeServerPath = WRITE_LAKE_FILTER_SERVER_PATH
                 screen_Name = screenName
             } else if screenName == "fillerShows" {
                 readServerPath = GET_LAKE_FILLER_SHOWSCH_STATE_HTTP_PATH

@@ -377,7 +377,7 @@
         <!--PLAYLIST-->
         <scene sceneID="CV5-Oh-R6W">
             <objects>
-                <viewController storyboardIdentifier="playlistAlightViewController" title="PLAYLIST" useStoryboardIdentifierAsRestorationIdentifier="YES" id="54G-wJ-NVn" customClass="ACTPlaylistAlightViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="playlistLakeViewController" title="PLAYLIST" useStoryboardIdentifierAsRestorationIdentifier="YES" id="54G-wJ-NVn" customClass="ACTPlaylistLakeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TB6-C5-4iN"/>
                         <viewControllerLayoutGuide type="bottom" id="9gB-5V-zb3"/>
@@ -461,15 +461,12 @@
                                 <rect key="frame" x="57" y="126" width="24" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzQ-u2-NdY">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzQ-u2-NdY">
                                 <rect key="frame" x="29" y="155" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="playlist">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="toggleAutoHandMode:" destination="54G-wJ-NVn" eventType="touchUpInside" id="RTK-0f-nZ0"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="handMode" translatesAutoresizingMaskIntoConstraints="NO" id="UrS-eS-Oj3">
                                 <rect key="frame" x="59" y="121" width="21" height="26"/>

@@ -1678,7 +1678,7 @@
         <!--WATER LEVEL-->
         <scene sceneID="phR-yz-iid">
             <objects>
-                <viewController storyboardIdentifier="waterLevelAlightViewController" title="WATER LEVEL" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FN2-TU-qWQ" customClass="AlightWaterLevelViewController" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="waterLevelLakeViewController" title="WATER LEVEL" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FN2-TU-qWQ" customClass="LakeWaterLevelViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nwz-oi-aKs"/>
                         <viewControllerLayoutGuide type="bottom" id="WFx-xC-GvV"/>
@@ -2023,7 +2023,7 @@
         <!--WATER LEVEL SETTINGS-->
         <scene sceneID="gcx-rr-che">
             <objects>
-                <viewController title="WATER LEVEL SETTINGS" modalPresentationStyle="fullScreen" id="sgR-Qg-eIW" customClass="AlightWaterLevelSettingsViewController" customModule="iPadControls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WATER LEVEL SETTINGS" modalPresentationStyle="fullScreen" id="sgR-Qg-eIW" customClass="LakeWaterLevelSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZwR-y5-8B5"/>
                         <viewControllerLayoutGuide type="bottom" id="nl5-2S-9fH"/>

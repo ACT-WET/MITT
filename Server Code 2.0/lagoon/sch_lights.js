@@ -43,11 +43,22 @@ function lightsWrapper(){
         //watchDog.eventLog('On Time' +on_time);
         //watchDog.eventLog('current Time' +current_time);
         //watchDog.eventLog('Off Time' +off_time);
-    if ((current_time >= on_time)&&(current_time < off_time)){
-        dayMode=0; 
-    }else{
-        dayMode=1; 
-    }
+    plc_client.readHoldingRegister(3500,6,function(resp){
+        
+        if (resp != undefined && resp != null){
+            var microlightsAuto = resp.register[0];
+            var oarsmanlightsAuto = resp.register[5];
+
+            if ((microlightsAuto === 2) && (oarsmanlightsAuto === 2)) {
+                if ((current_time >= on_time)&&(current_time < off_time)){
+                    dayMode=0; 
+                }else{
+                    dayMode=1; 
+                }
+            }
+        }
+    });
+    
 }
 
 module.exports=lightsWrapper;

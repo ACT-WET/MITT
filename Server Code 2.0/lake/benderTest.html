@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>BENDER Test</title>
+</head>
+
+<body>
+
+	<strong>BENDER Test</strong>
+	<input type='button' onclick="location.href='/benderTest';" value='Clear Form' />
+	<input type='button' onclick="location.href='/debug';" value='Debug' /> <br><br>
+
+	<form id='frm1'>
+		
+		Modbus Address: <br>
+
+		<input type='radio' name='registerType' value='m4w'>%MWInt
+		<input type='radio' name='registerType' value='m4wreal'>%MWReal
+	  	<input type='text' name='register'><br><br>
+
+	  	<input type='radio' name='function' value='read'> Read
+	
+	</form>
+	<button onclick='myFunction()'> Execute </button><br><br>
+	<em>If not filled correctly, the form will be cleared when executed</em>
+
+	<script type='text/javascript'>
+
+		function myFunction() {
+
+		    var form = document.getElementById('frm1');
+
+		    if (form.elements['function'].value === 'read'){
+
+		    	if (form.elements['register'].value !== ''){
+
+				    if (form.elements['registerType'].value === 'm4w'){
+				    	window.location.href='./mbReadM4W?' + form.elements['register'].value;
+				    }else if (form.elements['registerType'].value === 'm4wreal'){
+				    	window.location.href='./mbReadM4WReal?' + form.elements['register'].value;
+				    }else{
+				    	window.location.href='./benderTest';
+				    }
+
+			    }else{
+			    	window.location.href='./benderTest';
+			    }
+
+		    }else{
+		    	window.location.href='./benderTest';
+		    }
+		}
+
+	</script>
+	
+</body>
+</html> 

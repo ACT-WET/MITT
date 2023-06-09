@@ -48,9 +48,6 @@
                                 <state key="normal" backgroundImage="playlist">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="toggleAutoHandMode:" destination="yzA-IU-LRY" eventType="touchUpInside" id="5It-1A-z3Z"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="handMode" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-gE-HU7">
                                 <rect key="frame" x="47" y="122" width="21" height="26"/>
@@ -264,7 +261,7 @@
         <!--QUICK PLAY-->
         <scene sceneID="29q-zn-94m">
             <objects>
-                <viewController storyboardIdentifier="showListAlightViewController" title="QUICK PLAY" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dh8-Kr-qga" customClass="ACTInstantPlayAlightViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showListLakeViewController" title="QUICK PLAY" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dh8-Kr-qga" customClass="ACTInstantPlayLakeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hif-cR-OpM"/>
                         <viewControllerLayoutGuide type="bottom" id="wS9-rI-4qy"/>
@@ -294,9 +291,6 @@
                                 <state key="normal" backgroundImage="playlist">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="toggleAutoHandMode:" destination="dh8-Kr-qga" eventType="touchUpInside" id="eHM-fC-9ds"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="handMode" translatesAutoresizingMaskIntoConstraints="NO" id="XcQ-6A-ckp">
                                 <rect key="frame" x="47" y="122" width="21" height="26"/>
@@ -405,7 +399,7 @@
         <!--PLAYLIST SETTINGS-->
         <scene sceneID="aHg-1n-bDJ">
             <objects>
-                <viewController title="PLAYLIST SETTINGS" modalPresentationStyle="fullScreen" id="pMY-Lz-QLg" customClass="ACTPlaylistSettingsAlightViewController" sceneMemberID="viewController">
+                <viewController title="PLAYLIST SETTINGS" modalPresentationStyle="fullScreen" id="pMY-Lz-QLg" customClass="ACTPlaylistSettingsLakeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Dy-YC-f4W"/>
                         <viewControllerLayoutGuide type="bottom" id="436-8Y-owH"/>
@@ -479,7 +473,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bdJ-mJ-J4k"/>
+        <segue reference="qbA-us-owB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WETLogo" width="138" height="36"/>

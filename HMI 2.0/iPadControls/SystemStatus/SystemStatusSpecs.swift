@@ -31,3 +31,12 @@ let SYSTEM_RED_STATUS = [
     (tag: 14, bitwiseLocation: 4,  type:"INT", name: "Network Fault"),
     (tag: 15, bitwiseLocation: 5,  type:"INT", name: "GFCI FAULT")
 ]
+
+let LAKE_SYSTEM_RED_STATUS = [
+    
+    (tag: 10, bitwiseLocation: 0,  type:"INT", name: "Pump Fault"),
+    (tag: 11, bitwiseLocation: 1,  type:"INT", name: "Estop"),
+    (tag: 12, bitwiseLocation: 2,  type:"INT", name: "WaterLevel Fault"),
+    (tag: 13, bitwiseLocation: 3,  type:"INT", name: "WaterQuality Fault"),
+    (tag: 14, bitwiseLocation: 4,  type:"INT", name: "Network Fault")
+]

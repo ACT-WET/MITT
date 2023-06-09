@@ -127,7 +127,7 @@ class SystemStatusViewController: UIViewController {
                     indicator?.isHidden = true
                 } else {
                     indicator?.isHidden = false
-                    indicator?.frame = CGRect(x: 34, y: yPosition, width: 280, height: 21)
+                    indicator?.frame = CGRect(x: 474, y: yPosition, width: 280, height: 21)
                     yPosition += offset
                 }
             default:
@@ -151,7 +151,7 @@ class SystemStatusViewController: UIViewController {
                 indicator?.isHidden = true
             } else {
                 indicator?.isHidden = false
-                indicator?.frame = CGRect(x: 60, y: yPosition, width: 280, height: 21)
+                indicator?.frame = CGRect(x: 45, y: yPosition, width: 280, height: 21)
                 yPosition += offset
                     
             }

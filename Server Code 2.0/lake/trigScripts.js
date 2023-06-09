@@ -8,20 +8,15 @@ var timeKeeper_timer = require("./timeKeeper.js");
 
 var timedWatchDog_timer = require("./TimedWatchDog.js");
 var statusLog_timer = require("./statusLog.js");
+var fillerShw_timer = require("./sch_FillerShows.js");
 
-var windSpeedDayMode_timer = require("./windSpeedDayMode.js");
 var backwash_timer = require("./backwash.js");
+var lights_timer = require("./sch_lights.js");
+var poollights_timer = require("./sch_poollights.js");
 var waterQuality_timer = require("./waterQualityReadings.js");
 
 var filter_timer = require("./sch_filter.js");
-var weirPumpSch_timer = require("./sch_WeirPumps.js");
-var wwPumpSch_timer = require("./sch_Waterwall.js");
-var fillerShw_timer = require("./sch_FillerShows.js");
-
-//Deluge
-var delugebackwash_timer = require("./deluge/delugebackwash.js");
-var delugefilter_timer = require("./deluge/sch_delugefilter.js");
-var delugedisp_timer = require("./deluge/sch_delugedispPumps.js");
+//var weirPumpSch_timer = require("./sch_WeirPumps.js");
 
 if ((isBetween(msec,0,250)) || (isBetween(msec,250,500)) || (isBetween(msec,500,750)) || (isBetween(msec,750,999))){
 	if (timerCount[0] != sec){
@@ -29,8 +24,6 @@ if ((isBetween(msec,0,250)) || (isBetween(msec,250,500)) || (isBetween(msec,500,
 		//timeSync_timer();
 		timeKeeper_timer();
 		statusLog_timer();
-		delugefilter_timer();
-		delugedisp_timer();
 		timerCount[0] = sec;
 	}
 	else{
@@ -43,7 +36,7 @@ if (isBetween(msec,250,500)){
 		//watchDog.eventLog('Hey! Execute BW');
 		backwash_timer();
 		filter_timer();
-		wwPumpSch_timer();
+		//surge_timer();
 		timerCount[1] = sec;
 	}
 	else{
@@ -55,9 +48,8 @@ if (isBetween(msec,500,750)){
 	if (timerCount[2] != sec){
 		//watchDog.eventLog('Hey! Execute WQ');
 		waterQuality_timer();
-		delugebackwash_timer();
-		//flog();
 		fillerShw_timer();
+		//flog();
 		timerCount[2] = sec;
 	}
 	else{
@@ -81,8 +73,8 @@ if (isBetween(msec,750,999)){
 if ( (sec%2 === 0) && (isBetween(msec,0,250)) ){
 	if (timerCount[4] != sec){
 		//watchDog.eventLog('Hey! Execute ErrorLog');
-		weirPumpSch_timer();
-		//pj_timer();
+		poollights_timer();
+		lights_timer();
 		timerCount[4] = sec;
 	}
 	else{

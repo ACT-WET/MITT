@@ -40,7 +40,7 @@ class WeekSchedulerPopoverView: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewWillAppear(_ animated: Bool) {
         pickerView = view.viewWithTag(100) as! UIPickerView
         setSlidersValue()
-        if readServerPath == "readWWPumpSch" || readServerPath == "readAlWeirPumpSch" || readServerPath == "readAlFilterSch" || readServerPath == "readAlFillerShowSch" || readServerPath == "readDelugeFilterPumpSch" || readServerPath == "readDelugeDispPumpSch"{
+        if readServerPath == "readFeatureLights" || readServerPath == "readPoolLights" || readServerPath == "readLakeFilterSch" || readServerPath == "readLakeFillerShowSch" {
             IPADDR = SERVER_IP2_ADDRESS
         }
     }
