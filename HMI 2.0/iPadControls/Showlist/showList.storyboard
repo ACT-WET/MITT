@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,7 +26,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6jg-2B-6e8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3pb-kX-FJw">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WETLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ETd-Km-XEI">
@@ -64,7 +66,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LF-tl-aeo">
-                                <rect key="frame" x="414" y="100" width="596" height="70"/>
+                                <rect key="frame" x="414" y="186" width="0.0" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="HNk-Rt-15K" kind="embed" id="bdJ-mJ-J4k"/>
@@ -87,21 +89,21 @@
                                 <color key="sectionIndexBackgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="playlist" textLabel="pGv-k8-Fiw" detailTextLabel="BP6-ye-sy5" style="IBUITableViewCellStyleValue1" id="9uy-tv-2kf">
-                                        <rect key="frame" x="0.0" y="28" width="550" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="550" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9uy-tv-2kf" id="na3-RA-Mzd">
                                             <rect key="frame" x="0.0" y="0.0" width="550" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pGv-k8-Fiw">
-                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="20" y="12" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BP6-ye-sy5">
-                                                    <rect key="frame" x="491" y="12" width="44" height="20.5"/>
+                                                    <rect key="frame" x="486" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -186,13 +188,13 @@
         <!--PLAYLIST SETTINGS-->
         <scene sceneID="dXQ-3S-14U">
             <objects>
-                <viewController title="PLAYLIST SETTINGS" modalPresentationStyle="fullScreen" id="nA4-jd-mJM" customClass="ACTPlaylistSettingsViewController" sceneMemberID="viewController">
+                <viewController title="PLAYLIST SETTINGS" id="nA4-jd-mJM" customClass="ACTPlaylistSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JLA-hE-9qi"/>
                         <viewControllerLayoutGuide type="bottom" id="h71-Ya-laJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="W5Q-Rc-Seh">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WETLogo" translatesAutoresizingMaskIntoConstraints="NO" id="DeY-LR-lR4">
@@ -267,7 +269,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wS9-rI-4qy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nuw-PX-Yax">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WETLogo" translatesAutoresizingMaskIntoConstraints="NO" id="WIq-vc-E5c">
@@ -307,7 +309,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yer-2C-eVp">
-                                <rect key="frame" x="414" y="100" width="596" height="70"/>
+                                <rect key="frame" x="414" y="186" width="0.0" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="HNk-Rt-15K" kind="embed" id="qbA-us-owB"/>
@@ -330,21 +332,21 @@
                                 <color key="sectionIndexBackgroundColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="playlist" textLabel="qex-Pg-Y4i" detailTextLabel="79C-Hu-qes" style="IBUITableViewCellStyleValue1" id="M50-tZ-7Nb">
-                                        <rect key="frame" x="0.0" y="28" width="550" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="550" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M50-tZ-7Nb" id="0Ej-qk-9l7">
                                             <rect key="frame" x="0.0" y="0.0" width="550" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qex-Pg-Y4i">
-                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="20" y="12" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="79C-Hu-qes">
-                                                    <rect key="frame" x="491" y="12" width="44" height="20.5"/>
+                                                    <rect key="frame" x="486" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -399,13 +401,13 @@
         <!--PLAYLIST SETTINGS-->
         <scene sceneID="aHg-1n-bDJ">
             <objects>
-                <viewController title="PLAYLIST SETTINGS" modalPresentationStyle="fullScreen" id="pMY-Lz-QLg" customClass="ACTPlaylistSettingsLakeViewController" sceneMemberID="viewController">
+                <viewController title="PLAYLIST SETTINGS" id="pMY-Lz-QLg" customClass="ACTPlaylistSettingsLakeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Dy-YC-f4W"/>
                         <viewControllerLayoutGuide type="bottom" id="436-8Y-owH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HBq-id-wmw">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WETLogo" translatesAutoresizingMaskIntoConstraints="NO" id="J8l-ci-gT6">
@@ -472,9 +474,6 @@
             <point key="canvasLocation" x="-5009" y="70"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="qbA-us-owB"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="WETLogo" width="138" height="36"/>
         <image name="autoMode" width="48" height="44"/>
@@ -484,4 +483,7 @@
         <image name="outOfRange" width="1105" height="781"/>
         <image name="playlist" width="500" height="500"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qbA-us-owB"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -203,7 +203,7 @@
 -(void)dismissPopoverView{
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _dismiss = [[defaults objectForKey:@"dismissTestShows"] intValue];
+    _dismiss = [[defaults objectForKey:@"dismissLakeTestShows"] intValue];
 
     if (_dismiss){
         
@@ -211,7 +211,7 @@
         _dismissPopoverTimer = nil;
         
         [popoverDesignateTestShow dismissPopoverAnimated:YES];
-        [defaults setObject:@"0" forKey:@"dismissTestShows"];
+        [defaults setObject:@"0" forKey:@"dismissLakeTestShows"];
         
     }
     

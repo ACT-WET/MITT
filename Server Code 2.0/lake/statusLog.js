@@ -275,8 +275,8 @@ if (SPMConnected){
 
             [   // Show Stopper - lake
                 {"yes":"Show Stopper: Estop","no":"Show Stopper Resolved: Estop"},
-                {"yes":"Show Stopper: ST1001 Wind_Speed_Abort_Show","no":"Show Stopper Resolved: ST1001 Wind_Speed_Abort_Show"},
                 {"yes":"Show Stopper: Water Level Below L","no":"Show Stopper Resolved: Water Level Below L"},
+                {"yes":"Show Stopper: ST1001 Wind_Speed_Abort_Show","no":"Show Stopper Resolved: ST1001 Wind_Speed_Abort_Show"},
             ],
 
             [   // estop - lake 

@@ -29,17 +29,15 @@ function lightsWrapper(){
     var on_time = lightsData[(3*day_ID)+1];
     var off_time = lightsData[(3*day_ID)+2];
 
-    if ((current_time > 600)&&(off_time <= 600)){
-        off_time = 2400;
+    if (current_time < 600){
+        current_time = current_time + 2400;
     }
-    else if ((current_time <= 600)&&(off_time <=600)){
-        if (on_time >= 600){
-            on_time = 0;
-        }
-    }
-    else{
-        //So nothing
-    }
+    if (on_time < 600){
+        on_time = on_time + 2400;
+    } 
+    if (off_time < 600){
+        off_time = off_time + 2400;
+    } 
         //watchDog.eventLog('On Time' +on_time);
         //watchDog.eventLog('current Time' +current_time);
         //watchDog.eventLog('Off Time' +off_time);
@@ -49,11 +47,13 @@ function lightsWrapper(){
             var microlightsAuto = resp.register[0];
             var oarsmanlightsAuto = resp.register[5];
 
-            if ((microlightsAuto === 2) && (oarsmanlightsAuto === 2)) {
+            if ((microlightsAuto === 2) || (oarsmanlightsAuto === 2)) {
                 if ((current_time >= on_time)&&(current_time < off_time)){
+                   // watchDog.eventLog('Off Time' +off_time);
                     dayMode=0; 
                 }else{
                     dayMode=1; 
+                    //watchDog.eventLog('Off Time' +off_time);
                 }
             }
         }

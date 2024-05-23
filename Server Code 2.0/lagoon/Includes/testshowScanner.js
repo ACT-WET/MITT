@@ -68,8 +68,8 @@ function writeToShowFile(){
     testshows = testshows.filter(function(e){return e}); 
     tmpshows = tmpshows.concat(testshows);
     shows = tmpshows;
-    fs.writeFileSync(homeD+'/UserFiles/testshows.txt',JSON.stringify(testshows),'utf-8');
-    fs.writeFileSync(homeD+'/UserFiles/testshowsBkp.txt',JSON.stringify(testshows),'utf-8');
+    //fs.writeFileSync(homeD+'/UserFiles/testshows.txt',JSON.stringify(testshows),'utf-8');
+    //fs.writeFileSync(homeD+'/UserFiles/testshowsBkp.txt',JSON.stringify(testshows),'utf-8');
     fs.writeFileSync(homeD+'/UserFiles/shows.txt',JSON.stringify(shows),'utf-8');
     fs.writeFileSync(homeD+'/UserFiles/showsBkp.txt',JSON.stringify(shows),'utf-8');
     scanStatus.done = true;
